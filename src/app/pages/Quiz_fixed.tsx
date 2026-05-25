@@ -198,7 +198,7 @@ export default function Quiz() {
         <p className="text-slate-200 mb-8">Công chúa chưa được cứu lần này. Thử lại nhé!</p>
         <div className="text-6xl mb-6">💔</div>
         <div className="flex gap-4">
-          <motion.button whileHover={{ scale: 1.03 }} onClick={() => { useGameStore.getState().resetGame(); navigate('/map'); }} className="px-6 py-3 rounded-xl bg-rose-500 font-bold">Quay lại bản đồ</motion.button>
+          <motion.button whileHover={{ scale: 1.03 }} onClick={() => navigate('/map')} className="px-6 py-3 rounded-xl bg-rose-500 font-bold">Quay lại bản đồ</motion.button>
           <motion.button whileHover={{ scale: 1.03 }} onClick={() => { useGameStore.getState().resetGame(); navigate('/'); }} className="px-6 py-3 rounded-xl bg-slate-800 border border-rose-400 font-bold">Thử lại</motion.button>
         </div>
       </div>

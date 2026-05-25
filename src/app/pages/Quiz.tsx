@@ -286,10 +286,6 @@ export default function Quiz() {
           </div>
         </motion.div>
 
-        <div className="flex gap-4 z-20">
-          <motion.button whileHover={{ scale: 1.03 }} onClick={() => navigate('/map')} className="px-6 py-3 rounded-xl bg-white text-slate-950 font-bold">Xem bản đồ</motion.button>
-          <motion.button whileHover={{ scale: 1.03 }} onClick={() => { useGameStore.getState().resetGame(); navigate('/'); }} className="px-6 py-3 rounded-xl bg-transparent border border-white/20 font-bold text-white">Chơi lại</motion.button>
-        </div>
       </div>
     );
   }
@@ -303,8 +299,17 @@ export default function Quiz() {
         <p className="relative z-10 text-slate-300 mb-8 text-center max-w-md">Bạn có thể quay lại bản đồ và thử lại sau khi ôn thêm.</p>
         <div className="relative z-10 text-5xl mb-6">✕</div>
         <div className="flex gap-4">
-          <motion.button whileHover={{ scale: 1.03 }} onClick={() => { useGameStore.getState().resetGame(); navigate('/map'); }} className="px-6 py-3 rounded-xl bg-white text-slate-950 font-bold">Quay lại bản đồ</motion.button>
-          <motion.button whileHover={{ scale: 1.03 }} onClick={() => { useGameStore.getState().resetGame(); navigate('/'); }} className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 font-bold text-white">Thử lại</motion.button>
+          <motion.button whileHover={{ scale: 1.03 }} onClick={() => navigate('/map')} className="px-6 py-3 rounded-xl bg-white text-slate-950 font-bold">Quay lại bản đồ</motion.button>
+          <motion.button whileHover={{ scale: 1.03 }} onClick={() => {
+            setStatus('idle');
+            setCurrentQIndex(0);
+            setSelectedAns(null);
+            setTimeLeft(30);
+            setDragonHp(3);
+            setBossShieldItems(bossInitialEquipment.slice());
+            setBossShields(bossInitialEquipment.length);
+            navigate(`/quiz/${stageNum}`);
+          }} className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 font-bold text-white">Thử lại</motion.button>
         </div>
       </div>
     );
