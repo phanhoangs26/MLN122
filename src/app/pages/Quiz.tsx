@@ -165,33 +165,46 @@ export default function Quiz() {
   };
 
   const handleWrong = () => {
-    if (isBoss && bossShieldItems.length > 0) {
-      // consume the last shield item
-      setBossShieldItems(prev => {
-        const next = prev.slice(0, -1);
-        setBossShields(next.length);
-        return next;
-      });
-      setStatus('shielded');
-      setTimeout(() => {
-        setStatus('idle');
-        setSelectedAns(null);
-        setTimeLeft(30);
-      }, 1400);
+    if (isBoss) {
+      if (bossShieldItems.length > 0) {
+        // consume the last shield item
+        setBossShieldItems(prev => {
+          const next = prev.slice(0, -1);
+          setBossShields(next.length);
+          return next;
+        });
+        setStatus('shielded');
+        setTimeout(() => {
+          setStatus('idle');
+          setSelectedAns(null);
+          setTimeLeft(30);
+        }, 1400);
+        return;
+      }
+
+      // no shields left -> defeat (items-only mechanic)
+      setStatus('wrong');
+      setTimeout(() => setStatus('defeat'), 800);
       return;
     }
 
+    // non-boss behavior: show wrong feedback, then remove a heart
     setStatus('wrong');
     loseHeart();
+
+    // check hearts immediately (Zustand set is synchronous here) to avoid race
+    const currentHearts = useGameStore.getState().hearts;
+    if (currentHearts <= 0) {
+      // give a short moment for the 'wrong' feedback then show defeat
+      setTimeout(() => setStatus('defeat'), 800);
+      return;
+    }
+
+    // otherwise return to idle after feedback
     setTimeout(() => {
-      const currentHearts = useGameStore.getState().hearts;
-      if (currentHearts <= 0) {
-        setStatus('defeat');
-      } else {
-        setStatus('idle');
-        setSelectedAns(null);
-        setTimeLeft(30);
-      }
+      setStatus('idle');
+      setSelectedAns(null);
+      setTimeLeft(30);
     }, 2500);
   };
 
