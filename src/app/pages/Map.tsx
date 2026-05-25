@@ -138,14 +138,7 @@ export default function Map() {
             </button>
           </motion.div>
 
-          <motion.div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 text-sm leading-6 text-slate-300 backdrop-blur">
-            <div className="mb-2 text-xs font-black uppercase tracking-[0.3em] text-slate-500">Tiến độ</div>
-            Bạn đang ở chặng {currentStage}. Hoàn thành một chặng sẽ mở chặng tiếp theo và ghi nhận trang bị tương ứng.
-            <button onClick={() => navigate(currentStage >= 6 ? '/quiz/6' : `/maze/${currentStage}`)} className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-bold text-slate-950 transition-transform hover:scale-[1.02]">
-              <Mountain className="h-4 w-4" />
-              Đi chặng hiện tại
-            </button>
-          </motion.div>
+          {/* Progress panel removed as requested */}
         </aside>
       </div>
     </div>
