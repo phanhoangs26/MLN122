@@ -1,149 +1,92 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { Play, Trophy, Medal, Map as MapIcon } from 'lucide-react';
-import { useGameStore } from '../store';
+import { ArrowRight, BookOpen, MapPinned, Sparkles } from 'lucide-react';
+import { TopBar } from '../components/TopBar';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { xp, currentStage } = useGameStore();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex flex-col font-sans text-white selection:bg-blue-400/30 overflow-x-hidden relative">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-20"
-          animate={{ scale: [1, 1.3, 1], x: [0, 30, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full blur-3xl opacity-20"
-          animate={{ scale: [1, 1.2, 1], y: [0, -30, 0] }}
-          transition={{ duration: 8, repeat: Infinity, delay: 1 }}
-        />
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white">
+      <TopBar />
 
-      <div className="flex-1 max-w-6xl mx-auto w-full px-6 flex flex-col md:flex-row items-center justify-center gap-12 py-12 relative z-10">
-        
-        {/* Left Side: Hero Graphic */}
-        <div className="flex-1 w-full relative h-[400px] flex items-center justify-center">
-          <motion.div 
-            className="absolute z-0 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-30"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-          
-          <div className="relative z-10 w-full max-w-md bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-2xl shadow-blue-500/50 border-2 border-blue-500/50 p-8 flex flex-col items-center justify-center overflow-hidden backdrop-blur">
-             {/* Scene */}
-             <div className="flex items-end justify-between w-full h-48 border-b-4 border-cyan-400 pb-2 relative">
-                {/* Tower & Princess */}
-                <div className="flex flex-col items-center">
-                  <span className="text-6xl mb-[-10px] z-10">👸</span>
-                  <div className="w-16 h-32 bg-slate-300 rounded-t-xl border-4 border-slate-400 flex justify-center pt-2">
-                     <div className="w-8 h-8 bg-slate-800 rounded-t-full" />
+      <div className="mx-auto max-w-6xl px-4 py-10">
+        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+          <motion.section
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl shadow-black/20 backdrop-blur lg:p-10"
+          >
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-blue-500/10 blur-3xl" />
+
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.35em] text-slate-300">
+                <Sparkles className="h-4 w-4" />
+                Hệ thống học tập
+              </div>
+
+              <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight text-white md:text-6xl">
+                Nền tảng ôn luyện cho hành trình học triết học
+              </h1>
+
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
+                Đọc lý thuyết trước, đi qua 5 mê cung, rồi vào boss cuối. Tất cả được trình bày trong cùng một giao diện tối, gọn và dễ đọc.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <button
+                  onClick={() => navigate('/map')}
+                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-bold text-slate-950 transition-transform hover:scale-[1.02]"
+                >
+                  Vào bản đồ
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => navigate('/theory')}
+                  className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Mở lý thuyết
+                </button>
+              </div>
+            </div>
+          </motion.section>
+
+          <aside className="flex flex-col gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-xl shadow-black/20 backdrop-blur"
+            >
+              <div className="text-xs font-black uppercase tracking-[0.35em] text-slate-400">Trạng thái học tập</div>
+              <div className="mt-2 text-2xl font-black text-white">Sẵn sàng cho hành trình</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Mở bản đồ để bắt đầu, hoặc vào lý thuyết để ôn nhanh trước khi chơi.
+              </p>
+
+              <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <MapPinned className="h-5 w-5 text-slate-300" />
+                  <div className="mt-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-500">Bản đồ</div>
+                  <div className="mt-1 text-lg font-black text-white">5 mê cung + boss</div>
+                  <div className="mt-2 text-sm leading-6 text-slate-400">
+                    Đi qua 5 chặng mê cung để sưu tầm nội dung, sau đó mở cửa vào boss cuối.
                   </div>
                 </div>
-
-                {/* Dragon */}
-                <motion.div 
-                  className="text-6xl absolute left-1/2 -translate-x-1/2 bottom-2"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  🐉
-                </motion.div>
-
-                {/* Prince */}
-                <motion.div 
-                  className="text-6xl"
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 1 }}
-                >
-                  🤴
-                </motion.div>
-             </div>
-             
-             <h1 className="text-4xl font-black mt-6 text-center leading-tight bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-               Cuộc Phiêu Lưu Của Hoàng Tử:<br/> Cứu Công Chúa
-             </h1>
-             <p className="text-slate-300 text-center font-semibold mt-3 mb-6">
-               Nắm vững Triết Học Mác-Lê-Nin để đánh bại Rồng và cứu vương quốc!
-             </p>
-          </div>
-        </div>
-
-        {/* Right Side: Menu */}
-        <div className="flex-1 w-full flex flex-col gap-4 max-w-md">
-           
-           <motion.button
-             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(34, 197, 94, 0.6)" }}
-             whileTap={{ scale: 0.95 }}
-             onClick={() => navigate('/map')}
-             className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-2xl py-6 px-6 font-black text-xl flex items-center justify-center gap-3 shadow-xl shadow-green-500/50 border-2 border-green-400/60 transition-all uppercase tracking-wider"
-           >
-             <Play className="w-6 h-6 fill-white" />
-             Bắt Đầu Phiêu Lưu
-           </motion.button>
-
-           {/* Cards Grid */}
-           <div className="grid grid-cols-2 gap-4 mt-6">
-             {/* Progress Card */}
-             <motion.div 
-               whileHover={{ scale: 1.05, y: -5 }}
-               className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-5 shadow-lg shadow-emerald-500/20 border-2 border-emerald-500/40 flex flex-col items-center justify-center gap-3 hover:border-emerald-500/60 transition-colors cursor-pointer"
-             >
-               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 text-white flex items-center justify-center shadow-lg shadow-emerald-500/50">
-                 <MapIcon className="w-7 h-7" />
-               </div>
-               <div className="text-center">
-                 <div className="font-black text-white text-lg">Cấp {currentStage}</div>
-                 <div className="text-xs text-slate-300 font-semibold uppercase tracking-wider">Tiến Độ</div>
-               </div>
-             </motion.div>
-
-             {/* Leaderboard Preview Card */}
-             <motion.div 
-               whileHover={{ scale: 1.05, y: -5 }}
-               onClick={() => navigate('/leaderboard')} 
-               className="bg-gradient-to-br from-slate-800 to-slate-900 cursor-pointer rounded-2xl p-5 shadow-lg shadow-amber-500/20 border-2 border-amber-500/40 flex flex-col items-center justify-center gap-3 hover:border-amber-500/60 transition-colors"
-             >
-               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 text-white flex items-center justify-center shadow-lg shadow-amber-500/50">
-                 <Trophy className="w-7 h-7" />
-               </div>
-               <div className="text-center">
-                 <div className="font-black text-white text-lg">{xp} XP</div>
-                 <div className="text-xs text-slate-300 font-semibold uppercase tracking-wider">Xếp Hạng</div>
-               </div>
-             </motion.div>
-           </div>
-
-           {/* Achievements Preview */}
-           <motion.div 
-             whileHover={{ borderColor: "rgba(168, 85, 247, 0.8)" }}
-             className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 shadow-lg shadow-purple-500/20 border-2 border-purple-500/30 transition-colors mt-6"
-           >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-black text-white flex items-center gap-2 uppercase tracking-wider">
-                  <Medal className="w-6 h-6 text-purple-400" />
-                  Thành Tựu
-                </h3>
-                <span className="text-xs font-bold text-purple-400 cursor-pointer hover:text-purple-300 transition-colors">Xem Tất Cả →</span>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <BookOpen className="h-5 w-5 text-slate-300" />
+                  <div className="mt-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-500">Lý thuyết</div>
+                  <div className="mt-1 text-lg font-black text-white">Ôn nhanh trước trận</div>
+                  <div className="mt-2 text-sm leading-6 text-slate-400">
+                    Tóm tắt các khái niệm chính để đọc nhanh, nhớ nhanh và vào game chắc hơn.
+                  </div>
+                </div>
               </div>
-              <div className="flex justify-between gap-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <motion.div 
-                    key={i} 
-                    whileHover={{ scale: 1.15 }}
-                    className="w-14 h-14 rounded-xl bg-slate-700/50 border-2 border-purple-500/30 flex items-center justify-center text-2xl hover:border-purple-500/60 transition-colors cursor-pointer"
-                  >
-                    {['🛡️','⚔️','🐎','👑'][i-1]}
-                  </motion.div>
-                ))}
-              </div>
-           </motion.div>
+            </motion.div>
 
+          </aside>
         </div>
       </div>
     </div>

@@ -1,47 +1,31 @@
 import React from 'react';
-import { Heart, Coins, Shield, Swords, Star } from 'lucide-react';
-import { useGameStore } from '../store';
+import { Crown, BookOpen, Map } from 'lucide-react';
 import { Link } from 'react-router';
-import { motion } from 'motion/react';
 
 export const TopBar: React.FC = () => {
-  const { hearts, maxHearts, xp, level, coins } = useGameStore();
-
   return (
-    <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-2 border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
-      <Link to="/" className="flex items-center gap-2">
-        <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-inner text-white font-bold text-xl">
-          P
-        </div>
-      </Link>
-      
-      <div className="flex items-center gap-6">
-        {/* Cấp & XP */}
-        <div className="flex items-center gap-2">
-          <div className="bg-emerald-500 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold border-2 border-emerald-700 shadow-sm">
-            {level}
+    <div className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/85 px-4 py-3 text-white shadow-[0_8px_30px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
+        <Link to="/" className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white">
+            <Crown className="h-6 w-6" />
           </div>
-          <div className="w-24 h-4 bg-slate-200 rounded-full overflow-hidden relative border-2 border-slate-300">
-            <motion.div 
-              className="absolute left-0 top-0 h-full bg-emerald-400"
-              initial={{ width: 0 }}
-              animate={{ width: `${(xp % 100)}%` }}
-              transition={{ type: 'spring' }}
-            />
+          <div>
+            <div className="text-sm font-black uppercase tracking-[0.3em] text-white">MLN Study</div>
+            <div className="text-xs text-slate-400">Trang học lý thuyết và luyện tập</div>
           </div>
-        </div>
+        </Link>
 
-        {/* Hearts */}
-        <div className="flex items-center gap-1 font-bold text-rose-500">
-          <Heart className="w-6 h-6 fill-rose-500" />
-          <span>{hearts}</span>
-        </div>
-
-        {/* Coins */}
-        <div className="flex items-center gap-1 font-bold text-amber-500">
-          <Coins className="w-6 h-6 fill-amber-400" />
-          <span>{coins}</span>
-        </div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link to="/theory" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-200 transition-colors hover:bg-white/10 sm:px-4">
+              <BookOpen className="h-4 w-4" />
+              Lý thuyết
+            </Link>
+            <Link to="/map" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-200 transition-colors hover:bg-white/10 sm:px-4">
+              <Map className="h-4 w-4" />
+              Bản đồ
+            </Link>
+          </div>
       </div>
     </div>
   );

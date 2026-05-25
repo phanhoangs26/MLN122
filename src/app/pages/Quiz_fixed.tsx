@@ -59,6 +59,7 @@ export default function Quiz() {
   const navigate = useNavigate();
   const { stageId } = useParams();
   const stageNum = stageId || "1";
+  const stageNumber = parseInt(stageNum);
   
   const stage = quizData[stageNum];
   const isBoss = stage?.isBoss;
@@ -99,7 +100,7 @@ export default function Quiz() {
       setDragonHp(h => Math.max(0, h - 1));
       setTimeout(() => {
           if (dragonHp - 1 <= 0) {
-            completeStage();
+            completeStage(stageNumber);
             setStatus('victory');
             confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
             return;
@@ -145,7 +146,7 @@ export default function Quiz() {
 
   const finishStage = () => {
     if (currentStage === parseInt(stageNum)) {
-      completeStage();
+      completeStage(stageNumber);
     }
     navigate('/map');
   };

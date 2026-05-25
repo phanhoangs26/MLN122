@@ -14,7 +14,7 @@ interface GameState {
   addXp: (amount: number) => void;
   unlockItem: (item: EquipmentItem) => void;
   resetGame: () => void;
-  completeStage: () => void;
+  completeStage: (stageId: number) => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -40,10 +40,14 @@ export const useGameStore = create<GameState>((set) => ({
   unlockItem: (item) => set((state) => ({
     inventory: { ...state.inventory, [item]: true }
   })),
-  completeStage: () => set((state) => ({
-    currentStage: state.currentStage + 1,
-    coins: state.coins + 50,
-  })),
+  completeStage: (stageId) => set((state) => {
+    if (state.currentStage !== stageId) return {};
+
+    return {
+      currentStage: state.currentStage + 1,
+      coins: state.coins + 50,
+    };
+  }),
   resetGame: () => set({
     hearts: 5,
     xp: 0,

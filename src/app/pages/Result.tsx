@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Trophy, Share2, RotateCcw, Medal, Star } from 'lucide-react';
 import { useGameStore } from '../store';
 import confetti from 'canvas-confetti';
+import clsx from 'clsx';
 
 export default function Result() {
   const navigate = useNavigate();

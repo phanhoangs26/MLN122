@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router";
 import Home from "./pages/Home";
+import Theory from "./pages/Theory";
 import Map from "./pages/Map";
+import Maze from "./pages/Maze";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
-import Leaderboard from "./pages/Leaderboard";
 
 export const router = createBrowserRouter([
   {
@@ -15,15 +16,19 @@ export const router = createBrowserRouter([
     Component: Map,
   },
   {
+    path: "/maze/:stageId",
+    Component: Maze,
+  },
+  {
+    path: "/theory",
+    Component: Theory,
+  },
+  {
     path: "/quiz/:stageId",
     Component: Quiz,
   },
   {
     path: "/result",
     Component: Result,
-  },
-  {
-    path: "/leaderboard",
-    Component: Leaderboard,
   },
 ]);

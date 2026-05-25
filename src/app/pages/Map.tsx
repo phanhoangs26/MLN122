@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { Lock, Sword, Castle } from 'lucide-react';
+import { Lock, Sword, Castle, ArrowRight, BookOpen, Trophy, Mountain } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
 import { useGameStore } from '../store';
 import clsx from 'clsx';
@@ -21,161 +21,132 @@ export default function Map() {
 
   const handleStageClick = (stageId: number) => {
     if (stageId <= currentStage) {
-      navigate(`/quiz/${stageId}`);
+      navigate(stageId === 6 ? `/quiz/${stageId}` : `/maze/${stageId}`);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex flex-col font-sans text-white pb-20 relative">
-      {/* Background animation */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-20"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-      </div>
-
+    <div className="min-h-screen flex flex-col font-sans text-white pb-20 relative">
       <TopBar />
-      
-      <div className="flex-1 max-w-5xl mx-auto w-full px-4 pt-8 flex flex-col md:flex-row gap-8 relative z-10">
-        
-        {/* Main Map Path */}
-        <div className="flex-1 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl shadow-blue-500/30 border-2 border-blue-500/40 flex flex-col items-center relative overflow-hidden">
-          <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-8 self-start uppercase tracking-wider">Bản Đồ Hành Trình</h2>
-          
-          <div className="relative w-full max-w-sm mx-auto py-12 flex flex-col items-center gap-16">
-            
-            {/* Connection Line */}
-            <div className="absolute top-[80px] bottom-[80px] left-1/2 -translate-x-1/2 w-4 bg-slate-700 rounded-full z-0" />
-            <div 
-              className="absolute top-[80px] left-1/2 -translate-x-1/2 w-4 bg-gradient-to-b from-emerald-400 to-cyan-400 rounded-full z-0 transition-all duration-1000"
-              style={{ height: `${Math.max(0, (currentStage - 1) / (stages.length - 1) * 100)}%` }}
-            />
 
-            {stages.map((stage, index) => {
+      <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 pt-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
+        <section className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-2xl shadow-black/20 backdrop-blur lg:p-8">
+          <div className="mb-6 flex items-start justify-between gap-4">
+            <div>
+              <div className="text-xs font-black uppercase tracking-[0.35em] text-slate-400">Bản đồ học tập</div>
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-white">Lộ trình các chặng</h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">Chặng 1 đến 5 là mê cung sưu tầm vật phẩm. Chặng 6 là boss cuối như cũ.</p>
+            </div>
+            <button onClick={() => navigate('/theory')} className="hidden items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 transition-colors hover:bg-white/10 lg:inline-flex">
+              <BookOpen className="h-4 w-4" />
+              Xem lý thuyết
+            </button>
+          </div>
+
+          <div className="space-y-3">
+            {stages.map((stage) => {
               const isLocked = stage.id > currentStage;
               const isCurrent = stage.id === currentStage;
               const isCompleted = stage.id < currentStage;
-              
-              const offsetX = index % 2 === 0 ? -40 : 40;
 
               return (
-                <div 
-                  key={stage.id} 
-                  className="relative z-10 w-full flex justify-center"
-                  style={{ transform: `translateX(${offsetX}px)` }}
+                <motion.button
+                  key={stage.id}
+                  whileHover={!isLocked ? { y: -2 } : {}}
+                  whileTap={!isLocked ? { scale: 0.99 } : {}}
+                  onClick={() => handleStageClick(stage.id)}
+                  disabled={isLocked}
+                  className={clsx(
+                    'flex w-full items-center justify-between gap-4 rounded-2xl border px-4 py-4 text-left transition-colors',
+                    isLocked ? 'border-white/10 bg-white/5 opacity-60' : 'border-white/10 bg-slate-900/70 hover:bg-slate-900',
+                    isCurrent && 'ring-1 ring-white/20'
+                  )}
                 >
-                  <motion.button
-                    whileHover={!isLocked ? { scale: 1.1 } : {}}
-                    whileTap={!isLocked ? { scale: 0.95 } : {}}
-                    onClick={() => handleStageClick(stage.id)}
-                    disabled={isLocked}
-                    className="relative group focus:outline-none"
-                  >
-                    {/* Tooltip */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-3 rounded-xl shadow-lg border-2 border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20">
-                      <div className="font-black text-white text-sm">{stage.name}</div>
-                      {isLocked ? (
-                        <div className="text-rose-400 text-xs font-bold mt-1">Bị Khóa</div>
-                      ) : (
-                        <div className="text-emerald-400 text-xs font-bold mt-1">✓ Chơi</div>
-                      )}
-                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-b-2 border-r-2 border-slate-700 rotate-45" />
+                  <div className="flex items-center gap-4">
+                    <div className={clsx('flex h-12 w-12 items-center justify-center rounded-2xl border text-lg font-black', isLocked ? 'border-white/10 bg-white/5 text-slate-500' : 'border-white/10 bg-white/10 text-white')}>
+                      {isLocked ? <Lock className="h-5 w-5" /> : stage.id}
                     </div>
 
-                    {/* Node Button */}
-                    <div className={clsx(
-                      "w-24 h-24 rounded-full flex items-center justify-center text-5xl border-4 relative transition-all",
-                      isLocked ? "bg-slate-700 border-slate-600" : `${stage.color} border-white shadow-xl ${stage.shadow} hover:shadow-2xl`
-                    )}>
-                      {isLocked ? (
-                        <Lock className="w-10 h-10 text-slate-500" />
-                      ) : (
-                        stage.icon
-                      )}
-                      
-                      {/* Current Stage Indicator */}
-                      {isCurrent && (
-                        <motion.div 
-                          className="absolute -top-4 -right-4 bg-gradient-to-r from-yellow-400 to-yellow-500 w-10 h-10 rounded-full border-2 border-white flex items-center justify-center shadow-lg text-xl font-black"
-                          animate={{ scale: [1, 1.1, 1], rotate: [0, 360] }}
-                          transition={{ repeat: Infinity, duration: 2 }}
-                        >
-                          ★
-                        </motion.div>
-                      )}
-
-                      {/* Completed Stars */}
-                      {isCompleted && (
-                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 to-yellow-400 px-3 py-1 rounded-full border-2 border-white flex shadow-lg">
-                          <span className="text-lg">★★★</span>
-                        </div>
-                      )}
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-base font-bold text-white">{stage.name}</div>
+                        {isCurrent && <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300">Đang học</span>}
+                        {isCompleted && <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-100">Đã hoàn thành</span>}
+                      </div>
+                      <div className="mt-1 text-sm text-slate-400">{isLocked ? 'Chưa mở khóa' : stage.id === 6 ? 'Vào đánh boss' : 'Có thể vào mê cung'}</div>
                     </div>
-                  </motion.button>
-                </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-slate-300">
+                    <span className="text-xl">{stage.icon}</span>
+                    {isLocked ? <Lock className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+                  </div>
+                </motion.button>
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Sidebar: Inventory & Stats */}
-        <div className="w-full md:w-80 flex flex-col gap-6">
-          
-          {/* Equipment Card */}
-          <motion.div 
-            whileHover={{ borderColor: "rgba(16, 185, 129, 0.8)" }}
-            className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-6 shadow-lg shadow-emerald-500/20 border-2 border-emerald-500/40 transition-colors"
-          >
-            <h3 className="font-black text-white text-lg mb-4 flex items-center gap-2 uppercase tracking-wider">
-              <Sword className="w-6 h-6 text-emerald-400" />
-              Trang Bị
+        <aside className="flex flex-col gap-6">
+          <motion.div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-xl shadow-black/20 backdrop-blur">
+            <h3 className="mb-4 flex items-center gap-2 text-sm font-black uppercase tracking-[0.3em] text-slate-400">
+              <Sword className="h-4 w-4" />
+              Trang bị boss
             </h3>
-            
-            <div className="grid grid-cols-2 gap-4">
+            <p className="mb-4 text-sm leading-6 text-slate-400">Mỗi chặng hoàn thành sẽ làm sáng một trang bị. Không cần đếm vật phẩm riêng để mở boss cuối.</p>
+            <div className="grid grid-cols-2 gap-3">
               {[
                 { id: 'sword', icon: '⚔️', name: 'Kiếm' },
                 { id: 'shield', icon: '🛡️', name: 'Khiên' },
-                { id: 'helmet', icon: '⛑️', name: 'Mũ Bảo Vệ' },
+                { id: 'helmet', icon: '⛑️', name: 'Mũ' },
                 { id: 'armor', icon: '🎽', name: 'Giáp' },
                 { id: 'horse', icon: '🐎', name: 'Ngựa' },
               ].map((item) => {
                 const isUnlocked = inventory[item.id as keyof typeof inventory];
-                
                 return (
-                  <motion.div 
+                  <div
                     key={item.id}
-                    whileHover={{ scale: isUnlocked ? 1.1 : 1 }}
                     className={clsx(
-                      "flex flex-col items-center p-4 rounded-2xl border-2 transition-all",
-                      isUnlocked ? "bg-gradient-to-br from-amber-600/20 to-amber-700/10 border-amber-500/60 shadow-lg shadow-amber-500/20 cursor-pointer" : "bg-slate-700/50 border-slate-600 opacity-50"
+                      'flex flex-col items-center rounded-2xl border px-3 py-4 text-center transition-all',
+                      isUnlocked
+                        ? 'border-emerald-300/40 bg-emerald-400/15 text-emerald-50 shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-300/20'
+                        : 'border-white/5 bg-white/[0.03] text-slate-500'
                     )}
                   >
-                    <div className="text-4xl mb-2">{item.icon}</div>
-                    <div className="text-xs font-bold text-slate-200">{item.name}</div>
-                    {!isUnlocked && <Lock className="w-4 h-4 text-slate-500 mt-2" />}
-                  </motion.div>
+                    <div className={clsx('text-2xl transition-all', isUnlocked && 'drop-shadow-[0_0_10px_rgba(167,243,208,0.7)]')}>{item.icon}</div>
+                    <div className="mt-2 text-xs font-semibold uppercase tracking-[0.18em]">{item.name}</div>
+                    <div className={clsx('mt-2 rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-[0.22em]', isUnlocked ? 'bg-emerald-300/20 text-emerald-100' : 'bg-white/5 text-slate-500')}>
+                      {isUnlocked ? 'Đã sáng' : 'Chưa mở'}
+                    </div>
+                  </div>
                 );
               })}
             </div>
           </motion.div>
 
-          {/* Mission Box */}
-          <motion.div 
-            whileHover={{ borderColor: "rgba(59, 130, 246, 0.8)" }}
-            className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-6 shadow-xl shadow-blue-500/40 border-2 border-blue-500/50 text-white relative overflow-hidden transition-colors"
-          >
-            <div className="absolute right-[-20px] top-[-20px] opacity-10">
-              <Castle className="w-32 h-32" />
-            </div>
-            <h3 className="font-black text-lg mb-2 relative z-10 uppercase tracking-wider">Nhiệm Vụ Cứu Rỗi</h3>
-            <p className="text-blue-100 text-sm font-semibold leading-relaxed relative z-10">
-              Công Chúa bị giam giữ trong Lâu Đài Rồng (Cấp 6). Hãy thu thập tất cả trang bị bằng cách trả lời chính xác các câu hỏi triết học để đánh bại Rồng!
+          <motion.div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-xl shadow-black/20 backdrop-blur">
+            <h3 className="mb-2 flex items-center gap-2 text-sm font-black uppercase tracking-[0.3em] text-slate-400">
+              <Castle className="h-4 w-4" />
+              Mục tiêu
+            </h3>
+            <p className="text-sm leading-6 text-slate-300">
+              Công chúa nằm ở chặng cuối. Hoàn thành 5 mê cung, thu thập vật phẩm và bước vào boss cuối ở chặng 6.
             </p>
+              <button onClick={() => navigate('/maze/1')} className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-bold text-slate-950 transition-transform hover:scale-[1.02]">
+              Bắt đầu từ chặng 1
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </motion.div>
 
-        </div>
+          <motion.div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 text-sm leading-6 text-slate-300 backdrop-blur">
+            <div className="mb-2 text-xs font-black uppercase tracking-[0.3em] text-slate-500">Tiến độ</div>
+            Bạn đang ở chặng {currentStage}. Hoàn thành một chặng sẽ mở chặng tiếp theo và ghi nhận trang bị tương ứng.
+            <button onClick={() => navigate(currentStage >= 6 ? '/quiz/6' : `/maze/${currentStage}`)} className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-bold text-slate-950 transition-transform hover:scale-[1.02]">
+              <Mountain className="h-4 w-4" />
+              Đi chặng hiện tại
+            </button>
+          </motion.div>
+        </aside>
       </div>
     </div>
   );
