@@ -63,14 +63,14 @@ export const concepts: Concept[] = [
   },
   {
     id: 'types',
-    title: 'Các kiểu & hình thức nhà nước',
+    title: 'Các kiểu và hình thức nhà nước',
     short: 'Chủ nô → phong kiến → tư sản → vô sản',
     front: 'Lịch sử đã tồn tại mấy kiểu nhà nước? Khác biệt căn bản nằm ở đâu?',
     back: 'Bốn kiểu: chủ nô, phong kiến, tư sản, vô sản. Ba kiểu đầu là công cụ của thiểu số bóc lột. Nhà nước vô sản là kiểu “đặc biệt” — nhà nước của số đông thống trị số ít.',
   },
   {
     id: 'vietnam',
-    title: 'Vận dụng & nhà nước tiêu vong',
+    title: 'Vận dụng và nhà nước tiêu vong',
     short: 'Nhà nước pháp quyền XHCN Việt Nam',
     front: 'Nhà nước sẽ tiêu vong khi nào? Bản chất Nhà nước Việt Nam hiện nay?',
     back: 'Khi xã hội đạt tới giai đoạn cộng sản chủ nghĩa, không còn giai cấp, nhà nước “tự tiêu vong”. Nhà nước CHXHCN Việt Nam là nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân: “Đảng lãnh đạo, Nhà nước quản lý, Nhân dân làm chủ”.',
@@ -90,7 +90,7 @@ export type TimelineRound = {
 export const timelineRounds: TimelineRound[] = [
   {
     id: 'origin',
-    title: 'Nhà nước ra đời & tiêu vong như thế nào?',
+    title: 'Nhà nước ra đời và tiêu vong như thế nào?',
     prompt: 'Sắp xếp 10 bước theo đúng tiến trình: từ xã hội nguyên thủy tới khi nhà nước tiêu vong.',
     steps: [
       { label: 'Xã hội cộng sản nguyên thủy', note: 'Thị tộc, bộ lạc tự quản; chưa có tư hữu, chưa có giai cấp, chưa có nhà nước.' },

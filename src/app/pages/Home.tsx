@@ -42,7 +42,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-8">
           <div className="text-sm font-black uppercase tracking-widest text-red-600 mb-3">Triết học Mác – Lênin</div>
           <h1 className="font-serif text-4xl font-black leading-tight text-slate-950 md:text-5xl">
-            Nhà nước & sự không thể điều hòa của mâu thuẫn giai cấp
+            Nhà nước và sự không thể điều hòa của mâu thuẫn giai cấp
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-700">
             Khóa học toàn diện về lý thuyết nhà nước theo triết học Mác – Lênin, từ nguồn gốc đến vận dụng thực tiễn xây dựng Nhà nước pháp quyền XHCN Việt Nam.

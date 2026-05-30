@@ -104,7 +104,7 @@ export default function VietnamState() {
             transition={{ delay: 0.2 }}
             className="border-b border-slate-200 py-7"
           >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Bản chất & nguyên tắc</h2>
+            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Bản chất và nguyên tắc</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {nature.map((n, i) => (
                 <motion.div
@@ -128,7 +128,7 @@ export default function VietnamState() {
             transition={{ delay: 0.3 }}
             className="border-b border-slate-200 py-7"
           >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Định hướng xây dựng & hoàn thiện (Đại hội XIII)</h2>
+            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Định hướng xây dựng và hoàn thiện (Đại hội XIII)</h2>
             <div className="grid gap-3 sm:grid-cols-2">
               {directions.map((d, i) => (
                 <motion.div
