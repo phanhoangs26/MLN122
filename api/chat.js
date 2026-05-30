@@ -1,7 +1,7 @@
 // Vercel Serverless Function: relay tới Google Gemini, giữ API key ở phía server.
 // Đọc GEMINI_API_KEY từ Environment Variables của Vercel (không lộ ra client).
 
-const DEFAULT_MODEL = 'gemini-2.0-flash-lite';
+const DEFAULT_MODEL = 'gemini-3.1-flash-lite';
 
 // Nội dung giáo trình bám sát Chương III — làm system context cho API
 const TEXTBOOK_CONTEXT = `
