@@ -1,6 +1,11 @@
 import { create } from 'zustand';
+import { argumentItems } from './data/stateContent';
 
-export type EquipmentItem = 'sword' | 'shield' | 'helmet' | 'armor' | 'horse';
+// Một "luận cứ" được nhận diện bằng id (xem argumentItems trong stateContent).
+export type EquipmentItem = string;
+
+const emptyInventory = (): Record<string, boolean> =>
+  Object.fromEntries(argumentItems.map((i) => [i.id, false]));
 
 interface GameState {
   hearts: number;
@@ -9,7 +14,7 @@ interface GameState {
   level: number;
   coins: number;
   currentStage: number;
-  inventory: Record<EquipmentItem, boolean>;
+  inventory: Record<string, boolean>;
   loseHeart: () => void;
   addXp: (amount: number) => void;
   unlockItem: (item: EquipmentItem) => void;
@@ -24,13 +29,7 @@ export const useGameStore = create<GameState>((set) => ({
   level: 1,
   coins: 0,
   currentStage: 1,
-  inventory: {
-    sword: false,
-    shield: false,
-    helmet: false,
-    armor: false,
-    horse: false,
-  },
+  inventory: emptyInventory(),
   loseHeart: () => set((state) => ({ hearts: Math.max(0, state.hearts - 1) })),
   addXp: (amount) => set((state) => {
     const newXp = state.xp + amount;
@@ -54,12 +53,6 @@ export const useGameStore = create<GameState>((set) => ({
     level: 1,
     coins: 0,
     currentStage: 1,
-    inventory: {
-      sword: false,
-      shield: false,
-      helmet: false,
-      armor: false,
-      horse: false,
-    }
+    inventory: emptyInventory(),
   }),
 }));
