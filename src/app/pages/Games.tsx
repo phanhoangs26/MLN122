@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { TopBar } from '../components/TopBar';
 import { TimelineGame } from '../components/games/TimelineGame';
 import { MatchingGame } from '../components/games/MatchingGame';
-import { useGameStore } from '../store';
 
 type Tab = 'timeline' | 'match';
 
@@ -16,7 +15,6 @@ const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
 
 export default function Games() {
   const [tab, setTab] = useState<Tab>('timeline');
-  const { xp, level } = useGameStore();
 
   return (
     <div className="min-h-screen bg-white text-slate-950">
@@ -30,7 +28,7 @@ export default function Games() {
           </div>
           <div className="flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
             <span className="text-red-600">•</span>
-            <span>Cấp {level} · XP {xp}</span>
+            <span>Học mà chơi · Chơi mà học</span>
           </div>
         </div>
       </div>

@@ -7,7 +7,10 @@ import {
   centralThesis,
   evidenceNotes,
   features,
+  formsIntro,
   originFlow,
+  proletarianState,
+  stateForms,
   theoryBlocks,
   theorySource,
   typeRows,
@@ -19,6 +22,8 @@ const outline = [
   { id: 'ban-chat', label: 'Bản chất' },
   { id: 'dac-trung', label: 'Đặc trưng' },
   { id: 'kieu-nha-nuoc', label: 'Kiểu nhà nước' },
+  { id: 'hinh-thuc', label: 'Hình thức' },
+  { id: 'vo-san', label: 'Nhà nước vô sản' },
 ];
 
 export default function Theory() {
@@ -186,7 +191,7 @@ export default function Theory() {
             </div>
           </section>
 
-          <section id="kieu-nha-nuoc" className="mt-8 grid gap-5 xl:grid-cols-[1.35fr_0.75fr]">
+          <section id="kieu-nha-nuoc" className="mt-8">
             <div className="overflow-hidden border border-slate-200 bg-white shadow-sm">
               <div className="border-b border-slate-200 bg-slate-50 p-5">
                 <div className="text-sm font-black uppercase tracking-widest text-red-600">Các kiểu nhà nước</div>
@@ -213,22 +218,64 @@ export default function Theory() {
                 </table>
               </div>
             </div>
+          </section>
 
-            <aside className="border border-slate-200 bg-slate-50 p-5 shadow-sm">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">Ghi chú nguồn</div>
-              <h3 className="mt-2 font-serif text-2xl font-black text-slate-950">{theorySource.label}</h3>
-              <p className="mt-2 text-base leading-7 text-slate-700">
-                Nội dung được hệ thống hóa từ {theorySource.book}, phần Chương III: Nhà nước và cách mạng xã hội.
-              </p>
-              <div className="mt-4 space-y-2">
-                {evidenceNotes.map((note) => (
-                  <div key={note} className="flex gap-2 text-base leading-7 text-slate-700">
-                    <span className="shrink-0 text-red-600">-</span>
-                    <span>{note}</span>
+          <section id="hinh-thuc" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+            <div className="border-b border-slate-200 pb-3">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Hình thức nhà nước</div>
+              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">Kiểu khác hình thức như thế nào?</h2>
+              <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">{formsIntro}</p>
+            </div>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {stateForms.map((item) => (
+                <div key={item.type} className="border-l-4 border-red-600 bg-slate-50 p-4">
+                  <h3 className="text-xl font-black text-slate-950">{item.type}</h3>
+                  <p className="mt-2 text-base leading-7 text-slate-700">{item.forms}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="vo-san" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+            <div className="border-b border-slate-200 pb-3">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">{proletarianState.eyebrow}</div>
+              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">{proletarianState.title}</h2>
+              <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">{proletarianState.intro}</p>
+            </div>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {proletarianState.functions.map((fn, index) => (
+                <div key={fn.title} className="border border-slate-200 bg-slate-50 p-4">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-serif text-2xl font-black text-red-600">{index + 1}</span>
+                    <h3 className="text-lg font-black leading-tight text-slate-950">{fn.title}</h3>
                   </div>
-                ))}
-              </div>
-            </aside>
+                  <p className="mt-2 text-base leading-7 text-slate-700">{fn.text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-5 border-l-4 border-red-600 bg-red-50 p-5">
+              <div className="text-sm font-black uppercase tracking-widest text-red-700">Nhà nước tiêu vong</div>
+              <p className="mt-2 text-base leading-7 text-slate-700">{proletarianState.withering}</p>
+            </div>
+          </section>
+
+          <section className="mt-8 border border-slate-200 bg-slate-50 p-5 shadow-sm md:p-6">
+            <div className="text-sm font-black uppercase tracking-widest text-red-600">Ghi chú nguồn</div>
+            <h3 className="mt-2 font-serif text-2xl font-black text-slate-950">{theorySource.label}</h3>
+            <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">
+              Nội dung được hệ thống hóa từ {theorySource.book}, phần Chương III: Nhà nước và cách mạng xã hội.
+            </p>
+            <div className="mt-4 grid gap-2 md:grid-cols-3">
+              {evidenceNotes.map((note) => (
+                <div key={note} className="flex gap-2 border-l-4 border-red-600 bg-white p-4 text-base leading-7 text-slate-700">
+                  <span className="shrink-0 text-red-600">-</span>
+                  <span>{note}</span>
+                </div>
+              ))}
+            </div>
           </section>
         </article>
       </main>

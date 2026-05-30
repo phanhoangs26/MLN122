@@ -3,6 +3,15 @@ import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
+import { OutlineLayout } from '../components/PageOutline';
+
+const outline = [
+  { id: 'lich-su', label: 'Dòng lịch sử' },
+  { id: 'ban-chat', label: 'Bản chất & nguyên tắc' },
+  { id: 'dinh-huong', label: 'Định hướng (ĐH XIII)' },
+  { id: 'thuc-tien', label: 'Liên hệ thực tiễn' },
+  { id: 'muc-tieu', label: 'Mục tiêu' },
+];
 
 const history = [
   { year: 'Thế kỷ X – XIX', title: 'Nhà nước phong kiến Việt Nam', text: 'Tồn tại dưới hình thức phong kiến trung ương tập quyền và phong kiến phân quyền.' },
@@ -36,6 +45,39 @@ const directions = [
   'Xây dựng nhà nước kiến tạo, chính phủ liêm chính, hành động, phục vụ; nền hành chính hiện đại, công khai, minh bạch.',
 ];
 
+const practiceIntro =
+  'Theo quan điểm Mác – Lênin, nhà nước không chỉ là công cụ duy trì trật tự xã hội mà còn là thiết chế quản lý xã hội nhằm bảo đảm lợi ích của giai cấp cầm quyền và sự ổn định của cộng đồng. Trong điều kiện Việt Nam hiện nay, Nhà nước pháp quyền XHCN được xây dựng trên nền tảng quyền làm chủ của Nhân dân, dưới sự lãnh đạo của Đảng Cộng sản Việt Nam — minh chứng lý luận về nhà nước không nằm trong sách vở mà đang được vận dụng trong quá trình đổi mới bộ máy nhà nước.';
+
+const practice = [
+  {
+    title: 'Tinh gọn bộ máy nhà nước, nâng cao hiệu lực quản lý',
+    text: 'Chính phủ ban hành Nghị quyết 105/NQ-CP triển khai Kết luận 210-KL/TW về tiếp tục hoàn thiện tổ chức bộ máy của hệ thống chính trị. Quốc hội thông qua nghị quyết sắp xếp đơn vị hành chính năm 2025: sau điều chỉnh, cả nước còn 34 đơn vị hành chính cấp tỉnh và 3.321 đơn vị hành chính cấp xã.',
+    tag: 'Nghị quyết 105/NQ-CP · Kết luận 210-KL/TW',
+    tie: 'Bộ máy được tổ chức lại theo hướng “tinh, gọn, mạnh, hiệu năng, hiệu lực, hiệu quả” — đúng luận điểm của Lênin: nhà nước là công cụ duy trì trật tự và quản lý xã hội trong những điều kiện lịch sử cụ thể.',
+  },
+  {
+    title: 'Kiểm soát quyền lực, hoàn thiện Nhà nước pháp quyền',
+    text: 'Đại hội XIII nhấn mạnh phân công, phối hợp và kiểm soát quyền lực giữa lập pháp, hành pháp và tư pháp. Việt Nam đẩy mạnh cải cách thể chế, tăng cường minh bạch hóa hoạt động công quyền và kiểm soát quyền lực nhà nước.',
+    tag: 'Văn kiện Đại hội XIII',
+    tie: 'Là minh chứng cho nguyên tắc “Đảng lãnh đạo – Nhà nước quản lý – Nhân dân làm chủ”.',
+  },
+  {
+    title: 'Xây dựng nền hành chính phục vụ Nhân dân',
+    text: 'Chương trình cải cách hành chính giai đoạn 2021–2030 tiếp tục được triển khai nhằm đơn giản hóa thủ tục, nâng cao chất lượng phục vụ người dân và doanh nghiệp; nhiều bộ, ngành đạt chỉ số cải cách hành chính cao trong năm 2025–2026.',
+    tag: 'Cải cách hành chính 2021–2030',
+    tie: 'Phản ánh rõ tính xã hội của nhà nước: không chỉ quản lý, cưỡng chế mà còn giải quyết các vấn đề dân sinh — giáo dục, y tế, hạ tầng, phúc lợi xã hội.',
+  },
+  {
+    title: 'Chuyển đổi số, xây dựng chính phủ số',
+    text: 'Việt Nam thúc đẩy nền hành chính số, chính phủ số và quản trị quốc gia hiện đại; ứng dụng công nghệ vào quản lý nhà nước để tăng công khai, minh bạch và nâng cao khả năng phục vụ người dân.',
+    tag: 'Cách mạng công nghiệp 4.0',
+    tie: 'Bước phát triển mới của Nhà nước pháp quyền XHCN trong bối cảnh chuyển đổi số.',
+  },
+];
+
+const practiceConclusion =
+  'Từ nhận định của Lênin: “Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được”, Việt Nam đã vận dụng sáng tạo học thuyết Mác – Lênin để xây dựng Nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân. Những cải cách về tổ chức bộ máy, kiểm soát quyền lực, chuyển đổi số và nâng cao chất lượng phục vụ cho thấy nhà nước không ngừng hoàn thiện để đáp ứng yêu cầu phát triển đất nước.';
+
 export default function VietnamState() {
   const navigate = useNavigate();
 
@@ -56,7 +98,7 @@ export default function VietnamState() {
         </div>
       </div>
 
-      <main className="mx-auto max-w-6xl gap-7 px-4 py-7">
+      <OutlineLayout items={outline}>
         <article>
           <motion.section
             initial={{ opacity: 0, y: 12 }}
@@ -74,6 +116,7 @@ export default function VietnamState() {
 
           {/* Dòng lịch sử */}
           <motion.section
+            id="lich-su"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -99,6 +142,7 @@ export default function VietnamState() {
 
           {/* Bản chất & nguyên tắc */}
           <motion.section
+            id="ban-chat"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -123,6 +167,7 @@ export default function VietnamState() {
 
           {/* Định hướng */}
           <motion.section
+            id="dinh-huong"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -144,8 +189,51 @@ export default function VietnamState() {
             </div>
           </motion.section>
 
+          {/* Liên hệ thực tiễn 2025–2026 */}
+          <motion.section
+            id="thuc-tien"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+            className="border-b border-slate-200 py-7"
+          >
+            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-4">Liên hệ thực tiễn nổi bật (2025 – 2026)</h2>
+            <p className="mb-6 max-w-3xl text-base leading-7 text-slate-700">{practiceIntro}</p>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {practice.map((p, i) => (
+                <motion.div
+                  key={p.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 + i * 0.06 }}
+                  className="flex flex-col border border-slate-200 bg-slate-50 p-6"
+                >
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-serif text-3xl font-black text-red-600">{String(i + 1).padStart(2, '0')}</span>
+                    <h3 className="text-lg font-black leading-tight text-slate-950">{p.title}</h3>
+                  </div>
+                  <p className="mt-3 text-base leading-7 text-slate-700">{p.text}</p>
+                  <div className="mt-3 inline-flex w-fit rounded border border-red-200 bg-red-50 px-3 py-1 text-xs font-bold text-red-700">
+                    {p.tag}
+                  </div>
+                  <p className="mt-4 border-l-4 border-red-600 pl-4 text-sm italic leading-6 text-slate-700">{p.tie}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-6 border-l-4 border-red-600 bg-slate-50 p-6">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Kết luận thực tiễn</div>
+              <p className="mt-3 text-base leading-7 text-slate-700">{practiceConclusion}</p>
+              <p className="mt-3 text-xs text-slate-500">
+                Nguồn lý luận: Chương III “Nhà nước và cách mạng xã hội” (Giáo trình Triết học Mác – Lênin) · dẫn chứng thời sự 2025–2026.
+              </p>
+            </div>
+          </motion.section>
+
           {/* Mục tiêu */}
           <motion.section
+            id="muc-tieu"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -166,7 +254,7 @@ export default function VietnamState() {
             </div>
           </motion.section>
         </article>
-      </main>
+      </OutlineLayout>
     </div>
   );
 }

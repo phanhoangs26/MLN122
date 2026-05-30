@@ -6,6 +6,7 @@ const navItems = [
   { to: '/', label: 'Trang chủ' },
   { to: '/theory', label: 'Nhà nước' },
   { to: '/vietnam', label: 'Việt Nam' },
+  { to: '/tu-ban', label: 'Nhà nước tư sản' },
   { to: '/game', label: 'Ôn tập' },
   { to: '/chat', label: 'Hỏi đáp' },
 ];
