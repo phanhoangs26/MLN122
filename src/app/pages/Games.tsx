@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ListOrdered, Link2, Gamepad2 } from 'lucide-react';
+import { ListOrdered, Link2 } from 'lucide-react';
 import clsx from 'clsx';
 import { TopBar } from '../components/TopBar';
-import { StateBackground } from '../components/StateBackground';
 import { TimelineGame } from '../components/games/TimelineGame';
 import { MatchingGame } from '../components/games/MatchingGame';
 import { useGameStore } from '../store';
@@ -20,63 +19,67 @@ export default function Games() {
   const { xp, level } = useGameStore();
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-red-950/50 to-slate-900 text-white">
-      <StateBackground />
+    <div className="min-h-screen bg-white text-slate-950">
       <TopBar />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-4 py-8">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-amber-400/10 px-4 py-2 text-sm font-bold text-amber-100">
-              <Gamepad2 className="h-4 w-4" />
-              Khu trò chơi
-            </div>
-            <h1 className="mt-3 text-3xl font-black md:text-4xl">Ôn tập qua trò chơi</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+      <div className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-4 md:grid-cols-[1fr_auto]">
+          <div className="flex items-center gap-3 bg-white px-4 py-3 text-lg font-serif text-slate-700">
+            <span className="font-sans text-xl text-red-600">•</span>
+            <span>Ôn tập qua trò chơi</span>
+          </div>
+          <div className="flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
+            <span className="text-red-600">•</span>
+            <span>Cấp {level} · XP {xp}</span>
+          </div>
+        </div>
+      </div>
+
+      <main className="mx-auto max-w-6xl gap-7 px-4 py-7">
+        <article>
+          <motion.section
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="border-b-4 border-red-600 bg-white pb-7"
+          >
+            <div className="text-sm font-black uppercase tracking-widest text-red-600">Ôn tập</div>
+            <h1 className="mt-3 max-w-4xl font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
+              Ôn tập qua trò chơi
+            </h1>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
               Hai trò chơi giúp khắc sâu lý thuyết về nhà nước: sắp xếp đúng tiến trình lịch sử và nối đúng khái niệm.
             </p>
-          </div>
-          <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-3">
-            <div className="text-center">
-              <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Cấp</div>
-              <div className="text-xl font-black text-white">{level}</div>
-            </div>
-            <div className="h-8 w-px bg-white/10" />
-            <div className="text-center">
-              <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">XP</div>
-              <div className="text-xl font-black text-white">{xp}</div>
-            </div>
-          </div>
-        </div>
+          </motion.section>
 
-        {/* Tabs */}
-        <div className="mb-6 inline-flex rounded-2xl border border-white/10 bg-slate-950/60 p-1.5 backdrop-blur">
-          {tabs.map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => setTab(id)}
-              className={clsx(
-                'relative inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition-colors',
-                tab === id ? 'text-slate-950' : 'text-slate-300 hover:text-white',
-              )}
-            >
-              {tab === id && (
-                <motion.span
-                  layoutId="games-tab"
-                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-300 to-amber-400"
-                  transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                />
-              )}
-              <Icon className="relative z-10 h-4 w-4" />
-              <span className="relative z-10">{label}</span>
-            </button>
-          ))}
-        </div>
+          {/* Tabs */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="border-b border-slate-200 py-7"
+          >
+            <div className="mb-6 inline-flex rounded border border-slate-200 bg-slate-50 p-1">
+              {tabs.map(({ id, label, icon: Icon }) => (
+                <button
+                  key={id}
+                  onClick={() => setTab(id)}
+                  className={clsx(
+                    'relative inline-flex items-center gap-2 rounded px-4 py-2 text-sm font-bold transition-colors',
+                    tab === id ? 'text-white bg-red-600' : 'text-slate-950 hover:text-red-600',
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{label}</span>
+                </button>
+              ))}
+            </div>
 
-        <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
-          {tab === 'timeline' ? <TimelineGame /> : <MatchingGame />}
-        </motion.div>
-      </div>
+            <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+              {tab === 'timeline' ? <TimelineGame /> : <MatchingGame />}
+            </motion.div>
+          </motion.div>
+        </article>
+      </main>
     </div>
   );
 }

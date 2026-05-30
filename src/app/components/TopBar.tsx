@@ -1,52 +1,63 @@
 import React from 'react';
-import { Landmark, BookOpen, Star, Gamepad2, Bot } from 'lucide-react';
 import { Link, useLocation } from 'react-router';
 import clsx from 'clsx';
 
 const navItems = [
-  { to: '/theory', label: 'Lý thuyết', icon: BookOpen },
-  { to: '/vietnam', label: 'Nhà nước VN', icon: Star },
-  { to: '/game', label: 'Trò chơi', icon: Gamepad2 },
-  { to: '/chat', label: 'Chatbox', icon: Bot },
+  { to: '/', label: 'Trang chủ' },
+  { to: '/theory', label: 'Nhà nước' },
+  { to: '/vietnam', label: 'Việt Nam' },
+  { to: '/game', label: 'Ôn tập' },
+  { to: '/chat', label: 'Hỏi đáp' },
 ];
 
 export const TopBar: React.FC = () => {
   const { pathname } = useLocation();
+  const today = new Intl.DateTimeFormat('vi-VN', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  }).format(new Date());
 
   return (
-    <div className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/85 px-4 py-3 text-white shadow-[0_8px_30px_rgba(2,6,23,0.35)] backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-amber-300/30 bg-gradient-to-br from-red-600/30 to-amber-400/20 text-amber-200">
-            <Landmark className="h-6 w-6" />
-          </div>
-          <div>
-            <div className="text-sm font-black uppercase tracking-[0.3em] text-white">Nhà nước &amp; Giai cấp</div>
-            <div className="hidden text-xs text-slate-400 sm:block">Học thuyết Mác – Lênin về nhà nước</div>
-          </div>
+    <header className="border-b border-slate-200 bg-white text-slate-950 shadow-sm">
+      <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-4 text-center">
+        <Link to="/" className="flex items-center justify-center">
+          <span>
+            <span className="block text-sm font-black uppercase tracking-wide text-slate-800 md:text-base">
+              Học phần Triết học Mác - Lênin
+            </span>
+            <span className="font-serif text-4xl font-black leading-tight text-red-600 md:text-6xl">
+              Chuyên đề Nhà nước
+            </span>
+            <span className="mt-1 block text-sm font-semibold text-slate-700 md:text-base">
+              {today.charAt(0).toUpperCase() + today.slice(1)} <span className="mx-2 text-slate-300">|</span> Học thuyết Mác - Lênin
+            </span>
+          </span>
         </Link>
+      </div>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {navItems.map(({ to, label, icon: Icon }) => {
-            const active = pathname === to;
+      <nav className="border-t border-slate-100 bg-white">
+        <div className="mx-auto flex max-w-6xl items-center gap-2 overflow-x-auto px-4">
+          {navItems.map(({ to, label }) => {
+            const active = pathname === to || (to === '/theory' && pathname === '/theory');
             return (
               <Link
                 key={to}
                 to={to}
                 className={clsx(
-                  'inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors sm:px-4',
+                  'relative flex min-h-16 shrink-0 items-center px-4 text-sm font-black uppercase tracking-wide transition-colors md:px-6 md:text-base',
                   active
-                    ? 'border-amber-300/40 bg-amber-400/15 text-amber-50'
-                    : 'border-white/10 bg-white/5 text-slate-200 hover:bg-white/10',
+                    ? 'text-red-600 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:bg-red-600'
+                    : 'text-slate-950 hover:text-red-600',
                 )}
               >
-                <Icon className="h-4 w-4" />
-                <span className="hidden sm:inline">{label}</span>
+                {label}
               </Link>
             );
           })}
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };

@@ -84,6 +84,7 @@ export type TimelineRound = {
   prompt: string;
   // mảng đã ở ĐÚNG thứ tự; game sẽ tự xáo trộn
   steps: { label: string; note: string }[];
+  questions: { front: string; back: string }[];
 };
 
 export const timelineRounds: TimelineRound[] = [
@@ -103,6 +104,32 @@ export const timelineRounds: TimelineRound[] = [
       { label: 'Kế tiếp các kiểu nhà nước', note: 'Nhà nước phong kiến → tư sản → vô sản, gắn với từng phương thức sản xuất.' },
       { label: 'Nhà nước tiêu vong', note: 'Khi xã hội đạt giai đoạn cộng sản chủ nghĩa, không còn giai cấp thì nhà nước “tự tiêu vong”.' },
     ],
+    questions: [
+      {
+        front: 'Nguyên nhân SÂU XA và nguyên nhân TRỰC TIẾP làm nhà nước ra đời là gì?',
+        back: 'Nguyên nhân sâu xa: lực lượng sản xuất phát triển dẫn đến của cải dư thừa tương đối, xuất hiện chế độ tư hữu về tư liệu sản xuất và của cải. Nguyên nhân trực tiếp: mâu thuẫn giai cấp trong xã hội gay gắt, không thể điều hòa được.',
+      },
+      {
+        front: 'Vì sao Ăngghen khẳng định nhà nước là một "phạm trù lịch sử"?',
+        back: 'Vì “nhà nước là sản phẩm của một xã hội đã phát triển tới một giai đoạn nhất định”. Nhà nước không tồn tại vĩnh viễn: nó chỉ ra đời khi xã hội phân chia giai cấp và sẽ tiêu vong khi xã hội không còn giai cấp.',
+      },
+      {
+        front: 'Trong xã hội cộng sản nguyên thủy đã có nhà nước chưa? Vì sao?',
+        back: 'Chưa. Xã hội nguyên thủy tồn tại theo thể chế tự quản của cộng đồng thị tộc, bộ lạc; chưa có chế độ tư hữu, chưa phân chia giai cấp nên chưa cần đến nhà nước với tư cách cơ quan quyền lực của giai cấp thống trị.',
+      },
+      {
+        front: 'Theo V.I. Lênin, sự tồn tại của nhà nước chứng tỏ điều gì?',
+        back: 'Bất cứ ở đâu, hễ lúc nào và chừng nào mà những mâu thuẫn giai cấp không thể điều hòa được thì nhà nước xuất hiện. Ngược lại, sự tồn tại của nhà nước chứng tỏ rằng những mâu thuẫn giai cấp là không thể điều hòa được.',
+      },
+      {
+        front: 'Ăngghen ví nhà nước là một "lực lượng" như thế nào?',
+        back: 'Là một lực lượng nảy sinh từ xã hội nhưng lại đứng trên xã hội và ngày càng tách rời khỏi xã hội, có nhiệm vụ làm dịu bớt xung đột và giữ cho xung đột giai cấp nằm trong vòng “trật tự” có lợi cho giai cấp thống trị.',
+      },
+      {
+        front: 'Nhà nước sẽ "tiêu vong" trong điều kiện nào?',
+        back: 'Khi xã hội phát triển tới giai đoạn cộng sản chủ nghĩa, mâu thuẫn giai cấp và giai cấp không còn nữa thì cơ sở tồn tại của nhà nước mất đi, nhà nước “tự tiêu vong” — đây cũng là một phạm trù lịch sử có ra đời và có mất đi.',
+      },
+    ],
   },
   {
     id: 'types',
@@ -113,8 +140,32 @@ export const timelineRounds: TimelineRound[] = [
       { label: 'Nhà nước phong kiến', note: 'Công cụ thống trị của giai cấp địa chủ, phong kiến.' },
       { label: 'Nhà nước tư sản', note: 'Bản chất là nền chuyên chính tư sản dù mang nhiều hình thức.' },
       { label: 'Nhà nước vô sản', note: 'Kiểu “đặc biệt” — nhà nước của số đông nhân dân lao động.' },
-    ],
-  },
+    ],    questions: [
+      {
+        front: 'Lịch sử đã tồn tại bao nhiêu kiểu nhà nước chính?',
+        back: 'Bốn kiểu: nhà nước chủ nô, phong kiến, tư sản, và vô sản. Mỗi kiểu tương ứng với một phương thức sản xuất và giai cấp thống trị khác nhau.',
+      },
+      {
+        front: 'Giai cấp nào lập ra nhà nước chủ nô?',
+        back: 'Giai cấp chủ nô. Đây là kiểu nhà nước đầu tiên trong lịch sử, được dùng để thống trị giai cấp nô lệ và các tầng lớp khác.',
+      },
+      {
+        front: 'Nhà nước phong kiến là công cụ của giai cấp nào?',
+        back: 'Nhà nước phong kiến là công cụ của giai cấp địa chủ, phong kiến. Nó tồn tại dưới hai hình thức: tập quyền (vua có quyền tuyệt đối) và phân quyền (quyền lực tán tạo giữa các thế lực phong kiến cát cứ).',
+      },
+      {
+        front: 'Nhà nước tư sản có thực sự "trung lập" không?',
+        back: 'Không. Dù nhà nước tư sản tồn tại dưới nhiều hình thức (cộng hòa, quân chủ lập hiến, v.v.), về bản chất tất cả đều là "nền chuyên chính tư sản" — công cụ của giai cấp tư sản để bóc lột các giai cấp khác.',
+      },
+      {
+        front: 'Điều gì làm cho nhà nước vô sản là "đặc biệt"?',
+        back: 'Nó là nhà nước của số ĐÔNG (số đông nhân dân lao động, do giai cấp công nhân lãnh đạo) thống trị số ÍT (giai cấp cũ bị đánh đổ). Ngược lại ba kiểu trước: là công cụ của thiểu số thống trị đại đa số.',
+      },
+      {
+        front: 'Tiến trình lịch sử của các kiểu nhà nước diễn ra như thế nào?',
+        back: 'Theo trình tự: chủ nô → phong kiến → tư sản → vô sản. Mỗi sự thay thế gắn với sự phát triển của lực lượng sản xuất và sự xuất hiện của giai cấp mới thay thế giai cấp cũ.',
+      },
+    ],  },
 ];
 
 // ---- Game: Nối khái niệm ----
@@ -123,6 +174,7 @@ export type MatchRound = {
   title: string;
   prompt: string;
   pairs: { left: string; right: string }[];
+  questions: { front: string; back: string }[];
 };
 
 export const matchRounds: MatchRound[] = [
@@ -135,6 +187,32 @@ export const matchRounds: MatchRound[] = [
       { left: 'Quyền lực công cộng đặc biệt', right: 'Quân đội, cảnh sát, nhà tù, tòa án — bộ máy cưỡng chế tách khỏi dân cư' },
       { left: 'Thuế khóa', right: 'Nguồn thu bắt buộc để nuôi bộ máy nhà nước' },
     ],
+    questions: [
+      {
+        front: 'Lãnh thổ là gì trong nhà nước? Nó khác gì với bộ tộc?',
+        back: 'Lãnh thổ là vùng địa lý mà nhà nước quản lý. Khác với tổ chức huyết tộc (thị tộc, bộ lạc) dựa trên huyết thống, lãnh thổ quốc gia tập hợp nhiều người có quan hệ kinh tế, xã hội, chính trị trên cơ sở địa lý không phụ thuộc huyết thống.',
+      },
+      {
+        front: 'Quyền lực công cộng được tổ chức và biểu hiện như thế nào?',
+        back: 'Quyền lực công cộng bao gồm quân đội, cảnh sát vũ trang, nhà tù, tòa án, và bộ máy hành chính. Nó là "bộ máy cưỡng chế đặc biệt" tách khỏi dân cư, dùng để thực hiện chức năng trấn áp của nhà nước.',
+      },
+      {
+        front: 'Tại sao nhà nước cần thu thuế? Nguồn tài chính này dùng để làm gì?',
+        back: 'Để nuôi bộ máy nhà nước. Theo Lênin: "muốn duy trì quyền lực xã hội đặc biệt, đặt lên trên xã hội, thì phải có thuế và quốc trái". Thuế được dùng để trả lương cho công chức, binh lính, và duy trì hoạt động của nhà nước.',
+      },
+      {
+        front: 'Quân đội và cảnh sát thuộc về đặc trưng nào của nhà nước?',
+        back: 'Quân đội và cảnh sát là thành phần cơ bản của "quyền lực công cộng đặc biệt" — đặc trưng thứ hai của nhà nước. Chúng là công cụ chính để thực hiện chức năng trấn áp và bóc lột của nhà nước.',
+      },
+      {
+        front: 'Biên giới quốc gia được hình thành như thế nào?',
+        back: 'Biên giới quốc gia là kết quả của việc nhà nước quản lý dân cư theo lãnh thổ. Khi nhà nước phân định rõ vùng lãnh thổ do mình cai trị, biên giới quốc gia được hình thành, tách rời từng quốc gia - dân tộc với nhau.',
+      },
+      {
+        front: 'Ba đặc trưng này có bắt buộc phải cùng tồn tại không?',
+        back: 'Có. Ba đặc trưng cơ bản này là những điều kiện tiên quyết để nhà nước tồn tại và hoạt động. Nếu thiếu bất kỳ đặc trưng nào, đó không còn là nhà nước theo định nghĩa của Mác – Lênin.',
+      },
+    ],
   },
   {
     id: 'types',
@@ -146,6 +224,32 @@ export const matchRounds: MatchRound[] = [
       { left: 'Nhà nước tư sản', right: 'Giai cấp tư sản (chuyên chính tư sản)' },
       { left: 'Nhà nước vô sản', right: 'Số đông nhân dân lao động do giai cấp công nhân lãnh đạo' },
     ],
+    questions: [
+      {
+        front: 'Nhà nước chủ nô là bộ máy của giai cấp nào?',
+        back: 'Nhà nước chủ nô là bộ máy của giai cấp chủ nô. Nó được dùng để thống trị giai cấp nô lệ, duy trì chế độ nô lệ, và bảo vệ quyền sở hữu nô lệ của giai cấp chủ nô.',
+      },
+      {
+        front: 'Giai cấp nông dân có thể lập ra nhà nước riêng của mình không?',
+        back: 'Không. Giai cấp nông dân không có khả năng lập ra nhà nước riêng. Giai cấp nông dân thường liên minh với giai cấp công nhân (giai cấp vô sản) trong cách mạng, dưới sự lãnh đạo của công nhân.',
+      },
+      {
+        front: 'Phong kiến là giai cấp thống trị trong kiểu nhà nước nào?',
+        back: 'Phong kiến (hay địa chủ phong kiến) là giai cấp thống trị trong nhà nước phong kiến. Nhà nước phong kiến tồn tại với hai hình thức: tập quyền (vua có quyền tuyệt đối) và phân quyền (quyền bị phân tán).',
+      },
+      {
+        front: 'Tại sao giai cấp tư sản lập ra nhiều hình thức nhà nước khác nhau?',
+        back: 'Mặc dù tồn tại dưới nhiều hình thức (cộng hòa, quân chủ lập hiến, tổng thống, thủ tướng, v.v.), nhưng về bản chất tất cả đều là "chuyên chính tư sản". Sự đa dạng hình thức là do tình hình lịch sử, văn hóa, cấu trúc giai cấp khác nhau của từng quốc gia.',
+      },
+      {
+        front: 'Lũ nhất phục vụ mục đích xã hội của nhà nước là giai cấp nào?',
+        back: 'Giai cấp vô sản — qua nhà nước vô sản. Nhà nước vô sản phục vụ lợi ích của số đông nhân dân lao động, không phải thiểu số. Tuy nhiên, để tiến tới xã hội cộng sản, nó phải thực hiện cuộc cách mạng văn hóa và xây dựng xã hội mới.',
+      },
+      {
+        front: 'Hình ảnh của nhà nước vô sản khác biệt với ba kiểu trước ở điểm gì?',
+        back: 'Ba kiểu trước (chủ nô, phong kiến, tư sản) là nhà nước của thiểu số bóc lột đại đa số. Nhà nước vô sản là kiểu "đặc biệt" — nhà nước của SỐ ĐÔNG (số đông nhân dân lao động) thống trị SỐ ÍT (giai cấp thích nghi và các thành phần phản động còn sót lại).',
+      },
+    ],
   },
   {
     id: 'functions',
@@ -156,6 +260,32 @@ export const matchRounds: MatchRound[] = [
       { left: 'Chức năng xã hội', right: 'Quản lý việc chung: thủy lợi, giao thông, y tế, giáo dục…' },
       { left: 'Đối nội', right: 'Duy trì trật tự bên trong quốc gia' },
       { left: 'Đối ngoại', right: 'Quan hệ với các nhà nước khác, bảo vệ lãnh thổ' },
+    ],
+    questions: [
+      {
+        front: 'Chức năng thống trị chính trị là gì? Nó chiếm vai trò gì?',
+        back: 'Là chức năng sử dụng bộ máy quyền lực (quân đội, cảnh sát, tòa án) để duy trì sự thống trị của giai cấp cầm quyền và đàn áp các giai cấp bị trị. Nó chiếm vai trò quyết định, vì nó quy định tính chất và hướng đi của tất cả các chức năng khác.',
+      },
+      {
+        front: 'Chức năng xã hội của nhà nước bao gồm những gì?',
+        back: 'Bao gồm quản lý các công việc chung của xã hội: thủy lợi, giao thông, y tế, giáo dục, bảo vệ môi trường, v.v. Nó được thực hiện dưới lăng kính giai cấp của giai cấp thống trị, nhằm duy trì xã hội trong "trật tự" có lợi cho giai cấp đó.',
+      },
+      {
+        front: 'Mối quan hệ giữa chức năng thống trị chính trị và chức năng xã hội?',
+        back: 'Chức năng thống trị chính trị lãnh đạo và quy định chức năng xã hội. Chức năng xã hội là cơ sở giúp nhà nước duy trì sự ổn định xã hội để tiếp tục thực hiện chức năng thống trị. Hai chức năng này luôn kết hợp mật thiết với nhau.',
+      },
+      {
+        front: 'Chức năng đối nội của nhà nước thể hiện như thế nào?',
+        back: 'Thể hiện qua việc thực hiện đường lối đối nội nhằm duy trì trật tự xã hội bằng cách sử dụng chính sách, pháp luật, giáo dục, văn hóa, truyền thông, v.v. Nó liên quan đến các lĩnh vực chính trị, kinh tế, xã hội, y tế, giáo dục của quốc gia.',
+      },
+      {
+        front: 'Chức năng đối ngoại của nhà nước là gì? Tầm quan trọng?',
+        back: 'Là triển khai chính sách đối ngoại để giải quyết mối quan hệ với các nhà nước khác, bảo vệ lãnh thổ quốc gia, trao đổi kinh tế, văn hóa, khoa học. Trong thế giới hiện đại, chức năng đối ngoại rất quan trọng cho sự phát triển kinh tế - xã hội của quốc gia.',
+      },
+      {
+        front: 'Chức năng đối nội hay đối ngoại chiếm vai trò chủ yếu?',
+        back: 'Chức năng đối nội chiếm vai trò chủ yếu. Nhà nước trước hết phải duy trì được trật tự xã hội bên trong để tồn tại. Khi làm tốt chức năng đối nội, nhà nước mới có điều kiện để thực hiện tốt chức năng đối ngoại, thu hút đầu tư, phát triển kinh tế.',
+      },
     ],
   },
 ];

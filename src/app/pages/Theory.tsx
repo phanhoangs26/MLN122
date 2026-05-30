@@ -1,232 +1,237 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { BookOpen, ArrowRight, ShieldCheck, Quote, Landmark, Scale, Flame, Building2, ScrollText, GraduationCap } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
-import { StateBackground } from '../components/StateBackground';
+import {
+  centralThesis,
+  evidenceNotes,
+  features,
+  originFlow,
+  theoryBlocks,
+  theorySource,
+  typeRows,
+} from '../data/theoryContent';
 
-const theoryCards = [
-  {
-    icon: Landmark,
-    title: '1. Xã hội nguyên thủy chưa có nhà nước',
-    summary: 'Nhà nước không phải hiện tượng vĩnh viễn, bất biến. Nó chỉ xuất hiện ở một giai đoạn nhất định của lịch sử.',
-    bullets: [
-      'Chưa có chế độ tư hữu, chưa phân chia giai cấp nên chưa có nhà nước.',
-      'Quản lý bằng tổ chức thị tộc – bộ lạc dựa trên huyết thống và uy tín.',
-      'Quyền lực mang tính xã hội, gắn với cộng đồng, chưa tách rời khỏi dân cư.',
-    ],
-  },
-  {
-    icon: Scale,
-    title: '2. Tư hữu và sự phân hóa giai cấp',
-    summary: 'Lực lượng sản xuất phát triển tạo ra sản phẩm dư thừa, chế độ tư hữu ra đời và xã hội bị chia cắt.',
-    bullets: [
-      'Tư liệu sản xuất rơi vào tay thiểu số, số đông bị tước đoạt.',
-      'Xã hội phân chia thành giai cấp đối kháng: chủ nô – nô lệ là cặp đầu tiên.',
-      'Lợi ích các giai cấp đối lập nhau, xung đột ngày càng gay gắt.',
-    ],
-  },
-  {
-    icon: Flame,
-    title: '3. Mâu thuẫn giai cấp không thể điều hòa',
-    summary: 'Đây là luận điểm trung tâm: nhà nước ra đời khi đối kháng giai cấp gay gắt tới mức không thể dung hòa.',
-    bullets: [
-      'Lợi ích căn bản của giai cấp thống trị và bị trị loại trừ lẫn nhau.',
-      'Lênin: nếu mâu thuẫn điều hòa được thì nhà nước đã không cần xuất hiện.',
-      'Nhà nước giữ xung đột trong “vòng trật tự” có lợi cho giai cấp thống trị.',
-    ],
-  },
-  {
-    icon: Building2,
-    title: '4. Bản chất và đặc trưng của nhà nước',
-    summary: 'Nhà nước là công cụ chuyên chính của giai cấp nắm kinh tế dùng để trấn áp giai cấp khác.',
-    bullets: [
-      'Mang tính giai cấp sâu sắc, đồng thời có chức năng quản lý xã hội.',
-      'Ba đặc trưng (Ăngghen): lãnh thổ – quyền lực công cộng đặc biệt – thuế.',
-      'Quyền lực công cộng: quân đội, cảnh sát, nhà tù, tòa án tách khỏi dân cư.',
-    ],
-  },
-  {
-    icon: ScrollText,
-    title: '5. Các kiểu nhà nước trong lịch sử',
-    summary: 'Mỗi phương thức sản xuất sinh ra một kiểu nhà nước tương ứng.',
-    bullets: [
-      'Chủ nô → phong kiến → tư sản → xã hội chủ nghĩa.',
-      'Ba kiểu đầu đều là nhà nước của thiểu số bóc lột thống trị đa số.',
-      'Nhà nước XHCN là nhà nước của số đông nhân dân lao động.',
-    ],
-  },
-  {
-    icon: GraduationCap,
-    title: '6. Nhà nước tiêu vong & liên hệ Việt Nam',
-    summary: 'Vì nhà nước sinh ra từ giai cấp, khi không còn giai cấp nó sẽ tự tiêu vong.',
-    bullets: [
-      'Nhà nước tiêu vong, không bị “xóa bỏ” bằng sắc lệnh (Ăngghen).',
-      'Nhà nước CHXHCN Việt Nam: nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân.',
-      'Mang bản chất giai cấp công nhân, tính nhân dân và tính dân tộc.',
-    ],
-  },
-];
-
-const evidence = [
-  {
-    tag: 'Tác phẩm gốc',
-    title: 'Ph. Ăngghen – “Nguồn gốc của gia đình, của chế độ tư hữu và của nhà nước” (1884)',
-    text: 'Ăngghen chứng minh nhà nước ra đời từ sự tan rã của xã hội thị tộc khi xuất hiện tư hữu và giai cấp, và chỉ ra ba đặc trưng cơ bản của nhà nước.',
-  },
-  {
-    tag: 'Tác phẩm gốc',
-    title: 'V.I. Lênin – “Nhà nước và Cách mạng” (1917)',
-    text: 'Lênin khái quát: “Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được.” Đây là cơ sở lý luận cho cách mạng vô sản.',
-  },
-  {
-    tag: 'Liên hệ thực tiễn',
-    title: 'Nhà nước Cộng hòa XHCN Việt Nam hôm nay',
-    text: 'Hiến pháp 2013 khẳng định Nhà nước ta là nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân – vận dụng sáng tạo luận điểm của Lênin trong điều kiện mới.',
-  },
-  {
-    tag: 'Quan sát đời sống',
-    title: 'Đặc trưng nhà nước vẫn hiện diện quanh ta',
-    text: 'Biên giới – lãnh thổ, lực lượng quân đội – công an – tòa án, và hệ thống thuế là ba đặc trưng do Ăngghen nêu, vẫn dễ dàng nhận ra trong mọi quốc gia ngày nay.',
-  },
+const outline = [
+  { id: 'luan-diem', label: 'Luận điểm' },
+  { id: 'nguon-goc', label: 'Nguồn gốc' },
+  { id: 'ban-chat', label: 'Bản chất' },
+  { id: 'dac-trung', label: 'Đặc trưng' },
+  { id: 'kieu-nha-nuoc', label: 'Kiểu nhà nước' },
 ];
 
 export default function Theory() {
   const navigate = useNavigate();
+  const [outlineOpen, setOutlineOpen] = useState(true);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-red-950/50 to-slate-900 text-white">
-      <StateBackground />
+    <div className="min-h-screen bg-white text-slate-950">
       <TopBar />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 py-10">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative overflow-hidden rounded-[2rem] border border-amber-300/20 bg-slate-950/60 p-8 shadow-2xl shadow-red-900/20 backdrop-blur"
-        >
-          <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl" />
-          <div className="absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-rose-400/10 blur-3xl" />
+      <div className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-4 md:grid-cols-[1fr_auto]">
+          <div className="flex items-center gap-3 bg-white px-4 py-3 text-lg font-serif text-slate-700">
+            <span className="font-sans text-xl text-red-600">•</span>
+            <span>Hệ thống kiến thức về nhà nước trong triết học Mác - Lênin</span>
+          </div>
+          <div className="flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
+            <span className="text-red-600">•</span>
+            <span>{theorySource.book}</span>
+          </div>
+        </div>
+      </div>
 
-          <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-bold text-cyan-100">
-              <BookOpen className="h-4 w-4" />
-              Lý thuyết về nhà nước · Chương III
+      <main
+        className={`mx-auto grid max-w-6xl gap-7 px-4 py-7 ${
+          outlineOpen ? 'lg:grid-cols-[14rem_minmax(0,1fr)]' : 'lg:grid-cols-[4rem_minmax(0,1fr)]'
+        }`}
+      >
+        <aside className="hidden lg:block">
+          <div className="sticky top-48 border border-slate-200 bg-white shadow-sm">
+            <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+              {outlineOpen && <div className="text-sm font-black uppercase tracking-widest text-red-600">Mục lục</div>}
+              <button
+                type="button"
+                onClick={() => setOutlineOpen((open) => !open)}
+                aria-label={outlineOpen ? 'Thu gọn mục lục' : 'Mở mục lục'}
+                className="flex h-9 w-9 items-center justify-center border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
             </div>
-            <h1 className="mt-5 text-3xl font-black leading-tight md:text-5xl">
-              Nguồn gốc và bản chất của nhà nước
-            </h1>
+            {outlineOpen && (
+              <nav className="divide-y divide-slate-100">
+                {outline.map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className="block px-4 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-red-600"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+            )}
+          </div>
+        </aside>
 
-            <figure className="mt-6 max-w-3xl rounded-3xl border border-white/10 bg-white/5 p-6">
-              <Quote className="h-7 w-7 text-cyan-200" />
-              <blockquote className="mt-3 text-lg font-bold leading-8 text-white md:text-2xl">
-                “Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được.”
+        <article>
+          <motion.section
+            id="luan-diem"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="border-b-4 border-red-600 bg-white pb-7"
+          >
+            <div className="text-sm font-black uppercase tracking-widest text-red-600">{theorySource.title}</div>
+            <h1 className="mt-3 max-w-4xl font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
+              Lý thuyết về nhà nước trong triết học Mác - Lênin
+            </h1>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">{centralThesis.explanation}</p>
+
+            <figure className="mt-6 border-l-4 border-red-600 bg-slate-50 px-5 py-4">
+              <blockquote className="font-serif text-2xl font-black leading-9 text-red-700 md:text-3xl">
+                “{centralThesis.quote}”
               </blockquote>
-              <figcaption className="mt-3 text-sm font-semibold text-cyan-200">— V.I. Lênin, “Nhà nước và Cách mạng” (1917)</figcaption>
+              <figcaption className="mt-2 text-sm font-bold text-slate-600">- {centralThesis.source}</figcaption>
             </figure>
 
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <button
                 onClick={() => navigate('/vietnam')}
-                className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-500 to-amber-400 px-5 py-3 font-black text-slate-950 shadow-lg shadow-rose-500/20 transition-transform hover:scale-[1.02]"
+                className="bg-red-600 px-5 py-3 text-sm font-black uppercase tracking-wide text-white hover:bg-red-700"
               >
-                Liên hệ Nhà nước Việt Nam
-                <ArrowRight className="h-4 w-4" />
+                Liên hệ Nhà nước Việt Nam →
               </button>
               <button
                 onClick={() => navigate('/game')}
-                className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-bold text-white transition-colors hover:bg-white/10"
+                className="border border-slate-300 bg-white px-5 py-3 text-sm font-black uppercase tracking-wide text-slate-800 hover:bg-slate-50"
               >
                 Ôn tập qua trò chơi
               </button>
             </div>
-          </div>
-        </motion.div>
+          </motion.section>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {theoryCards.map((card, index) => {
-            const Icon = card.icon;
-            return (
-              <motion.section
-                key={card.title}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.06 }}
-                className="rounded-[1.75rem] border border-white/10 bg-slate-950/50 p-6 shadow-xl shadow-black/10 backdrop-blur"
-              >
-                <div className="flex items-start justify-between gap-4">
+          <section id="nguon-goc" className="mt-8">
+            <div className="border-b border-slate-200 pb-3">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Mạch hình thành</div>
+              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">
+                Từ xã hội nguyên thủy đến sự ra đời của nhà nước
+              </h2>
+            </div>
+            <div className="mt-5 divide-y divide-slate-200 border border-slate-200">
+              {originFlow.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.04 }}
+                  className="grid gap-4 bg-white p-4 md:grid-cols-[4rem_1fr]"
+                >
+                  <div className="font-serif text-3xl font-black text-red-600">{String(index + 1).padStart(2, '0')}</div>
                   <div>
-                    <div className="text-xs font-black uppercase tracking-[0.35em] text-cyan-300">Khái niệm cốt lõi</div>
-                    <h2 className="mt-2 text-xl font-black text-white md:text-2xl">{card.title}</h2>
+                    <h3 className="text-xl font-black text-slate-950">{step.title}</h3>
+                    <p className="mt-1 text-base leading-7 text-slate-700">{step.text}</p>
                   </div>
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-rose-400 text-slate-950">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
 
-                <p className="mt-4 text-sm leading-6 text-slate-300">{card.summary}</p>
-
-                <ul className="mt-5 space-y-3 text-sm text-slate-200">
-                  {card.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-3 rounded-2xl border border-white/5 bg-white/5 px-4 py-3">
-                      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" />
-                      <span>{bullet}</span>
+          <section id="ban-chat" className="mt-8 grid gap-5 lg:grid-cols-3">
+            {theoryBlocks.map((block, index) => (
+              <motion.div
+                key={block.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="border border-slate-200 bg-white p-5 shadow-sm"
+              >
+                <div className="text-sm font-black uppercase tracking-widest text-red-600">{block.eyebrow}</div>
+                <h3 className="mt-2 font-serif text-2xl font-black leading-tight text-slate-950">{block.title}</h3>
+                <p className="mt-4 text-base leading-7 text-slate-700">{block.body}</p>
+                <ul className="mt-4 space-y-2">
+                  {block.points.map((point) => (
+                    <li key={point} className="flex gap-2 text-base leading-7 text-slate-700">
+                      <span className="shrink-0 text-red-600">-</span>
+                      <span>{point}</span>
                     </li>
                   ))}
                 </ul>
-              </motion.section>
-            );
-          })}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mt-10"
-        >
-          <div className="text-xs font-black uppercase tracking-[0.35em] text-amber-200">Dẫn chứng & liên hệ thực tiễn</div>
-          <h3 className="mt-2 text-2xl font-black text-white md:text-3xl">Từ tác phẩm kinh điển đến đời sống hôm nay</h3>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            {evidence.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-[1.5rem] border border-amber-400/15 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-rose-500/10 p-6 shadow-xl shadow-amber-500/5"
-              >
-                <span className="inline-block rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.2em] text-amber-100">
-                  {item.tag}
-                </span>
-                <h4 className="mt-3 text-lg font-black text-white">{item.title}</h4>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{item.text}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </motion.div>
+          </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-8 rounded-[1.75rem] border border-cyan-400/20 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-rose-500/10 p-6 shadow-xl shadow-cyan-500/10"
-        >
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <div className="text-xs font-black uppercase tracking-[0.35em] text-cyan-200">Ôn tập</div>
-              <h3 className="mt-2 text-2xl font-black text-white">Củng cố kiến thức qua trò chơi</h3>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-200">
-                Hai trò chơi — Sắp xếp dòng thời gian và Nối khái niệm — giúp bạn khắc sâu mạch lý thuyết: từ xã hội chưa có nhà nước, qua tư hữu – giai cấp – mâu thuẫn không thể điều hòa, đến bản chất, các kiểu nhà nước và vận dụng thực tiễn.
+          <section id="dac-trung" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+            <div className="border-b border-slate-200 pb-3">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Đặc trưng</div>
+              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">
+                Nhận diện nhà nước khác với tổ chức xã hội thông thường
+              </h2>
+              <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">
+                Giáo trình nhấn mạnh ba đặc trưng cơ bản: lãnh thổ, quyền lực công cộng đặc biệt và thuế. Nội dung bài học mở rộng thêm chủ quyền quốc gia và quyền ban hành pháp luật.
               </p>
             </div>
-            <button
-              onClick={() => navigate('/game')}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 font-black text-slate-950 transition-transform hover:scale-[1.02]"
-            >
-              Vào trò chơi
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-        </motion.div>
-      </div>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {features.map((feature, index) => (
+                <div key={feature.title} className="border-l-4 border-red-600 bg-slate-50 p-4">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-serif text-2xl font-black text-red-600">{index + 1}</span>
+                    <h3 className="text-xl font-black text-slate-950">{feature.title}</h3>
+                  </div>
+                  <p className="mt-2 text-base leading-7 text-slate-700">{feature.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="kieu-nha-nuoc" className="mt-8 grid gap-5 xl:grid-cols-[1.35fr_0.75fr]">
+            <div className="overflow-hidden border border-slate-200 bg-white shadow-sm">
+              <div className="border-b border-slate-200 bg-slate-50 p-5">
+                <div className="text-sm font-black uppercase tracking-widest text-red-600">Các kiểu nhà nước</div>
+                <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">So sánh theo giai cấp nắm quyền</h2>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[680px] text-left text-base">
+                  <thead className="bg-red-600 text-sm uppercase tracking-wide text-white">
+                    <tr>
+                      <th className="px-5 py-4">Kiểu</th>
+                      <th className="px-5 py-4">Giai cấp đại diện</th>
+                      <th className="px-5 py-4">Ý nghĩa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {typeRows.map(([type, actor, meaning]) => (
+                      <tr key={type} className="border-t border-slate-200">
+                        <td className="px-5 py-4 font-black text-slate-950">{type}</td>
+                        <td className="px-5 py-4 text-slate-700">{actor}</td>
+                        <td className="px-5 py-4 text-slate-700">{meaning}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <aside className="border border-slate-200 bg-slate-50 p-5 shadow-sm">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Ghi chú nguồn</div>
+              <h3 className="mt-2 font-serif text-2xl font-black text-slate-950">{theorySource.label}</h3>
+              <p className="mt-2 text-base leading-7 text-slate-700">
+                Nội dung được hệ thống hóa từ {theorySource.book}, phần Chương III: Nhà nước và cách mạng xã hội.
+              </p>
+              <div className="mt-4 space-y-2">
+                {evidenceNotes.map((note) => (
+                  <div key={note} className="flex gap-2 text-base leading-7 text-slate-700">
+                    <span className="shrink-0 text-red-600">-</span>
+                    <span>{note}</span>
+                  </div>
+                ))}
+              </div>
+            </aside>
+          </section>
+        </article>
+      </main>
     </div>
   );
 }

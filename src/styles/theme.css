@@ -2,43 +2,43 @@
 
 :root {
   --font-size: 16px;
-  --background: #0b1220;
-  --foreground: #e2e8f0;
-  --card: #111827;
-  --card-foreground: #f8fafc;
-  --popover: #111827;
-  --popover-foreground: #f8fafc;
-  --primary: #0f766e;
+  --background: #190506;
+  --foreground: #fff7ed;
+  --card: #2a090b;
+  --card-foreground: #fffaf0;
+  --popover: #2a090b;
+  --popover-foreground: #fffaf0;
+  --primary: #d4a017;
   --primary-foreground: #ffffff;
-  --secondary: #1f2937;
-  --secondary-foreground: #f8fafc;
-  --muted: #0f172a;
-  --muted-foreground: #94a3b8;
-  --accent: #172033;
-  --accent-foreground: #f8fafc;
+  --secondary: #5c1116;
+  --secondary-foreground: #fff7ed;
+  --muted: #3a0b0f;
+  --muted-foreground: #f8d6a4;
+  --accent: #7f1d1d;
+  --accent-foreground: #fff7ed;
   --destructive: #b91c1c;
   --destructive-foreground: #ffffff;
-  --border: rgba(148, 163, 184, 0.16);
+  --border: rgba(251, 191, 36, 0.18);
   --input: transparent;
-  --input-background: #0f172a;
-  --switch-background: #334155;
+  --input-background: #3a0b0f;
+  --switch-background: #7f1d1d;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.7 0.02 240);
-  --chart-1: #0f766e;
-  --chart-2: #334155;
-  --chart-3: #475569;
-  --chart-4: #64748b;
-  --chart-5: #94a3b8;
+  --ring: #fbbf24;
+  --chart-1: #dc2626;
+  --chart-2: #f59e0b;
+  --chart-3: #fef3c7;
+  --chart-4: #991b1b;
+  --chart-5: #16a34a;
   --radius: 0.625rem;
-  --sidebar: #111827;
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #0f766e;
+  --sidebar: #2a090b;
+  --sidebar-foreground: #fff7ed;
+  --sidebar-primary: #d4a017;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1e293b;
-  --sidebar-accent-foreground: #f8fafc;
-  --sidebar-border: rgba(148, 163, 184, 0.18);
-  --sidebar-ring: oklch(0.7 0.02 240);
+  --sidebar-accent: #5c1116;
+  --sidebar-accent-foreground: #fff7ed;
+  --sidebar-border: rgba(251, 191, 36, 0.2);
+  --sidebar-ring: #fbbf24;
 }
 
 .dark {
@@ -127,9 +127,9 @@
   body {
     @apply bg-background text-foreground antialiased;
     background-image:
-      radial-gradient(circle at top, rgba(15, 118, 110, 0.12), transparent 34%),
-      radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.08), transparent 28%),
-      linear-gradient(180deg, rgba(11, 18, 32, 0.98), rgba(2, 6, 23, 1));
+      radial-gradient(circle at top, rgba(251, 191, 36, 0.18), transparent 34%),
+      radial-gradient(circle at 80% 0%, rgba(220, 38, 38, 0.18), transparent 30%),
+      linear-gradient(180deg, rgba(59, 7, 10, 0.98), rgba(20, 5, 9, 1));
   }
 
   /**

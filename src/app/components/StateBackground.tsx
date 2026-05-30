@@ -29,26 +29,26 @@ export const StateBackground: React.FC<{ className?: string }> = ({ className = 
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute -right-32 top-1/4 h-[26rem] w-[26rem] rounded-full bg-amber-400/15 blur-[110px]"
+        className="absolute -right-32 top-1/4 h-[26rem] w-[26rem] rounded-full bg-amber-400/20 blur-[120px]"
         animate={{ x: [0, -50, 0], y: [0, 40, 0], scale: [1, 1.18, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-[-8rem] left-1/3 h-[24rem] w-[24rem] rounded-full bg-rose-500/12 blur-[110px]"
+        className="absolute bottom-[-8rem] left-1/3 h-[24rem] w-[24rem] rounded-full bg-amber-500/12 blur-[120px]"
         animate={{ x: [0, 30, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Ngôi sao vàng lớn, mờ, xoay chậm — biểu tượng cờ đỏ sao vàng */}
       <motion.div
-        className="absolute right-[6%] top-[12%] text-amber-300/[0.06]"
+        className="absolute right-[6%] top-[12%] text-amber-300/[0.09]"
         animate={{ rotate: 360 }}
         transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
       >
         <Star className="h-64 w-64" strokeWidth={0.6} fill="currentColor" />
       </motion.div>
       <motion.div
-        className="absolute left-[-4%] bottom-[-4%] text-red-500/[0.05]"
+        className="absolute left-[-4%] bottom-[-4%] text-amber-400/[0.06]"
         animate={{ rotate: -360 }}
         transition={{ duration: 110, repeat: Infinity, ease: 'linear' }}
       >
