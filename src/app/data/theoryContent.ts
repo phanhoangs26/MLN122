@@ -1,4 +1,4 @@
-export const theorySource = {
+﻿export const theorySource = {
   label: 'Tài liệu tham khảo',
   title: 'Chương III: Nhà nước và cách mạng xã hội',
   book: 'GIÁO TRÌNH TRIẾT HỌC MÁC - LÊNIN 2021',
@@ -75,23 +75,15 @@ export const theoryBlocks = [
 export const features = [
   {
     title: 'Quản lý cư dân theo lãnh thổ',
-    text: 'Khác với thị tộc, bộ lạc dựa trên huyết thống, nhà nước tổ chức dân cư theo đơn vị lãnh thổ và hành chính.',
+    text: 'Khác với thị tộc, bộ lạc dựa trên huyết thống, nhà nước phân chia và quản lý dân cư theo đơn vị lãnh thổ. Quyền lực nhà nước có hiệu lực với tất cả thành viên trong phạm vi biên giới quốc gia.',
   },
   {
-    title: 'Quyền lực công cộng đặc biệt',
-    text: 'Nhà nước có bộ máy cưỡng chế chuyên nghiệp như quân đội, cảnh sát, tòa án, nhà tù và hệ thống hành chính.',
+    title: 'Hệ thống cơ quan quyền lực cưỡng chế chuyên nghiệp',
+    text: 'Nhà nước có "những đội vũ trang đặc biệt" — quân đội, cảnh sát, tòa án, nhà tù và bộ máy hành chính từ trung ương đến cơ sở — để buộc mọi thành viên phục tùng ý chí của giai cấp cầm quyền (V.I. Lênin).',
   },
   {
-    title: 'Thuế khóa và ngân sách',
-    text: 'Thuế là nguồn đóng góp bắt buộc để duy trì bộ máy nhà nước và thực hiện các mục tiêu quản lý.',
-  },
-  {
-    title: 'Chủ quyền quốc gia',
-    text: 'Bài học nhấn mạnh nhà nước có quyền độc lập, tự chủ trong đối nội, đối ngoại và quan hệ với quốc gia khác.',
-  },
-  {
-    title: 'Ban hành pháp luật',
-    text: 'Nhà nước là tổ chức có quyền ban hành pháp luật và bảo đảm thực hiện pháp luật bằng quyền lực cưỡng chế.',
+    title: 'Thuế khóa',
+    text: 'Để duy trì quyền lực công cộng đặt lên trên xã hội, nhà nước phải có thuế và quốc trái. Ph. Ăngghen: "muốn duy trì quyền lực công cộng đó, cần phải có sự đóng góp của công dân, đó là thuế má."',
   },
 ];
 
@@ -99,7 +91,7 @@ export const typeRows = [
   ['Chủ nô', 'Giai cấp chủ nô', 'Kiểu nhà nước đầu tiên, thống trị nô lệ'],
   ['Phong kiến', 'Địa chủ, phong kiến', 'Bảo vệ trật tự đẳng cấp và quyền sở hữu ruộng đất'],
   ['Tư sản', 'Giai cấp tư sản', 'Duy trì quan hệ sản xuất tư bản chủ nghĩa'],
-  ['Vô sản / XHCN', 'Nhân dân lao động do giai cấp công nhân lãnh đạo', 'Nhà nước kiểu mới của số đông, hướng tới xóa bỏ áp bức bóc lột'],
+  ['Vô sản', 'Giai cấp vô sản liên minh với nông dân, trí thức và nhân dân lao động', 'Nhà nước kiểu mới của số đông thống trị số ít, thực hiện chuyên chính vô sản và xây dựng CNXH'],
 ];
 
 export const formsIntro =
@@ -108,31 +100,71 @@ export const formsIntro =
 export const stateForms = [
   {
     type: 'Nhà nước chủ nô',
-    forms:
-      'Quân chủ chủ nô (điển hình: thành bang Xpác — quyền lực trong tay hoàng đế, cha truyền con nối) và cộng hòa dân chủ chủ nô (điển hình: thành bang Aten — quyền lực thuộc Hội đồng trưởng lão do dân bầu). Dù hình thức nào, bản chất đều là công cụ thống trị của giai cấp chủ nô.',
+    eyebrow: 'Thời đại chiếm hữu nô lệ',
+    summary: 'Dù hình thức nào, bản chất đều là công cụ thống trị của giai cấp chủ nô đối với nô lệ và các tầng lớp cư dân khác.',
+    items: [
+      {
+        name: 'Quân chủ chủ nô',
+        detail: 'Điển hình: thành bang Xpác (Hy Lạp). Quyền lực nhà nước nằm trong tay hoàng đế, ngôi hoàng đế theo truyền thống cha truyền con nối.',
+      },
+      {
+        name: 'Cộng hòa dân chủ chủ nô',
+        detail: 'Điển hình: thành bang Aten (Hy Lạp). Quyền lực thuộc Hội đồng trưởng lão (Hội đồng chấp chính quan), do cư dân Aten bầu ra theo hình thức bỏ phiếu tín nhiệm. Thành viên có thể bị bãi miễn nếu không còn đủ tín nhiệm.',
+      },
+    ],
   },
   {
     type: 'Nhà nước phong kiến',
-    forms:
-      'Phong kiến tập quyền (quyền lực tập trung vào vua, hoàng đế; khẩu dụ của vua ngang bằng pháp luật) và phong kiến phân quyền (quyền lực phân tán cho các thế lực phong kiến cát cứ; chính quyền trung ương chỉ còn trên danh nghĩa).',
+    eyebrow: 'Thời trung cổ',
+    summary: 'Dù tập quyền hay phân quyền, nhà nước phong kiến vẫn là công cụ thống trị của giai cấp địa chủ, phong kiến.',
+    items: [
+      {
+        name: 'Phong kiến tập quyền',
+        detail: 'Quyền lực tập trung vào chính quyền trung ương, đứng đầu là vua, hoàng đế. Vua có quyền lực tuyệt đối — khẩu dụ của vua được coi ngang bằng pháp luật.',
+      },
+      {
+        name: 'Phong kiến phân quyền',
+        detail: 'Quyền lực bị phân tán bởi nhiều thế lực phong kiến cát cứ ở các địa phương. Chính quyền trung ương chỉ tồn tại trên danh nghĩa, vua chỉ là bù nhìn, không có thực quyền.',
+      },
+    ],
   },
   {
     type: 'Nhà nước tư sản',
-    forms:
-      'Cộng hòa đại nghị, cộng hòa tổng thống, cộng hòa thủ tướng, quân chủ lập hiến, nhà nước liên bang… Hình thức rất khác nhau nhưng theo Lênin “thực chất chỉ là một”: nền chuyên chính tư sản — nền dân chủ có giới hạn của số ít.',
+    eyebrow: 'Xã hội tư bản',
+    summary: 'V.I. Lênin: "Những hình thức của các nhà nước tư sản thì hết sức khác nhau, nhưng thực chất chỉ là một" — nền dân chủ tư sản, về bản chất là công cụ thống trị của giai cấp tư sản.',
+    items: [
+      {
+        name: 'Cộng hòa đại nghị / tổng thống / thủ tướng',
+        detail: 'Quyền lực phân chia giữa nghị viện, tổng thống và chính phủ theo các mô hình khác nhau tùy từng quốc gia.',
+      },
+      {
+        name: 'Quân chủ lập hiến & nhà nước liên bang',
+        detail: 'Nguyên thủ là vua/nữ hoàng nhưng quyền lực thực tế thuộc nghị viện và chính phủ. Nhà nước liên bang phân quyền giữa chính quyền liên bang và các bang.',
+      },
+    ],
   },
   {
     type: 'Nhà nước vô sản',
-    forms:
-      'Công xã Pari (Pháp, 1871), Xôviết (Nga, 1917), Việt Nam Dân chủ Cộng hòa, Cộng hòa XHCN Việt Nam, Cộng hòa Nhân dân Trung Hoa… Khác tên gọi nhưng đều do giai cấp công nhân lãnh đạo, liên minh công - nông - trí, nhân dân lao động thực sự làm chủ.',
+    eyebrow: 'Thời kỳ quá độ lên CNXH',
+    summary: 'Tuy khác nhau về tên gọi, thực chất đều là nhà nước do giai cấp vô sản lãnh đạo, liên minh công – nông – trí, nhân dân lao động thực sự làm chủ.',
+    items: [
+      {
+        name: 'Công xã Pari (Pháp, 1871)',
+        detail: 'Hình thức nhà nước vô sản đầu tiên trong lịch sử, tồn tại 72 ngày. C. Mác và Lênin coi đây là hình mẫu của chính quyền vô sản.',
+      },
+      {
+        name: 'Xôviết (Nga, 1917) & các nhà nước XHCN',
+        detail: 'Việt Nam Dân chủ Cộng hòa, Cộng hòa XHCN Việt Nam, Cộng hòa Nhân dân Trung Hoa, Liên bang CHXHCN Xôviết… đều là các hình thức của kiểu nhà nước vô sản.',
+      },
+    ],
   },
 ];
 
 export const proletarianState = {
   eyebrow: 'Nhà nước vô sản & sự tiêu vong',
-  title: 'Kiểu nhà nước “đặc biệt” và quy luật tiêu vong',
+  title: 'Đặc điểm của nhà nước vô sản và quy luật tiêu vong của nhà nước',
   intro:
-    'Nhà nước vô sản là kiểu nhà nước “đặc biệt” — nhà nước của số đông thống trị số ít, là nền chuyên chính cách mạng của giai cấp vô sản trong thời kỳ quá độ từ chủ nghĩa tư bản lên chủ nghĩa cộng sản (C. Mác, Phê phán Cương lĩnh Gôta).',
+    'Nhà nước vô sản là kiểu nhà nước "đặc biệt" — nhà nước của số đông thống trị số ít, là nền chuyên chính cách mạng của giai cấp vô sản trong thời kỳ quá độ từ chủ nghĩa tư bản lên chủ nghĩa cộng sản (C. Mác, Phê phán Cương lĩnh Gôta).',
   functions: [
     {
       title: 'Chức năng tổ chức, xây dựng',
@@ -148,7 +180,7 @@ export const proletarianState = {
     },
   ],
   withering:
-    'Khi nhà nước vô sản đã hoàn thành chức năng của nó, khi kinh tế và xã hội đạt tới “giai đoạn cộng sản chủ nghĩa” — xã hội vận hành theo nguyên tắc tự giác, không còn giai cấp — thì nhà nước “tự tiêu vong”. Nhà nước là một phạm trù lịch sử: có ra đời thì có mất đi.',
+    'Khi nhà nước vô sản đã hoàn thành chức năng của nó, khi kinh tế và xã hội đạt tới "giai đoạn cộng sản chủ nghĩa" — xã hội vận hành theo nguyên tắc tự giác, không còn giai cấp — thì nhà nước "tự tiêu vong". Nhà nước là một phạm trù lịch sử: có ra đời thì có mất đi.',
 };
 
 export const evidenceNotes = [

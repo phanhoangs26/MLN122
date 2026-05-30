@@ -90,7 +90,7 @@ export const knowledgeBase: KbEntry[] = [
   {
     id: 'vietnam',
     question: 'Bản chất Nhà nước Việt Nam hiện nay?',
-    keywords: ['việt nam', 'pháp quyền', 'của dân', 'do dân', 'vì dân', 'đảng lãnh đạo', 'nhân dân làm chủ'],
+    keywords: ['bản chất nhà nước việt nam', 'nhà nước việt nam hiện nay', 'việt nam hiện nay', 'việt nam', 'pháp quyền', 'của dân', 'do dân', 'vì dân', 'đảng lãnh đạo', 'nhân dân làm chủ'],
     answer:
       'Nhà nước Cộng hòa XHCN Việt Nam là Nhà nước pháp quyền xã hội chủ nghĩa của Nhân dân, do Nhân dân, vì Nhân dân; vận hành theo nguyên tắc “Đảng lãnh đạo, Nhà nước quản lý, Nhân dân làm chủ”. Tất cả quyền lực nhà nước thuộc về Nhân dân, nền tảng là liên minh giai cấp công nhân – nông dân – đội ngũ trí thức. Mục tiêu: dân giàu, nước mạnh, dân chủ, công bằng, văn minh.',
   },
@@ -112,11 +112,8 @@ export const knowledgeBase: KbEntry[] = [
 
 export const suggestedQuestions = [
   'Nhà nước ra đời khi nào?',
-  'Luận điểm của Lênin về nhà nước?',
   'Bản chất của nhà nước là gì?',
-  'Ba đặc trưng của nhà nước?',
   'Có mấy kiểu nhà nước?',
-  'Khi nào nhà nước tiêu vong?',
   'Bản chất Nhà nước Việt Nam hiện nay?',
 ];
 

@@ -88,8 +88,9 @@ export default function Theory() {
           >
             <div className="text-sm font-black uppercase tracking-widest text-red-600">{theorySource.title}</div>
             <h1 className="mt-3 max-w-4xl font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
-              Lý thuyết về nhà nước trong triết học Mác - Lênin
+              Lý luận về nhà nước
             </h1>
+            <p className="mt-1 text-sm font-bold text-slate-500">{theorySource.book}</p>
             <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">{centralThesis.explanation}</p>
 
             <figure className="mt-6 border-l-4 border-red-600 bg-slate-50 px-5 py-4">
@@ -157,18 +158,20 @@ export default function Theory() {
                 Nhận diện nhà nước khác với tổ chức xã hội thông thường
               </h2>
               <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">
-                Giáo trình nhấn mạnh ba đặc trưng cơ bản: lãnh thổ, quyền lực công cộng đặc biệt và thuế. Nội dung bài học mở rộng thêm chủ quyền quốc gia và quyền ban hành pháp luật.
+                V.I. Lênin nhắc lại quan điểm của Ph. Ăngghen: nhà nước có ba đặc trưng cơ bản phân biệt với các tổ chức xã hội thông thường.
               </p>
             </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="mt-5 divide-y divide-slate-200 border border-slate-200">
               {features.map((feature, index) => (
-                <div key={feature.title} className="border-l-4 border-red-600 bg-slate-50 p-4">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-serif text-2xl font-black text-red-600">{index + 1}</span>
-                    <h3 className="text-xl font-black text-slate-950">{feature.title}</h3>
+                <div key={feature.title} className="grid gap-4 bg-white p-5 md:grid-cols-[3rem_1fr]">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-red-600 font-serif text-xl font-black text-white">
+                    {index + 1}
                   </div>
-                  <p className="mt-2 text-base leading-7 text-slate-700">{feature.text}</p>
+                  <div>
+                    <h3 className="font-black text-lg text-slate-950">{feature.title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-slate-700">{feature.text}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -210,11 +213,32 @@ export default function Theory() {
               <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">{formsIntro}</p>
             </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="mt-5 grid gap-5 md:grid-cols-2">
               {stateForms.map((item) => (
-                <div key={item.type} className="border-l-4 border-red-600 bg-slate-50 p-4">
-                  <h3 className="text-xl font-black text-slate-950">{item.type}</h3>
-                  <p className="mt-2 text-base leading-7 text-slate-700">{item.forms}</p>
+                <div key={item.type} className="border border-slate-200 bg-white">
+                  {/* Header */}
+                  <div className="border-b border-slate-200 bg-slate-50 px-5 py-4">
+                    <div className="text-xs font-black uppercase tracking-widest text-red-600">{item.eyebrow}</div>
+                    <h3 className="mt-1 text-xl font-black text-slate-950">{item.type}</h3>
+                  </div>
+                  {/* Sub-items */}
+                  <div className="divide-y divide-slate-100">
+                    {item.items.map((sub) => (
+                      <div key={sub.name} className="px-5 py-4">
+                        <div className="flex items-start gap-2">
+                          <span className="mt-1 h-2 w-2 shrink-0 bg-red-600" />
+                          <div>
+                            <div className="font-black text-slate-950">{sub.name}</div>
+                            <p className="mt-1 text-sm leading-6 text-slate-700">{sub.detail}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Summary */}
+                  <div className="border-t border-slate-200 bg-red-50 px-5 py-3">
+                    <p className="text-sm leading-6 text-slate-700 italic">{item.summary}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -249,7 +273,16 @@ export default function Theory() {
             <div className="text-sm font-black uppercase tracking-widest text-red-600">Ghi chú nguồn</div>
             <h3 className="mt-2 font-serif text-2xl font-black text-slate-950">{theorySource.label}</h3>
             <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">
-              Nội dung được hệ thống hóa từ {theorySource.book}, phần Chương III: Nhà nước và cách mạng xã hội.
+              Nội dung được hệ thống hóa từ{' '}
+              <a
+                href="https://www.thuviendientutriethocc500.edu.vn/wp-content/uploads/2025/09/1.Gtrinh-Triet-hoc-Mac-Lenin-ko-chuyen-2021.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-red-600 underline hover:text-red-700"
+              >
+                {theorySource.book}
+              </a>
+              , phần Chương III: Nhà nước và cách mạng xã hội.
             </p>
             <div className="mt-4 grid gap-2 md:grid-cols-3">
               {evidenceNotes.map((note) => (
@@ -260,6 +293,7 @@ export default function Theory() {
               ))}
             </div>
           </section>
+
         </article>
       </main>
     </div>
