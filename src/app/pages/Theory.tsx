@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
 import { Menu } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
@@ -27,7 +26,6 @@ const outline = [
 ];
 
 export default function Theory() {
-  const navigate = useNavigate();
   const [outlineOpen, setOutlineOpen] = useState(true);
 
   return (
@@ -100,21 +98,6 @@ export default function Theory() {
               </blockquote>
               <figcaption className="mt-2 text-sm font-bold text-slate-600">- {centralThesis.source}</figcaption>
             </figure>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                onClick={() => navigate('/vietnam')}
-                className="bg-red-600 px-5 py-3 text-sm font-black uppercase tracking-wide text-white hover:bg-red-700"
-              >
-                Liên hệ Nhà nước Việt Nam →
-              </button>
-              <button
-                onClick={() => navigate('/game')}
-                className="border border-slate-300 bg-white px-5 py-3 text-sm font-black uppercase tracking-wide text-slate-800 hover:bg-slate-50"
-              >
-                Ôn tập qua trò chơi
-              </button>
-            </div>
           </motion.section>
 
           <section id="nguon-goc" className="mt-8">

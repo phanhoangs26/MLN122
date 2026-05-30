@@ -1,49 +1,65 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
 import { OutlineLayout } from '../components/PageOutline';
 
 const outline = [
   { id: 'hinh-thuc', label: 'Các hình thức' },
   { id: 'ban-chat', label: 'Bản chất & đặc điểm' },
+  { id: 'thuc-tien', label: 'Thực tiễn đương đại' },
   { id: 'so-sanh', label: 'So sánh tư sản – vô sản' },
   { id: 'lien-he', label: 'Liên hệ' },
 ];
 
 const forms = [
-  { title: 'Cộng hòa đại nghị', text: 'Quyền lực hành pháp gắn với nghị viện; chính phủ do đảng chiếm đa số trong nghị viện lập ra và chịu trách nhiệm trước nghị viện.' },
-  { title: 'Cộng hòa tổng thống', text: 'Tổng thống do dân bầu, vừa là nguyên thủ quốc gia vừa đứng đầu hành pháp, độc lập tương đối với nghị viện.' },
-  { title: 'Cộng hòa thủ tướng', text: 'Thủ tướng đứng đầu chính phủ nắm thực quyền hành pháp; phân chia quyền lực giữa tổng thống, thủ tướng và nội các.' },
-  { title: 'Quân chủ lập hiến', text: 'Vẫn duy trì ngôi vua/nữ hoàng nhưng quyền lực thực tế thuộc nghị viện và chính phủ; nhà vua trị vì nhưng không cai trị.' },
-  { title: 'Nhà nước liên bang', text: 'Quyền lực phân chia giữa chính quyền liên bang và các bang thành viên; mỗi bang có hiến pháp, luật pháp riêng trong khuôn khổ liên bang.' },
+  { title: 'Cộng hòa đại nghị', text: 'Quyền lực hành pháp gắn với nghị viện; chính phủ do đảng chiếm đa số trong nghị viện lập ra và chịu trách nhiệm trước nghị viện (Ví dụ: Đức, Italy).' },
+  { title: 'Cộng hòa tổng thống', text: 'Tổng thống do dân bầu, vừa là nguyên thủ quốc gia vừa đứng đầu cơ quan hành pháp, độc lập tương đối với nghị viện lập pháp (Ví dụ: Mỹ).' },
+  { title: 'Cộng hòa thủ tướng (hỗn hợp)', text: 'Thủ tướng đứng đầu chính phủ nắm thực quyền hành pháp, chia sẻ quyền lực với tổng thống do dân bầu (Ví dụ: Pháp).' },
+  { title: 'Quân chủ lập hiến', text: 'Vẫn duy trì ngôi vua/nữ hoàng (mang tính biểu tượng), nhưng quyền lực thực tế thuộc về nghị viện và chính phủ (Ví dụ: Anh, Nhật Bản).' },
+  { title: 'Nhà nước liên bang', text: 'Quyền lực phân chia giữa chính quyền trung ương (liên bang) và các bang thành viên; mỗi bang có hiến pháp, pháp luật riêng trong khuôn khổ liên bang (Ví dụ: Mỹ, Đức).' },
 ];
 
 const traits = [
   {
-    title: 'Bản chất là nền chuyên chính tư sản',
-    text: 'Dù tồn tại dưới hình thức nào, về bản chất nhà nước tư sản đều là công cụ thống trị của giai cấp tư sản đối với các giai cấp, tầng lớp khác trong xã hội.',
+    title: 'Bản chất: Nền chuyên chính tư sản',
+    text: 'Giáo trình khẳng định, dù tồn tại dưới hình thức nào, nhà nước tư sản bản chất vẫn là công cụ thống trị của thiểu số giai cấp tư sản nắm tư liệu sản xuất, dùng để bảo vệ chế độ tư bản chủ nghĩa.',
   },
   {
-    title: 'Các tập đoàn tư bản cầm quyền qua đảng chính trị',
-    text: 'Các tập đoàn tư bản thông qua tổ chức đảng chính trị để thực hiện quyền lãnh đạo, bảo vệ địa vị thống trị và quyền lợi của giai cấp, tập đoàn mình.',
+    title: 'Cai trị thông qua đảng chính trị và lợi ích nhóm',
+    text: 'Các tập đoàn tư bản không trực tiếp cai trị mà thông qua các đảng chính trị, tổ chức vận động hành lang (lobby) để chi phối bộ máy nhà nước và ban hành luật pháp bảo vệ lợi ích cốt lõi của họ.',
   },
   {
-    title: 'Nền dân chủ có giới hạn',
-    text: 'Đề cao quyền tự do, dân chủ cho mọi người, nhưng thực chất là nền dân chủ của số ít những người có quyền, có tiền, có địa vị và thế lực trong xã hội.',
+    title: 'Dân chủ tư sản: Nền dân chủ của số ít',
+    text: 'Đề cao tự do cá nhân và dân chủ phổ thông đầu phiếu. Tuy nhiên, theo V.I. Lênin, thực chất đó là "nền dân chủ của số ít những người có quyền, có tiền, có địa vị, thế lực trong xã hội".',
+  },
+];
+
+const modernPractices = [
+  {
+    title: 'Bầu cử Mỹ 2024: Kỷ lục chi tiêu của tỷ phú',
+    text: 'Trong cuộc bầu cử Mỹ năm 2024, chỉ khoảng 100 gia đình tỷ phú đã chi con số kỷ lục 2,6 tỷ USD (chiếm gần 20% tổng số tiền tài trợ liên bang). Các tỷ phú như Elon Musk không chỉ tài trợ hàng trăm triệu USD mà còn trực tiếp tham gia chiến dịch và đảm nhận vị trí trong chính phủ (DOGE), cho thấy quyền lực chính trị thực tế nằm trong tay thiểu số tư bản tài chính.',
+    tag: 'Quyền lực của đồng tiền',
+  },
+  {
+    title: 'Bất bình đẳng kỷ lục và làn sóng phản kháng',
+    text: 'Theo báo cáo của Oxfam, tài sản của giới siêu giàu Mỹ tăng vọt, trong khi hàng triệu người đối mặt với lạm phát. Sự bất mãn gia tăng dẫn đến các cuộc biểu tình "No Kings" tại Mỹ hay các làn sóng bãi công đòi quyền lợi lao động. Điều này minh chứng cho nhận định của Lênin: nhà nước tư sản không thể xoa dịu được mâu thuẫn giai cấp ngày càng sâu sắc.',
+    tag: 'Mâu thuẫn giai cấp không thể điều hòa',
+  },
+  {
+    title: 'Sự trỗi dậy của chủ nghĩa dân túy',
+    text: 'Sự bất lực của giới tinh hoa truyền thống trong giải quyết lạm phát và khủng hoảng kinh tế dẫn đến sự trỗi dậy của các khuynh hướng cực hữu và dân túy. Đây là biểu hiện của khủng hoảng niềm tin sâu sắc vào thiết chế nhà nước tư bản truyền thống.',
+    tag: 'Khủng hoảng thiết chế nhà nước',
   },
 ];
 
 const compareRows = [
-  ['Giai cấp nắm quyền', 'Giai cấp tư sản', 'Nhân dân lao động do giai cấp công nhân lãnh đạo'],
-  ['Quan hệ thống trị', 'Số ít thống trị số đông', 'Số đông thống trị số ít'],
-  ['Bản chất dân chủ', 'Dân chủ tư sản — có giới hạn cho số ít', 'Dân chủ vô sản — dân chủ kiểu mới của số đông'],
-  ['Mục tiêu', 'Duy trì quan hệ sản xuất tư bản chủ nghĩa', 'Xóa bỏ áp bức, bóc lột; tiến tới xã hội cộng sản'],
+  ['Cơ sở kinh tế', 'Dựa trên chế độ tư hữu tư bản chủ nghĩa', 'Dựa trên chế độ công hữu về tư liệu sản xuất chủ yếu'],
+  ['Giai cấp nắm quyền', 'Giai cấp tư sản (thiểu số trong xã hội)', 'Nhân dân lao động do giai cấp công nhân lãnh đạo (đại đa số)'],
+  ['Bản chất dân chủ', 'Dân chủ tư sản (hình thức, bị tư bản chi phối)', 'Dân chủ vô sản (thực chất, phục vụ số đông Nhân dân)'],
+  ['Mục tiêu', 'Bảo vệ quyền sở hữu tư nhân, tối đa hóa lợi nhuận', 'Dân giàu, nước mạnh, dân chủ, công bằng, văn minh'],
 ];
 
 export default function CapitalistState() {
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white text-slate-950">
@@ -138,6 +154,34 @@ export default function CapitalistState() {
             </div>
           </motion.section>
 
+          {/* Thực tiễn đương đại */}
+          <motion.section
+            id="thuc-tien"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="border-b border-slate-200 py-7"
+          >
+            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Thực tiễn nhà nước tư bản đương đại</h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              {modernPractices.map((p, i) => (
+                <motion.div
+                  key={p.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 + i * 0.05 }}
+                  className="flex flex-col border border-slate-200 bg-white p-6 shadow-sm"
+                >
+                  <div className="mb-3 inline-flex w-fit rounded bg-slate-800 px-2 py-1 text-xs font-bold text-white">
+                    {p.tag}
+                  </div>
+                  <h3 className="text-lg font-black leading-tight text-slate-950">{p.title}</h3>
+                  <p className="mt-3 text-base leading-7 text-slate-700">{p.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
           {/* So sánh với nhà nước vô sản */}
           <motion.section
             id="so-sanh"
@@ -180,27 +224,17 @@ export default function CapitalistState() {
             className="border-b-4 border-red-600 py-7"
           >
             <div className="text-center">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">Liên hệ</div>
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Liên hệ Việt Nam</div>
               <div className="mt-4 text-3xl font-black text-slate-950 md:text-4xl">
                 Từ nhà nước tư sản đến nhà nước kiểu mới
               </div>
               <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-slate-700">
-                Khác với nhà nước tư sản — nhà nước của số ít thống trị số đông, nhà nước vô sản mà Việt Nam xây dựng là nhà nước của số đông nhân dân lao động.
+                Học thuyết Mác - Lênin và thực tiễn hiện nay chứng minh mô hình nhà nước tư sản không thể khắc phục được lũng đoạn từ tư bản tài chính và phân hóa giàu nghèo. Rút ra bài học từ đó, Việt Nam kiên định xây dựng <span className="font-bold text-slate-950">Nhà nước pháp quyền XHCN</span>, nơi quyền lực được kiểm soát chặt chẽ phục vụ đại đa số Nhân dân lao động, kiên quyết chống lại lợi ích nhóm.
               </p>
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
-                <button
-                  onClick={() => navigate('/vietnam')}
-                  className="inline-flex items-center gap-2 rounded bg-red-600 px-6 py-3 font-black text-white transition-colors hover:bg-red-700"
-                >
-                  Nhà nước pháp quyền XHCN Việt Nam
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => navigate('/game')}
-                  className="inline-flex items-center gap-2 rounded border border-slate-300 bg-white px-6 py-3 font-black text-slate-800 transition-colors hover:bg-slate-50"
-                >
-                  Ôn tập qua trò chơi
-                </button>
+              <div className="mt-6">
+                <a href="/vietnam" className="inline-flex items-center gap-2 rounded bg-red-600 px-6 py-3 font-bold text-white transition-colors hover:bg-red-700">
+                  Tìm hiểu về Nhà nước Việt Nam hiện nay
+                </a>
               </div>
             </div>
           </motion.section>

@@ -1,7 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
 import { OutlineLayout } from '../components/PageOutline';
 
@@ -50,36 +48,35 @@ const practiceIntro =
 
 const practice = [
   {
-    title: 'Tinh gọn bộ máy nhà nước, nâng cao hiệu lực quản lý',
-    text: 'Chính phủ ban hành Nghị quyết 105/NQ-CP triển khai Kết luận 210-KL/TW về tiếp tục hoàn thiện tổ chức bộ máy của hệ thống chính trị. Quốc hội thông qua nghị quyết sắp xếp đơn vị hành chính năm 2025: sau điều chỉnh, cả nước còn 34 đơn vị hành chính cấp tỉnh và 3.321 đơn vị hành chính cấp xã.',
-    tag: 'Nghị quyết 105/NQ-CP · Kết luận 210-KL/TW',
-    tie: 'Bộ máy được tổ chức lại theo hướng “tinh, gọn, mạnh, hiệu năng, hiệu lực, hiệu quả” — đúng luận điểm của Lênin: nhà nước là công cụ duy trì trật tự và quản lý xã hội trong những điều kiện lịch sử cụ thể.',
+    title: 'Bước vào "Kỷ nguyên mới": Tinh gọn bộ máy, chống lãng phí',
+    text: 'Từ cuối 2024 và trong năm 2025, dưới sự chỉ đạo quyết liệt của Tổng Bí thư Tô Lâm, Đảng và Nhà nước tiến hành "cuộc cách mạng" tinh gọn bộ máy hệ thống chính trị với phương châm "Tinh - Gọn - Mạnh - Hiệu năng - Hiệu lực - Hiệu quả". Việc tổng kết Nghị quyết 18-NQ/TW được đẩy mạnh nhằm xóa bỏ bộ máy cồng kềnh, tiết kiệm ngân sách để chuẩn bị cho "Kỷ nguyên vươn mình của dân tộc".',
+    tag: 'Kỷ nguyên mới · Tinh gọn bộ máy',
+    tie: 'Khẳng định nỗ lực không ngừng thanh lọc bộ máy để phục vụ Nhân dân tốt hơn. Việc tinh gọn bộ máy chứng minh Nhà nước ta luôn bám sát bản chất của dân, do dân, vì dân, kiên quyết chống lãng phí nguồn lực để tập trung phát triển đất nước.',
   },
   {
-    title: 'Kiểm soát quyền lực, hoàn thiện Nhà nước pháp quyền',
-    text: 'Đại hội XIII nhấn mạnh phân công, phối hợp và kiểm soát quyền lực giữa lập pháp, hành pháp và tư pháp. Việt Nam đẩy mạnh cải cách thể chế, tăng cường minh bạch hóa hoạt động công quyền và kiểm soát quyền lực nhà nước.',
-    tag: 'Văn kiện Đại hội XIII',
-    tie: 'Là minh chứng cho nguyên tắc “Đảng lãnh đạo – Nhà nước quản lý – Nhân dân làm chủ”.',
+    title: 'Hoàn thiện Nhà nước pháp quyền trong kỷ nguyên vươn mình',
+    text: 'Đẩy mạnh cải cách thể chế, phân công, phối hợp và kiểm soát chặt chẽ quyền lực giữa lập pháp, hành pháp và tư pháp. Vừa phân cấp, phân quyền mạnh mẽ cho địa phương, vừa giám sát chặt chẽ, lấy mục tiêu phục vụ người dân, doanh nghiệp làm trọng tâm.',
+    tag: 'Kiểm soát quyền lực · Kiến tạo phát triển',
+    tie: 'Bảo đảm quyền lực thuộc về Nhân dân. Khác biệt cốt lõi với "dân chủ tư sản": quyền lực không nằm trong tay thiểu số tư bản tài chính, mà nằm dưới sự kiểm soát của pháp luật XHCN vì lợi ích chung.',
   },
   {
-    title: 'Xây dựng nền hành chính phục vụ Nhân dân',
-    text: 'Chương trình cải cách hành chính giai đoạn 2021–2030 tiếp tục được triển khai nhằm đơn giản hóa thủ tục, nâng cao chất lượng phục vụ người dân và doanh nghiệp; nhiều bộ, ngành đạt chỉ số cải cách hành chính cao trong năm 2025–2026.',
-    tag: 'Cải cách hành chính 2021–2030',
-    tie: 'Phản ánh rõ tính xã hội của nhà nước: không chỉ quản lý, cưỡng chế mà còn giải quyết các vấn đề dân sinh — giáo dục, y tế, hạ tầng, phúc lợi xã hội.',
+    title: 'Phát huy dân chủ trực tiếp ở cơ sở',
+    text: 'Luật Thực hiện dân chủ ở cơ sở được triển khai mạnh mẽ, thể chế hóa phương châm "Dân biết, dân bàn, dân làm, dân kiểm tra, dân giám sát, dân thụ hưởng". Cử tri có quyền tham gia trực tiếp vào việc giám sát và đánh giá chính quyền địa phương.',
+    tag: 'Dân chủ XHCN',
+    tie: 'Khắc phục triệt để tình trạng "dân chủ hình thức" của các nước TBCN, biến nền dân chủ thành thực chất, đưa người dân làm chủ ngay tại nơi mình sinh sống.',
   },
   {
-    title: 'Chuyển đổi số, xây dựng chính phủ số',
-    text: 'Việt Nam thúc đẩy nền hành chính số, chính phủ số và quản trị quốc gia hiện đại; ứng dụng công nghệ vào quản lý nhà nước để tăng công khai, minh bạch và nâng cao khả năng phục vụ người dân.',
-    tag: 'Cách mạng công nghiệp 4.0',
-    tie: 'Bước phát triển mới của Nhà nước pháp quyền XHCN trong bối cảnh chuyển đổi số.',
+    title: 'Chính phủ số và Cách mạng công nghệ',
+    text: 'Thúc đẩy Đề án 06 về dữ liệu dân cư, đẩy mạnh chính phủ điện tử. Ứng dụng công nghệ số làm minh bạch hóa các thủ tục hành chính, cắt giảm chi phí, thời gian của nhân dân, chống sách nhiễu.',
+    tag: 'Quản trị quốc gia hiện đại',
+    tie: 'Sự hiện thực hóa chức năng xã hội của nhà nước: dùng khoa học công nghệ để nâng cao chất lượng sống, không để ai bị bỏ lại phía sau.',
   },
 ];
 
 const practiceConclusion =
-  'Từ nhận định của Lênin: “Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được”, Việt Nam đã vận dụng sáng tạo học thuyết Mác – Lênin để xây dựng Nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân. Những cải cách về tổ chức bộ máy, kiểm soát quyền lực, chuyển đổi số và nâng cao chất lượng phục vụ cho thấy nhà nước không ngừng hoàn thiện để đáp ứng yêu cầu phát triển đất nước.';
+  'Từ nhận định của Lênin: “Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được”, Việt Nam đã vận dụng sáng tạo học thuyết Mác – Lênin để xây dựng Nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân. So với nhà nước tư sản hiện đại đang gặp nhiều khủng hoảng do sự thao túng của tư bản tài chính, những cải cách quyết liệt hiện nay của Việt Nam về tổ chức bộ máy, phòng chống tham nhũng, và phát huy dân chủ cho thấy sự ưu việt của một nhà nước kiểu mới, hướng tới kỷ nguyên vươn mình của dân tộc.';
 
 export default function VietnamState() {
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white text-slate-950">
@@ -226,7 +223,7 @@ export default function VietnamState() {
               <div className="text-sm font-black uppercase tracking-widest text-red-600">Kết luận thực tiễn</div>
               <p className="mt-3 text-base leading-7 text-slate-700">{practiceConclusion}</p>
               <p className="mt-3 text-xs text-slate-500">
-                Nguồn lý luận: Chương III “Nhà nước và cách mạng xã hội” (Giáo trình Triết học Mác – Lênin) · dẫn chứng thời sự 2025–2026.
+                Nguồn lý luận: Chương III “Nhà nước và cách mạng xã hội” (Giáo trình Triết học Mác – Lênin) · Dẫn chứng thời sự cập nhật liên tục.
               </p>
             </div>
           </motion.section>
@@ -244,13 +241,6 @@ export default function VietnamState() {
               <div className="mt-4 text-3xl font-black text-slate-950 md:text-4xl">
                 Dân giàu · Nước mạnh · Dân chủ · Công bằng · Văn minh
               </div>
-              <button
-                onClick={() => navigate('/game')}
-                className="mt-6 inline-flex items-center gap-2 rounded bg-red-600 px-6 py-3 font-black text-white transition-colors hover:bg-red-700"
-              >
-                Ôn tập qua trò chơi
-                <ArrowRight className="h-4 w-4" />
-              </button>
             </div>
           </motion.section>
         </article>

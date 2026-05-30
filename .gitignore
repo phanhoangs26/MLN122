@@ -30,3 +30,8 @@ Thumbs.db
 # other
 *.local
 
+# one-off content migration scripts (run locally only)
+/update_*.py
+/update_*.js
+/move_questions*
+

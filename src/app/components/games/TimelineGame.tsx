@@ -5,17 +5,9 @@ import confetti from 'canvas-confetti';
 import clsx from 'clsx';
 import { timelineRounds } from '../../data/stateContent';
 import { useGameStore } from '../../store';
+import { shuffle } from '../../utils/shuffle';
 
 type Step = { label: string; note: string; correctIndex: number };
-
-function shuffle<T>(arr: T[]): T[] {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 export const TimelineGame: React.FC = () => {
   const addXp = useGameStore((s) => s.addXp);
@@ -107,49 +99,6 @@ export const TimelineGame: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* Questions Section */}
-      {round.questions && round.questions.length > 0 && (
-        <div className="mt-6 rounded border border-red-200 bg-red-50 p-5 md:p-6">
-          <div className="mb-4 flex items-center gap-2">
-            <HelpCircle className="h-4 w-4 text-red-600" />
-            <h3 className="text-sm font-black uppercase tracking-widest text-red-600">6 câu hỏi ôn tập</h3>
-          </div>
-          <div className="space-y-2">
-            {round.questions.map((q, i) => (
-              <button
-                key={i}
-                onClick={() => setExpandedQuestion(expandedQuestion === i ? null : i)}
-                className="w-full text-left"
-              >
-                <div className="rounded border border-red-200 bg-white p-4 transition-colors hover:border-red-300">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <p className="font-bold text-slate-900">
-                        <span className="mr-2 text-red-600">{i + 1}.</span>
-                        {q.front}
-                      </p>
-                      <AnimatePresence initial={false}>
-                        {expandedQuestion === i && (
-                          <motion.p
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="mt-3 overflow-hidden text-sm leading-6 text-slate-700"
-                          >
-                            {q.back}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                    <span className="shrink-0 text-xs font-black text-red-500">{expandedQuestion === i ? '▼' : '▶'}</span>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Your order */}
       <div className="mt-6 rounded border border-slate-200 bg-white p-5 shadow-sm md:p-6">
@@ -280,6 +229,49 @@ export const TimelineGame: React.FC = () => {
           </p>
         </motion.div>
       )}
+      {/* Questions Section */}
+      {round.questions && round.questions.length > 0 && (
+        <div className="mt-6 rounded border border-red-200 bg-red-50 p-5 md:p-6">
+          <div className="mb-4 flex items-center gap-2">
+            <HelpCircle className="h-4 w-4 text-red-600" />
+            <h3 className="text-sm font-black uppercase tracking-widest text-red-600">Câu hỏi ôn tập</h3>
+          </div>
+          <div className="space-y-2">
+            {round.questions.map((q, i) => (
+              <button
+                key={i}
+                onClick={() => setExpandedQuestion(expandedQuestion === i ? null : i)}
+                className="w-full text-left"
+              >
+                <div className="rounded border border-red-200 bg-white p-4 transition-colors hover:border-red-300">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <p className="font-bold text-slate-900">
+                        <span className="mr-2 text-red-600">{i + 1}.</span>
+                        {q.front}
+                      </p>
+                      <AnimatePresence initial={false}>
+                        {expandedQuestion === i && (
+                          <motion.p
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="mt-3 overflow-hidden text-sm leading-6 text-slate-700"
+                          >
+                            {q.back}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                    <span className="shrink-0 text-xs font-black text-red-500">{expandedQuestion === i ? '▼' : '▶'}</span>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

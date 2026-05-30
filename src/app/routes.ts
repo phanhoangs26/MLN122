@@ -1,34 +1,46 @@
 import { createBrowserRouter } from "react-router";
-import Home from "./pages/Home";
-import Theory from "./pages/Theory";
-import VietnamState from "./pages/VietnamState";
-import CapitalistState from "./pages/CapitalistState";
-import Games from "./pages/Games";
-import Chatbot from "./pages/Chatbot";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Home,
+    lazy: async () => {
+      const { default: Component } = await import("./pages/Home");
+      return { Component };
+    },
   },
   {
     path: "/theory",
-    Component: Theory,
+    lazy: async () => {
+      const { default: Component } = await import("./pages/Theory");
+      return { Component };
+    },
   },
   {
     path: "/vietnam",
-    Component: VietnamState,
+    lazy: async () => {
+      const { default: Component } = await import("./pages/VietnamState");
+      return { Component };
+    },
   },
   {
     path: "/tu-ban",
-    Component: CapitalistState,
+    lazy: async () => {
+      const { default: Component } = await import("./pages/CapitalistState");
+      return { Component };
+    },
   },
   {
     path: "/game",
-    Component: Games,
+    lazy: async () => {
+      const { default: Component } = await import("./pages/Games");
+      return { Component };
+    },
   },
   {
     path: "/chat",
-    Component: Chatbot,
+    lazy: async () => {
+      const { default: Component } = await import("./pages/Chatbot");
+      return { Component };
+    },
   },
 ]);

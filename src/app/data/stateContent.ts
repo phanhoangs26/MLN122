@@ -89,19 +89,39 @@ export type TimelineRound = {
 
 export const timelineRounds: TimelineRound[] = [
   {
+    id: 'origin_hard',
+    title: 'Tiến trình logic hình thành Nhà nước',
+    prompt: 'Sắp xếp 7 bước theo đúng tiến trình logic dẫn đến sự ra đời và hoàn thiện bộ máy nhà nước theo giáo trình Mác - Lênin.',
+    steps: [
+      { label: 'Sự phát triển của lực lượng sản xuất', note: 'Công cụ lao động tiến bộ làm tăng năng suất lao động, tạo ra sản phẩm thặng dư.' },
+      { label: 'Xuất hiện chế độ tư hữu', note: 'Sản phẩm thặng dư bị chiếm đoạt, tư liệu sản xuất rơi vào tay một thiểu số người.' },
+      { label: 'Phân hóa giai cấp xã hội', note: 'Xã hội rạn nứt thành giai cấp bóc lột và giai cấp bị bóc lột (nguyên nhân sâu xa).' },
+      { label: 'Mâu thuẫn giai cấp không thể điều hòa', note: 'Cuộc đấu tranh giai cấp gay gắt đe dọa tiêu diệt cả các giai cấp lẫn xã hội (nguyên nhân trực tiếp).' },
+      { label: 'Thiết lập quyền lực công cộng đặc biệt', note: 'Hình thành lực lượng vũ trang (quân đội, cảnh sát) và nhà tù tách rời khỏi dân cư để trấn áp.' },
+      { label: 'Phân chia dân cư theo lãnh thổ', note: 'Quản lý cư dân theo biên giới quốc gia thay vì huyết thống như thị tộc, bộ lạc.' },
+      { label: 'Thu thuế và phát hành quốc trái', note: 'Bắt buộc đóng góp tài chính để nuôi dưỡng bộ máy quyền lực đứng trên xã hội.' },
+    ],
+    questions: [
+      {
+        front: 'Vì sao lực lượng vũ trang (quân đội, cảnh sát) lại phải tách rời khỏi dân cư?',
+        back: 'Vì khi xã hội đã phân chia thành các giai cấp thù địch, việc tổ chức vũ trang tự động của dân cư là không thể. Giai cấp thống trị phải lập ra lực lượng chuyên nghiệp để trấn áp sự phản kháng của giai cấp bị trị.',
+      },
+      {
+        front: 'Phân chia dân cư theo lãnh thổ khác với tổ chức thị tộc ở điểm nào?',
+        back: 'Tổ chức thị tộc dựa trên quan hệ huyết thống. Trong khi đó, nhà nước quản lý công dân dựa trên nơi cư trú (lãnh thổ), không phân biệt bộ tộc hay huyết thống, từ đó hình thành biên giới quốc gia.',
+      },
+    ],
+  },
+  {
     id: 'origin',
     title: 'Nhà nước ra đời và tiêu vong như thế nào?',
-    prompt: 'Sắp xếp 10 bước theo đúng tiến trình: từ xã hội nguyên thủy tới khi nhà nước tiêu vong.',
+    prompt: 'Sắp xếp 6 bước theo đúng tiến trình: từ xã hội nguyên thủy tới khi nhà nước tiêu vong.',
     steps: [
       { label: 'Xã hội cộng sản nguyên thủy', note: 'Thị tộc, bộ lạc tự quản; chưa có tư hữu, chưa có giai cấp, chưa có nhà nước.' },
-      { label: 'Lực lượng sản xuất phát triển', note: 'Công cụ lao động tiến bộ (kim loại), năng suất lao động tăng lên.' },
-      { label: 'Của cải dư thừa tương đối', note: 'Lần đầu xuất hiện sản phẩm thặng dư so với nhu cầu tối thiểu.' },
-      { label: 'Chế độ tư hữu xuất hiện', note: 'Tư liệu sản xuất và của cải dần rơi vào tay một thiểu số.' },
-      { label: 'Bất bình đẳng, phân hóa giàu – nghèo', note: 'Quan hệ bình đẳng kiểu công xã bị phá vỡ, quan hệ áp bức bóc lột nảy sinh.' },
-      { label: 'Xã hội phân chia thành giai cấp', note: 'Hình thành giai cấp thống trị và bị trị; đầu tiên là chủ nô – nô lệ.' },
-      { label: 'Mâu thuẫn giai cấp không thể điều hòa', note: 'Đấu tranh giai cấp gay gắt, xã hội bất lực không sao loại bỏ được.' },
-      { label: 'Nhà nước ra đời', note: 'Lực lượng đứng trên xã hội, giữ xung đột trong “vòng trật tự” có lợi cho giai cấp thống trị (nhà nước chủ nô).' },
-      { label: 'Kế tiếp các kiểu nhà nước', note: 'Nhà nước phong kiến → tư sản → vô sản, gắn với từng phương thức sản xuất.' },
+      { label: 'Lực lượng sản xuất phát triển, của cải dư thừa', note: 'Công cụ lao động tiến bộ, năng suất tăng, lần đầu xuất hiện sản phẩm thặng dư — tiền đề cho chế độ tư hữu.' },
+      { label: 'Chế độ tư hữu, phân hóa giai cấp', note: 'Tư liệu sản xuất rơi vào tay thiểu số; hình thành giai cấp thống trị và bị trị (đầu tiên là chủ nô – nô lệ).' },
+      { label: 'Mâu thuẫn giai cấp không thể điều hòa', note: 'Đấu tranh giai cấp gay gắt, xã hội bất lực không sao loại bỏ được — nguyên nhân trực tiếp.' },
+      { label: 'Nhà nước ra đời', note: 'Lực lượng đứng trên xã hội, giữ xung đột trong “vòng trật tự” có lợi cho giai cấp thống trị.' },
       { label: 'Nhà nước tiêu vong', note: 'Khi xã hội đạt giai đoạn cộng sản chủ nghĩa, không còn giai cấp thì nhà nước “tự tiêu vong”.' },
     ],
     questions: [
@@ -178,6 +198,29 @@ export type MatchRound = {
 };
 
 export const matchRounds: MatchRound[] = [
+  {
+    id: 'dialectics',
+    title: 'Mối quan hệ biện chứng',
+    prompt: 'Dựa vào giáo trình, nối các khái niệm về chức năng và bản chất nhà nước sao cho đúng logic triết học.',
+    pairs: [
+      { left: 'Nguyên nhân sâu xa', right: 'Lực lượng sản xuất phát triển dẫn đến chế độ tư hữu' },
+      { left: 'Nguyên nhân trực tiếp', right: 'Mâu thuẫn giai cấp gay gắt không thể điều hòa' },
+      { left: 'Chức năng thống trị chính trị', right: 'Quyết định, chi phối và định hướng chức năng xã hội' },
+      { left: 'Chức năng xã hội', right: 'Đảm bảo trật tự, là cơ sở để nhà nước duy trì sự tồn tại lâu dài' },
+      { left: 'Chức năng đối nội', right: 'Giữ vai trò chủ yếu, quyết định sự tồn tại vững chắc của chế độ' },
+      { left: 'Bản chất nhà nước', right: 'Tổ chức chính trị của giai cấp thống trị về kinh tế' },
+    ],
+    questions: [
+      {
+        front: 'Tại sao chức năng đối nội lại giữ vai trò chủ yếu hơn đối ngoại?',
+        back: 'Nhà nước trước hết phải duy trì được trật tự xã hội bên trong để tồn tại. Chỉ khi làm tốt chức năng đối nội, nhà nước mới có điều kiện thực hiện tốt chức năng đối ngoại và nâng cao vị thế trên trường quốc tế.',
+      },
+      {
+        front: 'Nếu nhà nước chỉ tập trung vào chức năng thống trị chính trị mà bỏ qua chức năng xã hội thì sao?',
+        back: 'Theo Ph. Ăngghen, chức năng xã hội là cơ sở của sự thống trị chính trị. Nếu không giải quyết được các vấn đề xã hội, xã hội sẽ mất ổn định, và chính quyền nhà nước đó sẽ khó có thể tồn tại lâu dài.',
+      },
+    ],
+  },
   {
     id: 'features',
     title: 'Ba đặc trưng của nhà nước',

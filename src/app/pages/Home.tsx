@@ -11,7 +11,7 @@ const sections = [
     no: '01',
     icon: BookOpen,
     title: 'Nhà nước',
-    desc: 'Nguồn gốc, bản chất, ba đặc trưng, chức năng, các kiểu và hình thức nhà nước — kèm trích dẫn Ăngghen, Lênin.',
+    desc: 'Nguồn gốc của quyền lực chính trị và sự ra đời của nhà nước.',
     featured: true,
   },
   {
@@ -19,28 +19,28 @@ const sections = [
     no: '02',
     icon: Star,
     title: 'Việt Nam',
-    desc: 'Nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân — kèm liên hệ thực tiễn 2025–2026.',
+    desc: 'Vận dụng học thuyết Mác – Lênin trong xây dựng Nhà nước pháp quyền XHCN.',
   },
   {
     to: '/tu-ban',
     no: '03',
     icon: Landmark,
     title: 'Nhà nước tư sản',
-    desc: 'Các hình thức nhà nước tư sản, bản chất chuyên chính tư sản và so sánh với nhà nước vô sản.',
+    desc: 'Một kiểu nhà nước điển hình trong xã hội tư bản chủ nghĩa.',
   },
   {
     to: '/game',
     no: '04',
     icon: Gamepad2,
     title: 'Ôn tập',
-    desc: 'Hai trò chơi: sắp xếp Dòng thời gian và Nối khái niệm, kèm câu hỏi ôn tập theo từng vòng.',
+    desc: 'Học qua tương tác, ghi nhớ qua trải nghiệm.',
   },
   {
     to: '/chat',
     no: '05',
     icon: Bot,
     title: 'Hỏi đáp',
-    desc: 'Trợ lý trả lời các câu hỏi quanh chủ đề nhà nước — chạy offline, có thể bật chế độ AI.',
+    desc: 'Tra cứu nhanh mọi vấn đề liên quan đến chuyên đề.',
   },
 ];
 
@@ -59,18 +59,21 @@ export default function Home() {
               Chuyên đề · Triết học Mác – Lênin
             </div>
             <h1 className="font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
-              Nhà nước và sự không thể điều hòa của mâu thuẫn giai cấp
+              Nhà nước và mâu thuẫn giai cấp
             </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-700">
-              Hệ thống kiến thức về lý thuyết nhà nước theo triết học Mác – Lênin: từ nguồn gốc, bản chất đến vận dụng
-              thực tiễn xây dựng Nhà nước pháp quyền XHCN Việt Nam.
+            <p className="mt-4 max-w-2xl text-xl font-bold leading-8 text-slate-800">
+              Khám phá luận điểm nổi tiếng của V.I. Lênin về nguồn gốc và bản chất của nhà nước.
+            </p>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Từ luận điểm của Lênin về nguồn gốc nhà nước đến quá trình xây dựng Nhà nước pháp quyền xã hội chủ nghĩa
+              Việt Nam trong thời kỳ đổi mới.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => navigate('/theory')}
                 className="inline-flex items-center gap-2 rounded bg-red-600 px-6 py-3 font-black text-white transition-colors hover:bg-red-700"
               >
-                Bắt đầu học
+                Khám phá chuyên đề
                 <ArrowRight className="h-4 w-4" />
               </button>
               <button
@@ -90,11 +93,12 @@ export default function Home() {
             transition={{ delay: 0.1 }}
             className="flex flex-col justify-center border-l-4 border-red-600 bg-slate-50 px-6 py-6"
           >
-            <div className="text-sm font-black uppercase tracking-widest text-red-600">Luận điểm trung tâm</div>
+            <div className="text-sm font-black uppercase tracking-widest text-red-600">Tư tưởng cốt lõi</div>
             <blockquote className="mt-3 font-serif text-2xl font-black leading-9 text-red-700 md:text-3xl">
               “{centralThesis.quote}”
             </blockquote>
             <figcaption className="mt-3 text-sm font-bold text-slate-600">— {centralThesis.source}</figcaption>
+            <div className="mt-1 text-xs italic text-slate-500">Tác phẩm: Nhà nước và Cách mạng (1917)</div>
           </motion.figure>
         </div>
       </section>
