@@ -34,7 +34,8 @@ const formGroups = [
   {
     group: 'Cấu trúc nhà nước',
     items: [
-      { title: 'Nhà nước liên bang', text: 'Quyền lực phân chia giữa chính quyền trung ương (liên bang) và các bang thành viên.' },
+      { title: 'Nhà nước đơn nhất', text: 'Quyền lực nhà nước được tổ chức thống nhất từ trung ương đến địa phương; các đơn vị hành chính không có chủ quyền riêng.' },
+      { title: 'Nhà nước liên bang', text: 'Quyền lực được phân chia giữa chính quyền trung ương (liên bang) và các bang thành viên; các bang có quyền tự trị nhất định theo hiến pháp.' },
     ],
   },
 ];
@@ -43,10 +44,10 @@ const formGroups = [
    5. VÍ DỤ NHÀ NƯỚC TƯ SẢN TIÊU BIỂU
    ============================ */
 const examples = [
-  { name: 'Hoa Kỳ', form: 'Cộng hòa tổng thống', desc: 'Thành lập sau Cách mạng Mỹ (1775–1783). Hệ thống tam quyền phân lập rõ ràng: lập pháp (Quốc hội), hành pháp (Tổng thống), tư pháp (Tòa án Tối cao).' },
-  { name: 'Pháp', form: 'Cộng hòa thủ tướng', desc: 'Chuyển từ quân chủ sang cộng hòa sau Cách mạng Pháp (1789). Tổng thống và thủ tướng chia sẻ quyền hành pháp.' },
-  { name: 'Anh', form: 'Quân chủ lập hiến', desc: 'Duy trì chế độ quân chủ nhưng nghị viện nắm thực quyền. Quyền lực nhà vua mang tính biểu tượng.' },
-  { name: 'Nhật Bản', form: 'Quân chủ lập hiến', desc: 'Chuyển từ phong kiến sang tư sản sau cải cách Minh Trị (1868). Thiên hoàng giữ vai trò biểu tượng quốc gia.' },
+  { name: 'Hoa Kỳ', form: 'Cộng hòa tổng thống', structure: 'Liên bang', desc: 'Nhà nước liên bang theo mô hình cộng hòa tổng thống. Tam quyền phân lập rõ ràng: lập pháp (Quốc hội), hành pháp (Tổng thống), tư pháp (Tòa án Tối cao).' },
+  { name: 'Pháp', form: 'Cộng hòa bán tổng thống', structure: 'Đơn nhất', desc: 'Tổng thống và Thủ tướng cùng tham gia điều hành hành pháp; quyền lực được phân chia theo Hiến pháp.' },
+  { name: 'Anh', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', desc: 'Duy trì chế độ quân chủ nhưng nghị viện nắm thực quyền. Quyền lực nhà vua mang tính biểu tượng.' },
+  { name: 'Nhật Bản', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', desc: 'Thiên hoàng là biểu tượng quốc gia, quyền lực thực tế thuộc Quốc hội và Chính phủ.' },
 ];
 
 /* ============================
@@ -237,7 +238,7 @@ export default function CapitalistState() {
               ))}
             </div>
             <p className="mt-5 max-w-4xl text-base leading-7 text-slate-700">
-              Các hình thức này khác nhau về chế độ bầu cử, chế độ một hay hai viện, nhiệm kỳ và quyền lực của tổng thống, thủ tướng, sự phân chia quyền lực giữa tổng thống – thủ tướng – nội các… song về bản chất đều là <span className="font-bold text-slate-950">nền chuyên chính tư sản</span>.
+              Dù khác nhau về cách tổ chức quyền lực và cấu trúc nhà nước, theo V.I. Lênin, về bản chất tất cả đều là <span className="font-bold text-slate-950">nền chuyên chính tư sản</span>.
             </p>
           </motion.section>
 
@@ -260,8 +261,11 @@ export default function CapitalistState() {
                   className="border border-slate-200 bg-white p-5 shadow-sm"
                 >
                   <div className="mb-2 text-2xl font-black text-slate-950">{e.name}</div>
-                  <div className="mb-3 inline-flex rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{e.form}</div>
-                  <p className="text-sm leading-6 text-slate-700">{e.desc}</p>
+                  <div className="mb-1 flex flex-wrap gap-1.5">
+                    <span className="inline-flex rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{e.form}</span>
+                    <span className="inline-flex rounded border border-slate-300 bg-white px-2 py-0.5 text-xs font-bold text-slate-600">{e.structure}</span>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-700">{e.desc}</p>
                 </motion.div>
               ))}
             </div>
