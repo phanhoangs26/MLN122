@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { RotateCcw, ArrowRight, CheckCircle2, XCircle, HelpCircle } from 'lucide-react';
+import { RotateCcw, ArrowRight, CheckCircle2, HelpCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import clsx from 'clsx';
 import { timelineRounds } from '../../data/stateContent';
@@ -22,15 +22,18 @@ export const TimelineGame: React.FC = () => {
 
   const [pool, setPool] = useState<Step[]>(() => shuffle(ordered));
   const [placed, setPlaced] = useState<Step[]>([]);
-  const [checked, setChecked] = useState(false);
+  const [wrongFlash, setWrongFlash] = useState(false);
   const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null);
+
+  const done = placed.length === ordered.length;
+  const currentSlot = placed.length;
 
   const reset = (idx = roundIdx) => {
     const r = timelineRounds[idx];
     const steps = r.steps.map((s, i) => ({ ...s, correctIndex: i }));
     setPool(shuffle(steps));
     setPlaced([]);
-    setChecked(false);
+    setWrongFlash(false);
   };
 
   const goRound = (idx: number) => {
@@ -39,28 +42,21 @@ export const TimelineGame: React.FC = () => {
     reset(idx);
   };
 
-  const placeFromPool = (step: Step) => {
-    if (checked) return;
-    setPool((p) => p.filter((s) => s.label !== step.label));
-    setPlaced((p) => [...p, step]);
-  };
-
-  const removeFromPlaced = (step: Step) => {
-    if (checked) return;
-    setPlaced((p) => p.filter((s) => s.label !== step.label));
-    setPool((p) => [...p, step]);
-  };
-
-  const allPlaced = placed.length === ordered.length;
-  const correctCount = placed.filter((s, i) => s.correctIndex === i).length;
-  const isPerfect = checked && correctCount === ordered.length;
-
-  const check = () => {
-    if (!allPlaced) return;
-    setChecked(true);
-    if (correctCount === ordered.length) {
+  useEffect(() => {
+    if (done) {
       addXp(80);
       confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+    }
+  }, [done]);
+
+  const placeFromPool = (step: Step) => {
+    if (done) return;
+    if (step.correctIndex === currentSlot) {
+      setPool((p) => p.filter((s) => s.label !== step.label));
+      setPlaced((p) => [...p, step]);
+    } else {
+      setWrongFlash(true);
+      setTimeout(() => setWrongFlash(false), 500);
     }
   };
 
@@ -100,13 +96,13 @@ export const TimelineGame: React.FC = () => {
         </div>
       </div>
 
-      {/* Your order */}
+      {/* Timeline slots */}
       <div className="mt-6 rounded border border-slate-200 bg-white p-5 shadow-sm md:p-6">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-sm font-black uppercase tracking-widest text-red-600">Thứ tự của bạn</h3>
-          {checked && (
-            <span className={clsx('rounded px-3 py-1 text-xs font-black', isPerfect ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700')}>
-              Đúng {correctCount}/{ordered.length}
+          {done && (
+            <span className="rounded bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-700">
+              Hoàn thành!
             </span>
           )}
         </div>
@@ -114,40 +110,39 @@ export const TimelineGame: React.FC = () => {
         <div className="space-y-2">
           {ordered.map((_, slot) => {
             const step = placed[slot];
-            const correct = checked && step && step.correctIndex === slot;
-            const wrong = checked && step && step.correctIndex !== slot;
+            const isActive = !done && slot === currentSlot;
+            const isCorrect = !!step;
             return (
               <div
                 key={slot}
                 className={clsx(
-                  'flex items-center gap-3 rounded border px-3 py-3 transition-colors',
-                  !step && 'border-dashed border-slate-300 bg-slate-50',
-                  step && !checked && 'border-slate-200 bg-slate-50',
-                  correct && 'border-emerald-300 bg-emerald-50',
-                  wrong && 'border-rose-300 bg-rose-50',
+                  'flex items-center gap-3 rounded border px-3 py-3 transition-all duration-200',
+                  isCorrect && 'border-emerald-300 bg-emerald-50',
+                  isActive && !wrongFlash && 'border-red-300 bg-red-50',
+                  isActive && wrongFlash && 'border-rose-500 bg-rose-100',
+                  !isCorrect && !isActive && 'border-dashed border-slate-200 bg-slate-50',
                 )}
               >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-black text-slate-700">
+                <div className={clsx(
+                  'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-black transition-colors',
+                  isCorrect ? 'border-emerald-300 bg-emerald-100 text-emerald-700' : 'border-slate-200 bg-white text-slate-700',
+                )}>
                   {slot + 1}
                 </div>
                 {step ? (
-                  <button
-                    onClick={() => removeFromPlaced(step)}
-                    disabled={checked}
-                    className="flex flex-1 items-center justify-between gap-3 text-left"
-                  >
+                  <div className="flex flex-1 items-center justify-between gap-3">
                     <div>
                       <div className="font-bold text-slate-950">{step.label}</div>
-                      {checked && <div className="mt-0.5 text-xs leading-5 text-slate-600">{step.note}</div>}
+                      {done && <div className="mt-0.5 text-xs leading-5 text-slate-600">{step.note}</div>}
                     </div>
-                    {checked ? (
-                      correct ? <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" /> : <XCircle className="h-5 w-5 shrink-0 text-rose-500" />
-                    ) : (
-                      <span className="text-xs font-semibold text-slate-500">Bỏ ra ✕</span>
-                    )}
-                  </button>
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-500" />
+                  </div>
+                ) : isActive ? (
+                  <span className="text-sm font-semibold text-red-500">
+                    {wrongFlash ? 'Sai rồi, thử lại…' : 'Chọn thẻ tiếp theo ↓'}
+                  </span>
                 ) : (
-                  <span className="text-sm text-slate-400">Chọn một thẻ ở dưới…</span>
+                  <span className="text-sm text-slate-300">—</span>
                 )}
               </div>
             );
@@ -155,8 +150,9 @@ export const TimelineGame: React.FC = () => {
         </div>
       </div>
 
+      {/* Card pool */}
       <AnimatePresence>
-        {pool.length > 0 && (
+        {!done && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -182,53 +178,47 @@ export const TimelineGame: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        {!checked ? (
+      {/* Actions */}
+      {done && (
+        <div className="mt-6 flex flex-wrap items-center gap-3">
           <button
-            onClick={check}
-            disabled={!allPlaced}
-            className={clsx(
-              'inline-flex items-center gap-2 rounded px-6 py-3 font-black transition-colors',
-              allPlaced ? 'bg-red-600 text-white hover:bg-red-700' : 'cursor-not-allowed bg-slate-100 text-slate-400',
-            )}
+            onClick={() => reset()}
+            className="inline-flex items-center gap-2 rounded border border-slate-200 bg-white px-5 py-3 font-bold text-slate-700 hover:border-red-300 hover:text-red-600"
           >
-            Kiểm tra
-            <CheckCircle2 className="h-4 w-4" />
+            <RotateCcw className="h-4 w-4" />
+            Thử lại
           </button>
-        ) : (
-          <>
+          {hasNext && (
             <button
-              onClick={() => reset()}
-              className="inline-flex items-center gap-2 rounded border border-slate-200 bg-white px-5 py-3 font-bold text-slate-700 hover:border-red-300 hover:text-red-600"
+              onClick={() => goRound(roundIdx + 1)}
+              className="inline-flex items-center gap-2 rounded bg-red-600 px-5 py-3 font-black text-white hover:bg-red-700"
             >
-              <RotateCcw className="h-4 w-4" />
-              Thử lại
+              Vòng tiếp theo
+              <ArrowRight className="h-4 w-4" />
             </button>
-            {hasNext && (
-              <button
-                onClick={() => goRound(roundIdx + 1)}
-                className="inline-flex items-center gap-2 rounded bg-red-600 px-5 py-3 font-black text-white hover:bg-red-700"
-              >
-                Vòng tiếp theo
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            )}
-          </>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
-      {isPerfect && (
+      {/* Success message */}
+      {done && (
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           className="mt-5 rounded border border-emerald-200 bg-emerald-50 p-5 text-emerald-800"
         >
-          <div className="text-lg font-black">Chính xác toàn bộ! +80 XP</div>
-          <p className="mt-1 text-sm leading-6 text-emerald-700">
-            Bạn đã nắm đúng trình tự — đây chính là mạch logic dẫn tới luận điểm của Lênin về nguồn gốc nhà nước.
-          </p>
+          <div className="flex items-center gap-2 text-lg font-black">
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
+            Chính xác!
+          </div>
+          {round.successInsight && (
+            <p className="mt-3 border-l-4 border-emerald-400 pl-4 text-sm leading-7 text-emerald-900">
+              {round.successInsight}
+            </p>
+          )}
         </motion.div>
       )}
+
       {/* Questions Section */}
       {round.questions && round.questions.length > 0 && (
         <div className="mt-6 rounded border border-red-200 bg-red-50 p-5 md:p-6">
@@ -271,7 +261,6 @@ export const TimelineGame: React.FC = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };
