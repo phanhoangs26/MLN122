@@ -87,13 +87,13 @@ export default function VietnamState() {
           <motion.section id="lich-su" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.07 }} className="border-b border-slate-200 py-7">
             <h2 className="mb-6 text-sm font-black uppercase tracking-widest text-red-600">Dòng lịch sử nhà nước Việt Nam</h2>
-            <div className="relative border-l-2 border-red-200 pl-6 space-y-6">
+            <div className="relative border-l-2 border-red-200 pl-6 space-y-4">
               {history.map((h, i) => (
                 <div key={h.title} className="relative">
                   <span className="absolute -left-[1.85rem] top-1 flex h-4 w-4 items-center justify-center bg-white">
                     <span className={`h-3 w-3 ${i === history.length - 1 ? 'bg-red-600' : 'border-2 border-red-600 bg-white'}`} />
                   </span>
-                  <div className="border border-slate-200 bg-white p-4">
+                  <div className="border border-slate-200 bg-white px-4 py-3">
                     <span className="text-xs font-black uppercase tracking-widest text-red-600">{h.year}</span>
                     <div className="mt-0.5 font-black text-slate-950">{h.title}</div>
                     <p className="mt-1 text-sm leading-6 text-slate-700">{h.text}</p>

@@ -121,12 +121,12 @@ export const history = [
   {
     year: '1945',
     title: 'Việt Nam Dân chủ Cộng hòa',
-    text: 'Cách mạng Tháng Tám thành công, chấm dứt nhà nước thuộc địa nửa phong kiến, mở ra trang sử mới — nhà nước kiểu vô sản.',
+    text: 'Cách mạng Tháng Tám thành công, chấm dứt chế độ thuộc địa nửa phong kiến, mở ra nhà nước dân chủ nhân dân dưới sự lãnh đạo của giai cấp công nhân.',
   },
   {
     year: 'Hiện nay',
     title: 'Cộng hòa XHCN Việt Nam',
-    text: 'Xây dựng Nhà nước pháp quyền xã hội chủ nghĩa của Nhân dân, do Nhân dân, vì Nhân dân.',
+    text: 'Xây dựng Nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân; phát huy dân chủ và hoàn thiện nền quản trị quốc gia hiện đại.',
   },
 ];
 
