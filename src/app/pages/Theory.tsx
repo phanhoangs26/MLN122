@@ -36,12 +36,12 @@ export default function Theory() {
       <TopBar />
 
       <div className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-4 md:grid-cols-[1fr_auto]">
-          <div className="flex items-center gap-3 bg-white px-4 py-3 text-lg font-serif text-slate-700">
-            <span className="font-sans text-xl text-red-600">•</span>
+        <div className="mx-auto flex flex-wrap items-center justify-between gap-2 max-w-6xl px-4 py-3">
+          <div className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-serif text-slate-700 md:text-lg md:px-4 md:py-3">
+            <span className="font-sans text-red-600">•</span>
             <span>Hệ thống kiến thức về nhà nước trong triết học Mác - Lênin</span>
           </div>
-          <div className="flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
+          <div className="hidden md:flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
             <span className="text-red-600">•</span>
             <span>{theorySource.book}</span>
           </div>
@@ -90,7 +90,7 @@ export default function Theory() {
             className="border-b-4 border-red-600 bg-white pb-7"
           >
             <div className="text-sm font-black uppercase tracking-widest text-red-600">{theorySource.title}</div>
-            <h1 className="mt-3 max-w-4xl font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
+            <h1 className="mt-3 max-w-4xl font-serif text-3xl font-black leading-tight text-slate-950 md:text-5xl lg:text-6xl">
               Lý luận về nhà nước
             </h1>
             <p className="mt-1 text-sm font-bold text-slate-500">{theorySource.book}</p>
@@ -118,7 +118,7 @@ export default function Theory() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.04 }}
-                  className="grid gap-4 bg-white p-4 md:grid-cols-[4rem_1fr]"
+                  className="grid grid-cols-[3rem_1fr] gap-4 bg-white p-4 md:grid-cols-[4rem_1fr]"
                 >
                   <div className="font-serif text-3xl font-black text-red-600">{String(index + 1).padStart(2, '0')}</div>
                   <div>
@@ -183,7 +183,7 @@ export default function Theory() {
               </h2>
             </div>
             
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               {stateNature.map((n, i) => (
                 <motion.div
                   key={n.title}
@@ -262,7 +262,7 @@ export default function Theory() {
 
             <div className="mt-5 divide-y divide-slate-200 border border-slate-200">
               {features.map((feature, index) => (
-                <div key={feature.title} className="grid gap-4 bg-white p-5 md:grid-cols-[3rem_1fr]">
+                <div key={feature.title} className="grid grid-cols-[2.5rem_1fr] gap-4 bg-white p-5 md:grid-cols-[3rem_1fr]">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-red-600 font-serif text-xl font-black text-white">
                     {index + 1}
                   </div>
@@ -319,7 +319,7 @@ export default function Theory() {
               <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">{formsIntro}</p>
             </div>
 
-            <div className="mt-5 grid gap-5 md:grid-cols-2">
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
               {stateForms.map((item) => (
                 <div key={item.type} className="border border-slate-200 bg-white">
                   {/* Header */}
@@ -357,7 +357,7 @@ export default function Theory() {
               <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">{proletarianState.intro}</p>
             </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
               {proletarianState.functions.map((fn, index) => (
                 <div key={fn.title} className="border border-slate-200 bg-slate-50 p-4">
                   <div className="flex items-baseline gap-3">
@@ -390,7 +390,7 @@ export default function Theory() {
               </a>
               , phần Chương III: Nhà nước và cách mạng xã hội.
             </p>
-            <div className="mt-4 grid gap-2 md:grid-cols-3">
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-3">
               {evidenceNotes.map((note) => (
                 <div key={note} className="flex gap-2 border-l-4 border-red-600 bg-white p-4 text-base leading-7 text-slate-700">
                   <span className="shrink-0 text-red-600">-</span>

@@ -167,12 +167,12 @@ export default function CapitalistState() {
       <TopBar />
 
       <div className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-4 md:grid-cols-[1fr_auto]">
-          <div className="flex items-center gap-3 bg-white px-4 py-3 text-lg font-serif text-slate-700">
-            <span className="font-sans text-xl text-red-600">•</span>
+        <div className="mx-auto flex flex-wrap items-center justify-between gap-2 max-w-6xl px-4 py-3">
+          <div className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-serif text-slate-700 md:text-lg md:px-4 md:py-3">
+            <span className="font-sans text-red-600">•</span>
             <span>Nhà nước tư sản (tư bản chủ nghĩa)</span>
           </div>
-          <div className="flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
+          <div className="hidden md:flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
             <span className="text-red-600">•</span>
             <span>Chương III · Giáo trình Triết học Mác - Lênin 2021</span>
           </div>
@@ -188,7 +188,7 @@ export default function CapitalistState() {
             className="border-b-4 border-red-600 bg-white pb-7"
           >
             <div className="text-sm font-black uppercase tracking-widest text-red-600">Một kiểu nhà nước trong lịch sử</div>
-            <h1 className="mt-3 max-w-4xl font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
+            <h1 className="mt-3 max-w-4xl font-serif text-3xl font-black leading-tight text-slate-950 md:text-5xl lg:text-6xl">
               Nhà nước tư sản
             </h1>
             <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
@@ -287,7 +287,7 @@ export default function CapitalistState() {
             <p className="mb-6 max-w-4xl text-base leading-7 text-slate-700 border-l-4 border-red-600 pl-4 bg-slate-50 py-3">
               Nhà nước tư sản vừa mang <span className="font-bold text-slate-950">tính giai cấp</span> (bảo vệ địa vị thống trị và lợi ích của giai cấp tư sản), vừa mang <span className="font-bold text-slate-950">tính xã hội</span> (duy trì trật tự xã hội và giải quyết những công việc chung của cộng đồng).
             </p>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
               {traits.map((t, i) => (
                 <motion.div
                   key={t.title}
@@ -428,7 +428,7 @@ export default function CapitalistState() {
               <figcaption className="mt-2 text-xs font-bold text-slate-600">— Ph. Ăngghen</figcaption>
             </figure>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
               {bourgeoisDemocracy.map((p, i) => (
                 <motion.div
                   key={p.title}

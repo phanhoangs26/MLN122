@@ -18,7 +18,7 @@ const sections = [
     to: '/vietnam',
     no: '02',
     icon: Star,
-    title: 'Vận dụng Việt Nam',
+    title: 'Cộng hòa XHCN Việt Nam',
     desc: 'NNPQ XHCN, Đại hội XIV và dẫn chứng thực tiễn (không lặp lý luận Chương III).',
   },
   {
