@@ -126,6 +126,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    overflow-x: clip;
     background-image:
       radial-gradient(circle at top, rgba(251, 191, 36, 0.18), transparent 34%),
       radial-gradient(circle at 80% 0%, rgba(220, 38, 38, 0.18), transparent 30%),

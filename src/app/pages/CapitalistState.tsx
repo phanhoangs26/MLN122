@@ -163,7 +163,7 @@ const compareRows = [
    ================================================================ */
 export default function CapitalistState() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-white text-slate-950">
+    <div className="min-h-screen w-full bg-white text-slate-950">
       <TopBar />
 
       <div className="border-b border-slate-200 bg-slate-50">
@@ -180,7 +180,7 @@ export default function CapitalistState() {
       </div>
 
       <OutlineLayout items={outline}>
-        <article className="min-w-0 overflow-x-hidden">
+        <article className="min-w-0">
           {/* ========== HERO ========== */}
           <motion.section
             initial={{ opacity: 0, y: 12 }}
