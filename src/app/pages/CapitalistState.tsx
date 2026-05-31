@@ -463,6 +463,10 @@ export default function CapitalistState() {
                 { label: 'Lý luận nhà nước — Chương III (trang nội bộ)', href: '/theory' },
                 { label: 'Nhà nước tư sản là gì, ví dụ về nhà nước tư sản? — Thư viện Pháp luật', href: 'https://thuvienphapluat.vn/lao-dong-tien-luong/cam-nang-di-lam/nha-nuoc-tu-san-la-gi-vi-du-ve-nha-nuoc-tu-san-ban-chat-cua-nha-nuoc-tu-san-la-gi-anh-huong-den-nguo-666.html' },
                 { label: 'Bản chất, chức năng, bộ máy và hình thức nhà nước tư sản — HocLuat.vn', href: 'https://hocluat.vn/ban-chat-chuc-nang-bo-may-va-hinh-thuc-nha-nuoc-tu-san/' },
+                { label: 'Chính trị Hoa Kỳ — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Hoa_K%E1%BB%B3' },
+                { label: 'Chính trị Pháp — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Ph%C3%A1p' },
+                { label: 'Chính trị Vương quốc Liên hiệp Anh và Bắc Ireland — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_V%C6%B0%C6%A1ng_qu%E1%BB%91c_Li%C3%AAn_hi%E1%BB%87p_Anh_v%C3%A0_B%E1%BA%AFc_Ireland' },
+                { label: 'Chính trị Nhật Bản — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Nh%E1%BA%ADt_B%E1%BA%A3n' },
               ].map((r, i) => (
                 <li key={r.href} className="flex gap-3 text-sm leading-6 text-slate-700">
                   <span className="shrink-0 font-black text-red-600">{i + 1}.</span>
