@@ -11,18 +11,21 @@ import {
   proletarianState,
   stateForms,
   theoryBlocks,
+  stateNature,
   theorySource,
   typeRows,
 } from '../data/theoryContent';
 
 const outline = [
   { id: 'luan-diem', label: 'Luận điểm' },
-  { id: 'nguon-goc', label: 'Nguồn gốc' },
-  { id: 'ban-chat', label: 'Bản chất' },
-  { id: 'dac-trung', label: 'Đặc trưng' },
+  { id: 'nguon-goc', label: 'Nguồn gốc nhà nước' },
+  { id: 'khai-niem', label: 'Khái niệm nhà nước' },
+  { id: 'ban-chat', label: 'Bản chất nhà nước' },
+  { id: 'chuc-nang', label: 'Chức năng nhà nước' },
+  { id: 'dac-trung', label: 'Đặc trưng nhà nước' },
   { id: 'kieu-nha-nuoc', label: 'Kiểu nhà nước' },
-  { id: 'hinh-thuc', label: 'Hình thức' },
-  { id: 'vo-san', label: 'Nhà nước vô sản' },
+  { id: 'hinh-thuc', label: 'Hình thức nhà nước' },
+  { id: 'vo-san', label: 'Nhà nước vô sản và sự tiêu vong' },
 ];
 
 export default function Theory() {
@@ -51,7 +54,7 @@ export default function Theory() {
         }`}
       >
         <aside className="hidden lg:block">
-          <div className="sticky top-48 border border-slate-200 bg-white shadow-sm">
+          <div className="sticky top-6 border border-slate-200 bg-white shadow-sm">
             <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
               {outlineOpen && <div className="text-sm font-black uppercase tracking-widest text-red-600">Mục lục</div>}
               <button
@@ -127,35 +130,106 @@ export default function Theory() {
             </div>
           </section>
 
-          <section id="ban-chat" className="mt-8 grid gap-5 lg:grid-cols-3">
-            {theoryBlocks.map((block, index) => (
-              <motion.div
-                key={block.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="border border-slate-200 bg-white p-5 shadow-sm"
-              >
-                <div className="text-sm font-black uppercase tracking-widest text-red-600">{block.eyebrow}</div>
-                <h3 className="mt-2 font-serif text-2xl font-black leading-tight text-slate-950">{block.title}</h3>
-                <p className="mt-4 text-base leading-7 text-slate-700">{block.body}</p>
-                <ul className="mt-4 space-y-2">
-                  {block.points.map((point) => (
-                    <li key={point} className="flex gap-2 text-base leading-7 text-slate-700">
-                      <span className="shrink-0 text-red-600">-</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+          {/* KHÁI NIỆM NHÀ NƯỚC */}
+          <section id="khai-niem" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+            {(() => {
+              const block = theoryBlocks.find(b => b.id === 'definition');
+              if (!block) return null;
+              return (
+                <div>
+                  <div className="border-b border-slate-200 pb-3 mb-6">
+                    <div className="text-sm font-black uppercase tracking-widest text-red-600">Khái niệm</div>
+                    <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">Khái niệm nhà nước</h2>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-slate-50 border border-slate-200 p-5 lg:p-8"
+                  >
+                    <h3 className="font-serif text-2xl font-black leading-tight text-slate-950">{block.title}</h3>
+                    <p className="mt-4 text-base leading-7 text-slate-700">{block.body}</p>
+                    <ul className="mt-4 space-y-2">
+                      {block.points.map((point) => (
+                        <li key={point} className="flex gap-2 text-base leading-7 text-slate-700">
+                          <span className="shrink-0 text-red-600">-</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </div>
+              );
+            })()}
+          </section>
+
+          {/* BẢN CHẤT NHÀ NƯỚC */}
+          <section id="ban-chat" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+            <div className="border-b border-slate-200 pb-3 mb-6">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Bản chất</div>
+              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">
+                Bản chất nhà nước: Tính giai cấp và tính xã hội
+              </h2>
+            </div>
+            
+            <div className="grid gap-6 md:grid-cols-2">
+              {stateNature.map((n, i) => (
+                <motion.div
+                  key={n.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.05 }}
+                  className="border-l-4 border-red-600 bg-red-50 p-6"
+                >
+                  <h3 className="text-xl font-black text-slate-950">{n.title}</h3>
+                  <p className="mt-3 text-base leading-7 text-slate-700">{n.text}</p>
+                  <figure className="mt-4 border-l-2 border-red-300 pl-4">
+                    <blockquote className="text-sm italic leading-6 text-red-700">
+                      &ldquo;{n.quote}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-1 text-xs font-bold text-slate-500">— {n.source}</figcaption>
+                  </figure>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* CHỨC NĂNG NHÀ NƯỚC */}
+          <section id="chuc-nang" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+            {(() => {
+              const block = theoryBlocks.find(b => b.id === 'functions');
+              if (!block) return null;
+              return (
+                <div>
+                  <div className="border-b border-slate-200 pb-3 mb-6">
+                    <div className="text-sm font-black uppercase tracking-widest text-red-600">Chức năng</div>
+                    <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">Chức năng nhà nước</h2>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-slate-50 border border-slate-200 p-5 lg:p-8"
+                  >
+                    <h3 className="font-serif text-2xl font-black leading-tight text-slate-950">{block.title}</h3>
+                    <p className="mt-4 text-base leading-7 text-slate-700">{block.body}</p>
+                    <ul className="mt-4 space-y-2">
+                      {block.points.map((point) => (
+                        <li key={point} className="flex gap-2 text-base leading-7 text-slate-700">
+                          <span className="shrink-0 text-red-600">-</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </div>
+              );
+            })()}
           </section>
 
           <section id="dac-trung" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
             <div className="border-b border-slate-200 pb-3">
               <div className="text-sm font-black uppercase tracking-widest text-red-600">Đặc trưng</div>
               <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">
-                Nhận diện nhà nước khác với tổ chức xã hội thông thường
+                Đặc trưng nhà nước
               </h2>
               <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">
                 V.I. Lênin nhắc lại quan điểm của Ph. Ăngghen: nhà nước có ba đặc trưng cơ bản phân biệt với các tổ chức xã hội thông thường.

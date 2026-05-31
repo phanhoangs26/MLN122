@@ -48,18 +48,6 @@ export const theoryBlocks = [
     ],
   },
   {
-    id: 'essence',
-    eyebrow: 'Bản chất',
-    title: 'Nhà nước là công cụ chuyên chính của một giai cấp',
-    body: 'Giáo trình nhấn mạnh: nhà nước là tổ chức chính trị của giai cấp thống trị về kinh tế nhằm bảo vệ trật tự hiện hành và đàn áp sự phản kháng của các giai cấp khác.',
-    points: [
-      'Tính giai cấp: bảo vệ quyền lực và lợi ích của giai cấp thống trị.',
-      'Tính xã hội: quản lý các công việc chung như giao thông, y tế, giáo dục, môi trường.',
-      'Chức năng xã hội quan trọng, nhưng chịu sự chi phối của chức năng thống trị chính trị.',
-      'Trường hợp đặc biệt: khi đấu tranh giai cấp đạt thế cân bằng, nhà nước có thể giữ độ độc lập tương đối với cả hai giai cấp (Ph. Ăngghen).',
-    ],
-  },
-  {
     id: 'functions',
     eyebrow: 'Chức năng',
     title: 'Thống trị chính trị gắn với quản lý xã hội',
@@ -69,6 +57,21 @@ export const theoryBlocks = [
       'Đối ngoại: quan hệ với các nhà nước khác, bảo vệ lãnh thổ, lợi ích quốc gia.',
       'Một nhà nước tồn tại lâu dài khi giải quyết tương đối ổn thỏa lợi ích giai cấp và lợi ích xã hội.',
     ],
+  },
+];
+
+export const stateNature = [
+  {
+    title: 'Tính giai cấp',
+    text: 'Nhà nước là tổ chức chính trị của giai cấp thống trị về mặt kinh tế nhằm bảo vệ trật tự hiện hành và đàn áp sự phản kháng của các giai cấp khác. Nhà nước là công cụ chuyên chính của một giai cấp. Không có nhà nước đứng trên hoặc đứng ngoài giai cấp.',
+    quote: 'Theo Mác, nhà nước là một cơ quan thống trị giai cấp, là một cơ quan áp bức của một giai cấp này đối với một giai cấp khác.',
+    source: 'V.I. Lênin',
+  },
+  {
+    title: 'Tính xã hội',
+    text: 'Nhà nước nhân danh xã hội làm nhiệm vụ quản lý về xã hội, điều hành các công việc chung: thủy lợi, giao thông, y tế, giáo dục, bảo vệ môi trường... Nếu chính quyền nào không chú ý tới chức năng xã hội thì sớm muộn sẽ sụp đổ.',
+    quote: 'Chức năng xã hội là cơ sở của sự thống trị chính trị; và sự thống trị chính trị cũng chỉ kéo dài chừng nào nó còn thực hiện chức năng xã hội đó của nó.',
+    source: 'Ph. Ăngghen',
   },
 ];
 

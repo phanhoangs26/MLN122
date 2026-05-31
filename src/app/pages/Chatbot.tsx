@@ -117,7 +117,7 @@ export default function Chatbot() {
                   </div>
                   {m.role === 'bot' && m.source === 'ai' && (
                     <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-red-400">
-                      Gemini · bám sát giáo trình
+                      Bám sát giáo trình
                     </div>
                   )}
                 </div>
