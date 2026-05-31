@@ -214,7 +214,7 @@ export default function VietnamState() {
             <div className="mt-8 text-center">
               <div className="text-sm font-black uppercase tracking-widest text-red-600">Mục tiêu xây dựng đất nước</div>
               <div className="mt-3 text-2xl font-black text-slate-950 md:text-3xl">
-                Dân giàu · Nước mạnh · Dân chủ · Công bằng · Văn minh
+                Dân giàu – Nước mạnh – Dân chủ – Công bằng – Văn minh
               </div>
             </div>
           </motion.section>
