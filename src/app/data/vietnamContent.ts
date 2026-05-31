@@ -32,7 +32,7 @@ export const theoryBridge = {
       applySuffix: '"; đồng thời thể hiện vai trò bảo vệ lợi ích của Nhân dân lao động và lợi ích chung của xã hội.',
     },
     {
-      theory: 'Chức năng nhà nước: thống trị chính trị và quản lý xã hội; đối nội và đối ngoại.',
+      theory: 'Chức năng nhà nước: Chức năng thống trị chính trị và chức năng xã hội; đối nội và đối ngoại.',
       bullets: [
         {
           parts: [
@@ -80,7 +80,7 @@ export const theoryBridge = {
       ],
     },
     {
-      theory: 'Nhà nước vô sản và quy luật tiêu vong của nhà nước.',
+      theory: 'Nhà nước vô sản: Nhà nước của đa số nhân dân lao động; phát triển dân chủ XHCN trong thời kỳ quá độ.',
       apply: 'Làm rõ Nhà nước pháp quyền XHCN Việt Nam là nhà nước của Nhân dân, do Nhân dân, vì Nhân dân; tiếp tục hoàn thiện dân chủ XHCN, nâng cao quyền làm chủ của Nhân dân trong thời kỳ quá độ lên chủ nghĩa xã hội.',
     },
   ],
