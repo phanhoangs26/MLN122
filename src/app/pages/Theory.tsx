@@ -18,6 +18,7 @@ import {
 
 const outline = [
   { id: 'luan-diem', label: 'Luận điểm' },
+  { id: 'luan-giai', label: 'Luận giải trung tâm' },
   { id: 'nguon-goc', label: 'Nguồn gốc nhà nước' },
   { id: 'khai-niem', label: 'Khái niệm nhà nước' },
   { id: 'ban-chat', label: 'Bản chất nhà nước' },
@@ -103,6 +104,57 @@ export default function Theory() {
               <figcaption className="mt-2 text-sm font-bold text-slate-600">- {centralThesis.source}</figcaption>
             </figure>
           </motion.section>
+
+          {/* LUẬN GIẢI TRUNG TÂM */}
+          <section id="luan-giai" className="mt-8 border border-red-200 bg-red-50 p-5 shadow-sm md:p-8">
+            <div className="border-b border-red-200 pb-4 mb-6">
+              <div className="text-sm font-black uppercase tracking-widest text-red-600">Luận giải trung tâm</div>
+              <h2 className="mt-2 font-serif text-2xl font-black text-slate-950 md:text-3xl">
+                Nhà nước là <em>sản phẩm</em> và <em>biểu hiện</em> của mâu thuẫn giai cấp — tại sao?
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Không trình bày lại lý thuyết — mà lý giải tại sao luận điểm Lênin đúng, đúng như thế nào, và đúng đến bao giờ.
+              </p>
+            </div>
+            <div className="space-y-5">
+              <div className="border-l-4 border-red-600 bg-white p-5">
+                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 1 — Nhà nước là <em>sản phẩm</em>: nhân quả lịch sử</div>
+                <p className="text-base leading-7 text-slate-800">
+                  Nhà nước <span className="font-bold">không xuất hiện từ đầu</span> trong lịch sử loài người. Hàng nghìn năm xã hội nguyên thủy vận hành không cần nhà nước. Chỉ khi lực lượng sản xuất phát triển đủ để tạo ra sản phẩm dư thừa → chế độ tư hữu → phân hóa giai cấp → mâu thuẫn lợi ích đối kháng không thể tự giải quyết, nhà nước mới xuất hiện như một <span className="font-bold">tất yếu lịch sử</span>. Đây là quan hệ nhân quả, không phải sắp đặt thần thánh hay ý chí của cá nhân.
+                </p>
+              </div>
+              <div className="border-l-4 border-red-600 bg-white p-5">
+                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 2 — Nhà nước là <em>biểu hiện</em>: sự tồn tại của nó chứng minh mâu thuẫn chưa được giải quyết</div>
+                <p className="text-base leading-7 text-slate-800">
+                  Không chỉ ra đời từ mâu thuẫn giai cấp, bản thân sự tồn tại của nhà nước cũng <span className="font-bold">chứng minh mâu thuẫn đó vẫn còn đó</span>. Nếu các giai cấp đã thực sự hòa giải lợi ích, sẽ không cần đến bộ máy cưỡng chế đặc biệt gồm quân đội, cảnh sát, tòa án và pháp luật để duy trì trật tự. Sự tồn tại của nhà nước chính là bằng chứng sống cho thấy những xung đột lợi ích cơ bản trong xã hội <span className="font-bold">chưa bị xóa bỏ</span>.
+                </p>
+              </div>
+              <div className="border-l-4 border-red-600 bg-white p-5">
+                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 3 — Hai mặt bản chất: tính giai cấp và tính xã hội</div>
+                <p className="text-base leading-7 text-slate-800">
+                  Nhà nước biểu hiện như đại diện cho lợi ích chung của xã hội vì nó <span className="font-bold">thực hiện các chức năng xã hội cần thiết</span> — giáo dục, y tế, hạ tầng, an ninh, môi trường — để duy trì sự ổn định. Tuy nhiên, xét về bản chất, nó vẫn là <span className="font-bold">công cụ chính trị của giai cấp thống trị</span>: chức năng xã hội phục vụ trật tự xã hội có lợi cho giai cấp đó, và chức năng thống trị chính trị mới là chức năng quyết định. Đây là biểu hiện rõ nhất của mâu thuẫn giai cấp trong thể chế nhà nước.
+                </p>
+              </div>
+              <div className="border-l-4 border-red-600 bg-white p-5">
+                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 4 — Hệ quả logic: nhà nước tất yếu tiêu vong</div>
+                <p className="text-base leading-7 text-slate-800">
+                  Nếu nhà nước là sản phẩm của mâu thuẫn giai cấp, thì khi mâu thuẫn giai cấp được xóa bỏ — nhà nước <span className="font-bold">tất yếu tiêu vong</span>. Song, theo quan điểm Mác–Lênin, sự tiêu vong không diễn ra ngay sau cách mạng mà thông qua <span className="font-bold">thời kỳ quá độ</span> dưới hình thức nhà nước vô sản — tồn tại để trấn áp các lực lượng chống đối và tổ chức xây dựng xã hội mới, trước khi dần tiêu vong cùng với sự xóa bỏ hoàn toàn giai cấp.
+                </p>
+              </div>
+              <div className="border-l-4 border-slate-400 bg-white p-5">
+                <div className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Liên hệ thực tiễn</div>
+                <p className="text-base leading-7 text-slate-700">
+                  Trong xã hội hiện đại, dù mâu thuẫn giai cấp không còn biểu hiện dưới hình thức đối đầu trực tiếp như thế kỷ XIX, nhà nước vẫn phải liên tục giải quyết các xung đột lợi ích giữa người lao động, doanh nghiệp, các nhóm xã hội và chủ thể kinh tế khác — thông qua pháp luật, chính sách thuế, an sinh xã hội và quản lý công. Điều đó cho thấy vai trò điều tiết của nhà nước vẫn gắn trực tiếp với việc xử lý các mâu thuẫn xã hội, xác nhận tính thời sự của luận điểm Lênin.
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 bg-red-600 p-4 text-white">
+              <p className="text-sm font-black uppercase tracking-widest mb-1">Kết luận</p>
+              <p className="text-base leading-7">
+                Luận điểm Lênin không chỉ mô tả nguồn gốc nhà nước — nó là <strong>chìa khóa giải mã toàn bộ lịch sử chính trị</strong>: tại sao nhà nước ra đời, tại sao nó phục vụ thiểu số dù tự nhận phục vụ tất cả, và tại sao nó sẽ tiêu vong khi lịch sử hoàn thành sứ mệnh xóa bỏ giai cấp.
+              </p>
+            </div>
+          </section>
 
           <section id="nguon-goc" className="mt-8">
             <div className="border-b border-slate-200 pb-3">
