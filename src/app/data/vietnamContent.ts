@@ -29,7 +29,15 @@ export const theoryBridge = {
       theory: 'Bản chất nhà nước: tính giai cấp và tính xã hội.',
       apply: 'Phân tích nguyên tắc "',
       applyLink: { text: 'Đảng lãnh đạo, Nhà nước quản lý, Nhân dân làm chủ', href: 'https://www.qdnd.vn/chinh-tri/cac-van-de/the-che-hoa-moi-quan-he-dang-lanh-dao-nha-nuoc-quan-ly-nhan-dan-lam-chu-472393' },
-      applySuffix: '"; đồng thời làm rõ chức năng phục vụ Nhân dân thông qua giáo dục, y tế, an sinh xã hội, chuyển đổi số và cải cách hành chính.',
+      applySuffix: '"; đồng thời thể hiện vai trò bảo vệ lợi ích của Nhân dân lao động và lợi ích chung của xã hội.',
+    },
+    {
+      theory: 'Chức năng nhà nước: thống trị chính trị và quản lý xã hội; đối nội và đối ngoại.',
+      parts: [
+        { text: 'Nhà nước XHCN ưu tiên ' },
+        { text: 'chức năng xã hội', href: 'https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/chuc-nang-cua-nha-nuoc-xa-hoi-chu-nghia-la-gi-ban-chat-cua-nha-nuoc-xa-hoi-chu-nghia-nhu-the-nao-178536-128731.html' },
+        { text: ' (tổ chức, xây dựng, quản lý kinh tế–xã hội) hơn chức năng trấn áp. Đối nội: quản lý xã hội qua giáo dục, y tế, an sinh xã hội, chuyển đổi số, bảo vệ môi trường. Đối ngoại: bảo đảm quốc phòng, an ninh, chủ quyền quốc gia và mở rộng hợp tác quốc tế.' },
+      ],
     },
     {
       theory: 'Đặc trưng nhà nước: quản lý lãnh thổ, quyền lực công cộng đặc biệt, hệ thống thuế khóa.',
@@ -144,6 +152,7 @@ export const references = {
   theory: [
     { label: 'Lý luận nhà nước — Chương III (trang nội bộ)', href: '/theory' },
     { label: 'Giáo trình Triết học Mác – Lênin 2021 (PDF)', href: 'https://www.thuviendientutriethocc500.edu.vn/wp-content/uploads/2025/09/1.Gtrinh-Triet-hoc-Mac-Lenin-ko-chuyen-2021.pdf' },
+    { label: 'Chức năng của nhà nước xã hội chủ nghĩa là gì? Bản chất của nhà nước xã hội chủ nghĩa — Thư viện Pháp luật', href: 'https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/chuc-nang-cua-nha-nuoc-xa-hoi-chu-nghia-la-gi-ban-chat-cua-nha-nuoc-xa-hoi-chu-nghia-nhu-the-nao-178536-128731.html' },
     { label: 'Hiến pháp nước CHXHCN Việt Nam năm 2013', href: 'https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Hien-phap-nam-2013-215627.aspx' },
     { label: 'Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII của Đảng', href: 'https://baochinhphu.vn/toan-van-nghi-quyet-dai-hoi-dai-bieu-toan-quoc-lan-thu-xiii-cua-dang-102288263.htm' },
   ] as SourceRef[],

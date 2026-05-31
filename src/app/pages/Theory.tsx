@@ -157,6 +157,18 @@ export default function Theory() {
                       ))}
                     </ul>
                   </motion.div>
+                  {block.quotes && (
+                    <div className="mt-5 grid gap-4 md:grid-cols-2">
+                      {block.quotes.map((q, i) => (
+                        <figure key={i} className="border-l-4 border-red-600 bg-red-50 px-5 py-4">
+                          <blockquote className="text-sm italic leading-6 text-red-700">
+                            &ldquo;{q.text}&rdquo;
+                          </blockquote>
+                          <figcaption className="mt-2 text-xs font-bold text-slate-500">— {q.source}</figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })()}
@@ -220,6 +232,18 @@ export default function Theory() {
                       ))}
                     </ul>
                   </motion.div>
+                  {block.quotes && (
+                    <div className="mt-5 grid gap-4 md:grid-cols-2">
+                      {block.quotes.map((q, i) => (
+                        <figure key={i} className="border-l-4 border-red-600 bg-red-50 px-5 py-4">
+                          <blockquote className="text-sm italic leading-6 text-red-700">
+                            &ldquo;{q.text}&rdquo;
+                          </blockquote>
+                          <figcaption className="mt-2 text-xs font-bold text-slate-500">— {q.source}</figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })()}
@@ -245,6 +269,14 @@ export default function Theory() {
                   <div>
                     <h3 className="font-black text-lg text-slate-950">{feature.title}</h3>
                     <p className="mt-1 text-sm leading-6 text-slate-700">{feature.text}</p>
+                    {feature.quote && (
+                      <figure className="mt-3 border-l-2 border-red-300 pl-4">
+                        <blockquote className="text-sm italic leading-6 text-red-700">
+                          &ldquo;{feature.quote}&rdquo;
+                        </blockquote>
+                        <figcaption className="mt-1 text-xs font-bold text-slate-500">— {feature.source}</figcaption>
+                      </figure>
+                    )}
                   </div>
                 </div>
               ))}

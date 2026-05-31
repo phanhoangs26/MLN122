@@ -46,6 +46,16 @@ export const theoryBlocks = [
       'Không phải tổ chức xã hội thông thường mà là quyền lực công cộng đặc biệt.',
       'Vừa duy trì trật tự xã hội, vừa bảo vệ lợi ích giai cấp thống trị.',
     ],
+    quotes: [
+      {
+        text: 'Nhà nước chẳng qua chỉ là một bộ máy của một giai cấp này dùng để trấn áp một giai cấp khác, điều đó, trong chế độ cộng hòa dân chủ cũng hoàn toàn giống như trong chế độ quân chủ.',
+        source: 'Ph. Ăngghen',
+      },
+      {
+        text: 'Theo Mác, nhà nước là một cơ quan thống trị giai cấp, là một cơ quan áp bức của một giai cấp này đối với một giai cấp khác; đó là sự kiến lập một "trật tự", trật tự này hợp pháp hóa và củng cố sự áp bức kia bằng cách làm dịu xung đột giai cấp.',
+        source: 'V.I. Lênin, Nhà nước và Cách mạng',
+      },
+    ],
   },
   {
     id: 'functions',
@@ -56,6 +66,16 @@ export const theoryBlocks = [
       'Đối nội: duy trì trật tự bên trong thông qua chính sách, pháp luật, giáo dục, truyền thông.',
       'Đối ngoại: quan hệ với các nhà nước khác, bảo vệ lãnh thổ, lợi ích quốc gia.',
       'Một nhà nước tồn tại lâu dài khi giải quyết tương đối ổn thỏa lợi ích giai cấp và lợi ích xã hội.',
+    ],
+    quotes: [
+      {
+        text: 'Chức năng xã hội là cơ sở của sự thống trị chính trị; và sự thống trị chính trị cũng chỉ kéo dài chừng nào nó còn thực hiện chức năng xã hội đó của nó.',
+        source: 'Ph. Ăngghen',
+      },
+      {
+        text: 'Có làm tốt chức năng đối nội thì nhà nước mới có điều kiện để thực hiện tốt chức năng đối ngoại.',
+        source: 'Giáo trình Triết học Mác – Lênin 2021, tr.174',
+      },
     ],
   },
 ];
@@ -79,14 +99,20 @@ export const features = [
   {
     title: 'Quản lý cư dân theo lãnh thổ',
     text: 'Khác với thị tộc, bộ lạc dựa trên huyết thống, nhà nước phân chia và quản lý dân cư theo đơn vị lãnh thổ. Quyền lực nhà nước có hiệu lực với tất cả thành viên trong phạm vi biên giới quốc gia.',
+    quote: 'So với tổ chức huyết tộc trước kia (thị tộc hay bộ tộc) thì đặc trưng thứ nhất của nhà nước là ở chỗ nó phân chia thần dân trong quốc gia theo sự phân chia lãnh thổ.',
+    source: 'V.I. Lênin, Nhà nước và Cách mạng',
   },
   {
     title: 'Hệ thống cơ quan quyền lực cưỡng chế chuyên nghiệp',
-    text: 'Nhà nước có "những đội vũ trang đặc biệt" — quân đội, cảnh sát, tòa án, nhà tù và bộ máy hành chính từ trung ương đến cơ sở — để buộc mọi thành viên phục tùng ý chí của giai cấp cầm quyền (V.I. Lênin).',
+    text: 'Nhà nước có "những đội vũ trang đặc biệt" — quân đội, cảnh sát, tòa án, nhà tù và bộ máy hành chính từ trung ương đến cơ sở — để buộc mọi thành viên phục tùng ý chí của giai cấp cầm quyền.',
+    quote: 'Những đội vũ trang đặc biệt, trong tay có những nhà tù, v.v. — những công cụ vũ lực chủ yếu của quyền lực nhà nước.',
+    source: 'V.I. Lênin, Nhà nước và Cách mạng',
   },
   {
     title: 'Thuế khóa',
-    text: 'Để duy trì quyền lực công cộng đặt lên trên xã hội, nhà nước phải có thuế và quốc trái. Ph. Ăngghen: "muốn duy trì quyền lực công cộng đó, cần phải có sự đóng góp của công dân, đó là thuế má."',
+    text: 'Để duy trì quyền lực công cộng đặt lên trên xã hội, nhà nước phải có thuế và quốc trái.',
+    quote: 'Để duy trì quyền lực công cộng đó, cần phải có sự đóng góp của công dân, đó là thuế má.',
+    source: 'Ph. Ăngghen',
   },
 ];
 

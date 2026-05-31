@@ -21,6 +21,7 @@ import {
 const outline = [
   { id: 'mo-dau', label: 'Mở đầu' },
   { id: 'co-so', label: 'Cơ sở lý luận' },
+  { id: 'van-dung-ly-luan', label: 'Vận dụng vào Việt Nam' },
   { id: 'van-dung', label: 'NNPQ XHCN VN' },
   { id: 'dai-hoi', label: 'Đại hội XIV' },
   { id: 'thuc-tien', label: 'Thực tiễn' },
@@ -80,7 +81,12 @@ export default function VietnamState() {
                 <p key={i} className="text-base leading-8 text-slate-700">{p}</p>
               ))}
             </div>
+          </motion.section>
 
+          {/* Vận dụng vào Việt Nam hiện nay — bảng đối chiếu lý luận */}
+          <motion.section id="van-dung-ly-luan" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08 }} className="border-b border-slate-200 py-7">
+            <h2 className="text-sm font-black uppercase tracking-widest text-red-600">Vận dụng vào Việt Nam hiện nay</h2>
             <div className="mt-6 overflow-hidden border border-slate-200">
               <div className="grid grid-cols-2 border-b border-slate-200 bg-red-600 text-xs font-black uppercase tracking-widest text-white">
                 <div className="px-4 py-3">Nội dung lý luận</div>
