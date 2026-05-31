@@ -201,7 +201,7 @@ export default function VietnamState() {
             <h2 className="mb-4 text-sm font-black uppercase tracking-widest text-red-600">Liên hệ trực tiếp với nhận định của Lênin</h2>
             <div className="border-l-4 border-red-600 bg-red-50 px-5 py-5">
               <p className="text-base leading-8 text-slate-800">
-                Từ luận điểm của Lênin về nguồn gốc nhà nước, có thể thấy Nhà nước pháp quyền XHCN Việt Nam không phải là một thực thể đứng ngoài xã hội mà là một hiện tượng lịch sử mang tính giai cấp và tính xã hội. Những cải cách về tổ chức bộ máy, kiểm soát quyền lực, chuyển đổi số và phát huy dân chủ hiện nay thể hiện quá trình hoàn thiện chức năng của nhà nước trong điều kiện mới.
+                Theo quan điểm của chủ nghĩa Mác – Lênin, nhà nước là sản phẩm của những mâu thuẫn xã hội và giai cấp trong những điều kiện lịch sử nhất định. Sự tồn tại của Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam cho thấy nhà nước không phải là một tổ chức đứng ngoài xã hội mà là một thiết chế chính trị thực hiện chức năng quản lý, điều tiết các quan hệ xã hội và bảo đảm ổn định xã hội. Những cải cách về tổ chức bộ máy, kiểm soát quyền lực, phát huy dân chủ và chuyển đổi số hiện nay phản ánh quá trình hoàn thiện nhà nước nhằm đáp ứng yêu cầu phát triển của đất nước trong giai đoạn mới.
               </p>
             </div>
           </motion.section>
