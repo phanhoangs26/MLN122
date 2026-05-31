@@ -114,7 +114,16 @@ export default function VietnamState() {
               </div>
               {theoryBridge.mappings.map((m, i) => (
                 <div key={i} className={`grid grid-cols-2 border-b border-slate-200 last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
-                  <div className="px-4 py-4 text-sm leading-6 text-slate-900 font-semibold border-r border-slate-200">{m.theory}</div>
+                  <div className="px-4 py-4 text-sm leading-6 text-slate-900 border-r border-slate-200">
+                    {m.theory.includes(':') ? (
+                      <>
+                        <span className="font-semibold">{m.theory.split(':')[0]}:</span>
+                        <span className="font-normal">{m.theory.split(':').slice(1).join(':')}</span>
+                      </>
+                    ) : (
+                      <span className="font-semibold">{m.theory}</span>
+                    )}
+                  </div>
                   <div className="px-4 py-4 text-sm leading-6 text-slate-700">
                     {m.bullets ? (
                       <ul className="space-y-1.5">
@@ -126,6 +135,8 @@ export default function VietnamState() {
                                 part.href ? (
                                   <a key={j} href={part.href} target="_blank" rel="noopener noreferrer"
                                     className="font-semibold text-red-600 underline hover:text-red-700">{part.text}</a>
+                                ) : part.bold ? (
+                                  <span key={j} className="font-bold text-slate-900">{part.text}</span>
                                 ) : <span key={j}>{part.text}</span>
                               )}
                             </span>

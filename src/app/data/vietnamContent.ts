@@ -43,12 +43,18 @@ export const theoryBridge = {
         },
         {
           parts: [
-            { text: 'Đối nội: quản lý xã hội qua giáo dục, y tế, an sinh xã hội, chuyển đổi số, bảo vệ môi trường.' },
+            { text: 'Đối nội:', bold: true },
+            { text: ' Việt Nam tiếp tục đẩy mạnh ' },
+            { text: 'cải cách hành chính gắn với chuyển đổi số', href: 'https://baochinhphu.vn/cai-cach-hanh-chinh-gan-voi-chuyen-doi-so-tu-chu-truong-lon-den-chuyen-dong-thuc-chat-o-dia-phuong-102251220214944881.htm' },
+            { text: ', nâng cao chất lượng dịch vụ công và hiệu quả quản trị nhà nước. Năm 2025, nhiều địa phương đạt tỷ lệ giải quyết hồ sơ đúng hạn trên 99%, mở rộng dịch vụ công trực tuyến và khai thác dữ liệu dân cư phục vụ người dân, doanh nghiệp.' },
           ],
         },
         {
           parts: [
-            { text: 'Đối ngoại: bảo đảm quốc phòng, an ninh, chủ quyền quốc gia và mở rộng hợp tác quốc tế.' },
+            { text: 'Đối ngoại:', bold: true },
+            { text: ' Việt Nam kiên định đường lối đối ngoại độc lập, tự chủ, đa phương hóa, đa dạng hóa; chủ động, tích cực hội nhập quốc tế. Năm 2025, ' },
+            { text: 'hoạt động đối ngoại đa phương', href: 'https://nhandan.vn/dau-an-viet-nam-trong-doi-ngoai-da-phuong-post934375.html' },
+            { text: ' tiếp tục được đẩy mạnh, góp phần giữ vững môi trường hòa bình và tranh thủ các nguồn lực cho phát triển đất nước.' },
           ],
         },
       ],
@@ -200,6 +206,8 @@ export const references = {
     { label: 'Vietnam to implement two-tier local government model from July 1, 2025 — Nhân Dân', href: 'https://en.nhandan.vn/infographic-viet-nam-to-implement-two-tier-local-government-model-from-july-1-2025-post149971.html' },
     { label: 'District-level police no longer in operation in Vietnam as of March 1 — VOV', href: 'https://english.vov.vn/en/politics/domestic/district-level-police-no-longer-in-operation-in-vietnam-as-of-march-1-post1157929.vov' },
     { label: 'Close to the people: government to truly serve the people — Diễn đàn Doanh nghiệp', href: 'https://en.diendandoanhnghiep.vn/close-to-the-people-government-to-truly-serve-the-people-n44860.html' },
+    { label: 'Cải cách hành chính gắn với chuyển đổi số — Báo Điện tử Chính phủ', href: 'https://baochinhphu.vn/cai-cach-hanh-chinh-gan-voi-chuyen-doi-so-tu-chu-truong-lon-den-chuyen-dong-thuc-chat-o-dia-phuong-102251220214944881.htm' },
+    { label: 'Dấu ấn Việt Nam trong đối ngoại đa phương — Nhân Dân', href: 'https://nhandan.vn/dau-an-viet-nam-trong-doi-ngoai-da-phuong-post934375.html' },
   ] as SourceRef[],
   digital: [
     { label: 'Cơ bản hoàn thành 25/25 dịch vụ công trực tuyến thiết yếu của Đề án 06 — Văn phòng Chính phủ', href: 'https://vpcp.chinhphu.vn/hoan-thanh-25-25-dich-vu-cong-truc-tuyen-thiet-yeu-cua-de-an-06-115221225123659938.htm' },
