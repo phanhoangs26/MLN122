@@ -41,7 +41,7 @@ export const OutlineLayout: React.FC<{ items: OutlineItem[]; children: React.Rea
         </div>
       </aside>
 
-      {children}
+      <div className="min-w-0 overflow-x-hidden">{children}</div>
     </main>
   );
 };

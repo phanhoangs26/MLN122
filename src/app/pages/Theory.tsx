@@ -32,7 +32,7 @@ export default function Theory() {
   const [outlineOpen, setOutlineOpen] = useState(true);
 
   return (
-    <div className="min-h-screen bg-white text-slate-950">
+    <div className="min-h-screen w-full overflow-x-hidden bg-white text-slate-950">
       <TopBar />
 
       <div className="border-b border-slate-200 bg-slate-50">
@@ -82,7 +82,7 @@ export default function Theory() {
           </div>
         </aside>
 
-        <article>
+        <article className="min-w-0 overflow-x-hidden">
           <motion.section
             id="luan-diem"
             initial={{ opacity: 0, y: 12 }}
