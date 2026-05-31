@@ -21,12 +21,22 @@ const outline = [
    4. CÁC HÌNH THỨC NHÀ NƯỚC TƯ SẢN
    (Giáo trình tr.176, dòng 273–286)
    ============================ */
-const forms = [
-  { title: 'Chế độ cộng hòa đại nghị', text: 'Quyền lực hành pháp gắn với nghị viện; chính phủ do đảng chiếm đa số trong nghị viện lập ra và chịu trách nhiệm trước nghị viện.' },
-  { title: 'Chế độ cộng hòa tổng thống', text: 'Tổng thống do dân bầu, vừa là nguyên thủ quốc gia vừa đứng đầu cơ quan hành pháp, độc lập tương đối với nghị viện lập pháp.' },
-  { title: 'Chế độ cộng hòa thủ tướng', text: 'Thủ tướng đứng đầu chính phủ nắm thực quyền hành pháp, chia sẻ quyền lực với tổng thống. Sự phân chia quyền lực giữa tổng thống, thủ tướng và nội các tùy từng quốc gia.' },
-  { title: 'Chế độ quân chủ lập hiến', text: 'Vẫn duy trì ngôi vua/nữ hoàng nhưng quyền lực thực tế thuộc về nghị viện và chính phủ. Vua chỉ mang tính biểu tượng.' },
-  { title: 'Nhà nước liên bang', text: 'Quyền lực phân chia giữa chính quyền trung ương (liên bang) và các bang thành viên.' },
+const formGroups = [
+  {
+    group: 'Chính thể',
+    items: [
+      { title: 'Cộng hòa đại nghị', text: 'Quyền lực hành pháp gắn với nghị viện; chính phủ do đảng chiếm đa số trong nghị viện lập ra và chịu trách nhiệm trước nghị viện.' },
+      { title: 'Cộng hòa tổng thống', text: 'Tổng thống do dân bầu, vừa là nguyên thủ quốc gia vừa đứng đầu cơ quan hành pháp, độc lập tương đối với nghị viện lập pháp.' },
+      { title: 'Cộng hòa thủ tướng', text: 'Thủ tướng đứng đầu chính phủ nắm thực quyền hành pháp, chia sẻ quyền lực với tổng thống. Sự phân chia quyền lực giữa tổng thống, thủ tướng và nội các tùy từng quốc gia.' },
+      { title: 'Quân chủ lập hiến', text: 'Vẫn duy trì ngôi vua/nữ hoàng nhưng quyền lực thực tế thuộc về nghị viện và chính phủ. Vua chỉ mang tính biểu tượng.' },
+    ],
+  },
+  {
+    group: 'Cấu trúc nhà nước',
+    items: [
+      { title: 'Nhà nước liên bang', text: 'Quyền lực phân chia giữa chính quyền trung ương (liên bang) và các bang thành viên.' },
+    ],
+  },
 ];
 
 /* ============================
@@ -203,18 +213,27 @@ export default function CapitalistState() {
             className="border-b border-slate-200 py-7"
           >
             <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Các hình thức nhà nước tư sản</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {forms.map((f, i) => (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.12 + i * 0.05 }}
-                  className="border-l-4 border-red-600 bg-slate-50 p-5"
-                >
-                  <h3 className="text-xl font-black text-slate-950">{f.title}</h3>
-                  <p className="mt-2 text-base leading-7 text-slate-700">{f.text}</p>
-                </motion.div>
+            <div className="space-y-6">
+              {formGroups.map((g) => (
+                <div key={g.group}>
+                  <div className="mb-3 inline-block bg-red-600 px-3 py-1 text-xs font-black uppercase tracking-widest text-white">
+                    {g.group}
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {g.items.map((f, i) => (
+                      <motion.div
+                        key={f.title}
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.12 + i * 0.05 }}
+                        className="border-l-4 border-red-600 bg-slate-50 p-5"
+                      >
+                        <h3 className="text-xl font-black text-slate-950">{f.title}</h3>
+                        <p className="mt-2 text-base leading-7 text-slate-700">{f.text}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
             <p className="mt-5 max-w-4xl text-base leading-7 text-slate-700">
