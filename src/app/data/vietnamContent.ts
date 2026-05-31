@@ -42,11 +42,13 @@ export const theoryBridge = {
     {
       theory: 'Đặc trưng nhà nước: quản lý lãnh thổ, quyền lực công cộng đặc biệt, hệ thống thuế khóa.',
       parts: [
-        { text: 'Liên hệ việc ' },
-        { text: 'sắp xếp đơn vị hành chính', href: 'https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tu-van-phap-luat/99302/don-vi-hanh-chinh-cua-viet-nam-hien-nay' },
-        { text: ' (34 tỉnh, thành và 3.321 xã, phường, đặc khu sau tháng 7/2025), tổ chức ' },
-        { text: 'chính quyền địa phương hai cấp', href: 'https://baochinhphu.vn/cach-mang-tinh-gon-bo-may-van-hanh-chinh-quyen-dia-phuong-hai-cap-dau-an-cai-cach-lich-su-102251230125915563.htm' },
-        { text: ' (vận hành từ 1/7/2025), xây dựng bộ máy tinh gọn, nâng cao hiệu lực quản trị quốc gia và thực hiện pháp luật trên phạm vi toàn quốc.' },
+        { text: '① Từ 1/7/2025, Việt Nam vận hành ' },
+        { text: 'chính quyền địa phương hai cấp', href: 'https://en.nhandan.vn/infographic-viet-nam-to-implement-two-tier-local-government-model-from-july-1-2025-post149971.html' },
+        { text: ' (tỉnh – xã), gồm 34 tỉnh, thành phố và 3.321 xã, phường, đặc khu — bảo đảm quản lý thống nhất trên toàn lãnh thổ, nâng cao hiệu lực quản trị quốc gia. ② Nhà nước củng cố hệ thống cơ quan quyền lực công cộng đặc biệt (Quốc hội, Chính phủ, Tòa án, Viện Kiểm sát, Quân đội, Công an); năm 2025 ' },
+        { text: 'lực lượng công an chuyển sang mô hình ba cấp', href: 'https://english.vov.vn/en/politics/domestic/district-level-police-no-longer-in-operation-in-vietnam-as-of-march-1-post1157929.vov' },
+        { text: ' (Bộ – tỉnh – xã), chấm dứt công an cấp huyện, tăng tính trực tiếp và hiệu quả ở cơ sở. ③ Hệ thống thuế khóa là nguồn tài chính chủ yếu duy trì bộ máy nhà nước, đầu tư quốc phòng, an ninh, giáo dục, y tế, hạ tầng và an sinh xã hội; ' },
+        { text: 'tinh giản đầu mối cơ quan', href: 'https://en.diendandoanhnghiep.vn/close-to-the-people-government-to-truly-serve-the-people-n44860.html' },
+        { text: ' nhằm nâng cao hiệu quả sử dụng ngân sách và nguồn lực quốc gia.' },
       ],
     },
     {
@@ -162,6 +164,9 @@ export const references = {
   admin: [
     { label: 'Chi tiết 34 đơn vị hành chính cấp tỉnh từ 12/6/2025 — Chính phủ', href: 'https://xaydungchinhsach.chinhphu.vn/chi-tiet-34-don-vi-hanh-chinh-cap-tinh-tu-12-6-2025-119250612141845533.htm' },
     { label: 'Xây dựng bộ máy tinh, gọn, mạnh, hiệu năng, hiệu lực, hiệu quả — Báo Điện tử Chính phủ', href: 'https://baochinhphu.vn/xay-dung-bo-may-tinh-gon-manh-hieu-nang-hieu-luc-hieu-qua.htm' },
+    { label: 'Vietnam to implement two-tier local government model from July 1, 2025 — Nhân Dân', href: 'https://en.nhandan.vn/infographic-viet-nam-to-implement-two-tier-local-government-model-from-july-1-2025-post149971.html' },
+    { label: 'District-level police no longer in operation in Vietnam as of March 1 — VOV', href: 'https://english.vov.vn/en/politics/domestic/district-level-police-no-longer-in-operation-in-vietnam-as-of-march-1-post1157929.vov' },
+    { label: 'Close to the people: government to truly serve the people — Diễn đàn Doanh nghiệp', href: 'https://en.diendandoanhnghiep.vn/close-to-the-people-government-to-truly-serve-the-people-n44860.html' },
   ] as SourceRef[],
   digital: [
     { label: 'Cơ bản hoàn thành 25/25 dịch vụ công trực tuyến thiết yếu của Đề án 06 — Văn phòng Chính phủ', href: 'https://vpcp.chinhphu.vn/hoan-thanh-25-25-dich-vu-cong-truc-tuyen-thiet-yeu-cua-de-an-06-115221225123659938.htm' },
