@@ -44,10 +44,10 @@ const formGroups = [
    5. VÍ DỤ NHÀ NƯỚC TƯ SẢN TIÊU BIỂU
    ============================ */
 const examples = [
-  { name: 'Hoa Kỳ', form: 'Cộng hòa tổng thống', structure: 'Liên bang', desc: 'Nhà nước liên bang theo mô hình cộng hòa tổng thống. Tam quyền phân lập rõ ràng: lập pháp (Quốc hội), hành pháp (Tổng thống), tư pháp (Tòa án Tối cao).' },
-  { name: 'Pháp', form: 'Cộng hòa bán tổng thống', structure: 'Đơn nhất', desc: 'Tổng thống và Thủ tướng cùng tham gia điều hành hành pháp; quyền lực được phân chia theo Hiến pháp.' },
-  { name: 'Anh', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', desc: 'Duy trì chế độ quân chủ nhưng nghị viện nắm thực quyền. Quyền lực nhà vua mang tính biểu tượng.' },
-  { name: 'Nhật Bản', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', desc: 'Thiên hoàng là biểu tượng quốc gia, quyền lực thực tế thuộc Quốc hội và Chính phủ.' },
+  { name: 'Hoa Kỳ', form: 'Cộng hòa tổng thống', structure: 'Liên bang', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Hoa_K%E1%BB%B3', desc: 'Nhà nước liên bang theo mô hình cộng hòa tổng thống. Tam quyền phân lập rõ ràng: lập pháp (Quốc hội), hành pháp (Tổng thống), tư pháp (Tòa án Tối cao).' },
+  { name: 'Pháp', form: 'Cộng hòa bán tổng thống', structure: 'Đơn nhất', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Ph%C3%A1p', desc: 'Tổng thống và Thủ tướng cùng tham gia điều hành hành pháp; quyền lực được phân chia theo Hiến pháp.' },
+  { name: 'Anh', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_V%C6%B0%C6%A1ng_qu%E1%BB%91c_Li%C3%AAn_hi%E1%BB%87p_Anh_v%C3%A0_B%E1%BA%AFc_Ireland', desc: 'Duy trì chế độ quân chủ nhưng nghị viện nắm thực quyền. Quyền lực nhà vua mang tính biểu tượng.' },
+  { name: 'Nhật Bản', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Nh%E1%BA%ADt_B%E1%BA%A3n', desc: 'Thiên hoàng là biểu tượng quốc gia, quyền lực thực tế thuộc Quốc hội và Chính phủ.' },
 ];
 
 /* ============================
@@ -260,7 +260,10 @@ export default function CapitalistState() {
                   transition={{ delay: 0.15 + i * 0.05 }}
                   className="border border-slate-200 bg-white p-5 shadow-sm"
                 >
-                  <div className="mb-2 text-2xl font-black text-slate-950">{e.name}</div>
+                  <div className="mb-2 text-2xl font-black text-slate-950">
+                    <a href={e.href} target="_blank" rel="noopener noreferrer"
+                      className="hover:text-red-600 hover:underline">{e.name}</a>
+                  </div>
                   <div className="mb-1 flex flex-wrap gap-1.5">
                     <span className="inline-flex rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{e.form}</span>
                     <span className="inline-flex rounded border border-slate-300 bg-white px-2 py-0.5 text-xs font-bold text-slate-600">{e.structure}</span>
