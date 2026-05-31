@@ -143,7 +143,7 @@ export const adminReformMeta = {
 };
 
 export const academicCommentary =
-  'Qua thực tiễn Việt Nam hiện nay có thể thấy nhà nước không chỉ mang tính giai cấp mà còn thể hiện rõ tính xã hội thông qua phục vụ phát triển kinh tế, nâng cao đời sống Nhân dân, cải cách hành chính và chuyển đổi số — phù hợp với phân tích tính xã hội trong Chương III (xem trang Lý luận).';
+  'Qua thực tiễn Việt Nam hiện nay có thể thấy Nhà nước pháp quyền xã hội chủ nghĩa vừa thực hiện chức năng quản lý xã hội, vừa bảo đảm ổn định chính trị, phát triển kinh tế và nâng cao đời sống nhân dân. Các hoạt động như cải cách hành chính, tinh gọn bộ máy, chuyển đổi số quốc gia và mở rộng dịch vụ công trực tuyến cho thấy vai trò ngày càng rõ nét của tính xã hội của nhà nước trong điều kiện phát triển mới.';
 
 export const academicConclusion =
   'Từ nhận định của Lênin, có thể thấy nhà nước là một hiện tượng lịch sử gắn với sự xuất hiện của giai cấp và những mâu thuẫn xã hội không thể điều hòa được. Vận dụng sáng tạo học thuyết Mác – Lênin, Việt Nam đang xây dựng Nhà nước pháp quyền xã hội chủ nghĩa của Nhân dân, do Nhân dân và vì Nhân dân. Nghị quyết Đại hội XIV (2026) tiếp tục khẳng định yêu cầu hoàn thiện thể chế, kiểm soát quyền lực, phát triển quản trị quốc gia hiện đại và lấy hạnh phúc, sự hài lòng của Nhân dân làm thước đo hiệu quả hoạt động của Nhà nước. Điều đó cho thấy lý luận về nhà nước của chủ nghĩa Mác – Lênin không chỉ mang giá trị lịch sử mà vẫn được vận dụng và phát triển trong thực tiễn xây dựng và bảo vệ Tổ quốc Việt Nam hiện nay.';
