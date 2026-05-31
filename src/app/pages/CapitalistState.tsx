@@ -13,7 +13,7 @@ const outline = [
   { id: 'bo-may', label: 'Bộ máy nhà nước tư sản' },
   { id: 'dan-chu', label: 'Dân chủ tư sản' },
   { id: 'so-sanh', label: 'So sánh tư sản – vô sản' },
-  { id: 'lien-he', label: 'Liên hệ thực tiễn' },
+  { id: 'lien-he', label: 'Nhận xét Mác – Lênin' },
   { id: 'tai-lieu', label: 'Tài liệu tham khảo' },
 ];
 
@@ -56,16 +56,16 @@ const examples = [
    ============================ */
 const traits = [
   {
-    title: 'Cơ sở kinh tế',
-    text: 'Nền kinh tế tư bản chủ nghĩa dựa trên chế độ tư hữu tư bản về tư liệu sản xuất (nhà máy, hầm mỏ, đồn điền…), được thực hiện thông qua hình thức bóc lột giá trị thặng dư.',
+    title: 'Phương diện kinh tế',
+    text: 'Nền kinh tế tư bản chủ nghĩa dựa trên chế độ tư hữu tư bản về tư liệu sản xuất chủ yếu (doanh nghiệp, nhà máy, tài chính, công nghệ…), được thực hiện thông qua hình thức bóc lột giá trị thặng dư.',
   },
   {
-    title: 'Cơ sở xã hội',
+    title: 'Phương diện xã hội',
     text: 'Hai giai cấp cơ bản có lợi ích đối kháng: giai cấp tư sản (thiểu số, nắm hầu hết tư liệu sản xuất) và giai cấp vô sản (đông đảo, bán sức lao động). Ngoài ra còn nông dân, tiểu tư sản, trí thức…',
   },
   {
-    title: 'Cơ sở tư tưởng',
-    text: 'Luôn tuyên truyền tư tưởng dân chủ – đa nguyên, nhưng trên thực tế tìm mọi cách đảm bảo địa vị độc tôn của ý thức hệ tư sản, ngăn cản sự phát triển và tuyên truyền tư tưởng cách mạng, tiến bộ của giai cấp công nhân.',
+    title: 'Phương diện tư tưởng',
+    text: 'Theo quan điểm Mác – Lênin, hệ tư tưởng tư sản giữ vai trò bảo vệ và củng cố địa vị thống trị của giai cấp tư sản trong xã hội. Thông qua giáo dục, truyền thông và các thiết chế xã hội nhằm duy trì sự ổn định của trật tự xã hội tư bản chủ nghĩa.',
   },
 ];
 
@@ -73,31 +73,29 @@ const traits = [
    6b. CHỨC NĂNG NHÀ NƯỚC TƯ SẢN
    (Lý luận nhà nước & pháp luật)
    ============================ */
-const stateFunctions = [
+const doiNoiFunctions = [
   {
-    title: 'Củng cố, bảo vệ sự thống trị',
-    text: 'Bảo vệ chế độ tư hữu — coi quyền tư hữu là "thiêng liêng bất khả xâm phạm". Trấn áp giai cấp bị trị về chính trị (đàn áp phong trào đấu tranh) và tư tưởng (đảm bảo địa vị độc tôn của ý thức hệ tư sản).',
-    type: 'Đối nội',
+    title: 'Chức năng chính trị',
+    text: 'Bảo vệ chế độ tư hữu tư bản chủ nghĩa, địa vị thống trị của giai cấp tư sản, duy trì trật tự xã hội và bộ máy quyền lực nhà nước.',
   },
   {
     title: 'Chức năng kinh tế',
-    text: 'Can thiệp vào kinh tế thông qua chính sách tài chính – tiền tệ, thuế, thị trường. Bảo vệ nền sản xuất trong nước, ngăn ngừa và khắc phục khủng hoảng kinh tế. Đặc biệt phát triển từ giai đoạn CNTB độc quyền.',
-    type: 'Đối nội',
+    text: 'Điều tiết nền kinh tế thông qua chính sách tài chính, tiền tệ, thuế và pháp luật nhằm bảo đảm sự vận hành của nền kinh tế tư bản chủ nghĩa.',
   },
   {
     title: 'Chức năng xã hội',
-    text: 'Giải quyết việc làm, thất nghiệp, dân số, giáo dục, y tế, bảo vệ môi trường, bảo trợ xã hội cho người già, giải quyết các tệ nạn xã hội. Tùy thuộc tương quan lực lượng chính trị trong từng giai đoạn.',
-    type: 'Đối nội',
+    text: 'Thực hiện các chính sách về giáo dục, y tế, việc làm, môi trường và an sinh xã hội nhằm duy trì sự ổn định xã hội.',
+  },
+];
+
+const doiNgoaiFunctions = [
+  {
+    title: 'Bảo vệ lợi ích quốc gia và giai cấp cầm quyền',
+    text: 'Thực hiện chính sách đối ngoại nhằm bảo vệ lợi ích kinh tế, chính trị và chiến lược của quốc gia cũng như giai cấp cầm quyền.',
   },
   {
-    title: 'Chiến tranh, chống phá cách mạng',
-    text: 'Mở rộng thuộc địa, chia lại thế giới (thời kỳ CNTB tự do cạnh tranh). Chống phá các nước XHCN, đe dọa phong trào giải phóng dân tộc (khi hệ thống XHCN được thiết lập).',
-    type: 'Đối ngoại',
-  },
-  {
-    title: 'Hòa bình, hợp tác quốc tế',
-    text: 'Trong giai đoạn hiện nay, nhiều nhà nước tư sản có chính sách đối ngoại mềm dẻo, tăng cường hợp tác quốc tế về kinh tế, văn hóa – xã hội, môi trường, khoa học – kỹ thuật, nhân đạo.',
-    type: 'Đối ngoại',
+    title: 'Hợp tác & cạnh tranh quốc tế',
+    text: 'Mở rộng quan hệ kinh tế, thương mại, khoa học - công nghệ và tham gia các tổ chức quốc tế.',
   },
 ];
 
@@ -109,17 +107,17 @@ const stateApparatus = [
   {
     title: 'Nghị viện',
     role: 'Lập pháp',
-    text: 'Cơ quan quyền lực cao nhất, nắm quyền lập pháp. Thường có cơ cấu 2 viện: Thượng viện và Hạ viện. Hạ viện hình thành qua bầu cử; Thượng viện có thể bầu, bổ nhiệm hoặc thừa kế.',
+    text: 'Cơ quan lập pháp cao nhất. Thường gồm một hoặc hai viện; thực hiện chức năng ban hành luật và giám sát hoạt động của chính phủ.',
   },
   {
     title: 'Nguyên thủ quốc gia',
-    role: 'Đứng đầu nhà nước',
-    text: 'Đại diện quốc gia trong quan hệ đối nội và đối ngoại. Trong cộng hòa tổng thống: quyền lực rất lớn, vừa đứng đầu nhà nước vừa đứng đầu hành pháp. Trong quân chủ lập hiến / cộng hòa đại nghị: chủ yếu mang tính biểu tượng.',
+    role: 'Hành pháp',
+    text: 'Đại diện quốc gia trong đối nội và đối ngoại. Trong chế độ tổng thống, nguyên thủ quốc gia đồng thời đứng đầu hành pháp; trong quân chủ lập hiến hoặc cộng hòa đại nghị, chủ yếu mang tính biểu tượng.',
   },
   {
     title: 'Chính phủ',
     role: 'Hành pháp',
-    text: 'Giữ vị trí trung tâm trong bộ máy nhà nước. Quyết định phần lớn chính sách đối nội và đối ngoại. Cách thành lập tùy hình thức chính thể: do tổng thống bổ nhiệm (Mỹ) hoặc do đảng đa số trong nghị viện lập ra (Đức, Nhật).',
+    text: 'Thực hiện quyền hành pháp, tổ chức thi hành pháp luật và điều hành các chính sách đối nội, đối ngoại.',
   },
   {
     title: 'Tòa án',
@@ -135,17 +133,17 @@ const stateApparatus = [
 const bourgeoisDemocracy = [
   {
     title: 'Nhà nước tư sản là công cụ chuyên chính',
-    text: 'Theo Mác, nhà nước là một cơ quan thống trị giai cấp, là một cơ quan áp bức của một giai cấp này đối với một giai cấp khác; đó là sự kiến lập một "trật tự", trật tự này hợp pháp hóa và củng cố sự áp bức kia bằng cách làm dịu xung đột giai cấp.',
+    text: 'Theo quan điểm Mác – Lênin, nhà nước tư sản là công cụ thống trị chính trị của giai cấp tư sản nhằm bảo vệ địa vị và lợi ích của giai cấp này trong xã hội.',
     tag: 'V.I. Lênin, Nhà nước và Cách mạng',
   },
   {
-    title: 'Dân chủ chỉ là hình thức',
-    text: 'Các hình thức nhà nước tư sản đều đề cao quyền tự do, dân chủ của mọi người. Tuy nhiên, về bản chất, nhà nước tư sản nào cũng là công cụ chuyên chính của giai cấp tư sản, được luật pháp tư sản bảo vệ, thực chất chỉ là nền dân chủ của số ít, là nền dân chủ có giới hạn.',
+    title: 'Dân chủ tư sản mang tính giai cấp',
+    text: 'Các hình thức nhà nước tư sản đều đề cao quyền tự do, dân chủ của mọi người. Tuy nhiên, về bản chất, nhà nước tư sản nào cũng là công cụ chuyên chính của giai cấp tư sản, được luật pháp tư sản bảo vệ; thực chất vẫn chịu sự chi phối của quan hệ sở hữu tư bản chủ nghĩa và lợi ích của giai cấp tư sản, nên là nền dân chủ có những giới hạn nhất định.',
     tag: 'Giáo trình tr.291–293',
   },
   {
-    title: 'Bản chất không thay đổi dù hình thức đa dạng',
-    text: 'Ph. Ăngghen: nhà nước "chẳng qua chỉ là một bộ máy của một giai cấp này dùng để trấn áp một giai cấp khác, điều đó, trong chế độ cộng hòa dân chủ cũng hoàn toàn giống như trong chế độ quân chủ".',
+    title: 'Ý nghĩa của nhận định',
+    text: 'Dù tồn tại dưới nhiều hình thức như quân chủ lập hiến hay cộng hòa dân chủ, theo Ăngghen bản chất giai cấp của nhà nước tư sản không thay đổi.',
     tag: 'Ph. Ăngghen',
   },
 ];
@@ -155,9 +153,9 @@ const bourgeoisDemocracy = [
    ============================ */
 const compareRows = [
   ['Cơ sở kinh tế', 'Dựa trên chế độ tư hữu tư bản chủ nghĩa', 'Dựa trên chế độ công hữu về tư liệu sản xuất chủ yếu'],
-  ['Giai cấp nắm quyền', 'Giai cấp tư sản (thiểu số trong xã hội)', 'Nhân dân lao động do giai cấp công nhân lãnh đạo (đại đa số)'],
-  ['Bản chất dân chủ', 'Dân chủ tư sản (hình thức, bị tư bản chi phối)', 'Dân chủ vô sản (thực chất, phục vụ số đông Nhân dân)'],
-  ['Mục tiêu', 'Bảo vệ quyền sở hữu tư nhân, tối đa hóa lợi nhuận', 'Dân giàu, nước mạnh, dân chủ, công bằng, văn minh'],
+  ['Giai cấp nắm quyền', 'Giai cấp tư sản', 'Giai cấp công nhân và nhân dân lao động'],
+  ['Bản chất dân chủ', 'Dân chủ tư sản (mang tính giai cấp, có những giới hạn nhất định)', 'Dân chủ vô sản (thực chất, phục vụ số đông Nhân dân)'],
+  ['Mục tiêu', 'Bảo vệ chế độ tư hữu tư bản chủ nghĩa', 'Xóa bỏ áp bức, bóc lột; xây dựng xã hội xã hội chủ nghĩa'],
 ];
 
 /* ================================================================
@@ -284,7 +282,10 @@ export default function CapitalistState() {
           >
             <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Bản chất nhà nước tư sản</h2>
             <p className="mb-6 max-w-4xl text-base leading-7 text-slate-700">
-              Bản chất của nhà nước tư sản do những điều kiện nội tại của xã hội tư sản quyết định, thể hiện qua <span className="font-bold text-slate-950">ba cơ sở: kinh tế, xã hội và tư tưởng</span>. Nhà nước tư sản cũng mang hai bản chất: tính giai cấp (công cụ thống trị của giai cấp tư sản) và tính xã hội (thực hiện chức năng công ích, duy trì trật tự xã hội).
+              Bản chất của nhà nước tư sản do nền tảng kinh tế - xã hội của xã hội tư bản chủ nghĩa quyết định. Theo quan điểm Mác – Lênin, nhà nước tư sản là công cụ thống trị chính trị của giai cấp tư sản đối với các giai cấp và tầng lớp khác trong xã hội. Bản chất đó được biểu hiện trên các <span className="font-bold text-slate-950">phương diện kinh tế, xã hội và tư tưởng</span>.
+            </p>
+            <p className="mb-6 max-w-4xl text-base leading-7 text-slate-700 border-l-4 border-red-600 pl-4 bg-slate-50 py-3">
+              Nhà nước tư sản vừa mang <span className="font-bold text-slate-950">tính giai cấp</span> (bảo vệ địa vị thống trị và lợi ích của giai cấp tư sản), vừa mang <span className="font-bold text-slate-950">tính xã hội</span> (duy trì trật tự xã hội và giải quyết những công việc chung của cộng đồng).
             </p>
             <div className="grid gap-6 md:grid-cols-3">
               {traits.map((t, i) => (
@@ -314,24 +315,47 @@ export default function CapitalistState() {
             <p className="mb-6 text-base leading-7 text-slate-700">
               Bản chất nhà nước tư sản thể hiện thông qua các chức năng <span className="font-bold text-slate-950">đối nội</span> và <span className="font-bold text-slate-950">đối ngoại</span>:
             </p>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {stateFunctions.map((f, i) => (
+
+            {/* ĐỐI NỘI */}
+            <div className="mb-2 inline-block bg-slate-700 px-3 py-1 text-xs font-black uppercase tracking-widest text-white">Đối nội</div>
+            <div className="grid gap-4 sm:grid-cols-3 mb-6">
+              {doiNoiFunctions.map((f, i) => (
                 <motion.div
                   key={f.title}
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.22 + i * 0.04 }}
-                  className="border-l-4 border-red-600 bg-slate-50 p-5"
+                  className="flex flex-col border-l-4 border-red-600 bg-slate-50 p-5"
                 >
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className={`inline-flex rounded px-2 py-0.5 text-xs font-bold text-white ${f.type === 'Đối nội' ? 'bg-slate-700' : 'bg-red-600'}`}>
-                      {f.type}
-                    </span>
-                  </div>
                   <h3 className="text-lg font-black text-slate-950">{f.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-700">{f.text}</p>
                 </motion.div>
               ))}
+            </div>
+
+            {/* ĐỐI NGOẠI */}
+            <div className="mb-2 inline-block bg-red-600 px-3 py-1 text-xs font-black uppercase tracking-widest text-white">Đối ngoại</div>
+            <div className="grid gap-4 sm:grid-cols-2 mb-6">
+              {doiNgoaiFunctions.map((f, i) => (
+                <motion.div
+                  key={f.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.28 + i * 0.04 }}
+                  className="flex flex-col border-l-4 border-red-600 bg-slate-50 p-5"
+                >
+                  <h3 className="text-lg font-black text-slate-950">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-700">{f.text}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* BỐI CẢNH LỊCH SỬ */}
+            <div className="border-l-4 border-slate-400 bg-slate-50 px-6 py-6">
+              <div className="mb-1 text-xs font-black uppercase tracking-widest text-slate-500">Bối cảnh lịch sử</div>
+              <p className="text-sm leading-6 text-slate-700">
+                Trong những giai đoạn lịch sử nhất định, các nhà nước tư sản từng tiến hành chiến tranh xâm lược thuộc địa hoặc đối đầu với các nước xã hội chủ nghĩa nhằm bảo vệ lợi ích của mình.
+              </p>
             </div>
           </motion.section>
 
@@ -344,9 +368,29 @@ export default function CapitalistState() {
             className="border-b border-slate-200 py-7"
           >
             <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-2">Bộ máy nhà nước tư sản</h2>
-            <p className="mb-6 text-base leading-7 text-slate-700">
-              Tổ chức bộ máy nhà nước tư sản dựa trên <span className="font-bold text-slate-950">thuyết phân quyền (tam quyền phân lập)</span>: quyền lực nhà nước chia thành 3 nhánh — lập pháp, hành pháp, tư pháp — giao cho 3 cơ quan khác nhau, kìm chế và đối trọng lẫn nhau.
+            <p className="mb-4 text-base leading-7 text-slate-700">
+              Tổ chức bộ máy nhà nước tư sản dựa trên{' '}
+              <a
+                href="https://thuvienphapluat.vn/hoi-dap-phap-luat/thuyet-tam-quyen-phan-lap-la-gi-121821.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-red-600 underline decoration-red-600/40 hover:text-red-700"
+              >
+                thuyết phân quyền (tam quyền phân lập)
+              </a>
+              : quyền lực nhà nước chia thành 3 nhánh — lập pháp, hành pháp, tư pháp — giao cho các cơ quan khác nhau.
             </p>
+            <p className="mb-4 text-sm leading-6 text-slate-600">
+              Các nhánh quyền lực vừa phân công vừa kiểm soát, đối trọng lẫn nhau — đây là tinh thần cốt lõi của học thuyết phân quyền.
+            </p>
+            <div className="mb-6 rounded border border-slate-200 bg-slate-50 px-4 py-4 text-center">
+              <p className="text-xs font-black uppercase tracking-widest text-slate-500">
+                Phân công – Kiểm soát – Đối trọng
+              </p>
+              <p className="mt-2 text-sm font-black uppercase tracking-widest text-red-700">
+                Lập pháp <span className="text-slate-400">↔</span> Hành pháp <span className="text-slate-400">↔</span> Tư pháp
+              </p>
+            </div>
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
               {stateApparatus.map((a, i) => (
                 <motion.div
@@ -372,13 +416,16 @@ export default function CapitalistState() {
             transition={{ delay: 0.25 }}
             className="border-b border-slate-200 py-7"
           >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Dân chủ tư sản theo giáo trình</h2>
+            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-4">Dân chủ tư sản theo giáo trình</h2>
+            <p className="mb-6 text-base leading-7 text-slate-700">
+              Dân chủ tư sản là một bước tiến lịch sử so với chế độ phong kiến, song vẫn mang tính giai cấp và có những giới hạn nhất định theo quan điểm Mác – Lênin.
+            </p>
 
             <figure className="mb-6 border-l-4 border-red-600 bg-slate-50 px-5 py-4">
-              <blockquote className="font-serif text-xl font-black leading-8 text-red-700 md:text-2xl">
+              <blockquote className="font-serif text-lg font-bold leading-7 text-red-700 md:text-xl">
                 &ldquo;Nhà nước chẳng qua chỉ là một bộ máy của một giai cấp này dùng để trấn áp một giai cấp khác, điều đó, trong chế độ cộng hòa dân chủ cũng hoàn toàn giống như trong chế độ quân chủ.&rdquo;
               </blockquote>
-              <figcaption className="mt-2 text-sm font-bold text-slate-600">— Ph. Ăngghen</figcaption>
+              <figcaption className="mt-2 text-xs font-bold text-slate-600">— Ph. Ăngghen</figcaption>
             </figure>
 
             <div className="grid gap-6 md:grid-cols-3">
@@ -393,8 +440,8 @@ export default function CapitalistState() {
                   <div className="mb-3 inline-flex w-fit rounded bg-red-600 px-2 py-1 text-xs font-bold text-white">
                     {p.tag}
                   </div>
-                  <h3 className="text-lg font-black leading-tight text-slate-950">{p.title}</h3>
-                  <p className="mt-3 text-base leading-7 text-slate-700">{p.text}</p>
+                  <h3 className="text-xl font-black leading-tight text-slate-950 md:text-2xl">{p.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-700 md:text-base md:leading-7">{p.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -433,7 +480,7 @@ export default function CapitalistState() {
             </div>
           </motion.section>
 
-          {/* ========== 10. LIÊN HỆ THỰC TIỄN ========== */}
+          {/* ========== 10. NHẬN XÉT MÁC – LÊNIN ========== */}
           <motion.section
             id="lien-he"
             initial={{ opacity: 0, y: 12 }}
@@ -442,9 +489,9 @@ export default function CapitalistState() {
             className="border-b border-slate-200 py-7"
           >
             <div className="mx-auto max-w-4xl rounded-lg border-l-4 border-red-600 bg-red-50 p-6">
-              <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-2">Liên hệ thực tiễn</h2>
+              <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-2">Nhận xét theo quan điểm Mác – Lênin</h2>
               <p className="text-base leading-7 text-slate-800">
-                Trong điều kiện chủ nghĩa tư bản hiện đại, nhà nước tư sản tiếp tục thực hiện các chức năng quản lý kinh tế, xã hội và đối ngoại. Tuy nhiên, theo quan điểm của chủ nghĩa Mác – Lênin, bản chất giai cấp của nhà nước tư sản không thay đổi, bởi nhà nước vẫn bảo vệ nền tảng kinh tế dựa trên chế độ tư hữu tư bản chủ nghĩa.
+                Trong điều kiện chủ nghĩa tư bản hiện đại, nhà nước tư sản tiếp tục thực hiện các chức năng quản lý kinh tế, xã hội và đối ngoại. Tuy nhiên, theo quan điểm của chủ nghĩa Mác – Lênin, bản chất giai cấp của nhà nước tư sản không thay đổi vì vẫn bảo vệ nền tảng kinh tế dựa trên chế độ tư hữu tư bản chủ nghĩa.
               </p>
             </div>
           </motion.section>
@@ -463,6 +510,7 @@ export default function CapitalistState() {
                 { label: 'Lý luận nhà nước — Chương III (trang nội bộ)', href: '/theory' },
                 { label: 'Nhà nước tư sản là gì, ví dụ về nhà nước tư sản? — Thư viện Pháp luật', href: 'https://thuvienphapluat.vn/lao-dong-tien-luong/cam-nang-di-lam/nha-nuoc-tu-san-la-gi-vi-du-ve-nha-nuoc-tu-san-ban-chat-cua-nha-nuoc-tu-san-la-gi-anh-huong-den-nguo-666.html' },
                 { label: 'Bản chất, chức năng, bộ máy và hình thức nhà nước tư sản — HocLuat.vn', href: 'https://hocluat.vn/ban-chat-chuc-nang-bo-may-va-hinh-thuc-nha-nuoc-tu-san/' },
+                { label: 'Thuyết tam quyền phân lập là gì? — Thư viện Pháp luật', href: 'https://thuvienphapluat.vn/hoi-dap-phap-luat/thuyet-tam-quyen-phan-lap-la-gi-121821.html' },
                 { label: 'Chính trị Hoa Kỳ — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Hoa_K%E1%BB%B3' },
                 { label: 'Chính trị Pháp — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Ph%C3%A1p' },
                 { label: 'Chính trị Vương quốc Liên hiệp Anh và Bắc Ireland — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_V%C6%B0%C6%A1ng_qu%E1%BB%91c_Li%C3%AAn_hi%E1%BB%87p_Anh_v%C3%A0_B%E1%BA%AFc_Ireland' },
