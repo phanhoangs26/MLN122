@@ -47,15 +47,14 @@ export default function VietnamState() {
       <TopBar />
 
       <div className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-6xl px-4 py-4">
-          <div className="flex flex-wrap items-center justify-between gap-3 bg-white px-4 py-3">
-            <div className="flex items-center gap-3 text-lg font-serif text-slate-700">
-              <span className="font-sans text-xl text-red-600">•</span>
-              <span>{pageIntro.subtitle}</span>
-            </div>
-            <Link to="/theory" className="inline-flex items-center gap-1 text-sm font-bold text-red-600 hover:underline">
-              ← Lý luận Chương III
-            </Link>
+        <div className="mx-auto flex flex-wrap items-center justify-between gap-2 max-w-6xl px-4 py-3">
+          <div className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-serif text-slate-700 md:text-lg md:px-4 md:py-3">
+            <span className="font-sans text-red-600">•</span>
+            <span>{pageIntro.subtitle}</span>
+          </div>
+          <div className="hidden md:flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
+            <span className="text-red-600">•</span>
+            <Link to="/theory" className="text-sm font-bold text-slate-700 hover:text-red-600">← Lý luận Chương III</Link>
           </div>
         </div>
       </div>
