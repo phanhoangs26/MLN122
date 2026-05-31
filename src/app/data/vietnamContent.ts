@@ -55,14 +55,28 @@ export const theoryBridge = {
     },
     {
       theory: 'Đặc trưng nhà nước: quản lý lãnh thổ, quyền lực công cộng đặc biệt, hệ thống thuế khóa.',
-      parts: [
-        { text: '① Từ 1/7/2025, Việt Nam vận hành ' },
-        { text: 'chính quyền địa phương hai cấp', href: 'https://en.nhandan.vn/infographic-viet-nam-to-implement-two-tier-local-government-model-from-july-1-2025-post149971.html' },
-        { text: ' (tỉnh – xã), gồm 34 tỉnh, thành phố và 3.321 xã, phường, đặc khu — bảo đảm quản lý thống nhất trên toàn lãnh thổ, nâng cao hiệu lực quản trị quốc gia. ② Nhà nước củng cố hệ thống cơ quan quyền lực công cộng đặc biệt (Quốc hội, Chính phủ, Tòa án, Viện Kiểm sát, Quân đội, Công an); năm 2025 ' },
-        { text: 'lực lượng công an chuyển sang mô hình ba cấp', href: 'https://english.vov.vn/en/politics/domestic/district-level-police-no-longer-in-operation-in-vietnam-as-of-march-1-post1157929.vov' },
-        { text: ' (Bộ – tỉnh – xã), chấm dứt công an cấp huyện, tăng tính trực tiếp và hiệu quả ở cơ sở. ③ Hệ thống thuế khóa là nguồn tài chính chủ yếu duy trì bộ máy nhà nước, đầu tư quốc phòng, an ninh, giáo dục, y tế, hạ tầng và an sinh xã hội; ' },
-        { text: 'tinh giản đầu mối cơ quan', href: 'https://en.diendandoanhnghiep.vn/close-to-the-people-government-to-truly-serve-the-people-n44860.html' },
-        { text: ' nhằm nâng cao hiệu quả sử dụng ngân sách và nguồn lực quốc gia.' },
+      bullets: [
+        {
+          parts: [
+            { text: 'Từ 1/7/2025, Việt Nam vận hành ' },
+            { text: 'chính quyền địa phương hai cấp', href: 'https://en.nhandan.vn/infographic-viet-nam-to-implement-two-tier-local-government-model-from-july-1-2025-post149971.html' },
+            { text: ' (tỉnh – xã), gồm 34 tỉnh, thành phố và 3.321 xã, phường, đặc khu — bảo đảm quản lý thống nhất trên toàn lãnh thổ, nâng cao hiệu lực quản trị quốc gia.' },
+          ],
+        },
+        {
+          parts: [
+            { text: 'Nhà nước củng cố hệ thống cơ quan quyền lực công cộng đặc biệt (Quốc hội, Chính phủ, Tòa án, Viện Kiểm sát, Quân đội, Công an); năm 2025 ' },
+            { text: 'lực lượng công an chuyển sang mô hình ba cấp', href: 'https://english.vov.vn/en/politics/domestic/district-level-police-no-longer-in-operation-in-vietnam-as-of-march-1-post1157929.vov' },
+            { text: ' (Bộ – tỉnh – xã), chấm dứt công an cấp huyện, tăng tính trực tiếp và hiệu quả ở cơ sở.' },
+          ],
+        },
+        {
+          parts: [
+            { text: 'Hệ thống thuế khóa là nguồn tài chính chủ yếu duy trì bộ máy nhà nước, đầu tư quốc phòng, an ninh, giáo dục, y tế, hạ tầng và an sinh xã hội; ' },
+            { text: 'tinh giản đầu mối cơ quan', href: 'https://en.diendandoanhnghiep.vn/close-to-the-people-government-to-truly-serve-the-people-n44860.html' },
+            { text: ' nhằm nâng cao hiệu quả sử dụng ngân sách và nguồn lực quốc gia.' },
+          ],
+        },
       ],
     },
     {
