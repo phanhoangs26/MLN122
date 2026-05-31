@@ -22,8 +22,8 @@ const outline = [
   { id: 'mo-dau', label: 'Mở đầu' },
   { id: 'co-so', label: 'Cơ sở lý luận' },
   { id: 'lich-su', label: 'Dòng lịch sử' },
-  { id: 'van-dung-ly-luan', label: 'Vận dụng vào Việt Nam' },
   { id: 'van-dung', label: 'NNPQ XHCN VN' },
+  { id: 'van-dung-ly-luan', label: 'Vận dụng vào Việt Nam' },
   { id: 'dai-hoi', label: 'Đại hội XIV' },
   { id: 'thuc-tien', label: 'Thực tiễn' },
   { id: 'nhan-xet', label: 'Nhận xét' },
@@ -103,9 +103,23 @@ export default function VietnamState() {
             </div>
           </motion.section>
 
+          {/* Vận dụng VN */}
+          <motion.section id="van-dung" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }} className="border-b border-slate-200 py-7">
+            <h2 className="text-lg font-black text-slate-950">Nhà nước pháp quyền XHCN Việt Nam</h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {organizingPrinciples.map((p) => (
+                <div key={p.title} className="border border-slate-200 p-5">
+                  <h3 className="font-bold text-slate-950">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-700">{p.text}</p>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
           {/* Vận dụng vào Việt Nam hiện nay — bảng đối chiếu lý luận */}
           <motion.section id="van-dung-ly-luan" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 }} className="border-b border-slate-200 py-7">
+            transition={{ delay: 0.12 }} className="border-b border-slate-200 py-7">
             <h2 className="text-sm font-black uppercase tracking-widest text-red-600">Vận dụng vào Việt Nam hiện nay</h2>
             <div className="mt-6 overflow-hidden border border-slate-200">
               <div className="grid grid-cols-2 border-b border-slate-200 bg-red-600 text-xs font-black uppercase tracking-widest text-white">
@@ -157,20 +171,6 @@ export default function VietnamState() {
                         {m.applySuffix}</>
                     ) : m.apply}
                   </div>
-                </div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* Vận dụng VN */}
-          <motion.section id="van-dung" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }} className="border-b border-slate-200 py-7">
-            <h2 className="text-lg font-black text-slate-950">Nhà nước pháp quyền XHCN Việt Nam</h2>
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              {organizingPrinciples.map((p) => (
-                <div key={p.title} className="border border-slate-200 p-5">
-                  <h3 className="font-bold text-slate-950">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-700">{p.text}</p>
                 </div>
               ))}
             </div>
