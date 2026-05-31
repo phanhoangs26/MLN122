@@ -21,11 +21,11 @@ import {
 const outline = [
   { id: 'mo-dau', label: 'Mở đầu' },
   { id: 'co-so', label: 'Cơ sở lý luận' },
+  { id: 'lich-su', label: 'Dòng lịch sử' },
   { id: 'van-dung-ly-luan', label: 'Vận dụng vào Việt Nam' },
   { id: 'van-dung', label: 'NNPQ XHCN VN' },
   { id: 'dai-hoi', label: 'Đại hội XIV' },
   { id: 'thuc-tien', label: 'Thực tiễn' },
-  { id: 'lich-su', label: 'Dòng lịch sử' },
   { id: 'nhan-xet', label: 'Nhận xét' },
   { id: 'lien-he', label: 'Liên hệ Lênin' },
   { id: 'ket-luan', label: 'Kết luận' },
@@ -83,6 +83,26 @@ export default function VietnamState() {
             </div>
           </motion.section>
 
+          {/* Dòng lịch sử nhà nước Việt Nam */}
+          <motion.section id="lich-su" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.07 }} className="border-b border-slate-200 py-7">
+            <h2 className="mb-6 text-sm font-black uppercase tracking-widest text-red-600">Dòng lịch sử nhà nước Việt Nam</h2>
+            <div className="relative border-l-2 border-red-200 pl-6 space-y-6">
+              {history.map((h, i) => (
+                <div key={h.title} className="relative">
+                  <span className="absolute -left-[1.85rem] top-1 flex h-4 w-4 items-center justify-center bg-white">
+                    <span className={`h-3 w-3 ${i === history.length - 1 ? 'bg-red-600' : 'border-2 border-red-600 bg-white'}`} />
+                  </span>
+                  <div className="border border-slate-200 bg-white p-4">
+                    <span className="text-xs font-black uppercase tracking-widest text-red-600">{h.year}</span>
+                    <div className="mt-0.5 font-black text-slate-950">{h.title}</div>
+                    <p className="mt-1 text-sm leading-6 text-slate-700">{h.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
           {/* Vận dụng vào Việt Nam hiện nay — bảng đối chiếu lý luận */}
           <motion.section id="van-dung-ly-luan" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }} className="border-b border-slate-200 py-7">
@@ -127,24 +147,6 @@ export default function VietnamState() {
                 </div>
               ))}
             </div>
-
-            <h3 className="mb-4 mt-8 text-sm font-black uppercase tracking-widest text-slate-600">
-              Dòng lịch sử nhà nước Việt Nam
-            </h3>
-            <div className="relative border-l-2 border-red-200 pl-6 space-y-6">
-              {history.map((h, i) => (
-                <div key={h.title} className="relative">
-                  <span className="absolute -left-[1.85rem] top-1 flex h-4 w-4 items-center justify-center bg-white">
-                    <span className={`h-3 w-3 ${i === history.length - 1 ? 'bg-red-600' : 'border-2 border-red-600 bg-white'}`} />
-                  </span>
-                  <div className="border border-slate-200 bg-white p-4">
-                    <span className="text-xs font-black uppercase tracking-widest text-red-600">{h.year}</span>
-                    <div className="mt-0.5 font-black text-slate-950">{h.title}</div>
-                    <p className="mt-1 text-sm leading-6 text-slate-700">{h.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </motion.section>
 
           {/* Đại hội XIV */}
@@ -184,26 +186,6 @@ export default function VietnamState() {
             <p className="mt-4 text-xs text-slate-500">
               {adminReformMeta.resolution}, hiệu lực {adminReformMeta.effectiveDate}.
             </p>
-          </motion.section>
-
-          {/* Dòng lịch sử — bổ trợ */}
-          <motion.section id="lich-su" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.22 }} className="border-b border-slate-200 py-7">
-            <h2 className="mb-6 text-sm font-black uppercase tracking-widest text-red-600">Dòng lịch sử nhà nước Việt Nam</h2>
-            <div className="relative border-l-2 border-red-200 pl-6 space-y-6">
-              {history.map((h, i) => (
-                <div key={h.title} className="relative">
-                  <span className="absolute -left-[1.85rem] top-1 flex h-4 w-4 items-center justify-center bg-white">
-                    <span className={`h-3 w-3 ${i === history.length - 1 ? 'bg-red-600' : 'border-2 border-red-600 bg-white'}`} />
-                  </span>
-                  <div className="border border-slate-200 bg-white p-4">
-                    <span className="text-xs font-black uppercase tracking-widest text-red-600">{h.year}</span>
-                    <div className="mt-0.5 font-black text-slate-950">{h.title}</div>
-                    <p className="mt-1 text-sm leading-6 text-slate-700">{h.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </motion.section>
 
           {/* Nhận xét */}
