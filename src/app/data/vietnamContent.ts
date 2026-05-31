@@ -81,7 +81,11 @@ export const theoryBridge = {
     },
     {
       theory: 'Nhà nước vô sản: Nhà nước của đa số nhân dân lao động; phát triển dân chủ XHCN trong thời kỳ quá độ.',
-      apply: 'Làm rõ Nhà nước pháp quyền XHCN Việt Nam là nhà nước của Nhân dân, do Nhân dân, vì Nhân dân; tiếp tục hoàn thiện dân chủ XHCN, nâng cao quyền làm chủ của Nhân dân trong thời kỳ quá độ lên chủ nghĩa xã hội.',
+      parts: [
+        { text: 'Việt Nam tiếp tục xây dựng Nhà nước pháp quyền XHCN của Nhân dân, do Nhân dân, vì Nhân dân; phát huy dân chủ XHCN, bảo đảm quyền làm chủ của Nhân dân, hoàn thiện cơ chế kiểm soát quyền lực và xây dựng nền quản trị quốc gia hiện đại theo tinh thần ' },
+        { text: 'Nghị quyết 27-NQ/TW', href: 'https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-quyet-27-nq-tw-tiep-tuc-xay-dung-va-hoan-thien-nha-nuoc-phap-quyen-119221126114455251.htm' },
+        { text: '.' },
+      ],
     },
   ],
 };
@@ -184,6 +188,7 @@ export const references = {
     { label: 'Giáo trình Triết học Mác – Lênin 2021 (PDF)', href: 'https://www.thuviendientutriethocc500.edu.vn/wp-content/uploads/2025/09/1.Gtrinh-Triet-hoc-Mac-Lenin-ko-chuyen-2021.pdf' },
     { label: 'Chức năng của nhà nước xã hội chủ nghĩa là gì? Bản chất của nhà nước xã hội chủ nghĩa — Thư viện Pháp luật', href: 'https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/chuc-nang-cua-nha-nuoc-xa-hoi-chu-nghia-la-gi-ban-chat-cua-nha-nuoc-xa-hoi-chu-nghia-nhu-the-nao-178536-128731.html' },
     { label: 'Hiến pháp nước CHXHCN Việt Nam năm 2013', href: 'https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Hien-phap-nam-2013-215627.aspx' },
+    { label: 'Toàn văn Nghị quyết 27-NQ/TW về tiếp tục xây dựng và hoàn thiện Nhà nước pháp quyền XHCN — Chính phủ', href: 'https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-quyet-27-nq-tw-tiep-tuc-xay-dung-va-hoan-thien-nha-nuoc-phap-quyen-119221126114455251.htm' },
     { label: 'Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII của Đảng', href: 'https://baochinhphu.vn/toan-van-nghi-quyet-dai-hoi-dai-bieu-toan-quoc-lan-thu-xiii-cua-dang-102288263.htm' },
   ] as SourceRef[],
   congress: [
