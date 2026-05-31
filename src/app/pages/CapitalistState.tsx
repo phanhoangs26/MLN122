@@ -183,7 +183,7 @@ export default function CapitalistState() {
               Nhà nước tư sản
             </h1>
             <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
-              Nhà nước tư sản là kiểu nhà nước thứ ba trong lịch sử, ra đời cùng phương thức sản xuất tư bản chủ nghĩa. Nó tồn tại dưới rất nhiều hình thức khác nhau, nhưng theo Lênin, &ldquo;thực chất chỉ là một&rdquo;.
+              Nhà nước tư sản là kiểu nhà nước ra đời cùng phương thức sản xuất tư bản chủ nghĩa. Mặc dù tồn tại dưới nhiều hình thức như cộng hòa tổng thống, cộng hòa đại nghị hay quân chủ lập hiến, theo V.I. Lênin, về bản chất chúng đều là công cụ thống trị của giai cấp tư sản.
             </p>
 
             <figure className="mt-6 border-l-4 border-red-600 bg-slate-50 px-5 py-4">
