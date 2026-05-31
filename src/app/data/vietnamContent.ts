@@ -33,10 +33,24 @@ export const theoryBridge = {
     },
     {
       theory: 'Chức năng nhà nước: thống trị chính trị và quản lý xã hội; đối nội và đối ngoại.',
-      parts: [
-        { text: 'Nhà nước XHCN ưu tiên ' },
-        { text: 'chức năng xã hội', href: 'https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/chuc-nang-cua-nha-nuoc-xa-hoi-chu-nghia-la-gi-ban-chat-cua-nha-nuoc-xa-hoi-chu-nghia-nhu-the-nao-178536-128731.html' },
-        { text: ' (tổ chức, xây dựng, quản lý kinh tế–xã hội) hơn chức năng trấn áp. Đối nội: quản lý xã hội qua giáo dục, y tế, an sinh xã hội, chuyển đổi số, bảo vệ môi trường. Đối ngoại: bảo đảm quốc phòng, an ninh, chủ quyền quốc gia và mở rộng hợp tác quốc tế.' },
+      bullets: [
+        {
+          parts: [
+            { text: 'Nhà nước XHCN ưu tiên ' },
+            { text: 'chức năng xã hội', href: 'https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/chuc-nang-cua-nha-nuoc-xa-hoi-chu-nghia-la-gi-ban-chat-cua-nha-nuoc-xa-hoi-chu-nghia-nhu-the-nao-178536-128731.html' },
+            { text: ' (tổ chức, xây dựng, quản lý kinh tế–xã hội) hơn chức năng trấn áp.' },
+          ],
+        },
+        {
+          parts: [
+            { text: 'Đối nội: quản lý xã hội qua giáo dục, y tế, an sinh xã hội, chuyển đổi số, bảo vệ môi trường.' },
+          ],
+        },
+        {
+          parts: [
+            { text: 'Đối ngoại: bảo đảm quốc phòng, an ninh, chủ quyền quốc gia và mở rộng hợp tác quốc tế.' },
+          ],
+        },
       ],
     },
     {

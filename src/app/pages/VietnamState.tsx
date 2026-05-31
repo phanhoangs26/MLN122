@@ -116,7 +116,23 @@ export default function VietnamState() {
                 <div key={i} className={`grid grid-cols-2 border-b border-slate-200 last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
                   <div className="px-4 py-4 text-sm leading-6 text-slate-900 font-semibold border-r border-slate-200">{m.theory}</div>
                   <div className="px-4 py-4 text-sm leading-6 text-slate-700">
-                    {m.parts ? (
+                    {m.bullets ? (
+                      <ul className="space-y-1.5">
+                        {m.bullets.map((b, k) => (
+                          <li key={k} className="flex gap-2">
+                            <span className="shrink-0 font-black text-red-600">–</span>
+                            <span>
+                              {b.parts.map((part, j) =>
+                                part.href ? (
+                                  <a key={j} href={part.href} target="_blank" rel="noopener noreferrer"
+                                    className="font-semibold text-red-600 underline hover:text-red-700">{part.text}</a>
+                                ) : <span key={j}>{part.text}</span>
+                              )}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : m.parts ? (
                       m.parts.map((part, j) =>
                         part.href ? (
                           <a key={j} href={part.href} target="_blank" rel="noopener noreferrer"
