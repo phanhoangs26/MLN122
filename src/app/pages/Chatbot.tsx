@@ -16,7 +16,8 @@ async function getLocalModel() {
   if (!generator) {
     generator = await pipeline(
       'text-generation',
-      'onnx-community/Qwen2.5-0.5B-Instruct'
+      'onnx-community/Qwen2.5-0.5B-Instruct',
+      { dtype: 'q4' }
     );
   }
   return generator;
