@@ -16,7 +16,7 @@ async function getLocalModel() {
   if (!generator) {
     generator = await pipeline(
       'text-generation',
-      'Qwen/Qwen2.5-0.5B-Instruct'
+      'onnx-community/Qwen2.5-0.5B-Instruct'
     );
   }
   return generator;
@@ -96,6 +96,8 @@ export default function Chatbot() {
             { role: 'bot', text: fallbackReply + '\n\n_(Đã dùng Qwen local fallback do API quá tải/bị chặn)_', source: 'offline' },
           ]);
         } catch (fallbackErr) {
+          // Nếu load model Qwen cũng lỗi, dùng fallback text cơ bản
+          console.error("Lỗi khi load mô hình Qwen fallback:", fallbackErr);
           const fallbackText = kb.score > 0 ? kb.answer : 'Rất tiếc, hiện tại API đang quá tải và không thể kết nối.';
           setMessages((m) => [
             ...m,
