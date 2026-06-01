@@ -77,6 +77,19 @@ export function DebateGame() {
     }
   };
 
+  const handleRetryRound = () => {
+    if (result) {
+      setTotalScores(prev => ({
+        ly_luan: prev.ly_luan - result.scores.ly_luan,
+        trich_dan: prev.trich_dan - result.scores.trich_dan,
+        logic: prev.logic - result.scores.logic
+      }));
+    }
+    setResult(null);
+    setTimeLeft(300);
+    setShowAnswer(false);
+  };
+
   const handleNextRound = () => {
     if (roundIdx < debateRounds.length - 1) {
       setRoundIdx(prev => prev + 1);
@@ -202,12 +215,20 @@ export function DebateGame() {
               </p>
             </div>
 
-            <button
-              onClick={handleNextRound}
-              className="w-full border-4 border-[#171210] bg-[#c8281e] px-6 py-4 font-black uppercase tracking-widest text-white transition-all hover:bg-[#8f1410] shadow-[6px_6px_0_#171210] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0_#171210] font-['Oswald'] text-lg"
-            >
-              {roundIdx < debateRounds.length - 1 ? 'Tiếp tục Vòng sau' : 'Xem kết quả chung cuộc'}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={handleRetryRound}
+                className="w-full border-4 border-[#171210] bg-[#f3ead7] px-6 py-4 font-black uppercase tracking-widest text-[#171210] transition-all hover:bg-[#ece0c8] shadow-[6px_6px_0_#171210] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0_#171210] font-['Oswald'] text-lg"
+              >
+                Thử lại vòng này
+              </button>
+              <button
+                onClick={handleNextRound}
+                className="w-full border-4 border-[#171210] bg-[#c8281e] px-6 py-4 font-black uppercase tracking-widest text-white transition-all hover:bg-[#8f1410] shadow-[6px_6px_0_#171210] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0_#171210] font-['Oswald'] text-lg"
+              >
+                {roundIdx < debateRounds.length - 1 ? 'Tiếp tục Vòng sau' : 'Xem kết quả chung cuộc'}
+              </button>
+            </div>
           </motion.div>
         )}
       </div>
