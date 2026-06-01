@@ -2,534 +2,229 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { TopBar } from '../components/TopBar';
-import { OutlineLayout } from '../components/PageOutline';
 
-const outline = [
-  { id: 'ban-chat-chung', label: 'Bản chất nhà nước' },
-  { id: 'hinh-thuc', label: 'Các hình thức tư sản' },
-  { id: 'vi-du', label: 'Ví dụ nhà nước tư sản' },
-  { id: 'ban-chat', label: 'Bản chất tư sản' },
-  { id: 'chuc-nang', label: 'Chức năng tư sản' },
-  { id: 'bo-may', label: 'Bộ máy nhà nước tư sản' },
-  { id: 'dan-chu', label: 'Dân chủ tư sản' },
-  { id: 'so-sanh', label: 'So sánh tư sản – vô sản' },
-  { id: 'lien-he', label: 'Nhận xét Mác – Lênin' },
-  { id: 'tai-lieu', label: 'Tài liệu tham khảo' },
-];
-
-/* ============================
-   4. CÁC HÌNH THỨC NHÀ NƯỚC TƯ SẢN
-   (Giáo trình tr.176, dòng 273–286)
-   ============================ */
-const formGroups = [
-  {
-    group: 'Chính thể',
-    items: [
-      { title: 'Cộng hòa đại nghị', text: 'Quyền lực hành pháp gắn với nghị viện; chính phủ do đảng chiếm đa số trong nghị viện lập ra và chịu trách nhiệm trước nghị viện.' },
-      { title: 'Cộng hòa tổng thống', text: 'Tổng thống do dân bầu, vừa là nguyên thủ quốc gia vừa đứng đầu cơ quan hành pháp, độc lập tương đối với nghị viện lập pháp.' },
-      { title: 'Cộng hòa thủ tướng', text: 'Thủ tướng đứng đầu chính phủ nắm thực quyền hành pháp, chia sẻ quyền lực với tổng thống. Sự phân chia quyền lực giữa tổng thống, thủ tướng và nội các tùy từng quốc gia.' },
-      { title: 'Quân chủ lập hiến', text: 'Vẫn duy trì ngôi vua/nữ hoàng nhưng quyền lực thực tế thuộc về nghị viện và chính phủ. Vua chỉ mang tính biểu tượng.' },
-    ],
-  },
-  {
-    group: 'Cấu trúc nhà nước',
-    items: [
-      { title: 'Nhà nước đơn nhất', text: 'Quyền lực nhà nước được tổ chức thống nhất từ trung ương đến địa phương; các đơn vị hành chính không có chủ quyền riêng.' },
-      { title: 'Nhà nước liên bang', text: 'Quyền lực được phân chia giữa chính quyền trung ương (liên bang) và các bang thành viên; các bang có quyền tự trị nhất định theo hiến pháp.' },
-    ],
-  },
-];
-
-/* ============================
-   5. VÍ DỤ NHÀ NƯỚC TƯ SẢN TIÊU BIỂU
-   ============================ */
-const examples = [
-  { name: 'Hoa Kỳ', form: 'Cộng hòa tổng thống', structure: 'Liên bang', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Hoa_K%E1%BB%B3', desc: 'Nhà nước liên bang theo mô hình cộng hòa tổng thống. Tam quyền phân lập rõ ràng: lập pháp (Quốc hội), hành pháp (Tổng thống), tư pháp (Tòa án Tối cao).' },
-  { name: 'Pháp', form: 'Cộng hòa bán tổng thống', structure: 'Đơn nhất', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Ph%C3%A1p', desc: 'Tổng thống và Thủ tướng cùng tham gia điều hành hành pháp; quyền lực được phân chia theo Hiến pháp.' },
-  { name: 'Anh', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_V%C6%B0%C6%A1ng_qu%E1%BB%91c_Li%C3%AAn_hi%E1%BB%87p_Anh_v%C3%A0_B%E1%BA%AFc_Ireland', desc: 'Duy trì chế độ quân chủ nhưng nghị viện nắm thực quyền. Quyền lực nhà vua mang tính biểu tượng.' },
-  { name: 'Nhật Bản', form: 'Quân chủ lập hiến', structure: 'Đơn nhất', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Nh%E1%BA%ADt_B%E1%BA%A3n', desc: 'Thiên hoàng là biểu tượng quốc gia, quyền lực thực tế thuộc Quốc hội và Chính phủ.' },
-];
-
-/* ============================
-   6. BẢN CHẤT NHÀ NƯỚC TƯ SẢN — 3 cơ sở
-   (Giáo trình + Lý luận nhà nước & pháp luật)
-   ============================ */
-const traits = [
-  {
-    title: 'Phương diện kinh tế',
-    text: 'Nền kinh tế tư bản chủ nghĩa dựa trên chế độ tư hữu tư bản về tư liệu sản xuất chủ yếu (doanh nghiệp, nhà máy, tài chính, công nghệ…), được thực hiện thông qua hình thức bóc lột giá trị thặng dư.',
-  },
-  {
-    title: 'Phương diện xã hội',
-    text: 'Hai giai cấp cơ bản có lợi ích đối kháng: giai cấp tư sản (thiểu số, nắm hầu hết tư liệu sản xuất) và giai cấp vô sản (đông đảo, bán sức lao động). Ngoài ra còn nông dân, tiểu tư sản, trí thức…',
-  },
-  {
-    title: 'Phương diện tư tưởng',
-    text: 'Theo quan điểm Mác – Lênin, hệ tư tưởng tư sản giữ vai trò bảo vệ và củng cố địa vị thống trị của giai cấp tư sản trong xã hội. Thông qua giáo dục, truyền thông và các thiết chế xã hội nhằm duy trì sự ổn định của trật tự xã hội tư bản chủ nghĩa.',
-  },
-];
-
-/* ============================
-   6b. CHỨC NĂNG NHÀ NƯỚC TƯ SẢN
-   (Lý luận nhà nước & pháp luật)
-   ============================ */
-const doiNoiFunctions = [
-  {
-    title: 'Chức năng chính trị',
-    text: 'Bảo vệ chế độ tư hữu tư bản chủ nghĩa, địa vị thống trị của giai cấp tư sản, duy trì trật tự xã hội và bộ máy quyền lực nhà nước.',
-  },
-  {
-    title: 'Chức năng kinh tế',
-    text: 'Điều tiết nền kinh tế thông qua chính sách tài chính, tiền tệ, thuế và pháp luật nhằm bảo đảm sự vận hành của nền kinh tế tư bản chủ nghĩa.',
-  },
-  {
-    title: 'Chức năng xã hội',
-    text: 'Thực hiện các chính sách về giáo dục, y tế, việc làm, môi trường và an sinh xã hội nhằm duy trì sự ổn định xã hội.',
-  },
-];
-
-const doiNgoaiFunctions = [
-  {
-    title: 'Bảo vệ lợi ích quốc gia và giai cấp cầm quyền',
-    text: 'Thực hiện chính sách đối ngoại nhằm bảo vệ lợi ích kinh tế, chính trị và chiến lược của quốc gia cũng như giai cấp cầm quyền.',
-  },
-  {
-    title: 'Hợp tác & cạnh tranh quốc tế',
-    text: 'Mở rộng quan hệ kinh tế, thương mại, khoa học - công nghệ và tham gia các tổ chức quốc tế.',
-  },
-];
-
-/* ============================
-   6c. BỘ MÁY NHÀ NƯỚC TƯ SẢN
-   (Thuyết phân quyền — tam quyền phân lập)
-   ============================ */
-const stateApparatus = [
-  {
-    title: 'Nghị viện',
-    role: 'Lập pháp',
-    text: 'Cơ quan lập pháp cao nhất. Thường gồm một hoặc hai viện; thực hiện chức năng ban hành luật và giám sát hoạt động của chính phủ.',
-  },
-  {
-    title: 'Nguyên thủ quốc gia',
-    role: 'Hành pháp',
-    text: 'Đại diện quốc gia trong đối nội và đối ngoại. Trong chế độ tổng thống, nguyên thủ quốc gia đồng thời đứng đầu hành pháp; trong quân chủ lập hiến hoặc cộng hòa đại nghị, chủ yếu mang tính biểu tượng.',
-  },
-  {
-    title: 'Chính phủ',
-    role: 'Hành pháp',
-    text: 'Thực hiện quyền hành pháp, tổ chức thi hành pháp luật và điều hành các chính sách đối nội, đối ngoại.',
-  },
-  {
-    title: 'Tòa án',
-    role: 'Tư pháp',
-    text: 'Nắm quyền tư pháp. Thẩm phán có tính chuyên nghiệp cao, nhiệm kỳ dài (một số nước: suốt đời). Ngoài tòa án thường còn có tòa hành chính, tòa bảo hiến, tòa thương mại…',
-  },
-];
-
-/* ============================
-   7. DÂN CHỦ TƯ SẢN — phân tích sâu
-   (Giáo trình tr.176, dòng 287–293)
-   ============================ */
-const bourgeoisDemocracy = [
-  {
-    title: 'Nhà nước tư sản là công cụ chuyên chính',
-    text: 'Theo quan điểm Mác – Lênin, nhà nước tư sản là công cụ thống trị chính trị của giai cấp tư sản nhằm bảo vệ địa vị và lợi ích của giai cấp này trong xã hội.',
-    tag: 'V.I. Lênin, Nhà nước và Cách mạng',
-  },
-  {
-    title: 'Dân chủ tư sản mang tính giai cấp',
-    text: 'Các hình thức nhà nước tư sản đều đề cao quyền tự do, dân chủ của mọi người. Tuy nhiên, về bản chất, nhà nước tư sản nào cũng là công cụ chuyên chính của giai cấp tư sản, được luật pháp tư sản bảo vệ; thực chất vẫn chịu sự chi phối của quan hệ sở hữu tư bản chủ nghĩa và lợi ích của giai cấp tư sản, nên là nền dân chủ có những giới hạn nhất định.',
-    tag: 'Giáo trình tr.291–293',
-  },
-  {
-    title: 'Ý nghĩa của nhận định',
-    text: 'Dù tồn tại dưới nhiều hình thức như quân chủ lập hiến hay cộng hòa dân chủ, theo Ăngghen bản chất giai cấp của nhà nước tư sản không thay đổi.',
-    tag: 'Ph. Ăngghen',
-  },
-];
-
-/* ============================
-   9. SO SÁNH
-   ============================ */
-const compareRows = [
-  ['Cơ sở kinh tế', 'Dựa trên chế độ tư hữu tư bản chủ nghĩa', 'Dựa trên chế độ công hữu về tư liệu sản xuất chủ yếu'],
-  ['Giai cấp nắm quyền', 'Giai cấp tư sản', 'Giai cấp công nhân và nhân dân lao động'],
-  ['Bản chất dân chủ', 'Dân chủ tư sản (mang tính giai cấp, có những giới hạn nhất định)', 'Dân chủ vô sản (thực chất, phục vụ số đông Nhân dân)'],
-  ['Mục tiêu', 'Bảo vệ chế độ tư hữu tư bản chủ nghĩa', 'Xóa bỏ áp bức, bóc lột; xây dựng xã hội xã hội chủ nghĩa'],
-];
-
-/* ================================================================
-   COMPONENT
-   ================================================================ */
 export default function CapitalistState() {
   return (
-    <div className="min-h-screen w-full bg-white text-slate-950">
+    <div className="theory-page min-h-screen">
       <TopBar />
 
-      <div className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto flex flex-wrap items-center justify-between gap-2 max-w-6xl px-4 py-3">
-          <div className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-serif text-slate-700 md:text-lg md:px-4 md:py-3">
-            <span className="font-sans text-red-600">•</span>
-            <span>Nhà nước tư sản (tư bản chủ nghĩa)</span>
+      <motion.section 
+        className="hero"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="wrap">
+          <div className="hero-tag">MỘT KIỂU NHÀ NƯỚC TRONG LỊCH SỬ</div>
+          <h1>Nhà nước <em>Tư sản</em></h1>
+          
+          <div className="quote-block mt-8">
+            <p>“Những hình thức của các nhà nước tư sản thì hết sức khác nhau, nhưng thực chất chỉ là một: chung quy lại, tất cả những hình thức nhà nước ấy, vô luận thế nào, cũng tất nhiên phải là nền chuyên chính tư sản.”</p>
+            <cite>— V.I. LÊNIN, NHÀ NƯỚC VÀ CÁCH MẠNG</cite>
           </div>
-          <div className="hidden md:flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
-            <span className="text-red-600">•</span>
-            <span>Chương III · Giáo trình Triết học Mác - Lênin 2021</span>
+          
+          <div className="scroll-cue mt-12">CUỘN ĐỂ TÌM HIỂU ↓</div>
+        </div>
+        <div className="star">★</div>
+      </motion.section>
+
+      {/* BẢN CHẤT */}
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <div className="wrap">
+          <div className="kicker">01. BẢN CHẤT GIAI CẤP</div>
+          <h2>Công cụ thống trị của thiểu số</h2>
+          <p className="lead mt-4">Theo quan điểm Mác – Lênin, nhà nước tư sản ra đời cùng phương thức sản xuất tư bản chủ nghĩa, là công cụ thống trị chính trị của giai cấp tư sản. Bản chất này thể hiện qua 3 phương diện cốt lõi.</p>
+          
+          <div className="feat-grid mt-10">
+            <div className="feat">
+              <div className="fn">01</div>
+              <h3>Kinh tế</h3>
+              <p className="muted">Dựa trên chế độ tư hữu tư bản về tư liệu sản xuất. Giai cấp tư sản nắm giữ các nguồn lực cốt lõi (tài chính, công nghệ, nhà máy) và bóc lột giá trị thặng dư.</p>
+            </div>
+            <div className="feat">
+              <div className="fn">02</div>
+              <h3>Xã hội</h3>
+              <p className="muted">Duy trì sự đối kháng lợi ích giữa giai cấp tư sản (thiểu số cầm quyền) và giai cấp vô sản (đa số bán sức lao động), cùng các tầng lớp trung gian khác.</p>
+            </div>
+            <div className="feat">
+              <div className="fn">03</div>
+              <h3>Tư tưởng</h3>
+              <p className="muted">Hệ tư tưởng tư sản chi phối đời sống tinh thần. Các thiết chế giáo dục, truyền thông được dùng để bảo vệ và hợp thức hóa trật tự tư bản chủ nghĩa.</p>
+            </div>
           </div>
         </div>
-      </div>
+      </motion.section>
 
-      <OutlineLayout items={outline}>
-        <article className="min-w-0">
-          {/* ========== HERO ========== */}
-          <motion.section
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="border-b-4 border-red-600 bg-white pb-7"
-          >
-            <div className="text-sm font-black uppercase tracking-widest text-red-600">Một kiểu nhà nước trong lịch sử</div>
-            <h1 className="mt-3 max-w-4xl font-serif text-3xl font-black leading-tight text-slate-950 md:text-5xl lg:text-6xl">
-              Nhà nước tư sản
-            </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
-              Nhà nước tư sản là kiểu nhà nước ra đời cùng phương thức sản xuất tư bản chủ nghĩa. Mặc dù tồn tại dưới nhiều hình thức như cộng hòa tổng thống, cộng hòa đại nghị hay quân chủ lập hiến, theo V.I. Lênin, về bản chất chúng đều là công cụ thống trị của giai cấp tư sản.
-            </p>
-
-            <figure className="mt-6 border-l-4 border-red-600 bg-slate-50 px-5 py-4">
-              <blockquote className="font-serif text-2xl font-black leading-9 text-red-700 md:text-3xl">
-                &ldquo;Những hình thức của các nhà nước tư sản thì hết sức khác nhau, nhưng thực chất chỉ là một: chung quy lại, tất cả những hình thức nhà nước ấy, vô luận thế nào, cũng tất nhiên phải là nền chuyên chính tư sản.&rdquo;
-              </blockquote>
-              <figcaption className="mt-2 text-sm font-bold text-slate-600">— V.I. Lênin, Nhà nước và Cách mạng</figcaption>
-            </figure>
-          </motion.section>
-
-          {/* ========== 4. CÁC HÌNH THỨC TƯ SẢN ========== */}
-          <motion.section
-            id="hinh-thuc"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Các hình thức nhà nước tư sản</h2>
-            <div className="space-y-6">
-              {formGroups.map((g) => (
-                <div key={g.group}>
-                  <div className="mb-3 inline-block bg-red-600 px-3 py-1 text-xs font-black uppercase tracking-widest text-white">
-                    {g.group}
-                  </div>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {g.items.map((f, i) => (
-                      <motion.div
-                        key={f.title}
-                        initial={{ opacity: 0, y: 14 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.12 + i * 0.05 }}
-                        className="border-l-4 border-red-600 bg-slate-50 p-5"
-                      >
-                        <h3 className="text-xl font-black text-slate-950">{f.title}</h3>
-                        <p className="mt-2 text-base leading-7 text-slate-700">{f.text}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="mt-5 max-w-4xl text-base leading-7 text-slate-700">
-              Dù khác nhau về cách tổ chức quyền lực và cấu trúc nhà nước, theo V.I. Lênin, về bản chất tất cả đều là <span className="font-bold text-slate-950">nền chuyên chính tư sản</span>.
-            </p>
-          </motion.section>
-
-          {/* ========== 5. VÍ DỤ NHÀ NƯỚC TƯ SẢN ========== */}
-          <motion.section
-            id="vi-du"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Ví dụ nhà nước tư sản tiêu biểu</h2>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-              {examples.map((e, i) => (
-                <motion.div
-                  key={e.name}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.05 }}
-                  className="border border-slate-200 bg-white p-5 shadow-sm"
-                >
-                  <div className="mb-2 text-2xl font-black text-slate-950">
-                    <a href={e.href} target="_blank" rel="noopener noreferrer"
-                      className="hover:text-red-600 hover:underline">{e.name}</a>
-                  </div>
-                  <div className="mb-1 flex flex-wrap gap-1.5">
-                    <span className="inline-flex rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{e.form}</span>
-                    <span className="inline-flex rounded border border-slate-300 bg-white px-2 py-0.5 text-xs font-bold text-slate-600">{e.structure}</span>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">{e.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* ========== 6. BẢN CHẤT NHÀ NƯỚC TƯ SẢN — 3 cơ sở ========== */}
-          <motion.section
-            id="ban-chat"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">Bản chất nhà nước tư sản</h2>
-            <p className="mb-6 max-w-4xl text-base leading-7 text-slate-700">
-              Bản chất của nhà nước tư sản do nền tảng kinh tế - xã hội của xã hội tư bản chủ nghĩa quyết định. Theo quan điểm Mác – Lênin, nhà nước tư sản là công cụ thống trị chính trị của giai cấp tư sản đối với các giai cấp và tầng lớp khác trong xã hội. Bản chất đó được biểu hiện trên các <span className="font-bold text-slate-950">phương diện kinh tế, xã hội và tư tưởng</span>.
-            </p>
-            <p className="mb-6 max-w-4xl text-base leading-7 text-slate-700 border-l-4 border-red-600 pl-4 bg-slate-50 py-3">
-              Nhà nước tư sản vừa mang <span className="font-bold text-slate-950">tính giai cấp</span> (bảo vệ địa vị thống trị và lợi ích của giai cấp tư sản), vừa mang <span className="font-bold text-slate-950">tính xã hội</span> (duy trì trật tự xã hội và giải quyết những công việc chung của cộng đồng).
-            </p>
-            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-              {traits.map((t, i) => (
-                <motion.div
-                  key={t.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.05 }}
-                  className="border border-slate-200 bg-slate-50 p-6"
-                >
-                  <div className="mb-2 inline-flex rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{t.title}</div>
-                  <p className="mt-2 text-base leading-7 text-slate-700">{t.text}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* ========== 7. CHỨC NĂNG NHÀ NƯỚC TƯ SẢN ========== */}
-          <motion.section
-            id="chuc-nang"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.22 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-2">Chức năng nhà nước tư sản</h2>
-            <p className="mb-6 text-base leading-7 text-slate-700">
-              Bản chất nhà nước tư sản thể hiện thông qua các chức năng <span className="font-bold text-slate-950">đối nội</span> và <span className="font-bold text-slate-950">đối ngoại</span>:
-            </p>
-
-            {/* ĐỐI NỘI */}
-            <div className="mb-2 inline-block bg-slate-700 px-3 py-1 text-xs font-black uppercase tracking-widest text-white">Đối nội</div>
-            <div className="grid gap-4 sm:grid-cols-3 mb-6">
-              {doiNoiFunctions.map((f, i) => (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.22 + i * 0.04 }}
-                  className="flex flex-col border-l-4 border-red-600 bg-slate-50 p-5"
-                >
-                  <h3 className="text-lg font-black text-slate-950">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">{f.text}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* ĐỐI NGOẠI */}
-            <div className="mb-2 inline-block bg-red-600 px-3 py-1 text-xs font-black uppercase tracking-widest text-white">Đối ngoại</div>
-            <div className="grid gap-4 sm:grid-cols-2 mb-6">
-              {doiNgoaiFunctions.map((f, i) => (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.28 + i * 0.04 }}
-                  className="flex flex-col border-l-4 border-red-600 bg-slate-50 p-5"
-                >
-                  <h3 className="text-lg font-black text-slate-950">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">{f.text}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* BỐI CẢNH LỊCH SỬ */}
-            <div className="border-l-4 border-slate-400 bg-slate-50 px-6 py-6">
-              <div className="mb-1 text-xs font-black uppercase tracking-widest text-slate-500">Bối cảnh lịch sử</div>
-              <p className="text-sm leading-6 text-slate-700">
-                Trong những giai đoạn lịch sử nhất định, các nhà nước tư sản từng tiến hành chiến tranh xâm lược thuộc địa hoặc đối đầu với các nước xã hội chủ nghĩa nhằm bảo vệ lợi ích của mình.
-              </p>
-            </div>
-          </motion.section>
-
-          {/* ========== 8. BỘ MÁY NHÀ NƯỚC TƯ SẢN ========== */}
-          <motion.section
-            id="bo-may"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.24 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-2">Bộ máy nhà nước tư sản</h2>
-            <p className="mb-4 text-base leading-7 text-slate-700">
-              Tổ chức bộ máy nhà nước tư sản dựa trên{' '}
-              <a
-                href="https://thuvienphapluat.vn/hoi-dap-phap-luat/thuyet-tam-quyen-phan-lap-la-gi-121821.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-red-600 underline decoration-red-600/40 hover:text-red-700"
-              >
-                thuyết phân quyền (tam quyền phân lập)
-              </a>
-              : quyền lực nhà nước chia thành 3 nhánh — lập pháp, hành pháp, tư pháp — giao cho các cơ quan khác nhau.
-            </p>
-            <p className="mb-4 text-sm leading-6 text-slate-600">
-              Các nhánh quyền lực vừa phân công vừa kiểm soát, đối trọng lẫn nhau — đây là tinh thần cốt lõi của học thuyết phân quyền.
-            </p>
-            <div className="mb-6 rounded border border-slate-200 bg-slate-50 px-4 py-4 text-center">
-              <p className="text-xs font-black uppercase tracking-widest text-slate-500">
-                Phân công – Kiểm soát – Đối trọng
-              </p>
-              <p className="mt-2 text-sm font-black uppercase tracking-widest text-red-700">
-                Lập pháp <span className="text-slate-400">↔</span> Hành pháp <span className="text-slate-400">↔</span> Tư pháp
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-              {stateApparatus.map((a, i) => (
-                <motion.div
-                  key={a.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.24 + i * 0.05 }}
-                  className="border border-slate-200 bg-white p-5 shadow-sm"
-                >
-                  <div className="mb-2 inline-flex rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{a.role}</div>
-                  <h3 className="text-xl font-black text-slate-950">{a.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">{a.text}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* ========== 9. DÂN CHỦ TƯ SẢN ========== */}
-          <motion.section
-            id="dan-chu"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-4">Dân chủ tư sản theo giáo trình</h2>
-            <p className="mb-6 text-base leading-7 text-slate-700">
-              Dân chủ tư sản là một bước tiến lịch sử so với chế độ phong kiến, song vẫn mang tính giai cấp và có những giới hạn nhất định theo quan điểm Mác – Lênin.
-            </p>
-
-            <figure className="mb-6 border-l-4 border-red-600 bg-slate-50 px-5 py-4">
-              <blockquote className="font-serif text-lg font-bold leading-7 text-red-700 md:text-xl">
-                &ldquo;Nhà nước chẳng qua chỉ là một bộ máy của một giai cấp này dùng để trấn áp một giai cấp khác, điều đó, trong chế độ cộng hòa dân chủ cũng hoàn toàn giống như trong chế độ quân chủ.&rdquo;
-              </blockquote>
-              <figcaption className="mt-2 text-xs font-bold text-slate-600">— Ph. Ăngghen</figcaption>
-            </figure>
-
-            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-              {bourgeoisDemocracy.map((p, i) => (
-                <motion.div
-                  key={p.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.25 + i * 0.05 }}
-                  className="flex flex-col border border-slate-200 bg-white p-6 shadow-sm"
-                >
-                  <div className="mb-3 inline-flex w-fit rounded bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                    {p.tag}
-                  </div>
-                  <h3 className="text-xl font-black leading-tight text-slate-950 md:text-2xl">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-700 md:text-base md:leading-7">{p.text}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* ========== 9. SO SÁNH ========== */}
-          <motion.section
-            id="so-sanh"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-6">So sánh nhà nước tư sản và nhà nước vô sản</h2>
-            <div className="overflow-hidden border border-slate-200 bg-white shadow-sm">
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[680px] text-left text-base">
-                  <thead className="bg-red-600 text-sm uppercase tracking-wide text-white">
-                    <tr>
-                      <th className="px-5 py-4">Tiêu chí</th>
-                      <th className="px-5 py-4">Nhà nước tư sản</th>
-                      <th className="px-5 py-4">Nhà nước vô sản</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {compareRows.map(([crit, bourgeois, proletarian]) => (
-                      <tr key={crit} className="border-t border-slate-200">
-                        <td className="px-5 py-4 font-black text-slate-950">{crit}</td>
-                        <td className="px-5 py-4 text-slate-700">{bourgeois}</td>
-                        <td className="px-5 py-4 text-slate-700">{proletarian}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+      {/* HÌNH THỨC VÀ BỘ MÁY */}
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <div className="wrap">
+          <div className="kicker">02. BỘ MÁY VÀ HÌNH THỨC</div>
+          <h2>Đa dạng vỏ bọc, một bản chất</h2>
+          <p className="lead mt-4">Dù tổ chức dưới hình thức cộng hòa hay quân chủ, bộ máy nhà nước tư sản hiện đại thường vận hành theo cơ chế <strong>Tam quyền phân lập</strong> (Phân công - Kiểm soát - Đối trọng).</p>
+          
+          <div className="vn mt-8">
+            <div className="vn-head">
+              <div>
+                <div className="vn-kick">THUYẾT PHÂN QUYỀN</div>
+                <h3 className="text-white mt-1">Lập pháp ↔ Hành pháp ↔ Tư pháp</h3>
               </div>
             </div>
-          </motion.section>
+            <p className="vn-intro text-gray-300">Quyền lực nhà nước được chia tách thành ba nhánh giao cho các cơ quan độc lập, nhằm mục tiêu kiểm soát và đối trọng quyền lực lẫn nhau.</p>
+            
+            <div className="vn-grid mt-6">
+              <div className="vn-card">
+                <div className="vt">NHÁNH 1</div>
+                <div className="vnum">Lập pháp</div>
+                <div className="vlab mt-2">Nghị viện / Quốc hội</div>
+                <p>Ban hành luật, phê duyệt ngân sách và giám sát chính phủ. Thường tổ chức theo mô hình lưỡng viện (Hạ viện - Thượng viện).</p>
+              </div>
+              <div className="vn-card">
+                <div className="vt">NHÁNH 2</div>
+                <div className="vnum">Hành pháp</div>
+                <div className="vlab mt-2">Tổng thống / Thủ tướng</div>
+                <p>Thực thi pháp luật, điều hành chính sách đối nội và đối ngoại. Nắm giữ lực lượng cưỡng chế (quân đội, cảnh sát).</p>
+              </div>
+              <div className="vn-card">
+                <div className="vt">NHÁNH 3</div>
+                <div className="vnum">Tư pháp</div>
+                <div className="vlab mt-2">Tòa án tối cao</div>
+                <p>Nhánh độc lập chuyên xét xử, bảo vệ Hiến pháp và pháp luật tư sản. Thẩm phán thường có nhiệm kỳ rất dài hoặc chung thân.</p>
+              </div>
+            </div>
+          </div>
 
-          {/* ========== 10. NHẬN XÉT MÁC – LÊNIN ========== */}
-          <motion.section
-            id="lien-he"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <div className="mx-auto max-w-4xl rounded-lg border-l-4 border-red-600 bg-red-50 p-6">
-              <h2 className="text-sm font-black uppercase tracking-widest text-red-600 mb-2">Nhận xét theo quan điểm Mác – Lênin</h2>
-              <p className="text-base leading-7 text-slate-800">
-                Trong điều kiện chủ nghĩa tư bản hiện đại, nhà nước tư sản tiếp tục thực hiện các chức năng quản lý kinh tế, xã hội và đối ngoại. Tuy nhiên, theo quan điểm của chủ nghĩa Mác – Lênin, bản chất giai cấp của nhà nước tư sản không thay đổi vì vẫn bảo vệ nền tảng kinh tế dựa trên chế độ tư hữu tư bản chủ nghĩa.
+          <div className="real-grid mt-12">
+            <div className="case">
+              <div className="tag">CỘNG HÒA TỔNG THỐNG</div>
+              <h3>Hoa Kỳ</h3>
+              <p>Tổng thống do cử tri bầu (qua đại cử tri), vừa là nguyên thủ quốc gia vừa đứng đầu hành pháp, độc lập với Nghị viện. Tam quyền phân lập triệt để.</p>
+            </div>
+            <div className="case">
+              <div className="tag">QUÂN CHỦ LẬP HIẾN</div>
+              <h3>Vương quốc Anh</h3>
+              <p>Vẫn duy trì Vua/Nữ hoàng mang tính biểu tượng. Quyền hành pháp thực tế thuộc về Thủ tướng và nội các (đảng chiếm đa số trong Nghị viện).</p>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CHỨC NĂNG */}
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <div className="wrap">
+          <div className="kicker">03. CHỨC NĂNG</div>
+          <h2>Bảo vệ tư hữu và Điều tiết xã hội</h2>
+          
+          <div className="tier mt-8">
+            <div className="n">1</div>
+            <div>
+              <h3>Chức năng Đối nội</h3>
+              <p className="muted mt-2 text-lg">
+                <strong>Chính trị:</strong> Bảo vệ chế độ tư hữu và đàn áp sự phản kháng của giai cấp bị bóc lột.<br/>
+                <strong>Kinh tế:</strong> Dùng thuế, tiền tệ, luật pháp để điều tiết và cứu vãn các cuộc khủng hoảng của kinh tế thị trường tư bản.<br/>
+                <strong>Xã hội:</strong> Cung cấp y tế, giáo dục, an sinh xã hội nhằm xoa dịu mâu thuẫn giai cấp, duy trì lực lượng lao động.
               </p>
             </div>
-          </motion.section>
+          </div>
+          
+          <div className="tier">
+            <div className="n">2</div>
+            <div>
+              <h3>Chức năng Đối ngoại</h3>
+              <p className="muted mt-2 text-lg">
+                Bảo vệ lợi ích quốc gia và lợi ích của tập đoàn tư bản độc quyền trên trường quốc tế. Mở rộng ảnh hưởng, tìm kiếm thị trường, nhân công và tài nguyên (thông qua hợp tác, cạnh tranh hoặc bá quyền).
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.section>
 
-          {/* ========== TÀI LIỆU THAM KHẢO ========== */}
-          <motion.section
-            id="tai-lieu"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
-            className="border-b-4 border-red-600 py-7"
-          >
-            <h2 className="text-sm font-black uppercase tracking-widest text-red-600">Tài liệu tham khảo</h2>
-            <ol className="mt-4 space-y-3">
-              {[
-                { label: 'Lý luận nhà nước — Chương III (trang nội bộ)', href: '/theory' },
-                { label: 'Nhà nước tư sản là gì, ví dụ về nhà nước tư sản? — Thư viện Pháp luật', href: 'https://thuvienphapluat.vn/lao-dong-tien-luong/cam-nang-di-lam/nha-nuoc-tu-san-la-gi-vi-du-ve-nha-nuoc-tu-san-ban-chat-cua-nha-nuoc-tu-san-la-gi-anh-huong-den-nguo-666.html' },
-                { label: 'Bản chất, chức năng, bộ máy và hình thức nhà nước tư sản — HocLuat.vn', href: 'https://hocluat.vn/ban-chat-chuc-nang-bo-may-va-hinh-thuc-nha-nuoc-tu-san/' },
-                { label: 'Thuyết tam quyền phân lập là gì? — Thư viện Pháp luật', href: 'https://thuvienphapluat.vn/hoi-dap-phap-luat/thuyet-tam-quyen-phan-lap-la-gi-121821.html' },
-                { label: 'Chính trị Hoa Kỳ — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Hoa_K%E1%BB%B3' },
-                { label: 'Chính trị Pháp — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Ph%C3%A1p' },
-                { label: 'Chính trị Vương quốc Liên hiệp Anh và Bắc Ireland — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_V%C6%B0%C6%A1ng_qu%E1%BB%91c_Li%C3%AAn_hi%E1%BB%87p_Anh_v%C3%A0_B%E1%BA%AFc_Ireland' },
-                { label: 'Chính trị Nhật Bản — Wikipedia', href: 'https://vi.wikipedia.org/wiki/Ch%C3%ADnh_tr%E1%BB%8B_Nh%E1%BA%ADt_B%E1%BA%A3n' },
-              ].map((r, i) => (
-                <li key={r.href} className="flex gap-3 text-sm leading-6 text-slate-700">
-                  <span className="shrink-0 font-black text-red-600">{i + 1}.</span>
-                  {r.href.startsWith('/') ? (
-                    <Link to={r.href} className="text-red-600 hover:underline">{r.label}</Link>
-                  ) : (
-                    <a href={r.href} target="_blank" rel="noopener noreferrer"
-                      className="text-red-600 hover:underline">{r.label}</a>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </motion.section>
-        </article>
-      </OutlineLayout>
+      {/* SO SÁNH */}
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <div className="wrap">
+          <div className="kicker">04. ĐỐI CHIẾU</div>
+          <h2>Nhà nước Tư sản vs Nhà nước Vô sản</h2>
+          
+          <div className="appx mt-8">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tiêu chí</th>
+                  <th>Nhà nước Tư sản</th>
+                  <th>Nhà nước Vô sản (XHCN)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cơ sở kinh tế</strong></td>
+                  <td>Dựa trên chế độ <strong>tư hữu</strong> tư bản chủ nghĩa về tư liệu sản xuất.</td>
+                  <td>Dựa trên chế độ <strong>công hữu</strong> về tư liệu sản xuất chủ yếu.</td>
+                </tr>
+                <tr>
+                  <td><strong>Giai cấp nắm quyền</strong></td>
+                  <td>Giai cấp tư sản (thiểu số).</td>
+                  <td>Giai cấp công nhân và nhân dân lao động (đa số).</td>
+                </tr>
+                <tr>
+                  <td><strong>Bản chất dân chủ</strong></td>
+                  <td>Dân chủ tư sản (chịu sự chi phối của sức mạnh tư bản, bảo vệ thiểu số).</td>
+                  <td>Dân chủ XHCN (dân chủ rộng rãi cho quần chúng nhân dân).</td>
+                </tr>
+                <tr>
+                  <td><strong>Mục tiêu</strong></td>
+                  <td>Duy trì sự bóc lột và bảo vệ trật tự tư bản chủ nghĩa.</td>
+                  <td>Xóa bỏ áp bức, bóc lột, xây dựng xã hội bình đẳng.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div className="pledge">
+            <strong>Tiểu kết:</strong> Dân chủ tư sản là một bước tiến lịch sử so với chế độ phong kiến. Tuy nhiên, theo Ph. Ăngghen: <em>"Nhà nước chẳng qua chỉ là một bộ máy của một giai cấp này dùng để trấn áp một giai cấp khác, điều đó, trong chế độ cộng hòa dân chủ cũng hoàn toàn giống như trong chế độ quân chủ."</em>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section 
+        className="end"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
+        <div className="wrap">
+          <h2>HIỂU BẢN CHẤT <em>TƯ SẢN</em> ĐỂ XÂY DỰNG <em>NHÀ NƯỚC XHCN</em></h2>
+          <p className="fade-line">Khép lại nội dung Chương III — Nhận diện đúng bản chất các kiểu nhà nước trong lịch sử.</p>
+          <div className="mt-8 flex justify-center gap-4">
+            <Link to="/theory" className="inline-block border-2 border-red-600 px-6 py-3 font-bold text-cream hover:bg-red-600 transition-colors uppercase tracking-wider text-sm font-['Oswald']">
+              ← Về Lý luận Lênin
+            </Link>
+            <Link to="/game" className="inline-block bg-red-600 px-6 py-3 font-bold text-cream hover:bg-red-700 transition-colors uppercase tracking-wider text-sm font-['Oswald']">
+              Ôn tập ngay →
+            </Link>
+          </div>
+        </div>
+      </motion.section>
+
+      <footer>
+        <div className="wrap">
+          CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM • TRIẾT HỌC MÁC - LÊNIN • 2026
+        </div>
+      </footer>
     </div>
   );
 }
