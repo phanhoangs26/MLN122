@@ -59,9 +59,16 @@ export default function Chatbot() {
     setMessages(next);
     setInput('');
 
-    // Dùng local offline như fallback khi API lỗi, truyền thêm messages (history) để có context
+    // 1. Tính toán điểm từ Local KB (có truyền history)
     const kb = answerFromKB(q, messages);
 
+    // 2. Ưu tiên KB ngay lập tức nếu độ tự tin đủ cao (score >= 3)
+    if (kb.score >= 3) {
+      setMessages((m) => [...m, { role: 'bot', text: kb.answer, source: 'offline' }]);
+      return;
+    }
+
+    // 3. Nếu KB không tự tin, gọi API
     setLoading(true);
     try {
       const reply = await askAI(next);
