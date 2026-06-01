@@ -7,6 +7,8 @@ import { answerFromKB, buildContext, suggestedQuestions } from '../data/knowledg
 
 type Msg = { role: 'user' | 'bot'; text: string; source?: 'offline' | 'ai' };
 
+import ReactMarkdown from 'react-markdown';
+
 // Gọi serverless function — system prompt + giáo trình nằm hoàn toàn ở server
 async function askAI(history: Msg[]): Promise<string> {
   const contents = history
@@ -107,13 +109,28 @@ export default function Chatbot() {
                 <div className={clsx('max-w-[78%]', m.role === 'user' ? 'items-end' : 'items-start')}>
                   <div
                     className={clsx(
-                      'whitespace-pre-wrap px-4 py-3 text-sm leading-6',
+                      'px-4 py-3 text-sm leading-6',
                       m.role === 'user'
-                        ? 'bg-slate-100 text-slate-900'
+                        ? 'whitespace-pre-wrap bg-slate-100 text-slate-900'
                         : 'border border-red-100 bg-red-50 text-slate-900',
                     )}
                   >
-                    {m.text}
+                    {m.role === 'user' ? (
+                      m.text
+                    ) : (
+                      <ReactMarkdown
+                        components={{
+                          p: ({ node, ...props }) => <p className="mb-3 last:mb-0" {...props} />,
+                          ul: ({ node, ...props }) => <ul className="mb-3 ml-4 list-disc space-y-1 last:mb-0" {...props} />,
+                          ol: ({ node, ...props }) => <ol className="mb-3 ml-4 list-decimal space-y-1 last:mb-0" {...props} />,
+                          li: ({ node, ...props }) => <li {...props} />,
+                          strong: ({ node, ...props }) => <strong className="font-bold" {...props} />,
+                          em: ({ node, ...props }) => <em className="italic" {...props} />,
+                        }}
+                      >
+                        {m.text}
+                      </ReactMarkdown>
+                    )}
                   </div>
                   {m.role === 'bot' && m.source === 'ai' && (
                     <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-red-400">
