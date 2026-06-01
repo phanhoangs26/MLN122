@@ -8,20 +8,8 @@ import { answerFromKB, buildContext, suggestedQuestions } from '../data/knowledg
 type Msg = { role: 'user' | 'bot'; text: string; source?: 'offline' | 'ai' };
 
 import ReactMarkdown from 'react-markdown';
-import { pipeline } from '@huggingface/transformers';
 
-let generator: any = null;
-
-async function getLocalModel() {
-  if (!generator) {
-    generator = await pipeline(
-      'text-generation',
-      'onnx-community/Qwen2.5-0.5B-Instruct',
-      { dtype: 'q4' }
-    );
-  }
-  return generator;
-}
+// Không dùng Qwen fallback nữa, chuyển về dùng KB
 
 // Gọi serverless function — system prompt + giáo trình nằm hoàn toàn ở server
 async function askAI(history: Msg[]): Promise<string> {
@@ -79,40 +67,15 @@ export default function Chatbot() {
       const reply = await askAI(next);
       setMessages((m) => [...m, { role: 'bot', text: reply, source: 'ai' }]);
     } catch (err: any) {
-      // Chạy Qwen khi: 403, 429 (API lỗi), 404 (chạy localhost thiếu API), hoặc undefined (mất mạng)
-      if (err.status === 403 || err.status === 429 || err.status === 404 || !err.status) {
-        try {
-          // Fallback sử dụng Qwen model chạy local trên trình duyệt
-          const gen = await getLocalModel();
-          const prompt = `Bạn là Trợ lý Triết học Mác - Lênin.\nNgười dùng hỏi: ${q}\nTrả lời:`;
-          const result = await gen(prompt, { max_new_tokens: 300 });
-          
-          let fallbackReply = result[0].generated_text;
-          if (fallbackReply.startsWith(prompt)) {
-            fallbackReply = fallbackReply.slice(prompt.length).trim();
-          }
-          
-          setMessages((m) => [
-            ...m,
-            { role: 'bot', text: fallbackReply + '\n\n_(Đã dùng Qwen local fallback do API quá tải/bị chặn)_', source: 'offline' },
-          ]);
-        } catch (fallbackErr) {
-          // Nếu load model Qwen cũng lỗi, dùng fallback text cơ bản
-          console.error("Lỗi khi load mô hình Qwen fallback:", fallbackErr);
-          const fallbackText = kb.score > 0 ? kb.answer : 'Rất tiếc, hiện tại API đang quá tải và không thể kết nối.';
-          setMessages((m) => [
-            ...m,
-            { role: 'bot', text: fallbackText, source: 'offline' },
-          ]);
-        }
-      } else {
-        // Các lỗi mạng khác hoặc 500 thì dùng fallback text cơ bản ngay lập tức
-        const fallbackText = kb.score > 0 ? kb.answer : 'Rất tiếc, hiện tại mình không thể kết nối tới máy chủ AI.';
-        setMessages((m) => [
-          ...m,
-          { role: 'bot', text: fallbackText, source: 'offline' },
-        ]);
-      }
+      // Khi API lỗi (mất mạng, 404, 403, 429...), fallback về Local KB
+      const fallbackText = kb.score > 0 
+        ? kb.answer 
+        : 'Rất tiếc, hiện tại mình không thể kết nối tới máy chủ AI và câu hỏi này cũng chưa có trong kho dữ liệu offline.';
+      
+      setMessages((m) => [
+        ...m,
+        { role: 'bot', text: fallbackText, source: 'offline' },
+      ]);
     } finally {
       setLoading(false);
     }

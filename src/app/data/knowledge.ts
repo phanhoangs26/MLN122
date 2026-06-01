@@ -95,6 +95,27 @@ export const knowledgeBase: KbEntry[] = [
       'Nhà nước Cộng hòa XHCN Việt Nam là Nhà nước pháp quyền xã hội chủ nghĩa của Nhân dân, do Nhân dân, vì Nhân dân; vận hành theo nguyên tắc “Đảng lãnh đạo, Nhà nước quản lý, Nhân dân làm chủ”. Tất cả quyền lực nhà nước thuộc về Nhân dân, nền tảng là liên minh giai cấp công nhân – nông dân – đội ngũ trí thức. Mục tiêu: dân giàu, nước mạnh, dân chủ, công bằng, văn minh.',
   },
   {
+    id: 'us_state',
+    question: 'Bản chất chính quyền của nước Mỹ hiện tại là gì?',
+    keywords: ['mỹ', 'hoa kỳ', 'nước mỹ', 'chính quyền mỹ', 'chính phủ mỹ'],
+    answer:
+      'Nước Mỹ (Hoa Kỳ) hiện nay là một nhà nước tư sản, được tổ chức theo hình thức cộng hòa tổng thống. Dù mang hình thức dân chủ tư sản với hệ thống bầu cử đa đảng, nhưng về bản chất triết học Mác - Lênin, nó vẫn là nền chuyên chính tư sản, công cụ bảo vệ lợi ích của các tập đoàn tư bản và giai cấp tư sản độc quyền.',
+  },
+  {
+    id: 'modern_capitalism',
+    question: 'Nhà nước tư sản hiện đại có thay đổi bản chất không?',
+    keywords: ['tư sản hiện đại', 'tư sản ngày nay', 'hiện nay', 'thay đổi bản chất', 'phúc lợi'],
+    answer:
+      'Dù ngày nay nhà nước tư sản có nhiều điều chỉnh (như tăng cường phúc lợi xã hội, cải thiện đời sống người lao động, mở rộng dân chủ), nhưng bản chất vẫn không đổi: đó là tổ chức quyền lực của giai cấp tư sản, nhằm duy trì trật tự tư bản chủ nghĩa, bảo vệ chế độ tư hữu và bóc lột giá trị thặng dư.',
+  },
+  {
+    id: 'law_state',
+    question: 'Thế nào là nhà nước pháp quyền?',
+    keywords: ['pháp quyền', 'nhà nước pháp quyền', 'thượng tôn pháp luật'],
+    answer:
+      'Nhà nước pháp quyền là nhà nước quản lý xã hội bằng pháp luật, trong đó pháp luật giữ vị trí tối thượng (thượng tôn pháp luật), mọi tổ chức và cá nhân đều phải tuân thủ. Ở Việt Nam, đó là Nhà nước pháp quyền XHCN, nơi pháp luật thể hiện ý chí của giai cấp công nhân và nhân dân lao động.',
+  },
+  {
     id: 'engels',
     question: 'Ăngghen viết tác phẩm nào về nhà nước?',
     keywords: ['ăngghen', 'angghen', 'tác phẩm', 'nguồn gốc của gia đình'],
