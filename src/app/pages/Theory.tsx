@@ -1,459 +1,300 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Menu } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
-import {
-  centralThesis,
-  evidenceNotes,
-  features,
-  formsIntro,
-  originFlow,
-  proletarianState,
-  stateForms,
-  theoryBlocks,
-  stateNature,
-  theorySource,
-  typeRows,
-} from '../data/theoryContent';
+import './theory.css';
+import clsx from 'clsx';
 
-const outline = [
-  { id: 'luan-diem', label: 'Luận điểm' },
-  { id: 'luan-giai', label: 'Luận giải trung tâm' },
-  { id: 'nguon-goc', label: 'Nguồn gốc nhà nước' },
-  { id: 'khai-niem', label: 'Khái niệm nhà nước' },
-  { id: 'ban-chat', label: 'Bản chất nhà nước' },
-  { id: 'chuc-nang', label: 'Chức năng nhà nước' },
-  { id: 'dac-trung', label: 'Đặc trưng nhà nước' },
-  { id: 'kieu-nha-nuoc', label: 'Kiểu nhà nước' },
-  { id: 'hinh-thuc', label: 'Hình thức nhà nước' },
-  { id: 'vo-san', label: 'Nhà nước vô sản và sự tiêu vong' },
+const stages = [
+  { min: 0, no: 'GIAI ĐOẠN 01', name: 'Xã hội nguyên thủy', desc: 'Thị tộc, bộ lạc tự quản. Chưa tư hữu, chưa giai cấp, chưa cần bộ máy quyền lực tách khỏi nhân dân.' },
+  { min: 25, no: 'GIAI ĐOẠN 02', name: 'Sản phẩm dư thừa', desc: 'Năng suất tăng, xuất hiện của cải dư thừa tương đối — tiền đề kinh tế cho chế độ tư hữu.' },
+  { min: 50, no: 'GIAI ĐOẠN 03', name: 'Tư hữu & phân hóa', desc: 'Tư liệu sản xuất rơi vào tay thiểu số. Quan hệ bình đẳng bị thay bằng quan hệ áp bức, bóc lột.' },
+  { min: 75, no: 'GIAI ĐOẠN 04', name: 'Mâu thuẫn không thể điều hòa', desc: 'Giai cấp thống trị và bị trị có lợi ích đối lập. Đấu tranh giai cấp trở nên gay gắt.' },
+  { min: 100, no: 'GIAI ĐOẠN 05', name: 'Nhà nước ra đời', desc: 'Một lực lượng đứng trên xã hội xuất hiện để giữ xung đột trong vòng "trật tự" — trật tự bảo đảm địa vị giai cấp thống trị.' }
+];
+
+const prodLabels = [
+  'Cộng đồng săn bắt, hái lượm',
+  'Bắt đầu canh tác, chăn nuôi',
+  'Tích lũy của cải',
+  'Phân tầng rõ rệt',
+  'Xã hội có giai cấp đối kháng'
 ];
 
 export default function Theory() {
-  const [outlineOpen, setOutlineOpen] = useState(true);
+  // SIMULATION STATE
+  const [prod, setProd] = useState(0);
+
+  const clamp = (v: number) => Math.max(0, Math.min(100, v));
+  const surplus = clamp((prod - 15) * 1.3);
+  const property = clamp((prod - 35) * 1.5);
+  const cls = clamp((prod - 50) * 1.8);
+  const conflict = clamp((prod - 60) * 2.1);
+
+  let currentStage = stages[0];
+  for (const st of stages) {
+    if (prod >= st.min) currentStage = st;
+  }
+  const li = Math.min(4, Math.floor(prod / 25));
+
+  // ABOLISH EXPERIMENT STATE
+  const [offOrgs, setOffOrgs] = useState<Set<string>>(new Set());
+  const toggleOrg = (name: string) => {
+    setOffOrgs(prev => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  };
+
+  const expLevel = 5 + offOrgs.size * 23.75;
+  const expMsgs = [
+    'Bộ máy đang đầy đủ → trật tự được duy trì (một trật tự có lợi cho giai cấp thống trị).',
+    'Gỡ 1 trụ cột: xung đột lợi ích bắt đầu hở ra, tranh chấp khó được phân xử.',
+    'Gỡ 2 trụ cột: không còn lực lượng giữ "trật tự" — mâu thuẫn cũ trỗi dậy.',
+    'Gỡ 3 trụ cột: xung đột giai cấp bùng phát; phải tái lập một bộ máy cưỡng chế.',
+    '⚑ Gỡ hết: xã hội buộc phải dựng lại nhà nước. Vì mâu thuẫn CHƯA được xóa bỏ → nhà nước là tất yếu. Đó là điều cần chứng minh.'
+  ];
+
+  // FLIP CARD STATE
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // FEATURES CARD STATE
+  const [openFeats, setOpenFeats] = useState<Set<number>>(new Set());
+  const toggleFeat = (id: number) => {
+    setOpenFeats(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   return (
-    <div className="min-h-screen w-full bg-white text-slate-950">
+    <div className="theory-page">
       <TopBar />
-
-      <div className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto flex flex-wrap items-center justify-between gap-2 max-w-6xl px-4 py-3">
-          <div className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-serif text-slate-700 md:text-lg md:px-4 md:py-3">
-            <span className="font-sans text-red-600">•</span>
-            <span>Hệ thống kiến thức về nhà nước trong triết học Mác - Lênin</span>
+      
+      {/* HERO */}
+      <header className="hero relative">
+        <svg className="star" viewBox="0 0 100 100"><polygon fill="var(--red)" points="50,2 61,38 98,38 68,60 79,96 50,74 21,96 32,60 2,38 39,38"/></svg>
+        <div className="wrap relative z-10">
+          <div className="hero-tag">CHƯƠNG III · NHÀ NƯỚC VÀ CÁCH MẠNG XÃ HỘI</div>
+          <h1>CỖ MÁY<br />NHÀ NƯỚC<em>vận hành thử</em></h1>
+          <div className="quote-block">
+            <p>"Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được."</p>
+            <cite>— V.I. LÊNIN, <i>Nhà nước và Cách mạng</i></cite>
           </div>
-          <div className="hidden md:flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
-            <span className="text-red-600">•</span>
-            <span>{theorySource.book}</span>
+          <div className="scroll-cue">↓ KÉO THANH BÊN DƯỚI ĐỂ TỰ TAY DỰNG NÊN NHÀ NƯỚC</div>
+        </div>
+      </header>
+
+      {/* SIM: TẦNG 1 */}
+      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
+        <div className="wrap">
+          <div className="kicker">Tầng 1 — Nhà nước là SẢN PHẨM</div>
+          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Bạn không thể dựng nhà nước<br />nếu chưa có mâu thuẫn giai cấp</h2>
+          <p className="lead muted">Kéo thanh <b>Lực lượng sản xuất</b>. Hãy quan sát: nhà nước <em>không</em> xuất hiện vì bạn ra lệnh — nó chỉ xuất hiện như một <em>tất yếu</em> khi chuỗi nhân quả hoàn tất.</p>
+
+          <div className="sim-grid">
+            <div className="dial">
+              <label htmlFor="prod">⚙️ LỰC LƯỢNG SẢN XUẤT</label>
+              <input 
+                type="range" 
+                id="prod" 
+                min="0" max="100" 
+                value={prod} 
+                onChange={(e) => setProd(Number(e.target.value))} 
+              />
+              <div className="readout">Trình độ: {prod}% — {prodLabels[li]}</div>
+              <div className="bars">
+                <div className="bar-row">
+                  <div className="bl"><span>Sản phẩm dư thừa</span><span>{Math.round(surplus)}%</span></div>
+                  <div className="bar-track"><div className="bar-fill surplus" style={{ width: `${surplus}%` }}></div></div>
+                </div>
+                <div className="bar-row">
+                  <div className="bl"><span>Chế độ tư hữu</span><span>{Math.round(property)}%</span></div>
+                  <div className="bar-track"><div className="bar-fill prop" style={{ width: `${property}%` }}></div></div>
+                </div>
+                <div className="bar-row">
+                  <div className="bl"><span>Phân hóa giai cấp</span><span>{Math.round(cls)}%</span></div>
+                  <div className="bar-track"><div className="bar-fill" style={{ width: `${cls}%` }}></div></div>
+                </div>
+                <div className="bar-row">
+                  <div className="bl"><span>Mâu thuẫn lợi ích đối kháng</span><span>{Math.round(conflict)}%</span></div>
+                  <div className="bar-track"><div className="bar-fill conflict" style={{ width: `${conflict}%` }}></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="stage">
+                <div className="st-no">{currentStage.no}</div>
+                <div className="st-name">{currentStage.name}</div>
+                <div className="st-desc">{currentStage.desc}</div>
+              </div>
+              <div className={clsx("verdict", prod >= 100 && "show")}>
+                ⚑ NHÀ NƯỚC RA ĐỜI — như một tất yếu lịch sử, không phải do thần thánh hay ý chí cá nhân sắp đặt.
+              </div>
+              <p className="src-note">Mạch nhân quả: dư thừa → tư hữu → phân hóa giai cấp → mâu thuẫn không thể điều hòa → nhà nước. (Giáo trình Triết học Mác–Lênin 2021, Ch.III)</p>
+            </div>
           </div>
         </div>
-      </div>
+      </motion.section>
 
-      <main
-        className={`mx-auto grid max-w-6xl gap-7 px-4 py-7 ${
-          outlineOpen ? 'lg:grid-cols-[14rem_minmax(0,1fr)]' : 'lg:grid-cols-[4rem_minmax(0,1fr)]'
-        }`}
-      >
-        <aside className="hidden lg:block">
-          <div className="sticky top-6 border border-slate-200 bg-white shadow-sm">
-            <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
-              {outlineOpen && <div className="text-sm font-black uppercase tracking-widest text-red-600">Mục lục</div>}
-              <button
-                type="button"
-                onClick={() => setOutlineOpen((open) => !open)}
-                aria-label={outlineOpen ? 'Thu gọn mục lục' : 'Mở mục lục'}
-                className="flex h-9 w-9 items-center justify-center border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
-              >
-                <Menu className="h-5 w-5" />
-              </button>
+      {/* TẦNG 2: ABOLISH EXPERIMENT */}
+      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
+        <div className="wrap">
+          <div className="kicker">Tầng 2 — Nhà nước là BIỂU HIỆN</div>
+          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Thí nghiệm: hãy thử "tắt" nhà nước</h2>
+          <p className="lead muted">Nếu các giai cấp đã thực sự hòa giải lợi ích, ta có thể gỡ bỏ bộ máy cưỡng chế mà xã hội vẫn yên ổn. Hãy bấm tắt từng cơ quan và xem điều gì xảy ra.</p>
+
+          <div className="exp">
+            <div style={{ fontFamily: 'Oswald', letterSpacing: '.1em', color: 'var(--gold)', fontSize: '13px' }}>BẤM ĐỂ TẮT / BẬT CÁC CÔNG CỤ CƯỠNG CHẾ:</div>
+            <div className="org-row">
+              {['Quân đội', 'Cảnh sát', 'Tòa án', 'Pháp luật'].map(org => (
+                <div 
+                  key={org} 
+                  className={clsx("org", offOrgs.has(org) && "off")} 
+                  onClick={() => toggleOrg(org)}
+                >
+                  {org.toUpperCase()}
+                </div>
+              ))}
             </div>
-            {outlineOpen && (
-              <nav className="divide-y divide-slate-100">
-                {outline.map((item) => (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className="block px-4 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-red-600"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-            )}
+            <div>MỨC XUNG ĐỘT XÃ HỘI BÙNG PHÁT</div>
+            <div className="exp-meter"><span style={{ width: `${Math.min(100, expLevel)}%` }}></span></div>
+            <div className="exp-out">{expMsgs[offOrgs.size]}</div>
           </div>
-        </aside>
+          <p className="src-note">Kết luận: chính <em>sự cần thiết</em> của bộ máy ấy là bằng chứng sống cho thấy xung đột lợi ích cơ bản chưa bị xóa bỏ. Sự tồn tại của nhà nước = mâu thuẫn chưa được giải quyết.</p>
+        </div>
+      </motion.section>
 
-        <article className="min-w-0">
-          <motion.section
-            id="luan-diem"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="border-b-4 border-red-600 bg-white pb-7"
-          >
-            <div className="text-sm font-black uppercase tracking-widest text-red-600">{theorySource.title}</div>
-            <h1 className="mt-3 max-w-4xl font-serif text-3xl font-black leading-tight text-slate-950 md:text-5xl lg:text-6xl">
-              Lý luận về nhà nước
-            </h1>
-            <p className="mt-1 text-sm font-bold text-slate-500">{theorySource.book}</p>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">{centralThesis.explanation}</p>
-
-            <figure className="mt-6 border-l-4 border-red-600 bg-slate-50 px-5 py-4">
-              <blockquote className="font-serif text-2xl font-black leading-9 text-red-700 md:text-3xl">
-                “{centralThesis.quote}”
-              </blockquote>
-              <figcaption className="mt-2 text-sm font-bold text-slate-600">- {centralThesis.source}</figcaption>
-            </figure>
-          </motion.section>
-
-          {/* LUẬN GIẢI TRUNG TÂM */}
-          <section id="luan-giai" className="mt-8 border border-red-200 bg-red-50 p-5 shadow-sm md:p-8">
-            <div className="border-b border-red-200 pb-4 mb-6">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">Luận giải trung tâm</div>
-              <h2 className="mt-2 font-serif text-2xl font-black text-slate-950 md:text-3xl">
-                Nhà nước là <em>sản phẩm</em> và <em>biểu hiện</em> của mâu thuẫn giai cấp — tại sao?
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                Không trình bày lại lý thuyết — mà lý giải tại sao luận điểm Lênin đúng, đúng như thế nào, và đúng đến bao giờ.
-              </p>
-            </div>
-            <div className="space-y-5">
-              <div className="border-l-4 border-red-600 bg-white p-5">
-                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 1 — Nhà nước là <em>sản phẩm</em>: nhân quả lịch sử</div>
-                <p className="text-base leading-7 text-slate-800">
-                  Nhà nước <span className="font-bold">không xuất hiện từ đầu</span> trong lịch sử loài người. Hàng nghìn năm xã hội nguyên thủy vận hành không cần nhà nước. Chỉ khi lực lượng sản xuất phát triển đủ để tạo ra sản phẩm dư thừa → chế độ tư hữu → phân hóa giai cấp → mâu thuẫn lợi ích đối kháng không thể tự giải quyết, nhà nước mới xuất hiện như một <span className="font-bold">tất yếu lịch sử</span>. Đây là quan hệ nhân quả, không phải sắp đặt thần thánh hay ý chí của cá nhân.
-                </p>
+      {/* TẦNG 3: FLIP */}
+      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
+        <div className="wrap">
+          <div className="kicker">Tầng 3 — Hai mặt bản chất</div>
+          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Một khuôn mặt cho tất cả,<br />một bản chất cho thiểu số</h2>
+          <div className="flip-wrap" onClick={() => setIsFlipped(!isFlipped)}>
+            <div className={clsx("flip", isFlipped && "flipped")}>
+              <div className="face front">
+                <div className="ft">MẶT NHÌN THẤY · TÍNH XÃ HỘI</div>
+                <h3>"Đại diện lợi ích chung"</h3>
+                <p>Nhà nước làm giáo dục, y tế, hạ tầng, an ninh, môi trường — những chức năng xã hội cần thiết để duy trì ổn định. Ăngghen: chức năng xã hội là <em>cơ sở</em> của sự thống trị chính trị.</p>
+                <div className="flip-hint">↻ BẤM ĐỂ LẬT — XEM MẶT CÒN LẠI</div>
               </div>
-              <div className="border-l-4 border-red-600 bg-white p-5">
-                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 2 — Nhà nước là <em>biểu hiện</em>: sự tồn tại của nó chứng minh mâu thuẫn chưa được giải quyết</div>
-                <p className="text-base leading-7 text-slate-800">
-                  Không chỉ ra đời từ mâu thuẫn giai cấp, bản thân sự tồn tại của nhà nước cũng <span className="font-bold">chứng minh mâu thuẫn đó vẫn còn đó</span>. Nếu các giai cấp đã thực sự hòa giải lợi ích, sẽ không cần đến bộ máy cưỡng chế đặc biệt gồm quân đội, cảnh sát, tòa án và pháp luật để duy trì trật tự. Sự tồn tại của nhà nước chính là bằng chứng sống cho thấy những xung đột lợi ích cơ bản trong xã hội <span className="font-bold">chưa bị xóa bỏ</span>.
-                </p>
-              </div>
-              <div className="border-l-4 border-red-600 bg-white p-5">
-                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 3 — Hai mặt bản chất: tính giai cấp và tính xã hội</div>
-                <p className="text-base leading-7 text-slate-800">
-                  Nhà nước biểu hiện như đại diện cho lợi ích chung của xã hội vì nó <span className="font-bold">thực hiện các chức năng xã hội cần thiết</span> — giáo dục, y tế, hạ tầng, an ninh, môi trường — để duy trì sự ổn định. Tuy nhiên, xét về bản chất, nó vẫn là <span className="font-bold">công cụ chính trị của giai cấp thống trị</span>: chức năng xã hội phục vụ trật tự xã hội có lợi cho giai cấp đó, và chức năng thống trị chính trị mới là chức năng quyết định. Đây là biểu hiện rõ nhất của mâu thuẫn giai cấp trong thể chế nhà nước.
-                </p>
-              </div>
-              <div className="border-l-4 border-red-600 bg-white p-5">
-                <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Tầng 4 — Hệ quả logic: nhà nước tất yếu tiêu vong</div>
-                <p className="text-base leading-7 text-slate-800">
-                  Nếu nhà nước là sản phẩm của mâu thuẫn giai cấp, thì khi mâu thuẫn giai cấp được xóa bỏ — nhà nước <span className="font-bold">tất yếu tiêu vong</span>. Song, theo quan điểm Mác–Lênin, sự tiêu vong không diễn ra ngay sau cách mạng mà thông qua <span className="font-bold">thời kỳ quá độ</span> dưới hình thức nhà nước vô sản — tồn tại để trấn áp các lực lượng chống đối và tổ chức xây dựng xã hội mới, trước khi dần tiêu vong cùng với sự xóa bỏ hoàn toàn giai cấp.
-                </p>
-              </div>
-              <div className="border-l-4 border-slate-400 bg-white p-5">
-                <div className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Liên hệ thực tiễn</div>
-                <p className="text-base leading-7 text-slate-700">
-                  Trong xã hội hiện đại, dù mâu thuẫn giai cấp không còn biểu hiện dưới hình thức đối đầu trực tiếp như thế kỷ XIX, nhà nước vẫn phải liên tục giải quyết các xung đột lợi ích giữa người lao động, doanh nghiệp, các nhóm xã hội và chủ thể kinh tế khác — thông qua pháp luật, chính sách thuế, an sinh xã hội và quản lý công. Điều đó cho thấy vai trò điều tiết của nhà nước vẫn gắn trực tiếp với việc xử lý các mâu thuẫn xã hội, xác nhận tính thời sự của luận điểm Lênin.
-                </p>
+              <div className="face back">
+                <div className="ft">BẢN CHẤT QUYẾT ĐỊNH · TÍNH GIAI CẤP</div>
+                <h3>Công cụ chuyên chính</h3>
+                <p>Xét đến cùng, nhà nước là công cụ chính trị của giai cấp thống trị. Chức năng xã hội phục vụ một trật tự có lợi cho giai cấp đó; thống trị chính trị mới là chức năng quyết định. "Không có nhà nước đứng trên hoặc ngoài giai cấp."</p>
+                <div className="flip-hint">↻ LẬT LẠI</div>
               </div>
             </div>
-            <div className="mt-6 bg-red-600 p-4 text-white">
-              <p className="text-sm font-black uppercase tracking-widest mb-1">Kết luận</p>
-              <p className="text-base leading-7">
-                Luận điểm Lênin không chỉ mô tả nguồn gốc nhà nước — nó là <strong>chìa khóa giải mã toàn bộ lịch sử chính trị</strong>: tại sao nhà nước ra đời, tại sao nó phục vụ thiểu số dù tự nhận phục vụ tất cả, và tại sao nó sẽ tiêu vong khi lịch sử hoàn thành sứ mệnh xóa bỏ giai cấp.
-              </p>
-            </div>
-          </section>
+          </div>
+        </div>
+      </motion.section>
 
-          <section id="nguon-goc" className="mt-8">
-            <div className="border-b border-slate-200 pb-3">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">Mạch hình thành</div>
-              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">
-                Từ xã hội nguyên thủy đến sự ra đời của nhà nước
-              </h2>
-            </div>
-            <div className="mt-5 divide-y divide-slate-200 border border-slate-200">
-              {originFlow.map((step, index) => (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.04 }}
-                  className="grid grid-cols-[3rem_1fr] gap-4 bg-white p-4 md:grid-cols-[4rem_1fr]"
-                >
-                  <div className="font-serif text-3xl font-black text-red-600">{String(index + 1).padStart(2, '0')}</div>
-                  <div>
-                    <h3 className="text-xl font-black text-slate-950">{step.title}</h3>
-                    <p className="mt-1 text-base leading-7 text-slate-700">{step.text}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-
-          {/* KHÁI NIỆM NHÀ NƯỚC */}
-          <section id="khai-niem" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-            {(() => {
-              const block = theoryBlocks.find(b => b.id === 'definition');
-              if (!block) return null;
-              return (
-                <div>
-                  <div className="border-b border-slate-200 pb-3 mb-6">
-                    <div className="text-sm font-black uppercase tracking-widest text-red-600">Khái niệm</div>
-                    <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">Khái niệm nhà nước</h2>
-                  </div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-slate-50 border border-slate-200 p-5 lg:p-8"
-                  >
-                    <h3 className="font-serif text-2xl font-black leading-tight text-slate-950">{block.title}</h3>
-                    <p className="mt-4 text-base leading-7 text-slate-700">{block.body}</p>
-                    <ul className="mt-4 space-y-2">
-                      {block.points.map((point) => (
-                        <li key={point} className="flex gap-2 text-base leading-7 text-slate-700">
-                          <span className="shrink-0 text-red-600">-</span>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                  {block.quotes && (
-                    <div className="mt-5 grid gap-4 md:grid-cols-2">
-                      {block.quotes.map((q, i) => (
-                        <figure key={i} className="border-l-4 border-red-600 bg-red-50 px-5 py-4">
-                          <blockquote className="text-sm italic leading-6 text-red-700">
-                            &ldquo;{q.text}&rdquo;
-                          </blockquote>
-                          <figcaption className="mt-2 text-xs font-bold text-slate-500">— {q.source}</figcaption>
-                        </figure>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
-          </section>
-
-          {/* BẢN CHẤT NHÀ NƯỚC */}
-          <section id="ban-chat" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-            <div className="border-b border-slate-200 pb-3 mb-6">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">Bản chất</div>
-              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">
-                Bản chất nhà nước: Tính giai cấp và tính xã hội
-              </h2>
-            </div>
-            
-            <div className="grid gap-6 sm:grid-cols-2">
-              {stateNature.map((n, i) => (
-                <motion.div
-                  key={n.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05 }}
-                  className="border-l-4 border-red-600 bg-red-50 p-6"
-                >
-                  <h3 className="text-xl font-black text-slate-950">{n.title}</h3>
-                  <p className="mt-3 text-base leading-7 text-slate-700">{n.text}</p>
-                  <figure className="mt-4 border-l-2 border-red-300 pl-4">
-                    <blockquote className="text-sm italic leading-6 text-red-700">
-                      &ldquo;{n.quote}&rdquo;
-                    </blockquote>
-                    <figcaption className="mt-1 text-xs font-bold text-slate-500">— {n.source}</figcaption>
-                  </figure>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-
-          {/* CHỨC NĂNG NHÀ NƯỚC */}
-          <section id="chuc-nang" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-            {(() => {
-              const block = theoryBlocks.find(b => b.id === 'functions');
-              if (!block) return null;
-              return (
-                <div>
-                  <div className="border-b border-slate-200 pb-3 mb-6">
-                    <div className="text-sm font-black uppercase tracking-widest text-red-600">Chức năng</div>
-                    <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">Chức năng nhà nước</h2>
-                  </div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-slate-50 border border-slate-200 p-5 lg:p-8"
-                  >
-                    <h3 className="font-serif text-2xl font-black leading-tight text-slate-950">{block.title}</h3>
-                    <p className="mt-4 text-base leading-7 text-slate-700">{block.body}</p>
-                    <ul className="mt-4 space-y-2">
-                      {block.points.map((point) => (
-                        <li key={point} className="flex gap-2 text-base leading-7 text-slate-700">
-                          <span className="shrink-0 text-red-600">-</span>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                  {block.quotes && (
-                    <div className="mt-5 grid gap-4 md:grid-cols-2">
-                      {block.quotes.map((q, i) => (
-                        <figure key={i} className="border-l-4 border-red-600 bg-red-50 px-5 py-4">
-                          <blockquote className="text-sm italic leading-6 text-red-700">
-                            &ldquo;{q.text}&rdquo;
-                          </blockquote>
-                          <figcaption className="mt-2 text-xs font-bold text-slate-500">— {q.source}</figcaption>
-                        </figure>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
-          </section>
-
-          <section id="dac-trung" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-            <div className="border-b border-slate-200 pb-3">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">Đặc trưng</div>
-              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">
-                Đặc trưng nhà nước
-              </h2>
-              <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">
-                V.I. Lênin nhắc lại quan điểm của Ph. Ăngghen: nhà nước có ba đặc trưng cơ bản phân biệt với các tổ chức xã hội thông thường.
-              </p>
-            </div>
-
-            <div className="mt-5 divide-y divide-slate-200 border border-slate-200">
-              {features.map((feature, index) => (
-                <div key={feature.title} className="grid grid-cols-[2.5rem_1fr] gap-4 bg-white p-5 md:grid-cols-[3rem_1fr]">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-red-600 font-serif text-xl font-black text-white">
-                    {index + 1}
-                  </div>
-                  <div>
-                    <h3 className="font-black text-lg text-slate-950">{feature.title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-slate-700">{feature.text}</p>
-                    {feature.quote && (
-                      <figure className="mt-3 border-l-2 border-red-300 pl-4">
-                        <blockquote className="text-sm italic leading-6 text-red-700">
-                          &ldquo;{feature.quote}&rdquo;
-                        </blockquote>
-                        <figcaption className="mt-1 text-xs font-bold text-slate-500">— {feature.source}</figcaption>
-                      </figure>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section id="kieu-nha-nuoc" className="mt-8">
-            <div className="overflow-hidden border border-slate-200 bg-white shadow-sm">
-              <div className="border-b border-slate-200 bg-slate-50 p-5">
-                <div className="text-sm font-black uppercase tracking-widest text-red-600">Các kiểu nhà nước</div>
-                <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">So sánh theo giai cấp nắm quyền</h2>
+      {/* ĐẶC TRƯNG */}
+      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
+        <div className="wrap">
+          <div className="kicker">Dấu hiệu nhận diện</div>
+          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>3 đặc trưng phân biệt nhà nước<br />với mọi tổ chức xã hội khác</h2>
+          <p className="lead muted">Bấm vào từng thẻ để mở rộng.</p>
+          <div className="feat-grid">
+            {[
+              { id: 1, title: 'Quản lý cư dân theo lãnh thổ', more: 'Khác thị tộc dựa trên huyết thống, nhà nước phân chia & quản lý dân cư theo đơn vị lãnh thổ; quyền lực có hiệu lực với mọi thành viên trong biên giới.', src: '— Lênin, Nhà nước và Cách mạng' },
+              { id: 2, title: 'Bộ máy cưỡng chế chuyên nghiệp', more: '"Những đội vũ trang đặc biệt" — quân đội, cảnh sát, tòa án, nhà tù & bộ máy hành chính — buộc mọi thành viên phục tùng ý chí giai cấp cầm quyền.', src: '— Lênin' },
+              { id: 3, title: 'Thuế khóa', more: 'Để nuôi quyền lực công cộng đặt trên xã hội, nhà nước phải có thuế và quốc trái. "Cần phải có sự đóng góp của công dân, đó là thuế má."', src: '— Ph. Ăngghen' }
+            ].map((f) => (
+              <div key={f.id} className={clsx("feat", openFeats.has(f.id) && "open")} onClick={() => toggleFeat(f.id)}>
+                <div className="fn">0{f.id}</div>
+                <h3>{f.title}</h3>
+                <div className="more">{f.more}</div>
+                <span className="src">{f.src}</span>
               </div>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[680px] text-left text-base">
-                  <thead className="bg-red-600 text-sm uppercase tracking-wide text-white">
-                    <tr>
-                      <th className="px-5 py-4">Kiểu</th>
-                      <th className="px-5 py-4">Giai cấp đại diện</th>
-                      <th className="px-5 py-4">Ý nghĩa</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {typeRows.map(([type, actor, meaning]) => (
-                      <tr key={type} className="border-t border-slate-200">
-                        <td className="px-5 py-4 font-black text-slate-950">{type}</td>
-                        <td className="px-5 py-4 text-slate-700">{actor}</td>
-                        <td className="px-5 py-4 text-slate-700">{meaning}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+            ))}
+          </div>
+        </div>
+      </motion.section>
 
-          <section id="hinh-thuc" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-            <div className="border-b border-slate-200 pb-3">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">Hình thức nhà nước</div>
-              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">Kiểu khác hình thức như thế nào?</h2>
-              <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">{formsIntro}</p>
+      {/* THỰC TIỄN */}
+      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
+        <div className="wrap">
+          <div className="kicker">Tầng thực tiễn — 2024-2026</div>
+          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Luận điểm 1917 đọc tin tức hôm nay</h2>
+          <p className="lead muted">Mâu thuẫn giai cấp ngày nay ít khi là đối đầu trực diện kiểu thế kỷ XIX — nhưng nhà nước vẫn không ngừng phải <em>điều tiết</em> xung đột lợi ích. Đó chính là tính thời sự của luận điểm.</p>
+          <div className="real-grid">
+            <div className="case">
+              <div className="tag">LAO ĐỘNG ↔ NỀN TẢNG</div>
+              <h3>Tài xế công nghệ & "gig economy"</h3>
+              <p>Tranh chấp về địa vị lao động, bảo hiểm, mức chiết khấu giữa tài xế và các nền tảng (Grab, Uber, Be...). Nhà nước buộc phải can thiệp bằng luật lao động, thuế & an sinh — điều tiết mâu thuẫn lợi ích mới.</p>
             </div>
-
-            <div className="mt-5 grid gap-5 sm:grid-cols-2">
-              {stateForms.map((item) => (
-                <div key={item.type} className="border border-slate-200 bg-white">
-                  {/* Header */}
-                  <div className="border-b border-slate-200 bg-slate-50 px-5 py-4">
-                    <div className="text-xs font-black uppercase tracking-widest text-red-600">{item.eyebrow}</div>
-                    <h3 className="mt-1 text-xl font-black text-slate-950">{item.type}</h3>
-                  </div>
-                  {/* Sub-items */}
-                  <div className="divide-y divide-slate-100">
-                    {item.items.map((sub) => (
-                      <div key={sub.name} className="px-5 py-4">
-                        <div className="flex items-start gap-2">
-                          <span className="mt-1 h-2 w-2 shrink-0 bg-red-600" />
-                          <div>
-                            <div className="font-black text-slate-950">{sub.name}</div>
-                            <p className="mt-1 text-sm leading-6 text-slate-700">{sub.detail}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Summary */}
-                  <div className="border-t border-slate-200 bg-red-50 px-5 py-3">
-                    <p className="text-sm leading-6 text-slate-700 italic">{item.summary}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="case">
+              <div className="tag">VỐN ↔ XÃ HỘI</div>
+              <h3>Thuế & phân phối lại</h3>
+              <p>Tranh luận toàn cầu về thuế tối thiểu doanh nghiệp, thuế tài sản, lương tối thiểu. Bộ máy thuế khóa (đặc trưng #3) chính là công cụ nhà nước cân bằng tích lũy tư bản với áp lực xã hội.</p>
             </div>
-          </section>
-
-          <section id="vo-san" className="mt-8 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-            <div className="border-b border-slate-200 pb-3">
-              <div className="text-sm font-black uppercase tracking-widest text-red-600">{proletarianState.eyebrow}</div>
-              <h2 className="mt-2 font-serif text-3xl font-black text-slate-950">{proletarianState.title}</h2>
-              <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">{proletarianState.intro}</p>
+            <div className="case">
+              <div className="tag">CÔNG NGHỆ ↔ QUYỀN LỰC</div>
+              <h3>AI, dữ liệu & việc làm</h3>
+              <p>Tự động hóa và AI làm dịch chuyển quan hệ sở hữu "tư liệu sản xuất" sang dữ liệu & thuật toán, làm dấy lên xung đột mới về việc làm và phân phối. Nhà nước ra quy định (AI Act, luật dữ liệu) để giữ xung đột "trong vòng trật tự".</p>
             </div>
-
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {proletarianState.functions.map((fn, index) => (
-                <div key={fn.title} className="border border-slate-200 bg-slate-50 p-4">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-serif text-2xl font-black text-red-600">{index + 1}</span>
-                    <h3 className="text-lg font-black leading-tight text-slate-950">{fn.title}</h3>
-                  </div>
-                  <p className="mt-2 text-base leading-7 text-slate-700">{fn.text}</p>
-                </div>
-              ))}
+            <div className="case">
+              <div className="tag">LIÊN HỆ VIỆT NAM</div>
+              <h3>Nhà nước pháp quyền XHCN</h3>
+              <p>Xây dựng Nhà nước pháp quyền XHCN "của Nhân dân, do Nhân dân, vì Nhân dân": kết hợp chức năng xã hội (an sinh, y tế, giáo dục) với vai trò lãnh đạo của liên minh công–nông–trí — hình thức của nhà nước kiểu mới.</p>
             </div>
+          </div>
+          <p className="src-note">Mỗi ca trên đều cho thấy: vai trò điều tiết của nhà nước gắn trực tiếp với việc xử lý mâu thuẫn xã hội → xác nhận luận điểm Lênin vẫn còn nguyên tính thời sự.</p>
+        </div>
+      </motion.section>
 
-            <div className="mt-5 border-l-4 border-red-600 bg-red-50 p-5">
-              <div className="text-sm font-black uppercase tracking-widest text-red-700">Nhà nước tiêu vong</div>
-              <p className="mt-2 text-base leading-7 text-slate-700">{proletarianState.withering}</p>
-            </div>
-          </section>
+      {/* TIÊU VONG */}
+      <motion.section className="end" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
+        <div className="wrap">
+          <div className="kicker" style={{ color: 'var(--gold)' }}>Tầng 4 — Hệ quả logic</div>
+          <h2>NẾU MÂU THUẪN MẤT ĐI<br /><em>NHÀ NƯỚC TỰ TIÊU VONG</em></h2>
+          <p className="fade-line">Nhà nước là sản phẩm của mâu thuẫn giai cấp — nên khi giai cấp bị xóa bỏ hoàn toàn, nhà nước mất lý do tồn tại. Theo Mác–Lênin, điều đó không xảy ra ngay sau cách mạng, mà qua thời kỳ quá độ dưới hình thức <b>nhà nước vô sản</b>: trấn áp lực lượng chống đối + tổ chức xây dựng xã hội mới, rồi <em>dần tiêu vong</em>.</p>
+          <p className="fade-line muted">"Nhà nước là một phạm trù lịch sử: có ra đời thì có mất đi."</p>
+        </div>
+      </motion.section>
 
-          <section className="mt-8 border border-slate-200 bg-slate-50 p-5 shadow-sm md:p-6">
-            <div className="text-sm font-black uppercase tracking-widest text-red-600">Ghi chú nguồn</div>
-            <h3 className="mt-2 font-serif text-2xl font-black text-slate-950">{theorySource.label}</h3>
-            <p className="mt-2 max-w-4xl text-base leading-7 text-slate-700">
-              Nội dung được hệ thống hóa từ{' '}
-              <a
-                href="https://www.thuviendientutriethocc500.edu.vn/wp-content/uploads/2025/09/1.Gtrinh-Triet-hoc-Mac-Lenin-ko-chuyen-2021.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-red-600 underline hover:text-red-700"
-              >
-                {theorySource.book}
-              </a>
-              , phần Chương III: Nhà nước và cách mạng xã hội.
-            </p>
-            <div className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-3">
-              {evidenceNotes.map((note) => (
-                <div key={note} className="flex gap-2 border-l-4 border-red-600 bg-white p-4 text-base leading-7 text-slate-700">
-                  <span className="shrink-0 text-red-600">-</span>
-                  <span>{note}</span>
-                </div>
-              ))}
-            </div>
-          </section>
+      {/* APPENDIX AI */}
+      <motion.section className="appx" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
+        <div className="wrap">
+          <div className="kicker">Phụ lục bắt buộc</div>
+          <h2 style={{ fontSize: 'clamp(26px, 4.5vw, 40px)' }}>AI Usage · Minh bạch & Liêm chính học thuật</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Công cụ</th>
+                <th>Mục đích</th>
+                <th>Prompt chính</th>
+                <th>Phần SV chỉnh sửa / kiểm chứng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>LLM (Claude)</td>
+                <td>Dựng mã sản phẩm web tương tác, gợi ý kịch bản tương tác</td>
+                <td>"Dựng web tương tác về luận điểm Lênin: nhà nước là sản phẩm của mâu thuẫn giai cấp, có mô phỏng + quiz"</td>
+                <td>SV viết lại toàn bộ nội dung học thuật theo giáo trình; chỉnh thông điệp từng tầng; kiểm tra logic mô phỏng</td>
+              </tr>
+              <tr>
+                <td>LLM</td>
+                <td>Soạn câu hỏi quiz & đáp án giải thích</td>
+                <td>"Tạo 5 câu trắc nghiệm bám sát nội dung Chương III"</td>
+                <td>SV đối chiếu từng đáp án với giáo trình tr.170-176; loại câu sai lệch</td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="pledge">
+            <b>Cam kết liêm chính học thuật:</b> Nhóm khẳng định AI chỉ đóng vai trò <em>hỗ trợ</em> (sinh mã, gợi ý sơ đồ, quiz), <b>không</b> thay thế phần phân tích học thuật. Toàn bộ luận giải đối chiếu với <i>Giáo trình Triết học Mác–Lênin 2021, Chương III</i> và các trích dẫn gốc của Mác, Ăngghen, Lênin. Nhóm chịu trách nhiệm về nội dung cuối cùng.
+          </div>
+          <p className="src-note">Nguồn: Giáo trình Triết học Mác–Lênin 2021 (Ch.III); V.I. Lênin, <i>Nhà nước và Cách mạng</i>; Ph. Ăngghen; C. Mác, <i>Phê phán Cương lĩnh Gôta</i>.</p>
+        </div>
+      </motion.section>
 
-        </article>
-      </main>
+      <footer>★ CỖ MÁY NHÀ NƯỚC — Sản phẩm tương tác · Chương III: Nhà nước và Cách mạng xã hội ★</footer>
     </div>
   );
 }
