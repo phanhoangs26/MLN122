@@ -32,6 +32,55 @@ export const knowledgeBase: KbEntry[] = [
       'V.I. Lênin khẳng định: “Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được.” Ở đâu, lúc nào mà mâu thuẫn giai cấp không thể điều hòa thì nhà nước xuất hiện; và ngược lại, sự tồn tại của nhà nước chứng tỏ mâu thuẫn giai cấp là không thể điều hòa.',
   },
   {
+    id: 'product_of_conflict',
+    question: 'Nhà nước là sản phẩm của mâu thuẫn giai cấp nghĩa là gì?',
+    keywords: ['sản phẩm của mâu thuẫn giai cấp', 'sản phẩm', 'nghĩa là gì'],
+    answer:
+      'Nhà nước không tồn tại từ đầu trong lịch sử loài người. Nó xuất hiện khi xã hội phân hóa thành các giai cấp đối kháng do chế độ tư hữu và sự bất bình đẳng về kinh tế. Khi các mâu thuẫn đó trở nên gay gắt, không thể tự giải quyết, nhà nước ra đời như một kết quả lịch sử của quá trình đó. Vì vậy nhà nước là sản phẩm của mâu thuẫn giai cấp không thể điều hòa được.',
+  },
+  {
+    id: 'expression_of_conflict',
+    question: 'Nhà nước là biểu hiện của mâu thuẫn giai cấp nghĩa là gì?',
+    keywords: ['biểu hiện của mâu thuẫn giai cấp', 'biểu hiện', 'nghĩa là gì'],
+    answer:
+      'Sự tồn tại của nhà nước cho thấy trong xã hội vẫn tồn tại các giai cấp có lợi ích đối lập nhau. Nhà nước sử dụng pháp luật, bộ máy hành chính và các công cụ cưỡng chế để duy trì trật tự xã hội theo lợi ích của giai cấp thống trị. Do đó nhà nước phản ánh và biểu hiện trực tiếp các mâu thuẫn giai cấp trong xã hội.',
+  },
+  {
+    id: 'proof_of_state',
+    question: 'Sự tồn tại của nhà nước chứng tỏ điều gì?',
+    keywords: ['chứng tỏ điều gì', 'chứng tỏ', 'sự tồn tại của nhà nước chứng tỏ'],
+    answer:
+      'Theo Lênin, sự tồn tại của nhà nước chứng tỏ những mâu thuẫn giai cấp trong xã hội vẫn chưa được giải quyết và chưa thể điều hòa. Nếu các mâu thuẫn đó không còn tồn tại thì nhà nước với tư cách là công cụ duy trì sự thống trị giai cấp cũng sẽ mất đi cơ sở tồn tại của mình.',
+  },
+  {
+    id: 'class_emergence',
+    question: 'Giai cấp xuất hiện như thế nào?',
+    keywords: ['giai cấp xuất hiện', 'giai cấp ra đời', 'xuất hiện như thế nào', 'nguồn gốc giai cấp'],
+    answer:
+      'Giai cấp xuất hiện khi lực lượng sản xuất phát triển dẫn đến của cải dư thừa, từ đó chế độ tư hữu ra đời. Sự xuất hiện chế độ tư hữu phá vỡ tính bình đẳng của xã hội nguyên thủy, phân hóa xã hội thành những tập đoàn người có địa vị kinh tế khác nhau: giai cấp thống trị (chiếm đoạt tư liệu sản xuất) và giai cấp bị trị.',
+  },
+  {
+    id: 'class_conflict_def',
+    question: 'Mâu thuẫn giai cấp là gì? Thế nào là không thể điều hòa?',
+    keywords: ['mâu thuẫn giai cấp là gì', 'thế nào là không thể điều hòa', 'không thể điều hòa là gì'],
+    answer:
+      'Mâu thuẫn giai cấp là sự đối lập về lợi ích kinh tế cơ bản giữa các tập đoàn người trong xã hội. Mâu thuẫn "không thể điều hòa" nghĩa là lợi ích giữa giai cấp bóc lột và bị bóc lột hoàn toàn đối kháng, gay gắt đến mức không thể tự thỏa hiệp hay dung hòa bằng các biện pháp thông thường, buộc phải có một lực lượng cưỡng chế (nhà nước) để giữ xã hội trong "trật tự".',
+  },
+  {
+    id: 'neutral_state',
+    question: 'Nhà nước có đứng trên các giai cấp hay trung lập không?',
+    keywords: ['đứng trên giai cấp', 'trung lập', 'nhà nước có trung lập', 'đứng ngoài'],
+    answer:
+      'Không. Nhà nước không bao giờ trung lập hay đứng ngoài giai cấp. Nó luôn mang bản chất của giai cấp thống trị về kinh tế. Giai cấp nào nắm giữ tư liệu sản xuất chủ yếu sẽ lập ra nhà nước để bảo vệ lợi ích của mình. Tuy nhiên, nhà nước thường mang bộ mặt nhân danh toàn xã hội để che giấu bản chất giai cấp.',
+  },
+  {
+    id: 'meaning_today',
+    question: 'Luận điểm của Lênin còn ý nghĩa gì đối với xã hội hiện nay?',
+    keywords: ['ý nghĩa', 'hiện nay', 'xã hội hiện nay', 'còn ý nghĩa', 'giá trị'],
+    answer:
+      'Luận điểm của Lênin vẫn còn nguyên giá trị. Nó là vũ khí lý luận sắc bén giúp ta nhận diện bản chất bóc lột của các nhà nước tư bản hiện đại. Dù các nhà nước tư sản ngày nay có điều chỉnh phúc lợi hay đề cao "dân chủ", bản chất thực sự của chúng vẫn là công cụ bảo vệ lợi ích cho giai cấp tư sản độc quyền trước sự đấu tranh của nhân dân lao động.',
+  },
+  {
     id: 'essence',
     question: 'Bản chất của nhà nước là gì?',
     keywords: ['bản chất', 'công cụ', 'chuyên chính', 'trấn áp', 'thống trị', 'là gì'],
