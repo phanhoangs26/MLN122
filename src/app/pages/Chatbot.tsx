@@ -16,7 +16,7 @@ async function getLocalModel() {
   if (!generator) {
     generator = await pipeline(
       'text-generation',
-      'Qwen/Qwen3-0.6B'
+      'Qwen/Qwen2.5-0.5B-Instruct'
     );
   }
   return generator;
