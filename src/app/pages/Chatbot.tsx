@@ -55,22 +55,18 @@ export default function Chatbot() {
     setMessages(next);
     setInput('');
 
-    // 1) Ưu tiên kho kiến thức nội bộ (nhanh, offline)
+    // Dùng local offline như fallback khi API lỗi
     const kb = answerFromKB(q);
-    if (kb.score > 0) {
-      setMessages((m) => [...m, { role: 'bot', text: kb.answer, source: 'offline' }]);
-      return;
-    }
 
-    // 2) Gọi Gemini qua serverless function (bám sát giáo trình)
     setLoading(true);
     try {
       const reply = await askAI(next);
       setMessages((m) => [...m, { role: 'bot', text: reply, source: 'ai' }]);
     } catch (err: any) {
+      const fallbackText = kb.score > 0 ? kb.answer : 'Rất tiếc, hiện tại mình không thể kết nối tới máy chủ AI.';
       setMessages((m) => [
         ...m,
-        { role: 'bot', text: `${kb.answer}\n\n_(Chưa kết nối được AI: ${err.message})_`, source: 'offline' },
+        { role: 'bot', text: `${fallbackText}\n\n_(Lỗi mạng/API: ${err.message})_`, source: 'offline' },
       ]);
     } finally {
       setLoading(false);
@@ -132,11 +128,6 @@ export default function Chatbot() {
                       </ReactMarkdown>
                     )}
                   </div>
-                  {m.role === 'bot' && m.source === 'ai' && (
-                    <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-red-400">
-                      Bám sát giáo trình
-                    </div>
-                  )}
                 </div>
               </motion.div>
             ))}
