@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { RotateCcw, ArrowRight, CheckCircle2, HelpCircle } from 'lucide-react';
+import { RotateCcw, ArrowRight, CheckCircle2, HelpCircle, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import clsx from 'clsx';
 import { timelineRounds } from '../../data/stateContent';
@@ -24,6 +24,23 @@ export const TimelineGame: React.FC = () => {
   const [placed, setPlaced] = useState<Step[]>([]);
   const [wrongFlash, setWrongFlash] = useState(false);
   const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null);
+  const [wrongQuote, setWrongQuote] = useState<string | null>(null);
+
+  const quotes = [
+    "Thất bại là mẹ thành công!",
+    "Sai một li, đi một dặm... nhưng không sao, thử lại nào!",
+    "Đừng nản chí, kiên trì nhé!",
+    "Hãy suy nghĩ kỹ hơn một chút!",
+    "Có công mài sắt, có ngày nên kim!",
+    "Không có việc gì khó, chỉ sợ lòng không bền!",
+    "Học, học nữa, học mãi!",
+    "Lịch sử vừa yêu cầu bạn thử lại.",
+    "Chưa đúng, nhưng đang tiến gần hơn.",
+    "Kiến thức cũng cần vài lần thử nghiệm.",
+    "Sai lầm là một phần của quá trình học.",
+    "Thất bại tạm thời, tiến bộ lâu dài.",
+    "Lần này chưa đúng, lần sau có thể khác."
+  ];
 
   const done = placed.length === ordered.length;
   const currentSlot = placed.length;
@@ -54,9 +71,12 @@ export const TimelineGame: React.FC = () => {
     if (step.correctIndex === currentSlot) {
       setPool((p) => p.filter((s) => s.label !== step.label));
       setPlaced((p) => [...p, step]);
+      setWrongQuote(null);
     } else {
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 500);
+
+      setWrongQuote(quotes[Math.floor(Math.random() * quotes.length)]);
     }
   };
 
@@ -149,6 +169,46 @@ export const TimelineGame: React.FC = () => {
           })}
         </div>
       </div>
+
+      {/* Wrong Quote Notification */}
+      <AnimatePresence>
+        {wrongQuote && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"
+            >
+              <button
+                onClick={() => setWrongQuote(null)}
+                className="absolute right-4 top-4 rounded-full p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-rose-100 text-rose-600">
+                  <HelpCircle className="h-7 w-7" />
+                </div>
+                <h4 className="mb-2 font-serif text-xl font-black text-slate-900">Oops! Chưa chính xác</h4>
+                <p className="mb-6 text-base font-medium italic text-rose-600">"{wrongQuote}"</p>
+                <button
+                  onClick={() => setWrongQuote(null)}
+                  className="w-full rounded-lg bg-rose-600 px-4 py-3 font-bold text-white transition-colors hover:bg-rose-700"
+                >
+                  Thử lại nhé
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Card pool */}
       <AnimatePresence>
