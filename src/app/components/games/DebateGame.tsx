@@ -20,6 +20,7 @@ export function DebateGame() {
   const [totalScores, setTotalScores] = useState({ ly_luan: 0, trich_dan: 0, logic: 0 });
   const [isGameOver, setIsGameOver] = useState(false);
   const [dynamicClaim, setDynamicClaim] = useState('');
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const currentRound = debateRounds[roundIdx];
   const activeClaim = dynamicClaim || currentRound?.claim;
@@ -83,6 +84,7 @@ export function DebateGame() {
       setAnswer('');
       setTimeLeft(300);
       setDynamicClaim(result?.next_claim || '');
+      setShowAnswer(false);
     } else {
       setIsGameOver(true);
     }
@@ -96,6 +98,7 @@ export function DebateGame() {
     setIsGameOver(false);
     setDynamicClaim('');
     setTotalScores({ ly_luan: 0, trich_dan: 0, logic: 0 });
+    setShowAnswer(false);
   };
 
   if (isGameOver) {
@@ -164,6 +167,22 @@ export function DebateGame() {
               <ScoreCard label="Logic" score={result.scores.logic} />
             </div>
             
+            {/* User Answer Accordion */}
+            <div className="border-4 border-[#171210] bg-white shadow-[6px_6px_0_#171210]">
+              <button 
+                onClick={() => setShowAnswer(!showAnswer)}
+                className="w-full flex items-center justify-between p-4 bg-[#f3ead7] hover:bg-white transition-colors"
+              >
+                <span className="font-black text-[#171210] font-['Oswald'] uppercase tracking-widest text-lg">Bài làm của bạn</span>
+                <span className="font-black text-[#c8281e]">{showAnswer ? '▲ ĐÓNG' : '▼ XEM LẠI'}</span>
+              </button>
+              {showAnswer && (
+                <div className="p-5 border-t-4 border-[#171210] bg-white">
+                  <p className="text-[#171210] whitespace-pre-line text-lg font-['Bitter']">{answer}</p>
+                </div>
+              )}
+            </div>
+
             <div className="border-4 border-[#171210] bg-[#f3ead7] p-6 shadow-[6px_6px_0_#171210]">
               <h4 className="font-black text-[#171210] mb-3 text-lg font-['Oswald'] uppercase tracking-widest border-b-2 border-[#171210] pb-2">Nhận xét từ hệ thống:</h4>
               <p className="text-[#171210] leading-relaxed whitespace-pre-line text-lg italic mt-4">{result.feedback}</p>
