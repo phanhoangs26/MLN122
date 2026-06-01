@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 const navItems = [
   { to: '/', label: 'Trang chủ' },
-  { to: '/theory', label: 'Lý luận nhà nước' },
+  { to: '/theory', label: 'Nhà nước & Giai cấp' },
   { to: '/tu-ban', label: 'Nhà nước tư sản' },
   { to: '/game', label: 'Ôn tập' },
   { to: '/chat', label: 'Hỏi đáp' },

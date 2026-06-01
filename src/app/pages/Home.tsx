@@ -10,7 +10,7 @@ const sections = [
     to: '/theory',
     no: '01',
     icon: BookOpen,
-    title: 'Lý luận nhà nước',
+    title: 'Nhà nước & Giai cấp',
     desc: 'Chương III: nguồn gốc, bản chất, đặc trưng, kiểu và hình thức nhà nước.',
     featured: true,
   },
@@ -132,7 +132,7 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
               <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">1</span>
-              <p>Học lý thuyết ở mục <strong>Nhà nước</strong> để nắm nguồn gốc, bản chất.</p>
+              <p>Học lý thuyết ở mục <strong>Nhà nước & Giai cấp</strong> để nắm nguồn gốc, bản chất.</p>
             </div>
             <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
               <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">2</span>
