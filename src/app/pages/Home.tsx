@@ -132,15 +132,15 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
               <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">1</span>
-              <p>Học lý thuyết ở mục <strong>Nhà nước & Giai cấp</strong> để nắm nguồn gốc, bản chất.</p>
+              <p>Nắm vững lý luận Lênin và thực tiễn Việt Nam tại mục <strong>Nhà nước & Giai cấp</strong>.</p>
             </div>
             <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
               <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">2</span>
-              <p>Đối chiếu <strong>Nhà nước tư sản</strong> và liên hệ <strong>Việt Nam</strong>.</p>
+              <p>Tìm hiểu sâu về sự vận hành của cơ chế tam quyền phân lập ở mục <strong>Nhà nước tư sản</strong>.</p>
             </div>
             <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
               <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">3</span>
-              <p>Củng cố bằng <strong>Ôn tập</strong> và giải đáp thắc mắc ở <strong>Hỏi đáp</strong>.</p>
+              <p>Củng cố kiến thức bằng <strong>Ôn tập</strong> và giải đáp mọi thắc mắc ở <strong>Hỏi đáp</strong>.</p>
             </div>
           </div>
         </div>
