@@ -75,7 +75,6 @@ export const TimelineGame: React.FC = () => {
     } else {
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 500);
-
       setWrongQuote(quotes[Math.floor(Math.random() * quotes.length)]);
     }
   };
@@ -85,16 +84,16 @@ export const TimelineGame: React.FC = () => {
   return (
     <div>
       {/* Header */}
-      <div className="border-l-4 border-red-600 bg-slate-50 p-6">
+      <div className="border-l-4 border-[#c8281e] bg-[#f3ead7] p-6 shadow-[4px_4px_0_#171210] mb-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="text-sm font-black uppercase tracking-widest text-red-600">Sắp xếp dòng thời gian</div>
-            <h2 className="mt-2 font-serif text-2xl font-black text-slate-950 md:text-3xl">{round.title}</h2>
-            <p className="mt-2 max-w-2xl text-base leading-7 text-slate-700">{round.prompt}</p>
+            <div className="text-sm font-black uppercase tracking-widest text-[#c8281e] font-['Oswald']">Sắp xếp dòng thời gian</div>
+            <h2 className="mt-2 font-serif text-2xl font-black text-[#171210] md:text-3xl">{round.title}</h2>
+            <p className="mt-2 max-w-2xl text-base leading-7 text-[#6b5d4f]">{round.prompt}</p>
           </div>
           <div className="text-right">
-            <div className="text-xs font-black uppercase tracking-widest text-slate-500">Vòng</div>
-            <div className="text-2xl font-black text-slate-950">{roundIdx + 1}/{timelineRounds.length}</div>
+            <div className="text-xs font-black uppercase tracking-widest text-[#6b5d4f] font-['Oswald']">Vòng</div>
+            <div className="text-3xl font-black text-[#171210] font-['Oswald']">{roundIdx + 1}/{timelineRounds.length}</div>
           </div>
         </div>
 
@@ -104,10 +103,10 @@ export const TimelineGame: React.FC = () => {
               key={r.id}
               onClick={() => goRound(i)}
               className={clsx(
-                'rounded border px-4 py-2 text-sm font-bold transition-colors',
+                'border-2 px-4 py-2 text-sm font-bold transition-colors font-["Oswald"] uppercase tracking-wider',
                 i === roundIdx
-                  ? 'border-red-600 bg-red-600 text-white'
-                  : 'border-slate-200 bg-white text-slate-700 hover:border-red-300 hover:text-red-600',
+                  ? 'border-[#171210] bg-[#c8281e] text-white shadow-[2px_2px_0_#171210] translate-y-[-1px] translate-x-[-1px]'
+                  : 'border-[#2a201c] bg-white text-[#171210] hover:bg-[#171210] hover:text-white',
               )}
             >
               {r.title}
@@ -117,17 +116,17 @@ export const TimelineGame: React.FC = () => {
       </div>
 
       {/* Timeline slots */}
-      <div className="mt-6 rounded border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-sm font-black uppercase tracking-widest text-red-600">Thứ tự của bạn</h3>
+      <div className="border-2 border-[#171210] bg-[#ece0c8] p-5 shadow-[6px_6px_0_#c8281e] md:p-6 mb-8">
+        <div className="mb-6 flex items-center justify-between border-b-2 border-[#2a201c] pb-4">
+          <h3 className="text-sm font-black uppercase tracking-widest text-[#c8281e] font-['Oswald']">Thứ tự của bạn</h3>
           {done && (
-            <span className="rounded bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-700">
+            <span className="bg-[#171210] px-3 py-1 text-xs font-black text-[#f3ead7] font-['Oswald'] tracking-widest uppercase">
               Hoàn thành!
             </span>
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           {ordered.map((_, slot) => {
             const step = placed[slot];
             const isActive = !done && slot === currentSlot;
@@ -136,33 +135,33 @@ export const TimelineGame: React.FC = () => {
               <div
                 key={slot}
                 className={clsx(
-                  'flex items-center gap-3 rounded border px-3 py-3 transition-all duration-200',
-                  isCorrect && 'border-emerald-300 bg-emerald-50',
-                  isActive && !wrongFlash && 'border-red-300 bg-red-50',
-                  isActive && wrongFlash && 'border-rose-500 bg-rose-100',
-                  !isCorrect && !isActive && 'border-dashed border-slate-200 bg-slate-50',
+                  'flex items-center gap-4 border-2 px-4 py-4 transition-all duration-200',
+                  isCorrect && 'border-[#171210] bg-[#f3ead7]',
+                  isActive && !wrongFlash && 'border-[#c8281e] bg-white shadow-[4px_4px_0_#c8281e]',
+                  isActive && wrongFlash && 'border-rose-600 bg-rose-100',
+                  !isCorrect && !isActive && 'border-dashed border-[#6b5d4f] bg-transparent opacity-60',
                 )}
               >
                 <div className={clsx(
-                  'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-black transition-colors',
-                  isCorrect ? 'border-emerald-300 bg-emerald-100 text-emerald-700' : 'border-slate-200 bg-white text-slate-700',
+                  'flex h-10 w-10 shrink-0 items-center justify-center border-2 text-base font-black transition-colors font-["Oswald"]',
+                  isCorrect ? 'border-[#171210] bg-[#171210] text-[#f3ead7]' : 'border-[#171210] bg-white text-[#171210]',
                 )}>
                   {slot + 1}
                 </div>
                 {step ? (
                   <div className="flex flex-1 items-center justify-between gap-3">
                     <div>
-                      <div className="font-bold text-slate-950">{step.label}</div>
-                      {done && <div className="mt-0.5 text-xs leading-5 text-slate-600">{step.note}</div>}
+                      <div className="font-bold text-[#171210] text-lg">{step.label}</div>
+                      {done && <div className="mt-1 text-sm leading-6 text-[#6b5d4f] italic">{step.note}</div>}
                     </div>
-                    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-500" />
+                    <CheckCircle2 className="h-6 w-6 shrink-0 text-[#c8281e]" />
                   </div>
                 ) : isActive ? (
-                  <span className="text-sm font-semibold text-red-500">
+                  <span className="text-sm font-bold text-[#c8281e] font-['Oswald'] tracking-wider uppercase">
                     {wrongFlash ? 'Sai rồi, thử lại…' : 'Chọn thẻ tiếp theo ↓'}
                   </span>
                 ) : (
-                  <span className="text-sm text-slate-300">—</span>
+                  <span className="text-sm text-[#6b5d4f]">—</span>
                 )}
               </div>
             );
@@ -177,30 +176,30 @@ export const TimelineGame: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#171210]/60 p-4 backdrop-blur-sm"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"
+              className="relative w-full max-w-sm border-4 border-[#171210] bg-[#f3ead7] p-8 shadow-[8px_8px_0_#c8281e]"
             >
               <button
                 onClick={() => setWrongQuote(null)}
-                className="absolute right-4 top-4 rounded-full p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
+                className="absolute right-4 top-4 border-2 border-[#171210] bg-white p-1 text-[#171210] transition-colors hover:bg-[#c8281e] hover:text-white"
               >
                 <X className="h-5 w-5" />
               </button>
               
               <div className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-rose-100 text-rose-600">
-                  <HelpCircle className="h-7 w-7" />
+                <div className="mb-4 flex h-16 w-16 items-center justify-center border-4 border-[#171210] bg-[#c8281e] text-white">
+                  <HelpCircle className="h-8 w-8" />
                 </div>
-                <h4 className="mb-2 font-serif text-xl font-black text-slate-900">Oops! Chưa chính xác</h4>
-                <p className="mb-6 text-base font-medium italic text-rose-600">"{wrongQuote}"</p>
+                <h4 className="mb-3 font-['Oswald'] uppercase tracking-wider text-2xl font-black text-[#171210]">Oops! Chưa chính xác</h4>
+                <p className="mb-8 text-lg font-medium italic text-[#6b5d4f]">"{wrongQuote}"</p>
                 <button
                   onClick={() => setWrongQuote(null)}
-                  className="w-full rounded-lg bg-rose-600 px-4 py-3 font-bold text-white transition-colors hover:bg-rose-700"
+                  className="w-full border-2 border-[#171210] bg-[#171210] px-4 py-3 font-bold uppercase tracking-widest text-[#f3ead7] transition-colors hover:bg-[#c8281e] font-['Oswald']"
                 >
                   Thử lại nhé
                 </button>
@@ -217,18 +216,18 @@ export const TimelineGame: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, height: 0 }}
-            className="mt-5 rounded border border-slate-200 bg-white p-5 shadow-sm"
+            className="mt-6 border-2 border-[#171210] bg-white p-6 shadow-[4px_4px_0_#171210]"
           >
-            <h3 className="mb-3 text-sm font-black uppercase tracking-widest text-red-600">Các thẻ</h3>
-            <div className="flex flex-wrap gap-2">
+            <h3 className="mb-4 text-sm font-black uppercase tracking-widest text-[#c8281e] font-['Oswald']">Kho thẻ bài</h3>
+            <div className="flex flex-wrap gap-3">
               {pool.map((step) => (
                 <motion.button
                   key={step.label}
                   layout
-                  whileHover={{ scale: 1.03 }}
+                  whileHover={{ scale: 1.03, y: -2, x: -2 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => placeFromPool(step)}
-                  className="rounded border border-slate-200 bg-slate-50 px-4 py-3 text-left font-bold text-slate-800 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-700"
+                  className="border-2 border-[#171210] bg-[#f3ead7] px-5 py-3 text-left font-bold text-[#171210] transition-colors hover:bg-[#c8281e] hover:text-white shadow-[2px_2px_0_#171210]"
                 >
                   {step.label}
                 </motion.button>
@@ -240,18 +239,18 @@ export const TimelineGame: React.FC = () => {
 
       {/* Actions */}
       {done && (
-        <div className="mt-6 flex flex-wrap items-center gap-3">
+        <div className="mt-8 flex flex-wrap items-center gap-4 border-t-2 border-[#2a201c] pt-6">
           <button
             onClick={() => reset()}
-            className="inline-flex items-center gap-2 rounded border border-slate-200 bg-white px-5 py-3 font-bold text-slate-700 hover:border-red-300 hover:text-red-600"
+            className="inline-flex items-center gap-2 border-2 border-[#171210] bg-white px-6 py-3 font-bold text-[#171210] hover:bg-[#171210] hover:text-white font-['Oswald'] uppercase tracking-widest"
           >
             <RotateCcw className="h-4 w-4" />
-            Thử lại
+            Làm lại
           </button>
           {hasNext && (
             <button
               onClick={() => goRound(roundIdx + 1)}
-              className="inline-flex items-center gap-2 rounded bg-red-600 px-5 py-3 font-black text-white hover:bg-red-700"
+              className="inline-flex items-center gap-2 border-2 border-[#171210] bg-[#c8281e] px-6 py-3 font-black text-white hover:bg-[#8f1410] font-['Oswald'] uppercase tracking-widest shadow-[4px_4px_0_#171210] translate-y-[-2px] translate-x-[-2px]"
             >
               Vòng tiếp theo
               <ArrowRight className="h-4 w-4" />
@@ -265,14 +264,14 @@ export const TimelineGame: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-5 rounded border border-emerald-200 bg-emerald-50 p-5 text-emerald-800"
+          className="mt-6 border-l-4 border-[#c8281e] bg-[#f3ead7] p-6 shadow-[4px_4px_0_#171210]"
         >
-          <div className="flex items-center gap-2 text-lg font-black">
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
-            Chính xác!
+          <div className="flex items-center gap-2 text-xl font-black font-['Oswald'] uppercase tracking-widest text-[#171210]">
+            <CheckCircle2 className="h-6 w-6 shrink-0 text-[#c8281e]" />
+            Hoàn hảo!
           </div>
           {round.successInsight && (
-            <p className="mt-3 border-l-4 border-emerald-400 pl-4 text-sm leading-7 text-emerald-900">
+            <p className="mt-3 border-l-2 border-[#171210] pl-4 text-base leading-7 text-[#6b5d4f] italic">
               {round.successInsight}
             </p>
           )}
@@ -281,23 +280,23 @@ export const TimelineGame: React.FC = () => {
 
       {/* Questions Section */}
       {round.questions && round.questions.length > 0 && (
-        <div className="mt-6 rounded border border-red-200 bg-red-50 p-5 md:p-6">
-          <div className="mb-4 flex items-center gap-2">
-            <HelpCircle className="h-4 w-4 text-red-600" />
-            <h3 className="text-sm font-black uppercase tracking-widest text-red-600">Câu hỏi ôn tập</h3>
+        <div className="mt-8 border-4 border-[#171210] bg-white p-6 md:p-8 shadow-[8px_8px_0_#c8281e]">
+          <div className="mb-6 flex items-center gap-3 border-b-2 border-[#171210] pb-4">
+            <HelpCircle className="h-6 w-6 text-[#c8281e]" />
+            <h3 className="text-lg font-black uppercase tracking-widest text-[#171210] font-['Oswald']">Phân tích chuyên sâu</h3>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-4">
             {round.questions.map((q, i) => (
               <button
                 key={i}
                 onClick={() => setExpandedQuestion(expandedQuestion === i ? null : i)}
                 className="w-full text-left"
               >
-                <div className="rounded border border-red-200 bg-white p-4 transition-colors hover:border-red-300">
-                  <div className="flex items-start justify-between gap-3">
+                <div className="border-2 border-[#171210] bg-[#f3ead7] p-5 transition-colors hover:bg-white shadow-[2px_2px_0_#171210]">
+                  <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <p className="font-bold text-slate-900">
-                        <span className="mr-2 text-red-600">{i + 1}.</span>
+                      <p className="font-bold text-[#171210] text-lg">
+                        <span className="mr-3 font-['Oswald'] text-[#c8281e]">0{i + 1}.</span>
                         {q.front}
                       </p>
                       <AnimatePresence initial={false}>
@@ -306,14 +305,14 @@ export const TimelineGame: React.FC = () => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="mt-3 overflow-hidden text-sm leading-6 text-slate-700"
+                            className="mt-4 overflow-hidden text-base leading-7 text-[#6b5d4f] border-t-2 border-dashed border-[#171210] pt-4"
                           >
                             {q.back}
                           </motion.p>
                         )}
                       </AnimatePresence>
                     </div>
-                    <span className="shrink-0 text-xs font-black text-red-500">{expandedQuestion === i ? '▼' : '▶'}</span>
+                    <span className="shrink-0 text-xs font-black text-[#c8281e] mt-1">{expandedQuestion === i ? '▼' : '▶'}</span>
                   </div>
                 </div>
               </button>

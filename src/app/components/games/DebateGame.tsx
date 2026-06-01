@@ -101,75 +101,77 @@ export function DebateGame() {
   if (isGameOver) {
     const finalScore = Math.round(((totalScores.ly_luan + totalScores.trich_dan + totalScores.logic) / (debateRounds.length * 30)) * 100);
     return (
-      <div className="flex min-h-[400px] flex-col items-center justify-center rounded-2xl bg-white p-8 text-center shadow-sm border border-slate-200">
-        <Trophy className="mb-4 h-16 w-16 text-yellow-500" />
-        <h2 className="text-3xl font-black text-slate-800">Hoàn thành Đấu trường!</h2>
-        <p className="mt-2 text-slate-600">Điểm tổng kết của bạn: {finalScore}/100</p>
-        <div className="mt-6 flex gap-4 text-sm font-bold text-slate-600">
-          <div className="rounded-lg bg-slate-50 px-4 py-2 border border-slate-100">Lý luận: {totalScores.ly_luan}</div>
-          <div className="rounded-lg bg-slate-50 px-4 py-2 border border-slate-100">Trích dẫn: {totalScores.trich_dan}</div>
-          <div className="rounded-lg bg-slate-50 px-4 py-2 border border-slate-100">Logic: {totalScores.logic}</div>
+      <div className="flex min-h-[400px] flex-col items-center justify-center border-4 border-[#171210] bg-[#f3ead7] p-8 text-center shadow-[8px_8px_0_#c8281e]">
+        <Trophy className="mb-6 h-20 w-20 text-[#c8281e]" />
+        <h2 className="text-4xl font-black text-[#171210] font-['Oswald'] uppercase tracking-widest">Hoàn thành Đấu trường!</h2>
+        <p className="mt-4 text-xl font-bold text-[#6b5d4f]">Điểm tổng kết của bạn: <span className="text-[#c8281e]">{finalScore}/100</span></p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4 text-base font-bold text-[#171210]">
+          <div className="border-2 border-[#171210] bg-white px-5 py-3 shadow-[4px_4px_0_#171210]">Lý luận: {totalScores.ly_luan}</div>
+          <div className="border-2 border-[#171210] bg-white px-5 py-3 shadow-[4px_4px_0_#171210]">Trích dẫn: {totalScores.trich_dan}</div>
+          <div className="border-2 border-[#171210] bg-white px-5 py-3 shadow-[4px_4px_0_#171210]">Logic: {totalScores.logic}</div>
         </div>
-        <button onClick={handleRestart} className="mt-8 rounded bg-red-600 px-6 py-2.5 font-bold text-white shadow-sm hover:bg-red-700">Chơi lại</button>
+        <button onClick={handleRestart} className="mt-10 border-2 border-[#171210] bg-[#171210] px-8 py-4 font-bold uppercase tracking-widest text-[#f3ead7] shadow-[6px_6px_0_#c8281e] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0_#c8281e] font-['Oswald']">
+          Chơi lại từ đầu
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-3xl rounded-xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50 px-6 py-4 rounded-t-xl">
-        <div className="flex items-center gap-2 font-bold text-slate-700">
-          <ShieldAlert className="h-5 w-5 text-red-600" />
+    <div className="mx-auto max-w-4xl border-4 border-[#171210] bg-white shadow-[8px_8px_0_#171210] mb-8">
+      <div className="flex flex-wrap items-center justify-between border-b-4 border-[#171210] bg-[#f3ead7] px-6 py-5">
+        <div className="flex items-center gap-3 font-bold text-[#171210] text-lg font-['Oswald'] uppercase tracking-widest">
+          <ShieldAlert className="h-6 w-6 text-[#c8281e]" />
           Vòng {roundIdx + 1}/{debateRounds.length}
         </div>
         {!result && (
-          <div className={clsx("font-mono font-bold text-lg", timeLeft <= 10 ? "text-red-600 animate-pulse" : "text-slate-600")}>
+          <div className={clsx("font-['Oswald'] font-black text-2xl tracking-widest", timeLeft <= 10 ? "text-[#c8281e] animate-pulse" : "text-[#171210]")}>
             00:{timeLeft.toString().padStart(2, '0')}
           </div>
         )}
       </div>
 
-      <div className="p-6">
-        <div className="mb-6 rounded-lg bg-red-50 p-4 border border-red-100">
-          <p className="text-sm font-bold uppercase tracking-wider text-red-600 mb-2">Luận điểm của AI</p>
-          <p className="text-lg font-serif text-slate-900 font-medium">"{activeClaim}"</p>
+      <div className="p-6 md:p-8">
+        <div className="mb-8 border-l-8 border-[#c8281e] bg-[#ece0c8] p-6 shadow-[4px_4px_0_#171210]">
+          <p className="text-sm font-black uppercase tracking-widest text-[#c8281e] mb-3 font-['Oswald']">Luận điểm của AI</p>
+          <p className="text-xl font-serif text-[#171210] font-bold leading-relaxed">"{activeClaim}"</p>
         </div>
 
         {!result ? (
-          <div className="space-y-4">
+          <div className="space-y-6">
             <textarea
-              className="w-full rounded-lg border border-slate-200 p-4 text-slate-800 placeholder:text-slate-400 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 transition-shadow min-h-[120px] resize-y"
+              className="w-full border-4 border-[#171210] bg-[#f3ead7] p-5 text-lg text-[#171210] placeholder:text-[#6b5d4f] focus:bg-white focus:outline-none focus:ring-0 transition-colors min-h-[160px] resize-y shadow-[inset_4px_4px_0_rgba(0,0,0,0.05)] font-['Bitter']"
               placeholder="Nhập phản biện của bạn (dựa trên lý luận Mác-Lênin)..."
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               disabled={loading}
             />
-            {error && <p className="text-sm font-medium text-red-600">{error}</p>}
+            {error && <p className="text-base font-bold text-[#c8281e] bg-rose-100 p-3 border-2 border-[#c8281e]">{error}</p>}
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-3 font-bold text-white transition-colors hover:bg-slate-800 disabled:opacity-70"
+              className="flex w-full items-center justify-center gap-3 border-4 border-[#171210] bg-[#171210] px-6 py-4 font-black uppercase tracking-widest text-[#f3ead7] transition-all hover:bg-[#c8281e] disabled:opacity-70 disabled:hover:bg-[#171210] shadow-[6px_6px_0_#c8281e] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0_#c8281e] font-['Oswald'] text-lg"
             >
-              {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
-              {loading ? 'AI đang chấm điểm...' : 'Gửi phản biện'}
+              {loading ? <Loader2 className="h-6 w-6 animate-spin" /> : <Send className="h-6 w-6" />}
+              {loading ? 'Hệ thống đang chấm điểm...' : 'Gửi phản biện'}
             </button>
           </div>
         ) : (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-            <div className="grid grid-cols-3 gap-4">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <ScoreCard label="Lý luận" score={result.scores.ly_luan} />
               <ScoreCard label="Trích dẫn" score={result.scores.trich_dan} />
               <ScoreCard label="Logic" score={result.scores.logic} />
             </div>
             
-            <div className="rounded-lg bg-slate-50 p-5 border border-slate-200">
-              <h4 className="font-bold text-slate-800 mb-2">Nhận xét từ AI:</h4>
-              <p className="text-slate-700 leading-relaxed whitespace-pre-line">{result.feedback}</p>
+            <div className="border-4 border-[#171210] bg-[#f3ead7] p-6 shadow-[6px_6px_0_#171210]">
+              <h4 className="font-black text-[#171210] mb-3 text-lg font-['Oswald'] uppercase tracking-widest border-b-2 border-[#171210] pb-2">Nhận xét từ hệ thống:</h4>
+              <p className="text-[#171210] leading-relaxed whitespace-pre-line text-lg italic mt-4">{result.feedback}</p>
             </div>
 
             <button
               onClick={handleNextRound}
-              className="w-full rounded-lg bg-red-600 px-4 py-3 font-bold text-white transition-colors hover:bg-red-700"
+              className="w-full border-4 border-[#171210] bg-[#c8281e] px-6 py-4 font-black uppercase tracking-widest text-white transition-all hover:bg-[#8f1410] shadow-[6px_6px_0_#171210] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0_#171210] font-['Oswald'] text-lg"
             >
               {roundIdx < debateRounds.length - 1 ? 'Tiếp tục Vòng sau' : 'Xem kết quả chung cuộc'}
             </button>
@@ -181,14 +183,18 @@ export function DebateGame() {
 }
 
 function ScoreCard({ label, score }: { label: string; score: number }) {
-  let color = 'text-green-600';
-  if (score < 5) color = 'text-red-600';
-  else if (score < 8) color = 'text-yellow-600';
+  let colorClass = 'text-[#171210] bg-emerald-400';
+  if (score < 5) colorClass = 'text-white bg-[#c8281e]';
+  else if (score < 8) colorClass = 'text-[#171210] bg-[#d8a13a]';
   
   return (
-    <div className="flex flex-col items-center rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
-      <span className="text-xs font-bold uppercase text-slate-500 mb-1">{label}</span>
-      <span className={clsx("text-2xl font-black", color)}>{score}/10</span>
+    <div className="flex flex-col items-center border-4 border-[#171210] bg-white shadow-[6px_6px_0_#171210] overflow-hidden">
+      <div className="w-full bg-[#171210] text-[#f3ead7] py-2 text-center text-sm font-bold uppercase tracking-widest font-['Oswald'] border-b-4 border-[#171210]">
+        {label}
+      </div>
+      <div className={clsx("w-full py-6 text-center text-4xl font-black font-['Oswald']", colorClass)}>
+        {score}/10
+      </div>
     </div>
   );
 }
