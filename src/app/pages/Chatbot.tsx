@@ -66,7 +66,7 @@ export default function Chatbot() {
       const fallbackText = kb.score > 0 ? kb.answer : 'Rất tiếc, hiện tại mình không thể kết nối tới máy chủ AI.';
       setMessages((m) => [
         ...m,
-        { role: 'bot', text: `${fallbackText}\n\n_(Lỗi mạng/API: ${err.message})_`, source: 'offline' },
+        { role: 'bot', text: fallbackText, source: 'offline' },
       ]);
     } finally {
       setLoading(false);
