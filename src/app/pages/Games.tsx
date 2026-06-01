@@ -71,7 +71,14 @@ export default function Games() {
           {tab === 'debate' && !playerName ? (
             <div className="bg-white border-4 border-[#2a201c] p-6 sm:p-12 shadow-[8px_8px_0_#c8281e] max-w-xl mx-auto my-12 text-center">
               <h2 className="text-3xl font-black text-[#171210] font-['Oswald'] uppercase tracking-widest mb-4">Nhập mã số sinh viên để thi đấu</h2>
-              <p className="text-[#6b5d4f] font-['Bitter'] mb-8 text-lg">Hệ thống sẽ lưu điểm và xếp hạng bạn với cả lớp khi tham gia Đấu trường.</p>
+              <p className="text-[#6b5d4f] font-['Bitter'] mb-6 text-lg">Hệ thống sẽ lưu điểm và xếp hạng bạn với cả lớp khi tham gia Đấu trường.</p>
+              
+              <div className="mb-6 p-4 bg-[#f3ead7] border-l-4 border-[#c8281e] text-left shadow-[4px_4px_0_#171210]">
+                <h3 className="font-black text-[#c8281e] font-['Oswald'] uppercase tracking-widest text-base mb-1">Luật chơi:</h3>
+                <p className="font-['Bitter'] text-[#171210] text-sm">
+                  AI sẽ đưa ra một luận điểm sai lệch về triết học. Nhiệm vụ của bạn là sử dụng <strong>Lý luận</strong>, <strong>Trích dẫn</strong> và <strong>Logic</strong> để phản biện trong vòng 5 phút mỗi câu. Điểm số (tối đa 100) sẽ được chấm tự động và cộng vào Bảng vàng!
+                </p>
+              </div>
               
               <input 
                 type="text" 

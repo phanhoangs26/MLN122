@@ -163,15 +163,6 @@ export function DebateGame() {
       </div>
 
       <div className="p-6 md:p-8">
-        {roundIdx === 0 && !result && (
-          <div className="mb-6 p-4 bg-white border-4 border-[#171210] shadow-[4px_4px_0_#171210]">
-            <h3 className="font-black text-[#c8281e] font-['Oswald'] uppercase tracking-widest text-lg mb-2">Luật chơi:</h3>
-            <p className="font-['Bitter'] text-[#171210] font-bold">
-              AI sẽ đưa ra một luận điểm sai lệch về triết học Mác - Lênin. Nhiệm vụ của bạn là sử dụng <strong>Lý luận</strong>, <strong>Trích dẫn</strong> và <strong>Logic</strong> để phản biện lại trong vòng 5 phút. Điểm số sẽ được chấm tự động và cộng vào Bảng vàng!
-            </p>
-          </div>
-        )}
-
         <div className="mb-8 border-l-8 border-[#c8281e] bg-[#ece0c8] p-6 shadow-[4px_4px_0_#171210]">
           <p className="text-sm font-black uppercase tracking-widest text-[#c8281e] mb-3 font-['Oswald']">Luận điểm của AI</p>
           <p className="text-xl font-serif text-[#171210] font-bold leading-relaxed">"{activeClaim}"</p>
