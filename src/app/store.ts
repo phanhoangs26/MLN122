@@ -33,35 +33,13 @@ export const useGameStore = create<GameState>((set) => ({
   currentStage: 1,
   inventory: emptyInventory(),
   playerName: '',
-  setPlayerName: (name) => {
-    set({ playerName: name });
-    const currentState = useGameStore.getState();
-    if (currentState.xp > 0) {
-      fetch('/api/leaderboard', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, xp: currentState.xp })
-      }).catch(err => console.error("Failed to sync leaderboard:", err));
-    }
-  },
+  setPlayerName: (name) => set({ playerName: name }),
   loseHeart: () => set((state) => ({ hearts: Math.max(0, state.hearts - 1) })),
-  addXp: (amount) => {
-    set((state) => {
-      const newXp = state.xp + amount;
-      const newLevel = Math.floor(newXp / 100) + 1; // 100 XP per level
-      
-      // Async sync to leaderboard if player name exists
-      if (state.playerName) {
-        fetch('/api/leaderboard', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: state.playerName, xp: newXp })
-        }).catch(err => console.error("Failed to sync leaderboard:", err));
-      }
-
-      return { xp: newXp, level: newLevel };
-    });
-  },
+  addXp: (amount) => set((state) => {
+    const newXp = state.xp + amount;
+    const newLevel = Math.floor(newXp / 100) + 1; // 100 XP per level
+    return { xp: newXp, level: newLevel };
+  }),
   unlockItem: (item) => set((state) => ({
     inventory: { ...state.inventory, [item]: true }
   })),

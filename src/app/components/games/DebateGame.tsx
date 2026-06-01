@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { debateRounds } from '../../data/debateData';
 import { ShieldAlert, Trophy, Loader2, Send } from 'lucide-react';
+import { useGameStore } from '../../store';
 import clsx from 'clsx';
 
 type JudgeResult = {
@@ -113,6 +114,20 @@ export function DebateGame() {
     setTotalScores({ ly_luan: 0, trich_dan: 0, logic: 0 });
     setShowAnswer(false);
   };
+
+  useEffect(() => {
+    if (isGameOver) {
+      const finalScore = Math.round(((totalScores.ly_luan + totalScores.trich_dan + totalScores.logic) / (debateRounds.length * 30)) * 100);
+      const name = useGameStore.getState().playerName;
+      if (name) {
+        fetch('/api/leaderboard', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, xp: finalScore })
+        }).catch(err => console.error("Failed to sync leaderboard:", err));
+      }
+    }
+  }, [isGameOver, totalScores]);
 
   if (isGameOver) {
     const finalScore = Math.round(((totalScores.ly_luan + totalScores.trich_dan + totalScores.logic) / (debateRounds.length * 30)) * 100);

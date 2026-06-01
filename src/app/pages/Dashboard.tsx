@@ -93,7 +93,7 @@ export default function Dashboard() {
                     <tr className="bg-[#171210] text-[#f3ead7] font-['Oswald'] uppercase tracking-widest text-lg">
                       <th className="p-4 border-b-4 border-[#171210] w-24 text-center">Hạng</th>
                       <th className="p-4 border-b-4 border-[#171210]">Sinh viên</th>
-                      <th className="p-4 border-b-4 border-[#171210] text-right">Điểm XP</th>
+                      <th className="p-4 border-b-4 border-[#171210] text-right">Điểm Đấu Trường</th>
                     </tr>
                   </thead>
                   <tbody>
