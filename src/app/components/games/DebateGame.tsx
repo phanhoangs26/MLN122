@@ -13,7 +13,7 @@ type JudgeResult = {
 export function DebateGame() {
   const [roundIdx, setRoundIdx] = useState(0);
   const [answer, setAnswer] = useState('');
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(300);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<JudgeResult | null>(null);
   const [error, setError] = useState('');
@@ -81,7 +81,7 @@ export function DebateGame() {
       setRoundIdx(prev => prev + 1);
       setResult(null);
       setAnswer('');
-      setTimeLeft(60);
+      setTimeLeft(300);
       setDynamicClaim(result?.next_claim || '');
     } else {
       setIsGameOver(true);
@@ -92,7 +92,7 @@ export function DebateGame() {
     setRoundIdx(0);
     setResult(null);
     setAnswer('');
-    setTimeLeft(60);
+    setTimeLeft(300);
     setIsGameOver(false);
     setDynamicClaim('');
     setTotalScores({ ly_luan: 0, trich_dan: 0, logic: 0 });
@@ -125,8 +125,8 @@ export function DebateGame() {
           Vòng {roundIdx + 1}/{debateRounds.length}
         </div>
         {!result && (
-          <div className={clsx("font-['Oswald'] font-black text-2xl tracking-widest", timeLeft <= 10 ? "text-[#c8281e] animate-pulse" : "text-[#171210]")}>
-            00:{timeLeft.toString().padStart(2, '0')}
+          <div className={clsx("font-['Oswald'] font-black text-2xl tracking-widest", timeLeft <= 30 ? "text-[#c8281e] animate-pulse" : "text-[#171210]")}>
+            {Math.floor(timeLeft / 60).toString().padStart(2, '0')}:{(timeLeft % 60).toString().padStart(2, '0')}
           </div>
         )}
       </div>
@@ -167,6 +167,20 @@ export function DebateGame() {
             <div className="border-4 border-[#171210] bg-[#f3ead7] p-6 shadow-[6px_6px_0_#171210]">
               <h4 className="font-black text-[#171210] mb-3 text-lg font-['Oswald'] uppercase tracking-widest border-b-2 border-[#171210] pb-2">Nhận xét từ hệ thống:</h4>
               <p className="text-[#171210] leading-relaxed whitespace-pre-line text-lg italic mt-4">{result.feedback}</p>
+            </div>
+
+            <div className="border-4 border-[#171210] bg-white p-6 shadow-[6px_6px_0_#c8281e]">
+              <h4 className="font-black text-[#c8281e] mb-4 text-lg font-['Oswald'] uppercase tracking-widest border-b-2 border-[#c8281e] pb-2">Gợi ý đáp án (Các ý cần có)</h4>
+              <ul className="list-disc pl-5 space-y-2 mb-6 text-[#171210] font-bold text-base">
+                {currentRound.expected_points.map((pt, idx) => (
+                  <li key={idx}>{pt}</li>
+                ))}
+              </ul>
+              
+              <h4 className="font-black text-[#6b5d4f] mb-3 text-sm font-['Oswald'] uppercase tracking-widest">Trích dẫn tham chiếu</h4>
+              <p className="text-[#6b5d4f] italic border-l-4 border-[#6b5d4f] pl-4 text-base">
+                {currentRound.source_chunk}
+              </p>
             </div>
 
             <button
