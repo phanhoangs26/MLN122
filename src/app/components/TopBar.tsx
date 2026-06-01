@@ -8,6 +8,7 @@ const navItems = [
   { to: '/tu-ban', label: 'Nhà nước tư sản' },
   { to: '/game', label: 'Ôn tập' },
   { to: '/chat', label: 'Hỏi đáp' },
+  { to: '/dashboard', label: 'Xếp hạng' },
 ];
 
 export const TopBar: React.FC = () => {
