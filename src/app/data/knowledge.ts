@@ -213,6 +213,48 @@ export const knowledgeBase: KbEntry[] = [
     answer:
       'Chức năng đối nội và đối ngoại là hai mặt của một thực thể thống nhất, hỗ trợ lẫn nhau. Trong đó, chức năng đối nội giữ vai trò CHỦ YẾU. Có làm tốt chức năng đối nội (ổn định xã hội, phát triển kinh tế) thì mới có điều kiện thực hiện tốt chức năng đối ngoại. Ngược lại, chức năng đối ngoại tốt sẽ tạo điều kiện nâng cao vị thế, thúc đẩy phát triển đối nội.',
   },
+  {
+    id: 'product_and_expression',
+    question: 'Tại sao Lênin dùng cả hai từ "sản phẩm" và "biểu hiện"? Bỏ một từ được không?',
+    keywords: ['cả hai từ', 'bỏ từ', 'thiếu một từ', 'sản phẩm và biểu hiện', 'sản phẩm hay biểu hiện'],
+    answer:
+      'Lênin dùng cả hai từ vì chúng bổ sung cho nhau, không thể bỏ từ nào. "Sản phẩm" chỉ nguồn gốc quá khứ (nhà nước sinh ra từ đâu: từ mâu thuẫn giai cấp). "Biểu hiện" chỉ thực trạng hiện tại (nhà nước đang phản ánh điều gì: phản ánh mâu thuẫn giai cấp vẫn đang tồn tại). Thiếu "sản phẩm", ta không rõ cội nguồn. Thiếu "biểu hiện", ta không thấy được bản chất áp bức vẫn đang tiếp diễn.',
+  },
+  {
+    id: 'no_agreement',
+    question: 'Tại sao các giai cấp không thể tự thỏa thuận với nhau mà phải cần nhà nước?',
+    keywords: ['thỏa thuận', 'tự thỏa thuận', 'dàn xếp', 'cần một lực lượng đứng trên'],
+    answer:
+      'Vì mâu thuẫn giai cấp là đối kháng về lợi ích kinh tế cốt lõi (kẻ bóc lột và người bị bóc lột). Lợi ích này triệt tiêu lẫn nhau nên không thể tự thỏa thuận hay dung hòa. Nếu không có một lực lượng bạo lực "đứng trên xã hội" (nhà nước) để áp đặt trật tự, các giai cấp sẽ tiêu diệt lẫn nhau trong các cuộc xung đột, dẫn đến sự sụp đổ của toàn bộ xã hội.',
+  },
+  {
+    id: 'resolve_conflict',
+    question: 'Nếu mâu thuẫn giai cấp được giải quyết thì nhà nước có còn không?',
+    keywords: ['giải quyết', 'hết mâu thuẫn', 'không còn mâu thuẫn', 'nhà nước còn không'],
+    answer:
+      'Không. Theo logic của Lênin, nhà nước là công cụ để quản lý mâu thuẫn giai cấp. Khi xã hội tiến lên giai đoạn cộng sản chủ nghĩa, không còn chế độ tư hữu, không còn giai cấp, tức là mâu thuẫn giai cấp đã bị triệt tiêu, thì nhà nước sẽ mất đi lý do tồn tại và tự "tiêu vong".',
+  },
+  {
+    id: 'protect_everyone',
+    question: 'Nếu nhà nước bảo vệ trật tự chung thì tại sao nói nó phục vụ giai cấp thống trị?',
+    keywords: ['bảo vệ trật tự', 'bảo vệ mọi người', 'trật tự chung', 'phục vụ toàn xã hội'],
+    answer:
+      'Nhà nước bảo vệ "trật tự chung" thực chất là bảo vệ trật tự có lợi cho giai cấp thống trị. Để duy trì sự thống trị lâu dài, nó buộc phải thực hiện một số chức năng xã hội (cầu đường, y tế...). Nhưng chức năng xã hội chỉ là phương tiện, là "lớp vỏ" che đậy bản chất giai cấp, mục đích cuối cùng vẫn là bảo vệ quyền tư hữu và chế độ bóc lột của giai cấp cầm quyền.',
+  },
+  {
+    id: 'modern_democracy',
+    question: 'Nhà nước dân chủ hiện đại, có phúc lợi xã hội có phủ nhận luận điểm Lênin không?',
+    keywords: ['dân chủ hiện đại', 'phúc lợi xã hội', 'phủ nhận', 'làm mất bản chất', 'bác bỏ'],
+    answer:
+      'Không. Dân chủ đa đảng hay phúc lợi xã hội cao ở các nước tư bản hiện đại chỉ là những điều chỉnh chiến thuật nhằm xoa dịu mâu thuẫn giai cấp, tránh các cuộc cách mạng bùng nổ. Đằng sau lớp vỏ dân chủ đó, các tập đoàn tư bản độc quyền vẫn nắm giữ kinh tế và chi phối bộ máy chính trị. Bản chất chuyên chính tư sản vẫn không thay đổi.',
+  },
+  {
+    id: 'army_police',
+    question: 'Bộ máy quân đội, cảnh sát, tòa án, pháp luật, thuế khóa phản ánh điều gì?',
+    keywords: ['quân đội', 'cảnh sát', 'tòa án', 'pháp luật', 'thuế khóa', 'phản ánh điều gì'],
+    answer:
+      'Đó là biểu hiện vật chất của quyền lực nhà nước, chứng minh mâu thuẫn giai cấp là không thể điều hòa. Giai cấp thống trị không thể cai trị chỉ bằng thuyết phục, mà phải dùng bạo lực cưỡng chế (quân đội, cảnh sát), áp đặt ý chí thành luật (pháp luật) và bóc lột hợp pháp (thuế) để duy trì trật tự bóc lột.',
+  },
 ];
 
 export const suggestedQuestions = [
