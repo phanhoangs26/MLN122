@@ -41,14 +41,14 @@ export function DebateGame() {
     return () => clearInterval(timer);
   }, [result, isGameOver, loading, roundIdx]);
 
-  const pushToLeaderboard = async (delta: number) => {
+  const pushToLeaderboard = async (score: number, round: number) => {
     const name = useGameStore.getState().playerName;
-    if (name && delta !== 0) {
+    if (name && score > 0) {
       try {
         await fetch('/api/leaderboard', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, xp: delta })
+          body: JSON.stringify({ name, xp: score, round })
         });
       } catch (err) {
         console.error("Failed to sync leaderboard:", err);
@@ -82,8 +82,8 @@ export function DebateGame() {
       const data: JudgeResult = await res.json();
       setResult(data);
       
-      const delta = data.scores.ly_luan + data.scores.trich_dan + data.scores.logic;
-      pushToLeaderboard(delta);
+      const roundScore = data.scores.ly_luan + data.scores.trich_dan + data.scores.logic;
+      pushToLeaderboard(roundScore, roundIdx);
 
       setTotalScores(prev => ({
         ly_luan: prev.ly_luan + data.scores.ly_luan,
@@ -99,9 +99,6 @@ export function DebateGame() {
 
   const handleRetryRound = () => {
     if (result) {
-      const delta = result.scores.ly_luan + result.scores.trich_dan + result.scores.logic;
-      pushToLeaderboard(-delta); // subtract the score from leaderboard
-
       setTotalScores(prev => ({
         ly_luan: prev.ly_luan - result.scores.ly_luan,
         trich_dan: prev.trich_dan - result.scores.trich_dan,

@@ -45,27 +45,38 @@ export default async function handler(req, res) {
   // Handle POST request to update score
   if (req.method === 'POST') {
     try {
-      const { name, xp } = req.body;
+      const { name, xp, round } = req.body;
       
-      if (!name || typeof xp !== 'number') {
-        return res.status(400).json({ error: 'Missing name or xp' });
+      if (!name || typeof xp !== 'number' || typeof round !== 'number') {
+        return res.status(400).json({ error: 'Missing name, xp, or round' });
       }
 
-      // We use ZINCRBY to update the score incrementally. If the name exists, its score is increased by xp.
-      // This allows the user to accumulate points across rounds and across login sessions.
-      const fetchUrl = `${KV_URL}/zincrby/mln_leaderboard/${xp}/${encodeURIComponent(name)}`;
-      const response = await fetch(fetchUrl, {
-        headers: {
-          Authorization: `Bearer ${KV_TOKEN}`,
-        },
-      });
+      const headers = { Authorization: `Bearer ${KV_TOKEN}` };
+      const userKey = `mln_user_scores:${encodeURIComponent(name)}`;
+      
+      // 1. Get the current high score for this round
+      const getScoreUrl = `${KV_URL}/hget/${userKey}/round_${round}`;
+      const getRes = await fetch(getScoreUrl, { headers });
+      const getData = await getRes.json();
+      const currentScore = Number(getData.result) || 0;
 
-      if (!response.ok) {
-        throw new Error(`Upstash returned ${response.status}`);
+      // 2. If new score is higher, update hash and leaderboard
+      if (xp > currentScore) {
+        const diff = xp - currentScore;
+
+        // Update the hash with the new high score
+        await fetch(`${KV_URL}/hset/${userKey}/round_${round}/${xp}`, { headers });
+
+        // Update the leaderboard sorted set by adding the difference
+        const zincrbyUrl = `${KV_URL}/zincrby/mln_leaderboard/${diff}/${encodeURIComponent(name)}`;
+        const zincrbyRes = await fetch(zincrbyUrl, { headers });
+        const zincrbyData = await zincrbyRes.json();
+
+        return res.status(200).json({ success: true, updated: true, newHighScore: xp, result: zincrbyData.result });
       }
 
-      const data = await response.json();
-      return res.status(200).json({ success: true, result: data.result });
+      // If new score is not higher, just return success without updating
+      return res.status(200).json({ success: true, updated: false, currentHighScore: currentScore });
       
     } catch (error) {
       console.error('Leaderboard POST error:', error);
