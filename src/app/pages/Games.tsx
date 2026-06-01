@@ -75,7 +75,7 @@ export default function Games() {
               
               <input 
                 type="text" 
-                placeholder="VD: Nhân Lưu (MSSV: 1234)" 
+                placeholder="VD: SE190525" 
                 value={tempName}
                 onChange={(e) => setTempName(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSaveName()}
