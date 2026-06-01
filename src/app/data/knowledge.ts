@@ -60,6 +60,13 @@ export const knowledgeBase: KbEntry[] = [
       'Giai cấp xuất hiện khi lực lượng sản xuất phát triển dẫn đến của cải dư thừa, từ đó chế độ tư hữu ra đời. Sự xuất hiện chế độ tư hữu phá vỡ tính bình đẳng của xã hội nguyên thủy, phân hóa xã hội thành những tập đoàn người có địa vị kinh tế khác nhau: giai cấp thống trị (chiếm đoạt tư liệu sản xuất) và giai cấp bị trị.',
   },
   {
+    id: 'private_property',
+    question: 'Chế độ tư hữu liên quan gì đến sự ra đời của nhà nước?',
+    keywords: ['chế độ tư hữu', 'tư hữu', 'nguyên nhân sâu xa', 'sự xuất hiện của chế độ tư hữu'],
+    answer:
+      'Chế độ tư hữu phá vỡ sự bình đẳng của xã hội nguyên thủy, làm xã hội phân hóa thành kẻ giàu người nghèo (giai cấp thống trị và bị trị). Sự phân hóa này dẫn đến mâu thuẫn đối kháng không thể tự điều hòa. Giai cấp nắm giữ tư hữu buộc phải lập ra bộ máy bạo lực (nhà nước) để bảo vệ tài sản và đàn áp sự phản kháng. Vậy tư hữu chính là mầm mống, là nguyên nhân sâu xa đẻ ra nhà nước.',
+  },
+  {
     id: 'class_conflict_def',
     question: 'Mâu thuẫn giai cấp là gì? Thế nào là không thể điều hòa?',
     keywords: ['mâu thuẫn giai cấp là gì', 'thế nào là không thể điều hòa', 'không thể điều hòa là gì'],
