@@ -8,6 +8,19 @@ import { answerFromKB, buildContext, suggestedQuestions } from '../data/knowledg
 type Msg = { role: 'user' | 'bot'; text: string; source?: 'offline' | 'ai' };
 
 import ReactMarkdown from 'react-markdown';
+import { pipeline } from '@huggingface/transformers';
+
+let generator: any = null;
+
+async function getLocalModel() {
+  if (!generator) {
+    generator = await pipeline(
+      'text-generation',
+      'Qwen/Qwen3-0.6B'
+    );
+  }
+  return generator;
+}
 
 // Gọi serverless function — system prompt + giáo trình nằm hoàn toàn ở server
 async function askAI(history: Msg[]): Promise<string> {
@@ -63,11 +76,29 @@ export default function Chatbot() {
       const reply = await askAI(next);
       setMessages((m) => [...m, { role: 'bot', text: reply, source: 'ai' }]);
     } catch (err: any) {
-      const fallbackText = kb.score > 0 ? kb.answer : 'Rất tiếc, hiện tại mình không thể kết nối tới máy chủ AI.';
-      setMessages((m) => [
-        ...m,
-        { role: 'bot', text: fallbackText, source: 'offline' },
-      ]);
+      try {
+        // Fallback sử dụng Qwen model chạy local trên trình duyệt
+        const gen = await getLocalModel();
+        const prompt = `Bạn là Trợ lý Triết học Mác - Lênin.\nNgười dùng hỏi: ${q}\nTrả lời:`;
+        const result = await gen(prompt, { max_new_tokens: 300 });
+        
+        let fallbackReply = result[0].generated_text;
+        if (fallbackReply.startsWith(prompt)) {
+          fallbackReply = fallbackReply.slice(prompt.length).trim();
+        }
+        
+        setMessages((m) => [
+          ...m,
+          { role: 'bot', text: fallbackReply + '\n\n_(Đã dùng Qwen local fallback do API lỗi)_', source: 'offline' },
+        ]);
+      } catch (fallbackErr) {
+        // Nếu load model Qwen cũng lỗi, dùng fallback text cơ bản
+        const fallbackText = kb.score > 0 ? kb.answer : 'Rất tiếc, hiện tại mình không thể kết nối tới máy chủ AI.';
+        setMessages((m) => [
+          ...m,
+          { role: 'bot', text: fallbackText, source: 'offline' },
+        ]);
+      }
     } finally {
       setLoading(false);
     }
