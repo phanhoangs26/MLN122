@@ -239,9 +239,9 @@ export default function Theory() {
               <p>Tự động hóa và AI làm dịch chuyển quan hệ sở hữu "tư liệu sản xuất" sang dữ liệu & thuật toán, làm dấy lên xung đột mới về việc làm và phân phối. Nhà nước ra quy định (AI Act, luật dữ liệu) để giữ xung đột "trong vòng trật tự".</p>
             </div>
             <div className="case">
-              <div className="tag">LIÊN HỆ VIỆT NAM</div>
-              <h3>Nhà nước pháp quyền XHCN</h3>
-              <p>Xây dựng Nhà nước pháp quyền XHCN "của Nhân dân, do Nhân dân, vì Nhân dân": kết hợp chức năng xã hội (an sinh, y tế, giáo dục) với vai trò lãnh đạo của liên minh công–nông–trí — hình thức của nhà nước kiểu mới.</p>
+              <div className="tag">QUỐC GIA ↔ BIG TECH</div>
+              <h3>Big Tech & Chủ quyền số</h3>
+              <p>Các chính phủ liên tục ban hành quy định đối với Google, Meta, TikTok nhằm kiểm soát dữ liệu và ảnh hưởng xã hội. Khi doanh nghiệp công nghệ sở hữu quyền lực kinh tế khổng lồ, nhà nước phải can thiệp bằng luật pháp để bảo vệ chủ quyền quốc gia.</p>
             </div>
           </div>
 
