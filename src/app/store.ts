@@ -33,7 +33,17 @@ export const useGameStore = create<GameState>((set) => ({
   currentStage: 1,
   inventory: emptyInventory(),
   playerName: '',
-  setPlayerName: (name) => set({ playerName: name }),
+  setPlayerName: (name) => {
+    set({ playerName: name });
+    const currentState = useGameStore.getState();
+    if (currentState.xp > 0) {
+      fetch('/api/leaderboard', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, xp: currentState.xp })
+      }).catch(err => console.error("Failed to sync leaderboard:", err));
+    }
+  },
   loseHeart: () => set((state) => ({ hearts: Math.max(0, state.hearts - 1) })),
   addXp: (amount) => {
     set((state) => {
