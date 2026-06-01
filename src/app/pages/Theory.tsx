@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { TopBar } from '../components/TopBar';
-import './theory.css';
+
 import clsx from 'clsx';
 
 const stages = [
