@@ -70,37 +70,6 @@ export default function CapitalistState() {
           <h2>Đa dạng vỏ bọc, một bản chất</h2>
           <p className="lead mt-4">Dù tổ chức dưới hình thức cộng hòa hay quân chủ, bộ máy nhà nước tư sản hiện đại thường vận hành theo cơ chế <strong>Tam quyền phân lập</strong> (Phân công - Kiểm soát - Đối trọng).</p>
           
-          <div className="vn mt-8">
-            <div className="vn-head">
-              <div>
-                <div className="vn-kick">THUYẾT PHÂN QUYỀN</div>
-                <h3 className="text-white mt-1">Lập pháp ↔ Hành pháp ↔ Tư pháp</h3>
-              </div>
-            </div>
-            <p className="vn-intro text-gray-300">Quyền lực nhà nước được chia tách thành ba nhánh giao cho các cơ quan độc lập, nhằm mục tiêu kiểm soát và đối trọng quyền lực lẫn nhau.</p>
-            
-            <div className="vn-grid mt-6">
-              <div className="vn-card">
-                <div className="vt">NHÁNH 1</div>
-                <div className="vnum">Lập pháp</div>
-                <div className="vlab mt-2">Nghị viện / Quốc hội</div>
-                <p>Ban hành luật, phê duyệt ngân sách và giám sát chính phủ. Thường tổ chức theo mô hình lưỡng viện (Hạ viện - Thượng viện).</p>
-              </div>
-              <div className="vn-card">
-                <div className="vt">NHÁNH 2</div>
-                <div className="vnum">Hành pháp</div>
-                <div className="vlab mt-2">Tổng thống / Thủ tướng</div>
-                <p>Thực thi pháp luật, điều hành chính sách đối nội và đối ngoại. Nắm giữ lực lượng cưỡng chế (quân đội, cảnh sát).</p>
-              </div>
-              <div className="vn-card">
-                <div className="vt">NHÁNH 3</div>
-                <div className="vnum">Tư pháp</div>
-                <div className="vlab mt-2">Tòa án tối cao</div>
-                <p>Nhánh độc lập chuyên xét xử, bảo vệ Hiến pháp và pháp luật tư sản. Thẩm phán thường có nhiệm kỳ rất dài hoặc chung thân.</p>
-              </div>
-            </div>
-          </div>
-
           <div className="real-grid mt-12">
             <div className="case">
               <div className="tag">CỘNG HÒA TỔNG THỐNG</div>

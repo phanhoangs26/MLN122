@@ -279,41 +279,7 @@ export default function Theory() {
         </div>
       </motion.section>
 
-      {/* APPENDIX AI */}
-      <motion.section className="appx" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
-        <div className="wrap">
-          <div className="kicker">Phụ lục bắt buộc</div>
-          <h2 style={{ fontSize: 'clamp(26px, 4.5vw, 40px)' }}>AI Usage · Minh bạch & Liêm chính học thuật</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Công cụ</th>
-                <th>Mục đích</th>
-                <th>Prompt chính</th>
-                <th>Phần SV chỉnh sửa / kiểm chứng</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>LLM (Claude)</td>
-                <td>Dựng mã sản phẩm web tương tác, gợi ý kịch bản tương tác</td>
-                <td>"Dựng web tương tác về luận điểm Lênin: nhà nước là sản phẩm của mâu thuẫn giai cấp, có mô phỏng + quiz"</td>
-                <td>SV viết lại toàn bộ nội dung học thuật theo giáo trình; chỉnh thông điệp từng tầng; kiểm tra logic mô phỏng</td>
-              </tr>
-              <tr>
-                <td>LLM</td>
-                <td>Soạn câu hỏi quiz & đáp án giải thích</td>
-                <td>"Tạo 5 câu trắc nghiệm bám sát nội dung Chương III"</td>
-                <td>SV đối chiếu từng đáp án với giáo trình tr.170-176; loại câu sai lệch</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="pledge">
-            <b>Cam kết liêm chính học thuật:</b> Nhóm khẳng định AI chỉ đóng vai trò <em>hỗ trợ</em> (sinh mã, gợi ý sơ đồ, quiz), <b>không</b> thay thế phần phân tích học thuật. Toàn bộ luận giải đối chiếu với <i>Giáo trình Triết học Mác–Lênin 2021, Chương III</i> và các trích dẫn gốc của Mác, Ăngghen, Lênin. Nhóm chịu trách nhiệm về nội dung cuối cùng.
-          </div>
-          <p className="src-note">Nguồn: Giáo trình Triết học Mác–Lênin 2021 (Ch.III); V.I. Lênin, <i>Nhà nước và Cách mạng</i>; Ph. Ăngghen; C. Mác, <i>Phê phán Cương lĩnh Gôta</i>.</p>
-        </div>
-      </motion.section>
+
 
       <footer>★ CỖ MÁY NHÀ NƯỚC — Sản phẩm tương tác · Chương III: Nhà nước và Cách mạng xã hội ★</footer>
     </div>
