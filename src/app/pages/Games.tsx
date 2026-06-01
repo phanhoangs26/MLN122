@@ -70,7 +70,7 @@ export default function Games() {
 
           {tab === 'debate' && !playerName ? (
             <div className="bg-white border-4 border-[#2a201c] p-6 sm:p-12 shadow-[8px_8px_0_#c8281e] max-w-xl mx-auto my-12 text-center">
-              <h2 className="text-3xl font-black text-[#171210] font-['Oswald'] uppercase tracking-widest mb-4">Nhập tên để thi đấu</h2>
+              <h2 className="text-3xl font-black text-[#171210] font-['Oswald'] uppercase tracking-widest mb-4">Nhập mã số sinh viên để thi đấu</h2>
               <p className="text-[#6b5d4f] font-['Bitter'] mb-8 text-lg">Hệ thống sẽ lưu điểm và xếp hạng bạn với cả lớp khi tham gia Đấu trường.</p>
               
               <input 
