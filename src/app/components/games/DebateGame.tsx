@@ -41,6 +41,21 @@ export function DebateGame() {
     return () => clearInterval(timer);
   }, [result, isGameOver, loading, roundIdx]);
 
+  const pushToLeaderboard = async (delta: number) => {
+    const name = useGameStore.getState().playerName;
+    if (name && delta !== 0) {
+      try {
+        await fetch('/api/leaderboard', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, xp: delta })
+        });
+      } catch (err) {
+        console.error("Failed to sync leaderboard:", err);
+      }
+    }
+  };
+
   const handleSubmit = async () => {
     const text = answer.trim();
     if (text.length < 10 && timeLeft > 0) {
@@ -66,6 +81,10 @@ export function DebateGame() {
       
       const data: JudgeResult = await res.json();
       setResult(data);
+      
+      const delta = data.scores.ly_luan + data.scores.trich_dan + data.scores.logic;
+      pushToLeaderboard(delta);
+
       setTotalScores(prev => ({
         ly_luan: prev.ly_luan + data.scores.ly_luan,
         trich_dan: prev.trich_dan + data.scores.trich_dan,
@@ -80,6 +99,9 @@ export function DebateGame() {
 
   const handleRetryRound = () => {
     if (result) {
+      const delta = result.scores.ly_luan + result.scores.trich_dan + result.scores.logic;
+      pushToLeaderboard(-delta); // subtract the score from leaderboard
+
       setTotalScores(prev => ({
         ly_luan: prev.ly_luan - result.scores.ly_luan,
         trich_dan: prev.trich_dan - result.scores.trich_dan,
@@ -114,20 +136,6 @@ export function DebateGame() {
     setTotalScores({ ly_luan: 0, trich_dan: 0, logic: 0 });
     setShowAnswer(false);
   };
-
-  useEffect(() => {
-    if (isGameOver) {
-      const finalScore = totalScores.ly_luan + totalScores.trich_dan + totalScores.logic;
-      const name = useGameStore.getState().playerName;
-      if (name) {
-        fetch('/api/leaderboard', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, xp: finalScore })
-        }).catch(err => console.error("Failed to sync leaderboard:", err));
-      }
-    }
-  }, [isGameOver, totalScores]);
 
   if (isGameOver) {
     const finalScore = totalScores.ly_luan + totalScores.trich_dan + totalScores.logic;

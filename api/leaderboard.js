@@ -51,9 +51,9 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Missing name or xp' });
       }
 
-      // We use ZADD to update the score. If the name exists, its score is updated.
-      // Since 'xp' from store.ts is cumulative, this is perfect.
-      const fetchUrl = `${KV_URL}/zadd/mln_leaderboard/${xp}/${encodeURIComponent(name)}`;
+      // We use ZINCRBY to update the score incrementally. If the name exists, its score is increased by xp.
+      // This allows the user to accumulate points across rounds and across login sessions.
+      const fetchUrl = `${KV_URL}/zincrby/mln_leaderboard/${xp}/${encodeURIComponent(name)}`;
       const response = await fetch(fetchUrl, {
         headers: {
           Authorization: `Bearer ${KV_TOKEN}`,
