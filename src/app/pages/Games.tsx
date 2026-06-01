@@ -76,7 +76,7 @@ export default function Games() {
               <div className="mb-6 p-4 bg-[#f3ead7] border-l-4 border-[#c8281e] text-left shadow-[4px_4px_0_#171210]">
                 <h3 className="font-black text-[#c8281e] font-['Oswald'] uppercase tracking-widest text-base mb-1">Luật chơi:</h3>
                 <p className="font-['Bitter'] text-[#171210] text-sm">
-                  AI sẽ đưa ra một luận điểm sai lệch về triết học. Nhiệm vụ của bạn là sử dụng <strong>Lý luận</strong>, <strong>Trích dẫn</strong> và <strong>Logic</strong> để phản biện trong vòng 5 phút mỗi câu. Điểm số (tối đa 100) sẽ được chấm tự động và cộng vào Bảng vàng!
+                  AI sẽ đưa ra một luận điểm sai lệch về triết học. Nhiệm vụ của bạn là sử dụng <strong>Lý luận</strong>, <strong>Trích dẫn</strong> và <strong>Logic</strong> để phản biện trong vòng 5 phút mỗi câu. Điểm số (tối đa 90) sẽ được chấm tự động và cộng vào Bảng vàng!
                 </p>
               </div>
               

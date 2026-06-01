@@ -112,7 +112,7 @@ export default function Dashboard() {
                           {entry.name}
                         </td>
                         <td className="p-4 text-right font-black text-[#c8281e]">
-                          {entry.xp.toLocaleString()} XP
+                          {entry.xp.toLocaleString()}
                         </td>
                       </tr>
                     ))}

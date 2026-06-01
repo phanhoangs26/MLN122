@@ -117,7 +117,7 @@ export function DebateGame() {
 
   useEffect(() => {
     if (isGameOver) {
-      const finalScore = Math.round(((totalScores.ly_luan + totalScores.trich_dan + totalScores.logic) / (debateRounds.length * 30)) * 100);
+      const finalScore = totalScores.ly_luan + totalScores.trich_dan + totalScores.logic;
       const name = useGameStore.getState().playerName;
       if (name) {
         fetch('/api/leaderboard', {
@@ -130,12 +130,12 @@ export function DebateGame() {
   }, [isGameOver, totalScores]);
 
   if (isGameOver) {
-    const finalScore = Math.round(((totalScores.ly_luan + totalScores.trich_dan + totalScores.logic) / (debateRounds.length * 30)) * 100);
+    const finalScore = totalScores.ly_luan + totalScores.trich_dan + totalScores.logic;
     return (
       <div className="flex min-h-[400px] flex-col items-center justify-center border-4 border-[#171210] bg-[#f3ead7] p-8 text-center shadow-[8px_8px_0_#c8281e]">
         <Trophy className="mb-6 h-20 w-20 text-[#c8281e]" />
         <h2 className="text-4xl font-black text-[#171210] font-['Oswald'] uppercase tracking-widest">Hoàn thành Đấu trường!</h2>
-        <p className="mt-4 text-xl font-bold text-[#6b5d4f]">Điểm tổng kết của bạn: <span className="text-[#c8281e]">{finalScore}/100</span></p>
+        <p className="mt-4 text-xl font-bold text-[#6b5d4f]">Điểm tổng kết của bạn: <span className="text-[#c8281e]">{finalScore}/90</span></p>
         <div className="mt-8 flex flex-wrap justify-center gap-4 text-base font-bold text-[#171210]">
           <div className="border-2 border-[#171210] bg-white px-5 py-3 shadow-[4px_4px_0_#171210]">Lý luận: {totalScores.ly_luan}</div>
           <div className="border-2 border-[#171210] bg-white px-5 py-3 shadow-[4px_4px_0_#171210]">Trích dẫn: {totalScores.trich_dan}</div>
