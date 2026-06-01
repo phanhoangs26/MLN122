@@ -33,8 +33,8 @@ export const knowledgeBase: KbEntry[] = [
   },
   {
     id: 'product_of_conflict',
-    question: 'Nhà nước là sản phẩm của mâu thuẫn giai cấp nghĩa là gì?',
-    keywords: ['sản phẩm của mâu thuẫn giai cấp', 'sản phẩm', 'nghĩa là gì'],
+    question: 'Nhà nước là sản phẩm của mâu thuẫn giai cấp nghĩa là gì? (Tại sao?)',
+    keywords: ['sản phẩm của mâu thuẫn giai cấp', 'sản phẩm', 'nghĩa là gì', 'tại sao'],
     answer:
       'Nhà nước không tồn tại từ đầu trong lịch sử loài người. Nó xuất hiện khi xã hội phân hóa thành các giai cấp đối kháng do chế độ tư hữu và sự bất bình đẳng về kinh tế. Khi các mâu thuẫn đó trở nên gay gắt, không thể tự giải quyết, nhà nước ra đời như một kết quả lịch sử của quá trình đó. Vì vậy nhà nước là sản phẩm của mâu thuẫn giai cấp không thể điều hòa được.',
   },
@@ -276,8 +276,20 @@ function normalize(s: string): string {
 export type KbResult = { answer: string; matched?: KbEntry; score: number };
 
 // Tìm câu trả lời tốt nhất theo độ trùng từ khóa.
-export function answerFromKB(query: string): KbResult {
-  const q = normalize(query);
+export function answerFromKB(query: string, history: {role: string, text: string}[] = []): KbResult {
+  let q = normalize(query);
+  
+  // Nếu câu hỏi quá ngắn (ví dụ: "tại sao", "vậy á"), lấy thêm context từ câu hỏi gần nhất
+  if (q.split(' ').length <= 3 && history.length >= 2) {
+    // Tìm câu hỏi user gần nhất
+    for (let i = history.length - 1; i >= 0; i--) {
+      if (history[i].role === 'user') {
+        q = normalize(history[i].text) + ' ' + q;
+        break;
+      }
+    }
+  }
+
   if (!q) return { answer: 'Bạn hãy nhập một câu hỏi về chủ đề nhà nước nhé.', score: 0 };
 
   let best: KbEntry | null = null;

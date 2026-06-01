@@ -59,8 +59,8 @@ export default function Chatbot() {
     setMessages(next);
     setInput('');
 
-    // Dùng local offline như fallback khi API lỗi
-    const kb = answerFromKB(q);
+    // Dùng local offline như fallback khi API lỗi, truyền thêm messages (history) để có context
+    const kb = answerFromKB(q, messages);
 
     setLoading(true);
     try {
