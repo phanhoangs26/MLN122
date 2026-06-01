@@ -15,29 +15,22 @@ const sections = [
     featured: true,
   },
   {
-    to: '/vietnam',
-    no: '02',
-    icon: Star,
-    title: 'Cộng hòa XHCN Việt Nam',
-    desc: 'NNPQ XHCN, Đại hội XIV và dẫn chứng thực tiễn (không lặp lý luận Chương III).',
-  },
-  {
     to: '/tu-ban',
-    no: '03',
+    no: '02',
     icon: Landmark,
     title: 'Nhà nước tư sản',
     desc: 'Một kiểu nhà nước điển hình trong xã hội tư bản chủ nghĩa.',
   },
   {
     to: '/game',
-    no: '04',
+    no: '03',
     icon: Gamepad2,
     title: 'Ôn tập',
     desc: 'Học qua tương tác, ghi nhớ qua trải nghiệm.',
   },
   {
     to: '/chat',
-    no: '05',
+    no: '04',
     icon: Bot,
     title: 'Hỏi đáp',
     desc: 'Tra cứu nhanh mọi vấn đề liên quan đến chuyên đề.',
@@ -107,7 +100,7 @@ export default function Home() {
       <main className="mx-auto max-w-6xl px-4 py-10">
         <div className="mb-6 flex items-end justify-between border-b border-slate-200 pb-3">
           <h2 className="text-sm font-black uppercase tracking-widest text-red-600">Nội dung chuyên đề</h2>
-          <span className="text-sm font-bold text-slate-400">05 mục</span>
+          <span className="text-sm font-bold text-slate-400">04 mục</span>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

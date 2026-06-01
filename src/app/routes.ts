@@ -16,13 +16,6 @@ export const router = createBrowserRouter([
     },
   },
   {
-    path: "/vietnam",
-    lazy: async () => {
-      const { default: Component } = await import("./pages/VietnamState");
-      return { Component };
-    },
-  },
-  {
     path: "/tu-ban",
     lazy: async () => {
       const { default: Component } = await import("./pages/CapitalistState");
