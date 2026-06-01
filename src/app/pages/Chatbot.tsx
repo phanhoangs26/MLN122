@@ -12,7 +12,7 @@ import ReactMarkdown from 'react-markdown';
 // Không dùng Qwen fallback nữa, chuyển về dùng KB
 
 // Gọi serverless function — system prompt + giáo trình nằm hoàn toàn ở server
-async function askAI(history: Msg[], kbContext: string = '') {
+async function askAI(history: Msg[], kbContext: string = '', mode: 'qa' | 'debate' = 'qa') {
   const payload = history
     .filter((m) => m.text.trim())
     .map((m) => ({
@@ -25,7 +25,7 @@ async function askAI(history: Msg[], kbContext: string = '') {
   const res = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ contents: payload, kbContext }),
+    body: JSON.stringify({ contents: payload, kbContext, mode }),
   });
 
   if (!res.ok) {
@@ -49,6 +49,7 @@ export default function Chatbot() {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mode, setMode] = useState<'qa' | 'debate'>('qa');
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ export default function Chatbot() {
     // 2. Chuyển thẳng tới Gemini kèm Context (RAG Architecture)
     setLoading(true);
     try {
-      const reply = await askAI(next, kbContext);
+      const reply = await askAI(next, kbContext, mode);
       setMessages((m) => [...m, { role: 'bot', text: reply, source: 'ai' }]);
     } catch (err: any) {
       // Khi API lỗi (mất mạng, 404, 403, 429...), fallback về Local KB
@@ -90,6 +91,30 @@ export default function Chatbot() {
   return (
     <div className="flex h-screen flex-col bg-white text-slate-950">
       <TopBar />
+
+      {/* Mode Toggle */}
+      <div className="flex justify-center border-b border-slate-100 bg-slate-50/50 py-2">
+        <div className="flex rounded-full bg-slate-200/60 p-1">
+          <button
+            onClick={() => setMode('qa')}
+            className={clsx(
+              'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
+              mode === 'qa' ? 'bg-white text-red-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            )}
+          >
+            Chế độ Ôn thi
+          </button>
+          <button
+            onClick={() => setMode('debate')}
+            className={clsx(
+              'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
+              mode === 'debate' ? 'bg-white text-red-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            )}
+          >
+            Chế độ Phản biện
+          </button>
+        </div>
+      </div>
 
       {/* Messages — scrollable */}
       <main className="flex-1 overflow-y-auto">
