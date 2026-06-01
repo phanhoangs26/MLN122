@@ -19,69 +19,62 @@ export default function Games() {
   const [tab, setTab] = useState<Tab>('timeline');
 
   return (
-    <div className="min-h-screen bg-white text-slate-950">
+    <div className="theory-page min-h-screen">
       <TopBar />
 
-      <div className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-4 md:grid-cols-[1fr_auto]">
-          <div className="flex items-center gap-3 bg-white px-4 py-3 text-lg font-serif text-slate-700">
-            <span className="font-sans text-xl text-red-600">•</span>
-            <span>Ôn tập qua trò chơi</span>
-          </div>
-          <div className="flex items-center gap-6 bg-white px-4 py-3 text-sm font-bold text-slate-700">
-            <span className="text-red-600">•</span>
-            <span>Học mà chơi · Chơi mà học</span>
-          </div>
+      <motion.section 
+        className="hero"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="wrap">
+          <div className="hero-tag">HỌC MÀ CHƠI · CHƠI MÀ HỌC</div>
+          <h1>Trạm ôn tập <em>Tương tác</em></h1>
+          <p className="lead mt-6 text-[#f3ead7]">Khắc sâu lý thuyết và rèn luyện tư duy phản biện qua các bài tập mô phỏng.</p>
         </div>
-      </div>
+        <div className="star">★</div>
+      </motion.section>
 
-      <main className="mx-auto max-w-6xl gap-7 px-4 py-7">
-        <article>
-          <motion.section
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="border-b-4 border-red-600 bg-white pb-7"
-          >
-            <div className="text-sm font-black uppercase tracking-widest text-red-600">Ôn tập</div>
-            <h1 className="mt-3 max-w-4xl font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
-              Ôn tập qua trò chơi
-            </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
-              Hai trò chơi giúp khắc sâu lý thuyết về nhà nước: sắp xếp đúng tiến trình lịch sử và nối đúng khái niệm.
-            </p>
-          </motion.section>
-
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <div className="wrap">
           {/* Tabs */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="border-b border-slate-200 py-7"
-          >
-            <div className="mb-6 inline-flex rounded border border-slate-200 bg-slate-50 p-1">
-              {tabs.map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  onClick={() => setTab(id)}
-                  className={clsx(
-                    'relative inline-flex items-center gap-2 rounded px-4 py-2 text-sm font-bold transition-colors',
-                    tab === id ? 'text-white bg-red-600' : 'text-slate-950 hover:text-red-600',
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{label}</span>
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-3 mb-8 border-b-2 border-[#2a201c] pb-4">
+            {tabs.map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                onClick={() => setTab(id)}
+                className={clsx(
+                  'relative inline-flex items-center gap-2 px-6 py-3 font-bold uppercase tracking-wider text-sm transition-colors border-2 font-["Oswald"]',
+                  tab === id 
+                    ? 'bg-[#c8281e] border-[#c8281e] text-white shadow-[4px_4px_0_#171210] translate-y-[-2px] translate-x-[-2px]' 
+                    : 'bg-transparent border-[#2a201c] text-[#171210] hover:bg-[#171210] hover:text-[#f3ead7]',
+                )}
+              >
+                <Icon className="h-4 w-4" />
+                <span>{label}</span>
+              </button>
+            ))}
+          </div>
 
-            <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+          <motion.div key={tab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+            <div className="bg-white border-4 border-[#2a201c] p-4 sm:p-8 shadow-[8px_8px_0_#c8281e]">
               {tab === 'timeline' && <TimelineGame />}
               {tab === 'match' && <MatchingGame />}
               {tab === 'debate' && <DebateGame />}
-            </motion.div>
+            </div>
           </motion.div>
-        </article>
-      </main>
+        </div>
+      </motion.section>
+
+      <footer>
+        <div className="wrap">
+          CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM • TRIẾT HỌC MÁC - LÊNIN • 2026
+        </div>
+      </footer>
     </div>
   );
 }

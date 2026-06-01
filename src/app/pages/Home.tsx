@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight, Bot, BookOpen, Star, Landmark, Gamepad2 } from 'lucide-react';
+import { ArrowRight, Bot, BookOpen, Landmark, Gamepad2 } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
 import { centralThesis } from '../data/theoryContent';
 
@@ -41,115 +41,116 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white text-slate-950">
+    <div className="theory-page min-h-screen">
       <TopBar />
 
-      {/* Lead / trang nhất */}
-      <section className="border-b-4 border-red-600">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 lg:grid-cols-[1.6fr_1fr]">
-          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="mb-3 text-sm font-black uppercase tracking-widest text-red-600">
-              Chuyên đề · Triết học Mác – Lênin
-            </div>
-            <h1 className="font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
-              Nhà nước và mâu thuẫn giai cấp
-            </h1>
-            <p className="mt-4 max-w-2xl text-xl font-bold leading-8 text-slate-800">
-              Khám phá luận điểm nổi tiếng của V.I. Lênin về nguồn gốc và bản chất của nhà nước.
-            </p>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
-              Từ luận điểm của Lênin về nguồn gốc nhà nước đến quá trình xây dựng Nhà nước pháp quyền xã hội chủ nghĩa
-              Việt Nam trong thời kỳ đổi mới.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => navigate('/theory')}
-                className="inline-flex items-center gap-2 rounded bg-red-600 px-6 py-3 font-black text-white transition-colors hover:bg-red-700"
-              >
-                Khám phá chuyên đề
-                <ArrowRight className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => navigate('/chat')}
-                className="inline-flex items-center gap-2 rounded border border-red-200 bg-red-50 px-6 py-3 font-bold text-red-700 transition-colors hover:bg-red-100"
-              >
-                <Bot className="h-4 w-4" />
-                Hỏi trợ lý
-              </button>
-            </div>
-          </motion.div>
+      <motion.section 
+        className="hero"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="wrap">
+          <div className="hero-tag">CHUYÊN ĐỀ · TRIẾT HỌC MÁC – LÊNIN</div>
+          <h1>Nhà nước và <br/><em>Mâu thuẫn giai cấp</em></h1>
+          
+          <p className="lead mt-6 text-[#f3ead7]">Khám phá luận điểm nổi tiếng của V.I. Lênin về nguồn gốc và bản chất của nhà nước, quá trình xây dựng Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam.</p>
+          
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => navigate('/theory')}
+              className="inline-flex items-center gap-2 border-2 border-[#c8281e] bg-[#c8281e] px-6 py-3 font-bold text-white transition-colors hover:bg-[#8f1410] hover:border-[#8f1410] uppercase tracking-wider text-sm font-['Oswald']"
+            >
+              Khám phá chuyên đề
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => navigate('/chat')}
+              className="inline-flex items-center gap-2 border-2 border-[#d8a13a] bg-transparent px-6 py-3 font-bold text-[#d8a13a] transition-colors hover:bg-[rgba(216,161,58,0.1)] uppercase tracking-wider text-sm font-['Oswald']"
+            >
+              <Bot className="h-4 w-4" />
+              Hỏi trợ lý
+            </button>
+          </div>
 
-          {/* Lead quote */}
-          <motion.figure
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="flex flex-col justify-center border-l-4 border-red-600 bg-slate-50 px-6 py-6"
-          >
-            <div className="text-sm font-black uppercase tracking-widest text-red-600">Tư tưởng cốt lõi</div>
-            <blockquote className="mt-3 font-serif text-2xl font-black leading-9 text-red-700 md:text-3xl">
-              “{centralThesis.quote}”
-            </blockquote>
-            <figcaption className="mt-3 text-sm font-bold text-slate-600">— {centralThesis.source}</figcaption>
-            <div className="mt-1 text-xs italic text-slate-500">Tác phẩm: Nhà nước và Cách mạng (1917)</div>
-          </motion.figure>
+          <div className="quote-block mt-12 border-l-4 border-[#c8281e]">
+            <p className="text-[#ece0c8]">“{centralThesis.quote}”</p>
+            <cite className="text-[#d8a13a]">— {centralThesis.source}</cite>
+          </div>
+          
         </div>
-      </section>
+        <div className="star">★</div>
+      </motion.section>
 
-      {/* Mục lục chuyên đề */}
-      <main className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-6 flex items-end justify-between border-b border-slate-200 pb-3">
-          <h2 className="text-sm font-black uppercase tracking-widest text-red-600">Nội dung chuyên đề</h2>
-          <span className="text-sm font-bold text-slate-400">04 mục</span>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {sections.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.button
-                key={s.to}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
-                whileHover={{ y: -2 }}
-                onClick={() => navigate(s.to)}
-                className={`group relative flex flex-col items-start gap-3 rounded border border-slate-200 bg-white p-6 text-left shadow-sm transition-colors hover:border-red-300 hover:bg-red-50 ${
-                  s.featured ? 'sm:col-span-2 lg:col-span-2' : ''
-                }`}
-              >
-                <div className="flex w-full items-center justify-between">
-                  <div className="text-5xl font-black text-slate-200 group-hover:text-red-200">{s.no}</div>
-                  <Icon className="h-7 w-7 text-red-600" strokeWidth={2.2} />
-                </div>
-                <div className="relative flex-1">
-                  <div className="flex items-center gap-2 font-serif text-2xl font-black text-slate-950">
-                    {s.title}
-                    <ArrowRight className="h-4 w-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <div className="wrap">
+          <div className="kicker">MỤC LỤC</div>
+          <div className="flex items-end justify-between border-b-2 border-[#2a201c] pb-2 mb-8">
+            <h2>Nội dung chuyên đề</h2>
+            <span className="text-sm font-bold text-[#6b5d4f] font-['Oswald'] tracking-widest">04 MỤC</span>
+          </div>
+          
+          <div className="feat-grid">
+            {sections.map((s, i) => {
+              const Icon = s.icon;
+              return (
+                <div
+                  key={s.to}
+                  onClick={() => navigate(s.to)}
+                  className={`feat group flex flex-col ${s.featured ? 'sm:col-span-2 lg:col-span-2' : ''}`}
+                >
+                  <div className="flex w-full items-center justify-between mb-4">
+                    <div className="fn text-[#171210] group-hover:text-[#c8281e] transition-colors">{s.no}</div>
+                    <Icon className="h-8 w-8 text-[#c8281e]" strokeWidth={2} />
                   </div>
-                  <p className="mt-2 text-base leading-7 text-slate-600">{s.desc}</p>
+                  <h3 className="text-2xl mt-0 group-hover:underline decoration-2 underline-offset-4 decoration-[#c8281e]">{s.title}</h3>
+                  <p className="muted mt-2 text-base flex-1">{s.desc}</p>
+                  <div className="src mt-6 flex items-center gap-1 group-hover:text-[#c8281e] transition-colors">
+                    TRUY CẬP <ArrowRight className="h-3 w-3" />
+                  </div>
                 </div>
-              </motion.button>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
+      </motion.section>
 
-        {/* Lộ trình gợi ý */}
-        <div className="mt-10 border-t-4 border-red-600 pt-6">
-          <h2 className="text-sm font-black uppercase tracking-widest text-red-600">Gợi ý lộ trình</h2>
-          <div className="mt-4 grid gap-3 text-base leading-7 text-slate-700 sm:grid-cols-3">
-            <div className="border border-slate-200 bg-slate-50 p-4">
-              <span className="font-black text-red-600">1.</span> Học lý thuyết ở mục <span className="font-bold text-slate-950">Nhà nước</span> để nắm nguồn gốc, bản chất.
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-[#171210] text-[#f3ead7]"
+      >
+        <div className="wrap py-12">
+          <div className="kicker text-[#d8a13a]">GỢI Ý LỘ TRÌNH</div>
+          <h2 className="text-white mb-8">Hành trình khám phá</h2>
+          
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
+              <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">1</span>
+              <p>Học lý thuyết ở mục <strong>Nhà nước</strong> để nắm nguồn gốc, bản chất.</p>
             </div>
-            <div className="border border-slate-200 bg-slate-50 p-4">
-              <span className="font-black text-red-600">2.</span> Đối chiếu <span className="font-bold text-slate-950">Nhà nước tư sản</span> và liên hệ <span className="font-bold text-slate-950">Việt Nam</span>.
+            <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
+              <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">2</span>
+              <p>Đối chiếu <strong>Nhà nước tư sản</strong> và liên hệ <strong>Việt Nam</strong>.</p>
             </div>
-            <div className="border border-slate-200 bg-slate-50 p-4">
-              <span className="font-black text-red-600">3.</span> Củng cố bằng <span className="font-bold text-slate-950">Ôn tập</span> và đặt câu hỏi ở <span className="font-bold text-slate-950">Hỏi đáp</span>.
+            <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
+              <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">3</span>
+              <p>Củng cố bằng <strong>Ôn tập</strong> và giải đáp thắc mắc ở <strong>Hỏi đáp</strong>.</p>
             </div>
           </div>
         </div>
-      </main>
+      </motion.section>
+
+      <footer>
+        <div className="wrap">
+          CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM • TRIẾT HỌC MÁC - LÊNIN • 2026
+        </div>
+      </footer>
     </div>
   );
 }

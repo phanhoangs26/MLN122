@@ -9,9 +9,6 @@ type Msg = { role: 'user' | 'bot'; text: string; source?: 'offline' | 'ai' };
 
 import ReactMarkdown from 'react-markdown';
 
-// Không dùng Qwen fallback nữa, chuyển về dùng KB
-
-// Gọi serverless function — system prompt + giáo trình nằm hoàn toàn ở server
 async function askAI(history: Msg[], kbContext: string = '', mode: 'qa' | 'debate' = 'qa') {
   const payload = history
     .filter((m) => m.text.trim())
@@ -64,17 +61,14 @@ export default function Chatbot() {
     setMessages(next);
     setInput('');
 
-    // 1. Tính toán điểm từ Local KB (có truyền history)
     const kb = answerFromKB(q, messages);
     const kbContext = kb.score > 0 ? kb.answer : '';
 
-    // 2. Chuyển thẳng tới Gemini kèm Context (RAG Architecture)
     setLoading(true);
     try {
       const reply = await askAI(next, kbContext, mode);
       setMessages((m) => [...m, { role: 'bot', text: reply, source: 'ai' }]);
     } catch (err: any) {
-      // Khi API lỗi (mất mạng, 404, 403, 429...), fallback về Local KB
       const fallbackText = kb.score > 0 
         ? kb.answer 
         : 'Rất tiếc, hiện tại mình không thể kết nối tới máy chủ AI và câu hỏi này cũng chưa có trong kho dữ liệu offline.';
@@ -89,17 +83,16 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="flex h-screen flex-col bg-white text-slate-950">
+    <div className="theory-page flex h-screen flex-col">
       <TopBar />
 
-      {/* Mode Toggle */}
-      <div className="flex justify-center border-b border-slate-100 bg-slate-50/50 py-2">
-        <div className="flex rounded-full bg-slate-200/60 p-1">
+      <div className="flex justify-center border-b-2 border-[#2a201c] bg-[#ece0c8] py-3">
+        <div className="flex bg-[#171210] p-1 shadow-[4px_4px_0_#c8281e]">
           <button
             onClick={() => setMode('qa')}
             className={clsx(
-              'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
-              mode === 'qa' ? 'bg-white text-red-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              'px-6 py-2 text-sm font-bold uppercase tracking-widest font-["Oswald"] transition-colors',
+              mode === 'qa' ? 'bg-[#c8281e] text-white' : 'text-[#f3ead7] hover:bg-[rgba(255,255,255,0.1)]'
             )}
           >
             Chế độ Ôn thi
@@ -107,8 +100,8 @@ export default function Chatbot() {
           <button
             onClick={() => setMode('debate')}
             className={clsx(
-              'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
-              mode === 'debate' ? 'bg-white text-red-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              'px-6 py-2 text-sm font-bold uppercase tracking-widest font-["Oswald"] transition-colors',
+              mode === 'debate' ? 'bg-[#c8281e] text-white' : 'text-[#f3ead7] hover:bg-[rgba(255,255,255,0.1)]'
             )}
           >
             Chế độ Phản biện
@@ -116,9 +109,8 @@ export default function Chatbot() {
         </div>
       </div>
 
-      {/* Messages — scrollable */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-2xl space-y-5 px-4 py-6">
+      <main className="flex-1 overflow-y-auto bg-[#f3ead7]">
+        <div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
           <AnimatePresence initial={false}>
             {messages.map((m, i) => (
               <motion.div
@@ -126,40 +118,38 @@ export default function Chatbot() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.18 }}
-                className={clsx('flex gap-3', m.role === 'user' ? 'flex-row-reverse' : 'flex-row')}
+                className={clsx('flex gap-4', m.role === 'user' ? 'flex-row-reverse' : 'flex-row')}
               >
-                {/* Avatar */}
                 <div
                   className={clsx(
-                    'mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center text-xs font-black',
+                    'mt-1 flex h-10 w-10 shrink-0 items-center justify-center text-sm font-black border-2 border-[#171210]',
                     m.role === 'user'
-                      ? 'bg-slate-200 text-slate-700'
-                      : 'bg-red-600 text-white',
+                      ? 'bg-[#ece0c8] text-[#171210]'
+                      : 'bg-[#c8281e] text-white',
                   )}
                 >
-                  {m.role === 'user' ? 'Bạn' : 'TL'}
+                  {m.role === 'user' ? 'USER' : 'BOT'}
                 </div>
 
-                {/* Bubble */}
-                <div className={clsx('max-w-[78%]', m.role === 'user' ? 'items-end' : 'items-start')}>
+                <div className={clsx('max-w-[80%]', m.role === 'user' ? 'items-end' : 'items-start')}>
                   <div
                     className={clsx(
-                      'px-4 py-3 text-sm leading-6',
+                      'px-5 py-4 text-base leading-7 border-2 border-[#171210]',
                       m.role === 'user'
-                        ? 'whitespace-pre-wrap bg-slate-100 text-slate-900'
-                        : 'border border-red-100 bg-red-50 text-slate-900',
+                        ? 'bg-white shadow-[4px_4px_0_#171210]'
+                        : 'bg-[#ece0c8] shadow-[4px_4px_0_#c8281e]',
                     )}
                   >
                     {m.role === 'user' ? (
-                      m.text
+                      <div className="whitespace-pre-wrap">{m.text}</div>
                     ) : (
                       <ReactMarkdown
                         components={{
-                          p: ({ node, ...props }) => <p className="mb-3 last:mb-0" {...props} />,
-                          ul: ({ node, ...props }) => <ul className="mb-3 ml-4 list-disc space-y-1 last:mb-0" {...props} />,
-                          ol: ({ node, ...props }) => <ol className="mb-3 ml-4 list-decimal space-y-1 last:mb-0" {...props} />,
+                          p: ({ node, ...props }) => <p className="mb-4 last:mb-0" {...props} />,
+                          ul: ({ node, ...props }) => <ul className="mb-4 ml-6 list-disc space-y-2 last:mb-0" {...props} />,
+                          ol: ({ node, ...props }) => <ol className="mb-4 ml-6 list-decimal space-y-2 last:mb-0" {...props} />,
                           li: ({ node, ...props }) => <li {...props} />,
-                          strong: ({ node, ...props }) => <strong className="font-bold" {...props} />,
+                          strong: ({ node, ...props }) => <strong className="font-bold text-[#8f1410]" {...props} />,
                           em: ({ node, ...props }) => <em className="italic" {...props} />,
                         }}
                       >
@@ -172,17 +162,16 @@ export default function Chatbot() {
             ))}
           </AnimatePresence>
 
-          {/* Loading dots */}
           {loading && (
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center bg-red-600 text-xs font-black text-white">
-                TL
+            <div className="flex items-center gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-[#171210] bg-[#c8281e] text-sm font-black text-white">
+                BOT
               </div>
-              <div className="flex gap-1 px-4 py-3 border border-red-100 bg-red-50">
+              <div className="flex gap-2 px-5 py-4 border-2 border-[#171210] bg-[#ece0c8] shadow-[4px_4px_0_#c8281e]">
                 {[0, 0.15, 0.3].map((delay, i) => (
                   <motion.span
                     key={i}
-                    className="h-1.5 w-1.5 rounded-full bg-red-400"
+                    className="h-2 w-2 rounded-full bg-[#c8281e]"
                     animate={{ opacity: [0.3, 1, 0.3] }}
                     transition={{ duration: 0.9, repeat: Infinity, delay }}
                   />
@@ -195,40 +184,37 @@ export default function Chatbot() {
         </div>
       </main>
 
-      {/* Sticky input area */}
-      <div className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-2xl px-4 py-3 space-y-2">
-          {/* Suggested questions — 1 hàng, scroll ngang trên mobile */}
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+      <div className="border-t-4 border-[#2a201c] bg-[#ece0c8]">
+        <div className="mx-auto max-w-3xl px-4 py-4 space-y-3">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
             {suggestedQuestions.map((s) => (
               <button
                 key={s}
                 onClick={() => send(s)}
                 disabled={loading}
-                className="shrink-0 border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-700 disabled:opacity-40"
+                className="shrink-0 border-2 border-[#2a201c] bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#171210] transition-colors hover:bg-[#171210] hover:text-white disabled:opacity-40 font-['Oswald'] shadow-[2px_2px_0_#c8281e]"
               >
                 {s}
               </button>
             ))}
           </div>
 
-          {/* Input */}
           <form
             onSubmit={(e) => { e.preventDefault(); send(input); }}
-            className="flex items-center gap-2 border border-slate-200 bg-white focus-within:border-red-400"
+            className="flex items-center gap-2 border-2 border-[#2a201c] bg-white shadow-[4px_4px_0_#171210] focus-within:shadow-[4px_4px_0_#c8281e] transition-shadow"
           >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Hỏi về nhà nước, giai cấp, Việt Nam…"
-              className="flex-1 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-slate-400"
+              className="flex-1 bg-transparent px-5 py-4 text-base outline-none placeholder:text-[#6b5d4f]"
             />
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="m-1 flex h-9 w-9 items-center justify-center bg-red-600 text-white transition-colors hover:bg-red-700 disabled:opacity-40"
+              className="m-1.5 flex h-12 w-12 items-center justify-center bg-[#c8281e] text-white transition-colors hover:bg-[#8f1410] disabled:opacity-40"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             </button>
           </form>
         </div>
