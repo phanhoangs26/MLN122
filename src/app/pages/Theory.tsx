@@ -244,7 +244,28 @@ export default function Theory() {
               <p>Xây dựng Nhà nước pháp quyền XHCN "của Nhân dân, do Nhân dân, vì Nhân dân": kết hợp chức năng xã hội (an sinh, y tế, giáo dục) với vai trò lãnh đạo của liên minh công–nông–trí — hình thức của nhà nước kiểu mới.</p>
             </div>
           </div>
-          <p className="src-note">Mỗi ca trên đều cho thấy: vai trò điều tiết của nhà nước gắn trực tiếp với việc xử lý mâu thuẫn xã hội → xác nhận luận điểm Lênin vẫn còn nguyên tính thời sự.</p>
+
+          <div className="vn">
+            <div className="vn-head">
+              <span className="vn-flag">★</span>
+              <div>
+                <div className="vn-kick">LIÊN HỆ VIỆT NAM · 2025–2026</div>
+                <h3>Nhà nước pháp quyền XHCN — lý thuyết Chương III soi vào thực tiễn</h3>
+              </div>
+            </div>
+            <p className="vn-intro">Nhà nước pháp quyền XHCN Việt Nam là <em>hình thức nhà nước của thời kỳ quá độ</em> lên CNXH dưới sự lãnh đạo của Đảng. Vận dụng sáng tạo học thuyết Mác–Lênin: <b>"của Nhân dân, do Nhân dân, vì Nhân dân"</b> — nền tảng là liên minh công–nông–trí, ưu tiên chức năng tổ chức, xây dựng hơn chức năng trấn áp.</p>
+
+            <div className="vn-grid">
+              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #1 · QUẢN LÝ LÃNH THỔ</div><div className="vnum">34</div><div className="vlab">tỉnh, thành phố</div><p>Từ 1/7/2025 vận hành chính quyền địa phương <b>hai cấp (tỉnh–xã)</b>: 34 tỉnh/thành và 3.321 xã, phường, đặc khu (NQ 202/2025/QH15, hiệu lực 12/6/2025) — quản lý thống nhất toàn lãnh thổ.</p></div>
+              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #2 · CƯỠNG CHẾ CHUYÊN NGHIỆP</div><div className="vnum">3</div><div className="vlab">cấp công an</div><p>Năm 2025 công an chuyển sang mô hình <b>ba cấp (Bộ–tỉnh–xã)</b>, chấm dứt công an cấp huyện — củng cố hệ thống cơ quan quyền lực công cộng đặc biệt ngay tại cơ sở.</p></div>
+              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #3 · THUẾ KHÓA</div><div className="vnum">63→34</div><div className="vlab">tinh gọn đầu mối tỉnh</div><p>Thuế là nguồn tài chính chủ yếu nuôi bộ máy, quốc phòng, an sinh; tinh giản đầu mối ("Tinh–Gọn–Mạnh–Hiệu năng–Hiệu lực–Hiệu quả") để nâng hiệu quả ngân sách.</p></div>
+              <div className="vn-card"><div className="vt">CHỨC NĂNG XÃ HỘI · ĐỐI NỘI</div><div className="vnum">&gt;99%</div><div className="vlab">hồ sơ đúng hạn (2025)</div><p>Cải cách hành chính gắn chuyển đổi số (Đề án 06, Cổng Dịch vụ công quốc gia): nhiều địa phương giải quyết hồ sơ đúng hạn trên 99%, mở rộng dịch vụ công trực tuyến.</p></div>
+            </div>
+
+            <p className="vn-link"><b>Liên hệ trực tiếp luận điểm Lênin:</b> sự tồn tại và liên tục hoàn thiện của Nhà nước (kiểm soát quyền lực, chống tham nhũng, phát huy dân chủ XHCN theo NQ 27-NQ/TW & Đại hội XIV) cho thấy nhà nước <em>không đứng ngoài xã hội</em> mà là thiết chế điều tiết các quan hệ, mâu thuẫn xã hội — đúng với mạch lý luận Chương III.</p>
+          </div>
+
+          <p className="src-note">Nguồn: NQ 202/2025/QH15; NQ 27-NQ/TW; Văn kiện Đại hội XIV; Cổng TTĐT Chính phủ; Báo Nhân Dân, VOV (2025). Mỗi ca trên xác nhận: vai trò điều tiết của nhà nước gắn trực tiếp với xử lý mâu thuẫn xã hội → luận điểm Lênin vẫn nguyên tính thời sự.</p>
         </div>
       </motion.section>
 
