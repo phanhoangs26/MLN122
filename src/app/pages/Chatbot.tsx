@@ -12,16 +12,20 @@ import ReactMarkdown from 'react-markdown';
 // Không dùng Qwen fallback nữa, chuyển về dùng KB
 
 // Gọi serverless function — system prompt + giáo trình nằm hoàn toàn ở server
-async function askAI(history: Msg[]): Promise<string> {
-  const contents = history
+async function askAI(history: Msg[], kbContext: string = '') {
+  const payload = history
     .filter((m) => m.text.trim())
-    .map((m) => ({ role: m.role === 'user' ? 'user' : 'model', parts: [{ text: m.text }] }));
-  while (contents.length && contents[0].role === 'model') contents.shift();
+    .map((m) => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      parts: [{ text: m.text }],
+    }));
+
+  while (payload.length && payload[0].role === 'model') payload.shift();
 
   const res = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ contents }),
+    body: JSON.stringify({ contents: payload, kbContext }),
   });
 
   if (!res.ok) {
@@ -61,17 +65,12 @@ export default function Chatbot() {
 
     // 1. Tính toán điểm từ Local KB (có truyền history)
     const kb = answerFromKB(q, messages);
+    const kbContext = kb.score > 0 ? kb.answer : '';
 
-    // 2. Ưu tiên KB ngay lập tức nếu độ tự tin đủ cao (score >= 3)
-    if (kb.score >= 3) {
-      setMessages((m) => [...m, { role: 'bot', text: kb.answer, source: 'offline' }]);
-      return;
-    }
-
-    // 3. Nếu KB không tự tin, gọi API
+    // 2. Chuyển thẳng tới Gemini kèm Context (RAG Architecture)
     setLoading(true);
     try {
-      const reply = await askAI(next);
+      const reply = await askAI(next, kbContext);
       setMessages((m) => [...m, { role: 'bot', text: reply, source: 'ai' }]);
     } catch (err: any) {
       // Khi API lỗi (mất mạng, 404, 403, 429...), fallback về Local KB

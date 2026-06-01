@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-    const { contents, model } = body;
+    const { contents, model, kbContext } = body;
 
     if (!Array.isArray(contents) || contents.length === 0) {
       res.status(400).json({ error: 'Thiếu contents' });
@@ -44,7 +44,11 @@ Nhiệm vụ:
 - Nằm ngoài Chương III thì từ chối: "Nội dung này nằm ngoài phạm vi kiến thức."
 - Cuối câu trả lời, luôn thêm 1 mục "**Câu hỏi mở rộng:**" để gợi mở tư duy.`;
 
-    const systemPrompt = `${BEHAVIORAL_PROMPT}\n\n=== TEXTBOOK_CONTEXT ===\n${TEXTBOOK_CONTEXT}`;
+    const RAG_INSTRUCTION = kbContext 
+      ? `\n\n=== TÀI LIỆU RAG TỪ LOCAL KB (BẮT BUỘC SỬ DỤNG) ===\nDưới đây là thông tin được trích xuất từ cơ sở dữ liệu nội bộ. Hãy sử dụng thông tin này làm cơ sở chính để trả lời người dùng, diễn đạt lại cho tự nhiên và thuyết phục:\n${kbContext}\n=====================================`
+      : '';
+
+    const systemPrompt = `${BEHAVIORAL_PROMPT}\n\n=== TEXTBOOK_CONTEXT ===\n${TEXTBOOK_CONTEXT}${RAG_INSTRUCTION}`;
 
     const m = model || DEFAULT_MODEL;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:generateContent?key=${encodeURIComponent(apiKey)}`;
