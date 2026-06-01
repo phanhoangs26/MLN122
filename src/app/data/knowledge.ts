@@ -129,6 +129,41 @@ export const knowledgeBase: KbEntry[] = [
     answer:
       'Cách mạng xã hội là sự thay đổi căn bản về chất của một hình thái kinh tế - xã hội, bước chuyển lên hình thái mới tiến bộ hơn. Nguồn gốc sâu xa là mâu thuẫn giữa lực lượng sản xuất tiến bộ và quan hệ sản xuất lỗi thời; trong xã hội có giai cấp, đấu tranh giai cấp là nguyên nhân trực tiếp. Cách mạng nổ ra khi có tình thế cách mạng và nhân tố chủ quan chín muồi.',
   },
+  {
+    id: 'viewpoints',
+    question: 'Có những quan điểm nào về nhà nước trong lịch sử?',
+    keywords: ['quan điểm', 'mácxít', 'ngoài mácxít', 'cách hiểu'],
+    answer:
+      'Có hai quan điểm chính: quan điểm ngoài mácxít và quan điểm mácxít. Các quan điểm ngoài mácxít thường giải thích không đúng, không đầy đủ do hạn chế lịch sử hoặc lợi ích giai cấp. Quan điểm mácxít vận dụng duy vật biện chứng, khẳng định nhà nước là hiện tượng lịch sử mang bản chất giai cấp, đạt được tính khách quan, khoa học.',
+  },
+  {
+    id: 'sparta_athens',
+    question: 'Nhà nước Xpác và Aten thuộc kiểu hình thức nào?',
+    keywords: ['xpác', 'aten', 'hy lạp', 'thành bang', 'sparta', 'athens'],
+    answer:
+      'Nhà nước thành bang Xpác (Sparta) ở Hy Lạp cổ đại là điển hình của hình thức quân chủ chủ nô (quyền lực trong tay hoàng đế, cha truyền con nối). Nhà nước thành bang Aten (Athens) là điển hình của cộng hòa dân chủ chủ nô (quyền lực thuộc về Hội đồng trưởng lão do công dân bầu ra). Dù khác nhau, cả hai đều là công cụ thống trị của giai cấp chủ nô.',
+  },
+  {
+    id: 'feudal_forms',
+    question: 'Nhà nước phong kiến tập quyền và phân quyền khác nhau như thế nào?',
+    keywords: ['phong kiến tập quyền', 'tập quyền', 'phân quyền', 'cát cứ', 'vua', 'hoàng đế'],
+    answer:
+      'Trong nhà nước phong kiến tập quyền, quyền lực tập trung tuyệt đối vào tay chính quyền trung ương, đứng đầu là vua, hoàng đế. Trong nhà nước phong kiến phân quyền, quyền lực bị phân tán bởi các thế lực phong kiến cát cứ ở địa phương, chính quyền trung ương chỉ tồn tại trên danh nghĩa, vua chỉ là bù nhìn.',
+  },
+  {
+    id: 'func_relation',
+    question: 'Mối quan hệ giữa chức năng thống trị chính trị và chức năng xã hội?',
+    keywords: ['quan hệ', 'thống trị chính trị và chức năng xã hội', 'chức năng chính trị và xã hội', 'cơ sở'],
+    answer:
+      'Hai chức năng này có mối quan hệ hữu cơ. Chức năng thống trị chính trị giữ vai trò quyết định, chi phối và định hướng. Tuy nhiên, chức năng xã hội lại là CƠ SỞ của sự thống trị chính trị. Ph. Ăngghen cho rằng sự thống trị chính trị chỉ kéo dài chừng nào nhà nước còn thực hiện tốt chức năng xã hội (duy trì trật tự, thủy lợi, giao thông...). Nếu bỏ qua chức năng xã hội, nhà nước sớm muộn sẽ sụp đổ.',
+  },
+  {
+    id: 'foreign_relation',
+    question: 'Mối quan hệ giữa chức năng đối nội và đối ngoại của nhà nước là gì?',
+    keywords: ['đối nội', 'đối ngoại', 'mối quan hệ', 'quan hệ'],
+    answer:
+      'Chức năng đối nội và đối ngoại là hai mặt của một thực thể thống nhất, hỗ trợ lẫn nhau. Trong đó, chức năng đối nội giữ vai trò CHỦ YẾU. Có làm tốt chức năng đối nội (ổn định xã hội, phát triển kinh tế) thì mới có điều kiện thực hiện tốt chức năng đối ngoại. Ngược lại, chức năng đối ngoại tốt sẽ tạo điều kiện nâng cao vị thế, thúc đẩy phát triển đối nội.',
+  },
 ];
 
 export const suggestedQuestions = [
