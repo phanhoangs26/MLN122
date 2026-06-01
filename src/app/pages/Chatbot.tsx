@@ -78,8 +78,8 @@ export default function Chatbot() {
       const reply = await askAI(next);
       setMessages((m) => [...m, { role: 'bot', text: reply, source: 'ai' }]);
     } catch (err: any) {
-      // Chỉ chạy Qwen fallback nặng nề khi thực sự bị giới hạn API (403, 429)
-      if (err.status === 403 || err.status === 429) {
+      // Chạy Qwen khi: 403, 429 (API lỗi), 404 (chạy localhost thiếu API), hoặc undefined (mất mạng)
+      if (err.status === 403 || err.status === 429 || err.status === 404 || !err.status) {
         try {
           // Fallback sử dụng Qwen model chạy local trên trình duyệt
           const gen = await getLocalModel();
