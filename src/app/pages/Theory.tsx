@@ -407,6 +407,60 @@ export default function Theory() {
 
 
 
+      {/* AI USAGE */}
+      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} className="appx">
+        <div className="wrap">
+          <div className="kicker">Phụ lục — AI Usage</div>
+          <h2 style={{ fontSize: 'clamp(22px,4vw,36px)' }}>Báo cáo ứng dụng AI có trách nhiệm</h2>
+          <p className="lead muted" style={{ marginBottom: '32px' }}>Đáp ứng tiêu chí <em>"Ứng dụng AI có trách nhiệm – minh bạch – sáng tạo – liêm chính học thuật"</em> trong đồ án môn Triết học Mác – Lênin.</p>
+
+          {/* Cam kết */}
+          <div className="pledge">
+            <b>Cam kết liêm chính học thuật:</b> AI chỉ đóng vai trò hỗ trợ kỹ thuật và thiết kế — không thay thế quá trình tư duy, phân tích logic và biên soạn nội dung học thuật cốt lõi. Toàn bộ nội dung lý luận về Nhà nước do nhóm tự tổng hợp. Nhóm hoàn toàn chịu trách nhiệm về nội dung cuối cùng.
+          </div>
+
+          {/* Công cụ */}
+          <h3 style={{ marginTop: '36px', marginBottom: '14px', fontSize: '18px' }}>Công cụ AI sử dụng</h3>
+          <table className="appx-table">
+            <thead><tr><th>Công cụ AI</th><th>Mục đích sử dụng</th></tr></thead>
+            <tbody>
+              <tr><td><b>Claude 3.5 (Anthropic)</b></td><td>Viết code giao diện (React, Tailwind CSS), thiết kế layout UI/UX cho trang web và các trò chơi.</td></tr>
+              <tr><td><b>Gemini 3.1 Flash-Lite (Google)</b></td><td>Xử lý logic Backend cho Chatbot (RAG) và API chấm điểm tự động cho Game "Đấu trường lập luận".</td></tr>
+              <tr><td><b>Llama 3.1 8B (Groq)</b></td><td>Hệ thống dự phòng (Failover) cho API chấm điểm và Chatbot khi Gemini quá tải.</td></tr>
+            </tbody>
+          </table>
+
+          {/* Phân định */}
+          <h3 style={{ marginTop: '36px', marginBottom: '14px', fontSize: '18px' }}>Phân định Output AI và Phần nhóm biên soạn</h3>
+          <table className="appx-table">
+            <thead><tr><th>Hạng mục</th><th>Nhóm sinh viên thực hiện</th><th>AI hỗ trợ</th></tr></thead>
+            <tbody>
+              <tr><td><b>Lý thuyết Nhà nước</b></td><td>Đọc giáo trình, chắt lọc kiến thức cốt lõi, viết nội dung text.</td><td>Format văn bản thành mã HTML/Markdown để hiển thị đẹp trên Web.</td></tr>
+              <tr><td><b>Trò chơi Ôn tập</b></td><td>Xây dựng luật chơi, viết câu hỏi, cung cấp cặp khái niệm đáp án.</td><td>Lập trình logic kéo thả, tính điểm và tạo hiệu ứng chúc mừng.</td></tr>
+              <tr><td><b>Chatbot & Đấu trường</b></td><td>Thiết kế rubric chấm, soạn câu hỏi tranh biện, cung cấp tài liệu RAG.</td><td>Đóng vai giám khảo, đọc tài liệu nhóm cung cấp để chấm điểm trực tiếp.</td></tr>
+              <tr><td><b>Giao diện & Cấu trúc Web</b></td><td>Đưa ra ý tưởng luồng trải nghiệm (Lý thuyết → Game → Tranh biện).</td><td>Viết code React/TypeScript, tối ưu responsive cho di động.</td></tr>
+            </tbody>
+          </table>
+
+          {/* Kiểm chứng */}
+          <h3 style={{ marginTop: '36px', marginBottom: '12px', fontSize: '18px' }}>Kiểm chứng thông tin (Fact-checking)</h3>
+          <p style={{ fontSize: '15px', marginBottom: '12px' }}>Toàn bộ thông tin học thuật được cấu trúc theo dạng <b>RAG (Retrieval-Augmented Generation)</b> — AI bắt buộc trích xuất từ tài liệu chuẩn do nhóm cung cấp, không được tự "bịa" câu trả lời.</p>
+          <ul style={{ fontSize: '15px', paddingLeft: '20px', lineHeight: 1.8 }}>
+            <li><b>Giáo trình Triết học Mác – Lênin</b> (NXB Chính trị Quốc gia Sự thật, 2021)</li>
+            <li>Tác phẩm <b>Nhà nước và Cách mạng</b> (1917) của V.I. Lênin</li>
+            <li><b>Hiến pháp 2013</b> và <b>Văn kiện Đại hội XIII</b></li>
+          </ul>
+
+          {/* Sáng tạo */}
+          <h3 style={{ marginTop: '36px', marginBottom: '12px', fontSize: '18px' }}>Ứng dụng sáng tạo rõ ràng</h3>
+          <ol style={{ fontSize: '15px', paddingLeft: '20px', lineHeight: 1.9 }}>
+            <li><b>Kiến trúc RAG Chatbot nội bộ:</b> Chatbot tích hợp thẳng vào Website, nhúng sẵn dữ liệu Giáo trình Chương III — giải đáp thắc mắc 24/7.</li>
+            <li><b>Hệ thống Game "Đấu trường lập luận":</b> AI đóng vai "Giảng viên phản biện ảo", tự động chấm điểm trên 3 tiêu chí (Lý luận, Trích dẫn, Logic) một cách minh bạch.</li>
+            <li><b>Cơ chế dự phòng (Failover):</b> Gọi API song song (Gemini + Llama-Groq) đảm bảo hệ thống mượt mà khi nhiều người truy cập đồng thời.</li>
+          </ol>
+        </div>
+      </motion.section>
+
       <footer>★ CỖ MÁY NHÀ NƯỚC — Sản phẩm tương tác · Chương III: Nhà nước và Cách mạng xã hội ★</footer>
     </div>
   );

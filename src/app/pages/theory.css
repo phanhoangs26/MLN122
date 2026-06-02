@@ -140,8 +140,10 @@
 
 /* APPENDIX */
 .theory-page .appx{background:var(--paper)}
-.theory-page .appx table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
-.theory-page .appx th, .theory-page .appx td{border:2px solid var(--line);padding:12px;text-align:left;vertical-align:top}
+.theory-page .appx-table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.55}
+.theory-page .appx-table th{background:var(--ink);color:var(--cream);font-family:'Oswald';letter-spacing:.06em;padding:12px 14px;text-align:left;border:2px solid var(--ink)}
+.theory-page .appx-table td{border:2px solid var(--line);padding:12px 14px;vertical-align:top;background:#fff}
+.theory-page .appx-table tr:nth-child(even) td{background:var(--paper)}
 .theory-page .appx th{background:var(--ink);color:var(--cream);font-family:'Oswald';letter-spacing:.06em}
 .theory-page .pledge{margin-top:24px;border:3px dashed var(--red);padding:20px;background:#fff;font-style:italic}
 .theory-page footer{background:var(--ink);color:var(--cream);padding:40px 0;text-align:center;font-family:'Oswald';letter-spacing:.1em;font-size:13px}
