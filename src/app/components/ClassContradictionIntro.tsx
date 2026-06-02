@@ -292,7 +292,7 @@ export const ClassContradictionIntro: React.FC = () => {
                   key={i}
                   onClick={() => handleAction(i)}
                   className={clsx(
-                    'p-4 border-2 font-['Oswald'] font-bold uppercase tracking-wider text-sm text-left transition-all',
+                    "p-4 border-2 font-bold uppercase tracking-wider text-sm text-left transition-all font-['Oswald']",
                     actsDone.has(i)
                       ? 'border-green-600 bg-green-50 text-green-800'
                       : 'border-[#171210] bg-white hover:bg-[#f3ead7]',
