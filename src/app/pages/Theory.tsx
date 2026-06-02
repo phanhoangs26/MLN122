@@ -299,16 +299,16 @@ export default function Theory() {
       <motion.section className="end" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
           <div className="kicker" style={{ color: 'var(--gold)' }}>Tầng 7 — Hệ quả logic</div>
-          <h2>NẾU MÂU THUẪN MẤT ĐI<br /><em>NHÀ NƯỚC TỰ TIÊU VONG</em></h2>
+          <h2>Hệ quả cuối cùng của luận điểm Lênin:<br /><em>Nhà nước không phải vĩnh cửu</em></h2>
 
           {/* Syllogism chain */}
           <div style={{ margin: '40px 0', maxWidth: '560px' }}>
             {[
               { n: '1', text: 'Nhà nước là sản phẩm của mâu thuẫn giai cấp.' },
               { n: '2', text: 'Nhà nước tồn tại vì mâu thuẫn giai cấp còn tồn tại.' },
-              { n: '3', text: 'Nếu mâu thuẫn giai cấp bị xóa bỏ hoàn toàn…' },
-              { n: '4', text: '…nhà nước mất cơ sở tồn tại.' },
-              { n: '∴', text: 'Nhà nước dần tiêu vong — như một tất yếu logic.', gold: true },
+              { n: '3', text: 'Khi cơ sở sinh ra giai cấp đối kháng dần bị xóa bỏ qua thời kỳ quá độ…' },
+              { n: '4', text: '…nhà nước mất lý do tồn tại với tư cách bộ máy quyền lực đặc biệt.' },
+              { n: '∴', text: 'Nhà nước tự tiêu vong — một tất yếu lịch sử, không phải ý chí cá nhân.', gold: true },
             ].map((step, i) => (
               <motion.div
                 key={i}
