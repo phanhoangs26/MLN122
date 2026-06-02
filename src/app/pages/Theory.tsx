@@ -78,8 +78,8 @@ export default function Theory() {
       <header className="hero relative">
         <svg className="star" viewBox="0 0 100 100"><polygon fill="var(--red)" points="50,2 61,38 98,38 68,60 79,96 50,74 21,96 32,60 2,38 39,38"/></svg>
         <div className="wrap relative z-10">
-          <div className="hero-tag">CHƯƠNG III · NHÀ NƯỚC VÀ CÁCH MẠNG XÃ HỘI</div>
-          <h1>CỖ MÁY<br />NHÀ NƯỚC<em>vận hành thử</em></h1>
+          <div className="hero-tag">CHUYÊN ĐỀ · TRIẾT HỌC MÁC – LÊNIN</div>
+          <h1>NHÀ NƯỚC VÀ<br /><em>MÀU THUẪN GIAI CẤP</em></h1>
           <div className="quote-block">
             <p>"Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được."</p>
             <cite>— V.I. LÊNIN, <i>Nhà nước và Cách mạng</i></cite>

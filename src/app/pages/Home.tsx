@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowRight, Bot, BookOpen, Landmark, Gamepad2 } from 'lucide-react';
+import { ArrowRight, Bot, BookOpen, Gamepad2 } from 'lucide-react';
 import { TopBar } from '../components/TopBar';
 import { centralThesis } from '../data/theoryContent';
 
@@ -10,30 +10,22 @@ const sections = [
     to: '/theory',
     no: '01',
     icon: BookOpen,
-    title: 'Nhà nước & Giai cấp',
-    desc: 'Chương III: nguồn gốc, bản chất, đặc trưng, kiểu và hình thức nhà nước.',
-    featured: true,
-  },
-  {
-    to: '/tu-ban',
-    no: '02',
-    icon: Landmark,
-    title: 'Nhà nước tư sản',
-    desc: 'Một kiểu nhà nước điển hình trong xã hội tư bản chủ nghĩa.',
+    title: 'Giải mã nhận định',
+    desc: 'Chương III: nguồn gốc, bản chất, đặc trưng, kiểu và hình thức nhà nước từ góc nhìn của Lênin.',
   },
   {
     to: '/game',
-    no: '03',
+    no: '02',
     icon: Gamepad2,
     title: 'Ôn tập',
-    desc: 'Học qua tương tác, ghi nhớ qua trải nghiệm.',
+    desc: 'Học qua tương tác, ghi nhớ qua trải nghiệm với dòng thời gian, khớp khái niệm và đấu trường lập luận.',
   },
   {
     to: '/chat',
-    no: '04',
+    no: '03',
     icon: Bot,
     title: 'Hỏi đáp',
-    desc: 'Tra cứu nhanh mọi vấn đề liên quan đến chuyên đề.',
+    desc: 'Tra cứu nhanh mọi vấn đề liên quan đến chuyên đề với trợ lý AI.',
   },
 ];
 
@@ -61,7 +53,7 @@ export default function Home() {
               onClick={() => navigate('/theory')}
               className="inline-flex items-center gap-2 border-2 border-[#c8281e] bg-[#c8281e] px-6 py-3 font-bold text-white transition-colors hover:bg-[#8f1410] hover:border-[#8f1410] uppercase tracking-wider text-sm font-['Oswald']"
             >
-              Khám phá chuyên đề
+              Giải mã nhận định
               <ArrowRight className="h-4 w-4" />
             </button>
             <button
@@ -91,7 +83,7 @@ export default function Home() {
           <div className="kicker">MỤC LỤC</div>
           <div className="flex items-end justify-between border-b-2 border-[#2a201c] pb-2 mb-8">
             <h2>Nội dung chuyên đề</h2>
-            <span className="text-sm font-bold text-[#6b5d4f] font-['Oswald'] tracking-widest">04 MỤC</span>
+            <span className="text-sm font-bold text-[#6b5d4f] font-['Oswald'] tracking-widest">03 MỤC</span>
           </div>
           
           <div className="feat-grid">
@@ -101,7 +93,7 @@ export default function Home() {
                 <div
                   key={s.to}
                   onClick={() => navigate(s.to)}
-                  className={`feat group flex flex-col ${s.featured ? 'sm:col-span-2 lg:col-span-2' : ''}`}
+                  className="feat group flex flex-col"
                 >
                   <div className="flex w-full items-center justify-between mb-4">
                     <div className="fn text-[#171210] group-hover:text-[#c8281e] transition-colors">{s.no}</div>
@@ -119,7 +111,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -127,20 +119,34 @@ export default function Home() {
       >
         <div className="wrap py-12">
           <div className="kicker text-[#d8a13a]">GỢI Ý LỘ TRÌNH</div>
-          <h2 className="text-white mb-8">Hành trình khám phá</h2>
-          
-          <div className="grid gap-4 sm:grid-cols-3">
-            <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
-              <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">1</span>
-              <p>Nắm vững lý luận Lênin và thực tiễn Việt Nam tại mục <strong>Nhà nước & Giai cấp</strong>.</p>
-            </div>
-            <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
-              <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">2</span>
-              <p>Tìm hiểu sâu về sự vận hành của cơ chế tam quyền phân lập ở mục <strong>Nhà nước tư sản</strong>.</p>
-            </div>
-            <div className="border-2 border-[#d8a13a] p-6 bg-[#1f1814]">
-              <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e] block mb-2">3</span>
-              <p>Củng cố kiến thức bằng <strong>Ôn tập</strong> và giải đáp mọi thắc mắc ở <strong>Hỏi đáp</strong>.</p>
+          <h2 className="text-white mb-12">Hành trình khám phá</h2>
+
+          <div className="relative max-w-4xl mx-auto">
+            <div className="hidden sm:block absolute top-12 left-0 right-0 h-1 bg-gradient-to-r from-[#d8a13a] to-[#d8a13a] opacity-30"></div>
+
+            <div className="grid gap-8 sm:gap-4 sm:grid-cols-3">
+              {[
+                { num: '01', title: 'Nắm vững lý luận', desc: 'Khám phá lý luận Lênin về bản chất và nguồn gốc nhà nước' },
+                { num: '02', title: 'Rèn luyện thực hành', desc: 'Củng cố kiến thức qua timeline, khớp khái niệm & đấu trường' },
+                { num: '03', title: 'Giải đáp thắc mắc', desc: 'Tương tác với AI và tra cứu nhanh chóng mọi vấn đề' }
+              ].map((step, idx) => (
+                <div key={idx} className="relative">
+                  <div className="flex flex-col sm:items-center">
+                    <div className="relative z-10">
+                      <div className="w-24 h-24 rounded-full border-4 border-[#d8a13a] bg-[#2a201c] flex items-center justify-center mb-6">
+                        <span className="font-['Oswald'] text-4xl font-bold text-[#c8281e]">{step.num}</span>
+                      </div>
+                    </div>
+                    <div className="sm:text-center">
+                      <h3 className="font-['Oswald'] text-xl font-bold uppercase tracking-wider text-white mb-2">{step.title}</h3>
+                      <p className="text-sm text-[#ece0c8] leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                  {idx < 2 && (
+                    <div className="hidden sm:block absolute top-12 -right-2 w-4 h-4 border-4 border-[#d8a13a] bg-[#171210] rounded-full"></div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
