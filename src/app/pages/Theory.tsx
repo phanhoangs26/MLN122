@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { TopBar } from '../components/TopBar';
 import { ContradictionResolver } from '../components/games/ContradictionResolver';
 import { StateSimulation } from '../components/StateSimulation';
+import { ClassContradictionIntro } from '../components/ClassContradictionIntro';
 
 import clsx from 'clsx';
 
@@ -70,6 +71,9 @@ export default function Theory() {
           <div className="scroll-cue">↓ KÉO THANH BÊN DƯỚI ĐỂ TỰ TAY DỰNG NÊN NHÀ NƯỚC</div>
         </div>
       </header>
+
+      {/* TẦNG 0: CLASS CONTRADICTION INTRO */}
+      <ClassContradictionIntro />
 
       {/* SIM: TẦNG 1 */}
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
