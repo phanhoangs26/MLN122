@@ -169,8 +169,9 @@ export default function Theory() {
                     Vì sao? →
                   </button>
                 ) : (
-                  <p style={{ marginTop: '12px', fontSize: '15px', opacity: .9 }}>
-                    Chức năng xã hội phục vụ một trật tự có lợi cho giai cấp thống trị — thống trị chính trị mới là chức năng quyết định. Tính xã hội tồn tại, nhưng tính giai cấp quyết định.
+                  <p style={{ marginTop: '12px', fontSize: '15px', opacity: .9, lineHeight: 1.65 }}>
+                    Theo Ăngghen, chức năng xã hội là <em>cơ sở</em> để nhà nước thực hiện sự thống trị chính trị. Vì vậy nhà nước vừa thực hiện các nhu cầu chung của xã hội, vừa bảo vệ trật tự phù hợp với lợi ích của giai cấp thống trị.<br /><br />
+                    <strong>Tính xã hội tồn tại, nhưng tính giai cấp giữ vai trò quyết định.</strong>
                   </p>
                 )}
                 <div className="flip-hint" onClick={() => { setIsFlipped(false); setIsBackExpanded(false); }}>↻ LẬT LẠI</div>
