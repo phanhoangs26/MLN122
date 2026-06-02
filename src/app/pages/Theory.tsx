@@ -352,9 +352,10 @@ export default function Theory() {
               {[
                 { label: 'Xã hội tư bản', desc: 'Mâu thuẫn giai cấp gay gắt, không thể điều hòa', dim: true },
                 { label: 'Cách mạng', desc: 'Giai cấp vô sản giành chính quyền nhà nước', accent: true },
-                { label: 'Nhà nước vô sản', desc: '• Trấn áp lực lượng chống cách mạng\n• Tổ chức xây dựng xã hội mới\n• Từng bước xóa bỏ sự phân chia giai cấp', highlight: true },
-                { label: 'Xóa bỏ giai cấp', desc: 'Mâu thuẫn giai cấp không còn cơ sở kinh tế' },
-                { label: 'Nhà nước tự tiêu vong', desc: 'Mất lý do tồn tại — trả quyền lực về xã hội', gold: true },
+                { label: 'Nhà nước vô sản', desc: '• Trấn áp lực lượng chống cách mạng\n• Xây dựng trật tự kinh tế – xã hội mới\n• Phát triển dân chủ vô sản', highlight: true },
+                { label: 'Xóa bỏ giai cấp', desc: 'Xóa bỏ cơ sở kinh tế của đối kháng giai cấp' },
+                { label: 'Giai đoạn CSCN cao', desc: 'Trật tự xã hội vận hành tự giác — không còn cần cơ quan cưỡng chế', highlight2: true },
+                { label: 'Nhà nước tự tiêu vong', desc: 'Hoàn thành chức năng lịch sử — trả quyền lực về xã hội', gold: true },
               ].map((step, i) => (
                 <motion.div
                   key={i}
@@ -367,28 +368,29 @@ export default function Theory() {
                   {/* Left: connector */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: '40px' }}>
                     <div style={{
-                      width: step.highlight ? '18px' : '14px',
-                      height: step.highlight ? '18px' : '14px',
+                      width: (step.highlight || step.highlight2) ? '18px' : '14px',
+                      height: (step.highlight || step.highlight2) ? '18px' : '14px',
                       borderRadius: '50%',
-                      background: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : 'rgba(255,255,255,0.3)',
-                      border: `2px solid ${step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : 'rgba(255,255,255,0.2)'}`,
+                      background: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : step.highlight2 ? 'var(--gold)' : 'rgba(255,255,255,0.3)',
+                      border: `2px solid ${step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : step.highlight2 ? 'var(--gold)' : 'rgba(255,255,255,0.2)'}`,
                       flexShrink: 0,
                       marginTop: '4px',
-                      boxShadow: step.highlight ? '0 0 12px rgba(200,40,30,0.6)' : 'none',
+                      boxShadow: step.highlight ? '0 0 12px rgba(200,40,30,0.6)' : step.highlight2 ? '0 0 12px rgba(216,161,58,0.5)' : 'none',
                     }} />
-                    {i < 4 && <div style={{ width: '2px', flex: 1, minHeight: step.highlight ? '60px' : '32px', background: step.highlight ? 'rgba(200,40,30,0.3)' : 'rgba(255,255,255,0.1)', margin: '4px 0' }} />}
+                    {i < 5 && <div style={{ width: '2px', flex: 1, minHeight: step.highlight ? '60px' : '32px', background: step.highlight ? 'rgba(200,40,30,0.3)' : 'rgba(255,255,255,0.1)', margin: '4px 0' }} />}
                   </div>
                   {/* Right: content */}
                   <div style={{
                     paddingLeft: '14px',
-                    paddingBottom: i < 4 ? '4px' : '0',
+                    paddingBottom: i < 5 ? '4px' : '0',
                     ...(step.highlight ? { background: 'rgba(200,40,30,0.08)', border: '1px solid rgba(200,40,30,0.25)', padding: '12px 16px', marginBottom: '4px', marginLeft: '14px' } : {}),
+                    ...(step.highlight2 ? { background: 'rgba(216,161,58,0.08)', border: '1px solid rgba(216,161,58,0.25)', padding: '12px 16px', marginBottom: '4px', marginLeft: '14px' } : {}),
                   }}>
-                    <div style={{ fontFamily: 'Oswald', fontSize: step.highlight ? '18px' : '16px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : step.dim ? 'rgba(255,255,255,0.5)' : 'var(--cream)', marginBottom: '6px' }}>
+                    <div style={{ fontFamily: 'Oswald', fontSize: (step.highlight || step.highlight2) ? '18px' : '16px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : step.highlight2 ? 'var(--gold)' : step.dim ? 'rgba(255,255,255,0.5)' : 'var(--cream)', marginBottom: '6px' }}>
                       {step.label}
                       {step.highlight && <span style={{ fontFamily: 'Bitter', fontSize: '11px', letterSpacing: '.1em', color: 'rgba(200,40,30,0.7)', marginLeft: '10px', textTransform: 'none', fontStyle: 'italic' }}>Thời kỳ quá độ</span>}
                     </div>
-                    <div style={{ fontSize: '14px', color: step.highlight ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.55)', marginBottom: '12px', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
+                    <div style={{ fontSize: '14px', color: (step.highlight || step.highlight2) ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.55)', marginBottom: '12px', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
                       {step.desc}
                     </div>
                   </div>
