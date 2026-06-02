@@ -183,14 +183,16 @@ export const ClassContradictionIntro: React.FC = () => {
         {phase === 'reveal' && (
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
             <div className="bg-[#171210] text-[#f3ead7] border-4 border-[#c8281e] p-8 sm:p-12 mb-10">
-              <p className="font-['Oswald'] text-xs font-bold uppercase tracking-widest text-[#d8a13a] mb-4">Kết quả</p>
+              <p className="font-['Oswald'] text-xs font-bold uppercase tracking-widest text-[#d8a13a] mb-4">Kết luận</p>
               <h3 className="font-['Oswald'] text-2xl sm:text-3xl font-black uppercase mb-6 leading-tight">
-                Mâu thuẫn giai cấp không phải là mâu thuẫn giữa những cá nhân.
+                Mâu thuẫn giai cấp không phải là xích mích cá nhân.
               </h3>
-              <p className="text-[#ece0c8] text-lg mb-4">
-                Nó là sự <strong className="text-white">đối lập về lợi ích cơ bản</strong> giữa các giai cấp có <strong className="text-white">vị trí kinh tế khác nhau</strong>.
-              </p>
-              <p className="italic text-[#d8a13a] border-l-4 border-[#d8a13a] pl-4">
+              <div className="space-y-4 text-[#ece0c8] text-lg mb-6">
+                <p>Đó là sự <strong className="text-white">đối lập lợi ích căn bản</strong> giữa các giai cấp có <strong className="text-white">vị trí kinh tế khác nhau</strong> trong xã hội.</p>
+                <p>Khi những mâu thuẫn ấy trở nên gay gắt và <strong className="text-white">không thể điều hòa</strong>, xã hội xuất hiện nhu cầu về một <strong className="text-white">quyền lực đặc biệt</strong> để duy trì trật tự.</p>
+                <p className="text-[#d8a13a] font-semibold">Đó là điểm khởi đầu để hiểu vì sao nhà nước ra đời.</p>
+              </div>
+              <p className="italic text-[#d8a13a] border-l-4 border-[#d8a13a] pl-4 text-sm">
                 "những giai cấp có quyền lợi kinh tế mâu thuẫn nhau"
               </p>
             </div>
