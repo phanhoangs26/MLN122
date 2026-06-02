@@ -142,9 +142,6 @@ export default function Theory() {
         </div>
       </motion.section>
 
-      {/* TẦNG 2.5: CONTRADICTION RESOLVER */}
-      <ContradictionResolver />
-
       {/* TẦNG 2: ABOLISH EXPERIMENT */}
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
@@ -173,10 +170,13 @@ export default function Theory() {
         </div>
       </motion.section>
 
-      {/* TẦNG 3: FLIP */}
+      {/* TẦNG 3: CONTRADICTION RESOLVER */}
+      <ContradictionResolver />
+
+      {/* TẦNG 4: FLIP */}
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
-          <div className="kicker">Tầng 3 — Hai mặt bản chất</div>
+          <div className="kicker">Tầng 4 — Hai mặt bản chất</div>
           <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Một khuôn mặt cho tất cả,<br />một bản chất cho thiểu số</h2>
           <div className="flip-wrap" onClick={() => setIsFlipped(!isFlipped)}>
             <div className={clsx("flip", isFlipped && "flipped")}>
@@ -276,7 +276,7 @@ export default function Theory() {
       {/* TIÊU VONG */}
       <motion.section className="end" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
-          <div className="kicker" style={{ color: 'var(--gold)' }}>Tầng 4 — Hệ quả logic</div>
+          <div className="kicker" style={{ color: 'var(--gold)' }}>Tầng 5 — Hệ quả logic</div>
           <h2>NẾU MÂU THUẪN MẤT ĐI<br /><em>NHÀ NƯỚC TỰ TIÊU VONG</em></h2>
           <p className="fade-line">Nhà nước là sản phẩm của mâu thuẫn giai cấp — nên khi giai cấp bị xóa bỏ hoàn toàn, nhà nước mất lý do tồn tại. Theo Mác–Lênin, điều đó không xảy ra ngay sau cách mạng, mà qua thời kỳ quá độ dưới hình thức <b>nhà nước vô sản</b>: trấn áp lực lượng chống đối + tổ chức xây dựng xã hội mới, rồi <em>dần tiêu vong</em>.</p>
           <p className="fade-line muted">"Nhà nước là một phạm trù lịch sử: có ra đời thì có mất đi."</p>

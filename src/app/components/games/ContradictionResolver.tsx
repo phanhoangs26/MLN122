@@ -71,7 +71,7 @@ export const ContradictionResolver: React.FC = () => {
         {/* Header */}
         <div className="mb-6">
           <div className="inline-block bg-[#c8281e] text-[#f3ead7] px-4 py-2 font-['Oswald'] font-bold uppercase tracking-widest text-xs rounded">
-            Tầng 1.5 · Thí nghiệm tương tác
+            Tầng 3 · Thí nghiệm tương tác
           </div>
         </div>
 
