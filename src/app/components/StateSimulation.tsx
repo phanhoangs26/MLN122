@@ -40,15 +40,15 @@ const ORGS = [
 const COMBO_EFFECTS: Record<string, { title: string; desc: string }> = {
   'police+court': {
     title: 'Gỡ Cơ quan cưỡng chế + Tòa án',
-    desc: 'Không còn người duy trì trật tự. Không còn người phân xử.\n\n⇒ Xung đột leo thang nhanh, không có lối thoát thể chế.',
+    desc: 'Không còn người duy trì trật tự. Không còn người phân xử.\n\n⇒ Mâu thuẫn lợi ích không biến mất — chỉ mất cơ chế kiểm soát. Xung đột leo thang không có lối thoát thể chế.',
   },
   'court+law': {
     title: 'Gỡ Tòa án + Pháp luật',
-    desc: 'Không còn luật. Không còn cơ quan xét xử.\n\n⇒ Tranh chấp không thể giải quyết bằng thể chế — chỉ bằng sức mạnh.',
+    desc: 'Không còn cơ chế xác định ai đúng ai sai. Các nhóm lợi ích buộc phải dựa vào sức mạnh thực tế.\n\n⇒ Mâu thuẫn lợi ích không biến mất, chỉ mất cơ chế kiểm soát.',
   },
   'military+police': {
     title: 'Gỡ Đội vũ trang + Cơ quan cưỡng chế',
-    desc: 'Toàn bộ lực lượng bảo vệ trật tự biến mất.\n\n⇒ Không có gì ngăn cản xung đột giai cấp bùng nổ thành bạo lực.',
+    desc: 'Toàn bộ lực lượng cưỡng chế biến mất.\n\n⇒ Không có gì ngăn cản xung đột giai cấp bùng nổ thành bạo lực.',
   },
 };
 
@@ -63,21 +63,21 @@ function getComboKey(off: Set<string>): string | null {
 }
 
 function calcMetrics(off: Set<string>) {
-  let security = 100, dispute = 0, lawbreak = 0, instability = 0;
+  let security = 100, dispute = 0, classconflict = 0, instability = 0;
   for (const id of off) {
     const org = ORGS.find(o => o.id === id);
     if (!org) continue;
-    security   += (org.effects.security   ?? 0);
-    dispute    += (org.effects.dispute    ?? 0);
-    lawbreak   += (org.effects.lawbreak   ?? 0);
-    instability += (org.effects.instability ?? 0);
-    instability += (org.effects.disorder   ?? 0) * 0.5;
+    security      += (org.effects.security   ?? 0);
+    dispute       += (org.effects.dispute    ?? 0);
+    classconflict += (org.effects.lawbreak   ?? 0) + (org.effects.dispute ?? 0) * 0.5;
+    instability   += (org.effects.instability ?? 0);
+    instability   += (org.effects.disorder   ?? 0) * 0.5;
   }
   return {
-    security:   Math.max(0, Math.min(100, security)),
-    dispute:    Math.max(0, Math.min(100, dispute)),
-    lawbreak:   Math.max(0, Math.min(100, lawbreak)),
-    instability:Math.max(0, Math.min(100, instability)),
+    security:     Math.max(0, Math.min(100, security)),
+    dispute:      Math.max(0, Math.min(100, dispute)),
+    classconflict:Math.max(0, Math.min(100, classconflict)),
+    instability:  Math.max(0, Math.min(100, instability)),
   };
 }
 
@@ -106,7 +106,6 @@ function MetricBar({ label, value, danger }: { label: string; value: number; dan
 
 export const StateSimulation: React.FC = () => {
   const [off, setOff] = useState<Set<string>>(new Set());
-  const [hovered, setHovered] = useState<string | null>(null);
   const [lastToggled, setLastToggled] = useState<string | null>(null);
 
   const toggle = (id: string) => {
@@ -153,8 +152,6 @@ export const StateSimulation: React.FC = () => {
                   <div
                     key={org.id}
                     onClick={() => toggle(org.id)}
-                    onMouseEnter={() => setHovered(org.id)}
-                    onMouseLeave={() => setHovered(null)}
                     className={clsx(
                       'relative p-4 border-2 cursor-pointer transition-all select-none',
                       isOff
@@ -180,19 +177,6 @@ export const StateSimulation: React.FC = () => {
                       </span>
                     </div>
 
-                    {/* Hover tooltip */}
-                    <AnimatePresence>
-                      {hovered === org.id && !isOff && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 4 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0 }}
-                          className="mt-3 text-xs text-[#5e3a2a] italic border-t border-[#cdc0a8] pt-2"
-                        >
-                          Gỡ cơ quan này → {org.arrows.join(' · ')}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
                   </div>
                 );
               })}
@@ -207,7 +191,7 @@ export const StateSimulation: React.FC = () => {
             <div className="bg-white border-2 border-[#2a201c] p-6 mb-4">
               <MetricBar label="An ninh" value={metrics.security} />
               <MetricBar label="Tranh chấp" value={metrics.dispute} danger />
-              <MetricBar label="Vi phạm luật" value={metrics.lawbreak} danger />
+              <MetricBar label="Xung đột lợi ích" value={metrics.classconflict} danger />
               <MetricBar label="Bất ổn chính trị" value={metrics.instability} danger />
             </div>
 
@@ -276,28 +260,24 @@ export const StateSimulation: React.FC = () => {
               <p className="font-['Oswald'] text-xs font-bold uppercase tracking-widest text-[#c8281e] mb-3">
                 Mô phỏng thất bại
               </p>
-              <h3 className="font-['Oswald'] text-2xl sm:text-3xl font-black uppercase mb-4 leading-tight">
-                Bạn đã xóa toàn bộ bộ máy cưỡng chế.
+              <h3 className="font-['Oswald'] text-2xl sm:text-3xl font-black uppercase mb-6 leading-tight">
+                Bạn đã xóa nhà nước.
               </h3>
               <div className="space-y-3 text-[#ece0c8] mb-6">
-                <p>Nhưng <strong className="text-white">xung đột lợi ích vẫn tồn tại.</strong></p>
-                <p>Xã hội buộc phải <strong className="text-white">tái lập một cơ chế quyền lực mới.</strong></p>
+                <p>Nhưng <strong className="text-white">các giai cấp và lợi ích đối lập vẫn tồn tại.</strong></p>
+                <p>Xung đột không biến mất.</p>
+                <p>Xã hội buộc phải <strong className="text-white">tái lập một quyền lực mới để duy trì trật tự.</strong></p>
               </div>
               <div className="border-t border-[#3a3028] pt-6 italic text-[#d8a13a]">
-                <p className="text-sm mb-1">Đó chính là lý do Lênin cho rằng:</p>
-                <p className="text-base font-semibold text-white">
-                  "Sự tồn tại của nhà nước là <em>biểu hiện</em> của những mâu thuẫn giai cấp chưa được giải quyết."
+                <p className="text-sm mb-2">Đó là lý do Lênin cho rằng:</p>
+                <p className="text-base font-semibold text-white not-italic">
+                  Sự tồn tại của nhà nước là <em className="text-[#ffd98a]">biểu hiện</em> của những mâu thuẫn giai cấp <em className="text-[#ffd98a]">chưa được giải quyết.</em>
                 </p>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {off.size === 0 && (
-          <p className="src-note mt-8">
-            Kết luận: chính <em>sự cần thiết</em> của bộ máy ấy là bằng chứng sống cho thấy xung đột lợi ích cơ bản chưa bị xóa bỏ. Sự tồn tại của nhà nước = mâu thuẫn chưa được giải quyết.
-          </p>
-        )}
       </div>
     </motion.section>
   );
