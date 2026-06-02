@@ -260,14 +260,14 @@ export default function Theory() {
               <h3>AI & dịch chuyển việc làm</h3>
               <p><b>Mâu thuẫn lợi ích:</b> Doanh nghiệp sở hữu AI và dữ liệu — tư liệu sản xuất thế kỷ XXI — để tối ưu lợi nhuận; người lao động đứng trước nguy cơ mất việc hàng loạt.</p>
               <p><b>Nhà nước can thiệp:</b> EU ban hành AI Act (2024), các quốc gia đàm phán khung pháp lý về dữ liệu và việc làm để giữ xung đột "trong vòng trật tự".</p>
-              <p className="case-link">→ Quan hệ sở hữu tư liệu sản xuất đổi hình thức, mâu thuẫn giai cấp không biến mất.</p>
+              <p className="case-link">→ Quan hệ sở hữu thay đổi hình thức: từ nhà máy sang dữ liệu và thuật toán. Nhưng xung đột lợi ích giữa bên sở hữu và người lao động vẫn tồn tại.</p>
             </div>
             <div className="case">
-              <div className="tag">QUỐC GIA ↔ BIG TECH</div>
-              <h3>Big Tech & Chủ quyền số</h3>
-              <p><b>Mâu thuẫn lợi ích:</b> Google, Meta, TikTok sở hữu hạ tầng thông tin toàn cầu, tích lũy quyền lực kinh tế–chính trị vượt ra ngoài biên giới quốc gia.</p>
-              <p><b>Nhà nước can thiệp:</b> Nhiều chính phủ ban hành luật dữ liệu, chống độc quyền, yêu cầu đặt máy chủ trong nước — khẳng định chủ quyền lãnh thổ trong không gian số.</p>
-              <p className="case-link">→ Nhà nước vẫn là công cụ bảo vệ lợi ích của giai cấp và lãnh thổ trong thời đại số.</p>
+              <div className="tag">NỀN TẢNG ↔ NGƯỜI SÁNG TẠO</div>
+              <h3>Nền tảng số & người sáng tạo nội dung</h3>
+              <p><b>Mâu thuẫn lợi ích:</b> YouTube, TikTok, Meta sở hữu hạ tầng phân phối và thuật toán — người sáng tạo tạo ra giá trị nhưng không kiểm soát được phân phối lợi nhuận, có thể bị xóa kênh hoặc giảm thu nhập bất kỳ lúc nào.</p>
+              <p><b>Nhà nước can thiệp:</b> Nhiều quốc gia ban hành luật bảo vệ người sáng tạo, quy định chia sẻ doanh thu, chống độc quyền nền tảng — điều tiết quan hệ giữa bên sở hữu tư liệu phân phối và người lao động sáng tạo.</p>
+              <p className="case-link">→ Quan hệ bóc lột giá trị thặng dư vẫn tồn tại — chỉ đổi hình thức từ nhà máy sang nền tảng số.</p>
             </div>
           </div>
 
