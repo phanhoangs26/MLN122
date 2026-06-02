@@ -74,14 +74,12 @@
 
 /* FACES flip */
 .theory-page .flip-wrap{perspective:1400px;margin-top:30px;max-width:680px}
-.theory-page .flip{position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1)}
+.theory-page .flip{position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1);height:260px}
 .theory-page .flip.flipped{transform:rotateY(180deg)}
-/* front: in normal flow — sets the card height */
-.theory-page .face{backface-visibility:hidden;padding:32px 36px;border:4px solid var(--line);display:flex;flex-direction:column}
+.theory-page .face{position:absolute;inset:0;backface-visibility:hidden;padding:32px 36px;border:4px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
 .theory-page .face.front{background:var(--cream);color:var(--ink);border:4px solid var(--ink);cursor:pointer;box-shadow:6px 6px 0 var(--ink);transition:box-shadow .2s}
 .theory-page .face.front:hover{box-shadow:8px 8px 0 var(--red)}
-/* back: absolute so it overlays front exactly */
-.theory-page .face.back{position:absolute;inset:0;background:var(--ink);color:var(--cream);transform:rotateY(180deg);border-color:var(--gold);box-shadow:6px 6px 0 var(--gold);overflow:auto}
+.theory-page .face.back{background:var(--ink);color:var(--cream);transform:rotateY(180deg);border-color:var(--gold);box-shadow:6px 6px 0 var(--gold)}
 .theory-page .face .ft{font-family:'Oswald';font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:12px}
 .theory-page .face.front .ft{color:var(--red);opacity:.9}
 .theory-page .face.back .ft{opacity:.6}
