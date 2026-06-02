@@ -42,7 +42,7 @@ export default function Theory() {
 
   // FLIP CARD STATE
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isBackExpanded, setIsBackExpanded] = useState(false);
+  const [showFlipModal, setShowFlipModal] = useState(false);
 
   // FEATURES CARD STATE
   const [openFeats, setOpenFeats] = useState<Set<number>>(new Set());
@@ -161,25 +161,55 @@ export default function Theory() {
                 <h3>Ai thực sự được bảo vệ?</h3>
                 <p>Không có nhà nước đứng trên hay ngoài giai cấp.</p>
                 <p><strong>Nhà nước là công cụ chính trị của giai cấp thống trị.</strong></p>
-                {!isBackExpanded ? (
-                  <button
-                    onClick={() => setIsBackExpanded(true)}
-                    style={{ marginTop: '14px', fontFamily: 'Oswald', letterSpacing: '.1em', textTransform: 'uppercase', fontSize: '13px', color: 'var(--gold)', background: 'none', border: '1px solid var(--gold)', padding: '6px 16px', cursor: 'pointer' }}
-                  >
-                    Vì sao? →
-                  </button>
-                ) : (
-                  <p style={{ marginTop: '12px', fontSize: '15px', opacity: .9, lineHeight: 1.65 }}>
-                    Theo Ăngghen, chức năng xã hội là <em>cơ sở</em> để nhà nước thực hiện sự thống trị chính trị. Vì vậy nhà nước vừa thực hiện các nhu cầu chung của xã hội, vừa bảo vệ trật tự phù hợp với lợi ích của giai cấp thống trị.<br /><br />
-                    <strong>Tính xã hội tồn tại, nhưng tính giai cấp giữ vai trò quyết định.</strong>
-                  </p>
-                )}
-                <div className="flip-hint" onClick={() => { setIsFlipped(false); setIsBackExpanded(false); }}>↻ LẬT LẠI</div>
+                <button
+                  onClick={() => setShowFlipModal(true)}
+                  style={{ marginTop: '16px', fontFamily: 'Oswald', letterSpacing: '.1em', textTransform: 'uppercase', fontSize: '13px', color: 'var(--gold)', background: 'none', border: '1px solid var(--gold)', padding: '8px 18px', cursor: 'pointer', width: 'fit-content' }}
+                >
+                  Vì sao? →
+                </button>
+                <div className="flip-hint" onClick={() => setIsFlipped(false)}>↻ LẬT LẠI</div>
               </div>
             </div>
           </div>
         </div>
       </motion.section>
+
+      {/* FLIP MODAL */}
+      {showFlipModal && (
+        <div
+          onClick={() => setShowFlipModal(false)}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{ background: 'var(--ink)', color: 'var(--cream)', border: '4px solid var(--gold)', maxWidth: '580px', width: '100%', padding: '40px', position: 'relative' }}
+          >
+            <button
+              onClick={() => setShowFlipModal(false)}
+              style={{ position: 'absolute', top: '16px', right: '20px', background: 'none', border: 'none', color: 'var(--gold)', fontFamily: 'Oswald', fontSize: '20px', cursor: 'pointer', letterSpacing: '.1em' }}
+            >
+              ✕
+            </button>
+            <div style={{ fontFamily: 'Oswald', fontSize: '12px', letterSpacing: '.28em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '16px', opacity: .7 }}>
+              Giải thích
+            </div>
+            <h3 style={{ fontFamily: 'Oswald', fontSize: '22px', fontWeight: 900, textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '20px', lineHeight: 1.2 }}>
+              Tại sao tính giai cấp giữ vai trò quyết định?
+            </h3>
+            <div style={{ fontSize: '16px', lineHeight: 1.7, color: 'var(--cream)' }}>
+              <p style={{ marginBottom: '14px' }}>
+                Theo Ăngghen, chức năng xã hội là <em>cơ sở</em> để nhà nước thực hiện sự thống trị chính trị.
+              </p>
+              <p style={{ marginBottom: '14px' }}>
+                Vì vậy nhà nước vừa thực hiện các nhu cầu chung của xã hội, vừa bảo vệ trật tự phù hợp với lợi ích của giai cấp thống trị.
+              </p>
+              <p style={{ marginBottom: '0', fontWeight: 700, color: '#ffd98a' }}>
+                Tính xã hội tồn tại, nhưng tính giai cấp giữ vai trò quyết định.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ĐẶC TRƯNG */}
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
