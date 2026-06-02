@@ -1,5 +1,6 @@
 export type DebateQuestion = {
   id: string;
+  label: string;
   claim: string;
   expected_points: string[];
   source_chunk: string;
@@ -8,32 +9,39 @@ export type DebateQuestion = {
 export const debateRounds: DebateQuestion[] = [
   {
     id: 'q01',
-    claim: 'Nhà nước tư bản hiện đại có hệ thống phúc lợi xã hội rất tốt, vậy nó đã trở thành nhà nước của toàn dân, không còn mang bản chất bóc lột nữa.',
+    label: 'Câu 1 — Sản phẩm',
+    claim: 'Nhà nước xuất hiện vì con người cần một tổ chức quản lý xã hội.',
     expected_points: [
-      'Phúc lợi xã hội chỉ là chức năng xã hội, dùng để làm dịu mâu thuẫn giai cấp, bảo vệ trật tự hiện hành.',
-      'Bản chất vẫn là công cụ thống trị của giai cấp tư sản (chức năng thống trị chính trị giữ vai trò quyết định).',
-      'Không có nhà nước nào đứng ngoài giai cấp.'
+      'Xã hội nguyên thủy từng quản lý được cộng đồng mà chưa có nhà nước.',
+      'Nguyên nhân sâu xa là sự phát triển của lực lượng sản xuất dẫn tới chế độ tư hữu.',
+      'Nguyên nhân trực tiếp là mâu thuẫn giai cấp gay gắt không thể điều hòa.',
+      'Nhà nước ra đời để duy trì trật tự có lợi cho giai cấp thống trị.',
     ],
-    source_chunk: 'Chức năng xã hội của nhà nước được biểu hiện ở chỗ... để duy trì sự ổn định của xã hội trong "trật tự" theo quan điểm của giai cấp thống trị... chức năng thống trị chính trị của nhà nước giữ vai trò quyết định, chi phối và định hướng chức năng xã hội.'
+    source_chunk: 'Nguyên nhân sâu xa của sự xuất hiện nhà nước là do sự phát triển của lực lượng sản xuất dẫn đến sự dư thừa tương đối của cải, xuất hiện chế độ tư hữu... nguyên nhân trực tiếp dẫn tới sự xuất hiện nhà nước là do mâu thuẫn giai cấp trong xã hội gay gắt không thể điều hòa được.',
   },
   {
     id: 'q02',
-    claim: 'Vì sự phát triển của sản xuất làm của cải dư thừa, nhà nước đương nhiên sinh ra để quản lý tài sản chung chứ không liên quan đến bóc lột giai cấp.',
+    label: 'Câu 2 — Biểu hiện',
+    claim: 'Sự tồn tại của nhà nước chứng minh xã hội đã đạt được sự hòa hợp giữa các giai cấp.',
     expected_points: [
-      'Lực lượng sản xuất phát triển tạo của cải dư thừa là nguyên nhân sâu xa dẫn đến tư hữu.',
-      'Nguyên nhân trực tiếp ra đời nhà nước là mâu thuẫn giai cấp gay gắt không thể điều hòa.',
-      'Nhà nước sinh ra để duy trì trật tự có lợi cho giai cấp thống trị, đàn áp sự nổi dậy của giai cấp bị trị.'
+      'Đây là cách hiểu ngược với quan điểm của Lênin.',
+      'Nhà nước không chứng minh sự hòa hợp giai cấp.',
+      'Sự tồn tại của nhà nước chứng tỏ mâu thuẫn giai cấp vẫn còn tồn tại và không thể điều hòa.',
+      'Nếu mâu thuẫn giai cấp đã được giải quyết thì nhà nước với tư cách công cụ thống trị sẽ không còn cơ sở tồn tại.',
     ],
-    source_chunk: 'Nguyên nhân sâu xa của sự xuất hiện nhà nước là do sự phát triển của lực lượng sản xuất dẫn đến sự dư thừa tương đối của cải, xuất hiện chế độ tư hữu... nguyên nhân trực tiếp dẫn tới sự xuất hiện nhà nước là do mâu thuẫn giai cấp trong xã hội gay gắt không thể điều hòa được.'
+    source_chunk: 'Bất cứ ở đâu, hễ lúc nào và chừng nào mà... những mâu thuẫn giai cấp không thể điều hòa được, thì nhà nước xuất hiện. Và ngược lại: sự tồn tại của nhà nước chứng tỏ rằng những mâu thuẫn giai cấp là không thể điều hòa được.',
   },
   {
     id: 'q03',
-    claim: 'Pháp luật trong nhà nước sinh ra là để bảo vệ công bằng cho tất cả mọi người, do đó nhà nước đứng ở vị trí trung lập hòa giải.',
+    label: 'Câu 3 — Bản chất & Chức năng',
+    claim: 'Nhà nước tư bản hiện đại có hệ thống phúc lợi xã hội rất phát triển nên đã trở thành nhà nước của toàn dân, không còn mang bản chất giai cấp.',
     expected_points: [
-      'Pháp luật là công cụ để cưỡng bức mọi cá nhân thực hiện chính sách có lợi cho giai cấp thống trị.',
-      'Quyền lực nhà nước không thuộc về nhân dân (ở các nhà nước bóc lột) mà thuộc về giai cấp thống trị.',
-      'Nhà nước là một bộ máy trấn áp, nó hợp pháp hóa và củng cố sự áp bức bằng cách làm dịu xung đột.'
+      'Phúc lợi xã hội thuộc chức năng xã hội của nhà nước.',
+      'Chức năng xã hội không quyết định bản chất nhà nước.',
+      'Chức năng thống trị chính trị giữ vai trò quyết định.',
+      'Không có nhà nước nào đứng ngoài hay đứng trên giai cấp.',
+      'Bản chất vẫn là công cụ thống trị của giai cấp cầm quyền.',
     ],
-    source_chunk: 'Nhà nước quản lý xã hội dựa vào pháp luật là chủ yếu. Bằng hệ thống pháp luật nhà nước sử dụng phương thức "cưỡng bức" mọi cá nhân... thực hiện các chính sách theo hướng có lợi cho giai cấp thống trị... Theo Mác, nhà nước là một cơ quan thống trị giai cấp... là sự kiến lập một trật tự hợp pháp hóa và củng cố sự áp bức.'
-  }
+    source_chunk: 'Chức năng thống trị chính trị của nhà nước giữ vai trò quyết định, chi phối và định hướng chức năng xã hội của nhà nước. Về bản chất, nhà nước là một tổ chức chính trị của một giai cấp thống trị về mặt kinh tế nhằm bảo vệ trật tự hiện hành và đàn áp sự phản kháng của các giai cấp khác. Mâu thuẫn giai cấp chỉ là sự khác biệt về thu nhập giữa người giàu và người nghèo — Xã hội đó đã bị phân thành những mặt đối lập không thể điều hòa mà xã hội đó bất lực không sao loại bỏ được. Xuất hiện giai cấp thống trị và giai cấp bị thống trị... Điều đó dẫn đến những mâu thuẫn giai cấp gay gắt, không thể điều hòa được.',
+  },
 ];

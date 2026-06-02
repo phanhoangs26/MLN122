@@ -158,7 +158,7 @@ export function DebateGame() {
       <div className="flex flex-wrap items-center justify-between border-b-4 border-[#171210] bg-[#f3ead7] px-6 py-5">
         <div className="flex items-center gap-3 font-bold text-[#171210] text-lg font-['Oswald'] uppercase tracking-widest">
           <ShieldAlert className="h-6 w-6 text-[#c8281e]" />
-          Vòng {roundIdx + 1}/{debateRounds.length}
+          {currentRound?.label || `Vòng ${roundIdx + 1}/${debateRounds.length}`}
         </div>
         {!result && (
           <div className={clsx("font-['Oswald'] font-black text-2xl tracking-widest", timeLeft <= 30 ? "text-[#c8281e] animate-pulse" : "text-[#171210]")}>
