@@ -331,16 +331,28 @@ export default function Theory() {
             ))}
           </div>
 
+          {/* Bridge */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{ display: 'flex', alignItems: 'center', gap: '16px', margin: '32px 0 40px', color: 'rgba(255,255,255,0.4)', fontFamily: 'Oswald', fontSize: '13px', letterSpacing: '.2em', textTransform: 'uppercase' }}
+          >
+            <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }} />
+            ↓ Quá trình diễn ra như thế nào?
+            <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }} />
+          </motion.div>
+
           {/* Timeline */}
-          <div style={{ margin: '48px 0 36px', borderTop: '2px solid rgba(255,255,255,0.1)', paddingTop: '40px' }}>
-            <div style={{ fontFamily: 'Oswald', letterSpacing: '.2em', fontSize: '12px', color: 'var(--gold)', marginBottom: '28px', textTransform: 'uppercase' }}>
-              Con đường lịch sử — theo Mác–Lênin
+          <div style={{ margin: '0 0 36px' }}>
+            <div style={{ fontFamily: 'Oswald', letterSpacing: '.15em', fontSize: '13px', color: 'var(--gold)', marginBottom: '28px', textTransform: 'uppercase', fontWeight: 700 }}>
+              Làm thế nào để đi tới "nhà nước tự tiêu vong"?
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
               {[
                 { label: 'Xã hội tư bản', desc: 'Mâu thuẫn giai cấp gay gắt, không thể điều hòa', dim: true },
-                { label: 'Cách mạng', desc: 'Giai cấp vô sản giành chính quyền', accent: true },
-                { label: 'Nhà nước vô sản', desc: 'Trấn áp lực lượng chống cách mạng · Tổ chức xây dựng xã hội mới · Từng bước xóa bỏ phân chia giai cấp' },
+                { label: 'Cách mạng', desc: 'Giai cấp vô sản giành chính quyền nhà nước', accent: true },
+                { label: 'Nhà nước vô sản', desc: '• Trấn áp lực lượng chống cách mạng\n• Tổ chức xây dựng xã hội mới\n• Từng bước xóa bỏ sự phân chia giai cấp', highlight: true },
                 { label: 'Xóa bỏ giai cấp', desc: 'Mâu thuẫn giai cấp không còn cơ sở kinh tế' },
                 { label: 'Nhà nước tự tiêu vong', desc: 'Mất lý do tồn tại — trả quyền lực về xã hội', gold: true },
               ].map((step, i) => (
@@ -354,15 +366,29 @@ export default function Theory() {
                 >
                   {/* Left: connector */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: '40px' }}>
-                    <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : 'rgba(255,255,255,0.3)', border: `2px solid ${step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : 'rgba(255,255,255,0.2)'}`, flexShrink: 0, marginTop: '4px' }} />
-                    {i < 4 && <div style={{ width: '2px', flex: 1, minHeight: '32px', background: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />}
+                    <div style={{
+                      width: step.highlight ? '18px' : '14px',
+                      height: step.highlight ? '18px' : '14px',
+                      borderRadius: '50%',
+                      background: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : 'rgba(255,255,255,0.3)',
+                      border: `2px solid ${step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : 'rgba(255,255,255,0.2)'}`,
+                      flexShrink: 0,
+                      marginTop: '4px',
+                      boxShadow: step.highlight ? '0 0 12px rgba(200,40,30,0.6)' : 'none',
+                    }} />
+                    {i < 4 && <div style={{ width: '2px', flex: 1, minHeight: step.highlight ? '60px' : '32px', background: step.highlight ? 'rgba(200,40,30,0.3)' : 'rgba(255,255,255,0.1)', margin: '4px 0' }} />}
                   </div>
                   {/* Right: content */}
-                  <div style={{ paddingBottom: i < 4 ? '4px' : '0', paddingLeft: '12px' }}>
-                    <div style={{ fontFamily: 'Oswald', fontSize: '16px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.dim ? 'rgba(255,255,255,0.5)' : 'var(--cream)', marginBottom: '4px' }}>
+                  <div style={{
+                    paddingLeft: '14px',
+                    paddingBottom: i < 4 ? '4px' : '0',
+                    ...(step.highlight ? { background: 'rgba(200,40,30,0.08)', border: '1px solid rgba(200,40,30,0.25)', padding: '12px 16px', marginBottom: '4px', marginLeft: '14px' } : {}),
+                  }}>
+                    <div style={{ fontFamily: 'Oswald', fontSize: step.highlight ? '18px' : '16px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.highlight ? 'var(--red)' : step.dim ? 'rgba(255,255,255,0.5)' : 'var(--cream)', marginBottom: '6px' }}>
                       {step.label}
+                      {step.highlight && <span style={{ fontFamily: 'Bitter', fontSize: '11px', letterSpacing: '.1em', color: 'rgba(200,40,30,0.7)', marginLeft: '10px', textTransform: 'none', fontStyle: 'italic' }}>Thời kỳ quá độ</span>}
                     </div>
-                    <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.55)', marginBottom: '16px', lineHeight: 1.5 }}>
+                    <div style={{ fontSize: '14px', color: step.highlight ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.55)', marginBottom: '12px', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
                       {step.desc}
                     </div>
                   </div>
