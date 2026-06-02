@@ -346,16 +346,16 @@ export default function Theory() {
           {/* Timeline */}
           <div style={{ margin: '0 0 36px' }}>
             <div style={{ fontFamily: 'Oswald', letterSpacing: '.15em', fontSize: '13px', color: 'var(--gold)', marginBottom: '28px', textTransform: 'uppercase', fontWeight: 700 }}>
-              Làm thế nào để đi tới "nhà nước tự tiêu vong"?
+              Quá trình dẫn đến sự tự tiêu vong của nhà nước
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
               {[
                 { label: 'Xã hội tư bản', desc: 'Mâu thuẫn giai cấp gay gắt, không thể điều hòa', dim: true },
                 { label: 'Cách mạng', desc: 'Giai cấp vô sản giành chính quyền nhà nước', accent: true },
                 { label: 'Nhà nước vô sản', desc: '• Trấn áp lực lượng chống cách mạng\n• Xây dựng trật tự kinh tế – xã hội mới\n• Phát triển dân chủ vô sản', highlight: true },
-                { label: 'Xóa bỏ giai cấp', desc: 'Xóa bỏ cơ sở kinh tế của đối kháng giai cấp' },
+                { label: 'Xóa bỏ giai cấp', desc: 'Cơ sở kinh tế tạo ra đối kháng giai cấp từng bước bị thủ tiêu' },
                 { label: 'Giai đoạn CSCN cao', desc: 'Trật tự xã hội vận hành tự giác — không còn cần cơ quan cưỡng chế', highlight2: true },
-                { label: 'Nhà nước tự tiêu vong', desc: 'Hoàn thành chức năng lịch sử — trả quyền lực về xã hội', gold: true },
+                { label: 'Nhà nước tự tiêu vong', desc: 'Hoàn thành chức năng lịch sử và mất lý do tồn tại với tư cách một bộ máy quyền lực đặc biệt', gold: true },
               ].map((step, i) => (
                 <motion.div
                   key={i}
