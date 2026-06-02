@@ -70,9 +70,7 @@ export const ContradictionResolver: React.FC = () => {
       <div className="wrap">
         {/* Header */}
         <div className="mb-6">
-          <div className="inline-block bg-[#c8281e] text-[#f3ead7] px-4 py-2 font-['Oswald'] font-bold uppercase tracking-widest text-xs rounded">
-            Tầng 3 · Thí nghiệm tương tác
-          </div>
+          <div className="kicker">Tầng 3 — Thử điều hòa mâu thuẫn</div>
         </div>
 
         <h2 className="text-4xl sm:text-5xl font-['Oswald'] font-black uppercase tracking-wide leading-tight mb-4">

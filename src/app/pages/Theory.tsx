@@ -161,7 +161,7 @@ export default function Theory() {
       {/* ĐẶC TRƯNG */}
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
-          <div className="kicker">Dấu hiệu nhận diện</div>
+          <div className="kicker">Tầng 5 — Ba đặc trưng nhà nước</div>
           <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>3 đặc trưng phân biệt nhà nước<br />với mọi tổ chức xã hội khác</h2>
           <p className="lead muted">Bấm vào từng thẻ để mở rộng.</p>
           <div className="feat-grid">
@@ -184,7 +184,7 @@ export default function Theory() {
       {/* THỰC TIỄN */}
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
-          <div className="kicker">Tầng thực tiễn — 2024-2026</div>
+          <div className="kicker">Tầng 6 — Liên hệ thực tiễn</div>
           <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Luận điểm 1917 đọc tin tức hôm nay</h2>
           <p className="lead muted">Mâu thuẫn giai cấp ngày nay ít khi là đối đầu trực diện kiểu thế kỷ XIX — nhưng nhà nước vẫn không ngừng phải <em>điều tiết</em> xung đột lợi ích. Đó chính là tính thời sự của luận điểm.</p>
           <div className="real-grid">
@@ -237,7 +237,7 @@ export default function Theory() {
       {/* TIÊU VONG */}
       <motion.section className="end" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
-          <div className="kicker" style={{ color: 'var(--gold)' }}>Tầng 5 — Hệ quả logic</div>
+          <div className="kicker" style={{ color: 'var(--gold)' }}>Tầng 7 — Hệ quả logic</div>
           <h2>NẾU MÂU THUẪN MẤT ĐI<br /><em>NHÀ NƯỚC TỰ TIÊU VONG</em></h2>
           <p className="fade-line">Nhà nước là sản phẩm của mâu thuẫn giai cấp — nên khi giai cấp bị xóa bỏ hoàn toàn, nhà nước mất lý do tồn tại. Theo Mác–Lênin, điều đó không xảy ra ngay sau cách mạng, mà qua thời kỳ quá độ dưới hình thức <b>nhà nước vô sản</b>: trấn áp lực lượng chống đối + tổ chức xây dựng xã hội mới, rồi <em>dần tiêu vong</em>.</p>
           <p className="fade-line muted">"Nhà nước là một phạm trù lịch sử: có ra đời thì có mất đi."</p>
