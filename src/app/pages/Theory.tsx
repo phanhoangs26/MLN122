@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { TopBar } from '../components/TopBar';
+import { ContradictionResolver } from '../components/games/ContradictionResolver';
 
 import clsx from 'clsx';
 
@@ -140,6 +141,9 @@ export default function Theory() {
           </div>
         </div>
       </motion.section>
+
+      {/* TẦNG 2.5: CONTRADICTION RESOLVER */}
+      <ContradictionResolver />
 
       {/* TẦNG 2: ABOLISH EXPERIMENT */}
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
