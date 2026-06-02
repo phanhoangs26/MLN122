@@ -28,8 +28,8 @@ const SCENARIOS = [
       { label: 'Miễn thuế',        leftDelta: -15, rightDelta: +15 },
       { label: 'Hỗ trợ mùa màng',  leftDelta: -10, rightDelta: +10 },
     ],
-    leftWant:  'Giữ toàn bộ ruộng đất',
-    rightWant: 'Có quyền sở hữu ruộng đất',
+    leftWant:  'Duy trì quyền chiếm hữu ruộng đất',
+    rightWant: 'Trực tiếp sở hữu ruộng đất',
     leftFinal:  'Địa chủ vẫn là địa chủ.',
     rightFinal: 'Nông dân vẫn lệ thuộc ruộng đất.',
   },
@@ -42,8 +42,8 @@ const SCENARIOS = [
       { label: 'Giảm giờ làm',     leftDelta: -20, rightDelta: +20 },
       { label: 'Thưởng cuối năm',  leftDelta: -10, rightDelta: +10 },
     ],
-    leftWant:  'Tối đa hóa lợi nhuận (100%)',
-    rightWant: 'Tăng lương và phúc lợi (100%)',
+    leftWant:  'Giữ quyền sở hữu tư liệu sản xuất và kiểm soát giá trị thặng dư',
+    rightWant: 'Thoát khỏi sự phụ thuộc vào tư bản, được hưởng đầy đủ giá trị lao động',
     leftFinal:  'Tư sản vẫn sở hữu tư liệu sản xuất.',
     rightFinal: 'Công nhân vẫn phải bán sức lao động.',
   },
@@ -72,6 +72,8 @@ function InterestBar({ label, value, side }: { label: string; value: number; sid
 export const ContradictionResolver: React.FC = () => {
   const [current, setCurrent] = useState<Scenario>(0);
   const [done, setDone] = useState<Set<Scenario>>(new Set());
+  const [showFinalQ, setShowFinalQ] = useState(false);
+  const [finalAnswer, setFinalAnswer] = useState<'yes' | 'no' | null>(null);
   const [showConclusion, setShowConclusion] = useState(false);
 
   // Per-scenario state
@@ -262,7 +264,7 @@ export const ContradictionResolver: React.FC = () => {
                     )}
                     {allDone && (
                       <button
-                        onClick={() => setShowConclusion(true)}
+                        onClick={() => setShowFinalQ(true)}
                         className="px-8 py-3 bg-[#c8281e] text-white border-2 border-[#171210] font-['Oswald'] font-bold uppercase tracking-wider text-sm hover:bg-[#8b1a1a] transition-colors"
                       >
                         Xem kết quả thí nghiệm →
@@ -273,6 +275,58 @@ export const ContradictionResolver: React.FC = () => {
               </motion.div>
             </AnimatePresence>
           </>
+        ) : showFinalQ && !showConclusion ? (
+          /* Final question */
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <div className="bg-white border-4 border-[#171210] p-10 shadow-[8px_8px_0_#c8281e] mb-6">
+              <p className="font-['Oswald'] text-xs font-bold uppercase tracking-widest text-[#6b5d4f] mb-6">Câu hỏi cuối</p>
+              <h3 className="font-['Oswald'] text-xl sm:text-2xl font-black uppercase leading-tight mb-8 text-[#171210]">
+                Nếu các giai cấp có thể dung hòa hoàn toàn lợi ích, nhà nước có cần xuất hiện không?
+              </h3>
+              {finalAnswer === null ? (
+                <div className="flex gap-4 justify-center">
+                  <button
+                    onClick={() => setFinalAnswer('yes')}
+                    className="flex-1 max-w-[140px] px-6 py-4 border-4 border-[#171210] bg-white font-['Oswald'] font-black uppercase tracking-widest text-lg hover:bg-[#171210] hover:text-white transition-colors"
+                  >
+                    Có
+                  </button>
+                  <button
+                    onClick={() => setFinalAnswer('no')}
+                    className="flex-1 max-w-[140px] px-6 py-4 border-4 border-[#171210] bg-white font-['Oswald'] font-black uppercase tracking-widest text-lg hover:bg-[#171210] hover:text-white transition-colors"
+                  >
+                    Không
+                  </button>
+                </div>
+              ) : (
+                <AnimatePresence>
+                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+                    {finalAnswer === 'no' ? (
+                      <div className="border-l-4 border-green-600 bg-green-50 p-4 text-left mb-6">
+                        <p className="font-bold text-green-700 mb-2">✓ Chính xác.</p>
+                        <p className="text-[#171210]">Theo Lenin, nhà nước chỉ xuất hiện khi các mâu thuẫn giai cấp <strong>không thể điều hòa được</strong>.</p>
+                      </div>
+                    ) : (
+                      <div className="border-l-4 border-[#c8281e] bg-[#f9e8e8] p-4 text-left mb-6">
+                        <p className="font-bold text-[#c8281e] mb-2">Hãy suy nghĩ lại.</p>
+                        <p className="text-[#171210]">Nếu mâu thuẫn đã được giải quyết hoàn toàn, không còn xung đột lợi ích — nhà nước sẽ không còn lý do để tồn tại.</p>
+                      </div>
+                    )}
+                    <button
+                      onClick={() => setShowConclusion(true)}
+                      className="px-8 py-3 bg-[#c8281e] text-white border-2 border-[#171210] font-['Oswald'] font-bold uppercase tracking-wider text-sm hover:bg-[#8b1a1a] transition-colors"
+                    >
+                      Xem kết luận đầy đủ →
+                    </button>
+                  </motion.div>
+                </AnimatePresence>
+              )}
+            </div>
+          </motion.div>
         ) : (
           /* Grand conclusion */
           <motion.div
