@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { TopBar } from '../components/TopBar';
 import { ContradictionResolver } from '../components/games/ContradictionResolver';
+import { StateSimulation } from '../components/StateSimulation';
 
 import clsx from 'clsx';
 
@@ -37,25 +38,6 @@ export default function Theory() {
   }
   const li = Math.min(4, Math.floor(prod / 25));
 
-  // ABOLISH EXPERIMENT STATE
-  const [offOrgs, setOffOrgs] = useState<Set<string>>(new Set());
-  const toggleOrg = (name: string) => {
-    setOffOrgs(prev => {
-      const next = new Set(prev);
-      if (next.has(name)) next.delete(name);
-      else next.add(name);
-      return next;
-    });
-  };
-
-  const expLevel = 5 + offOrgs.size * 23.75;
-  const expMsgs = [
-    'Bộ máy đang đầy đủ → trật tự được duy trì (một trật tự có lợi cho giai cấp thống trị).',
-    'Gỡ 1 trụ cột: xung đột lợi ích bắt đầu hở ra, tranh chấp khó được phân xử.',
-    'Gỡ 2 trụ cột: không còn lực lượng giữ "trật tự" — mâu thuẫn cũ trỗi dậy.',
-    'Gỡ 3 trụ cột: xung đột giai cấp bùng phát; phải tái lập một bộ máy cưỡng chế.',
-    '⚑ Gỡ hết: xã hội buộc phải dựng lại nhà nước. Vì mâu thuẫn CHƯA được xóa bỏ → nhà nước là tất yếu. Đó là điều cần chứng minh.'
-  ];
 
   // FLIP CARD STATE
   const [isFlipped, setIsFlipped] = useState(false);
@@ -142,33 +124,8 @@ export default function Theory() {
         </div>
       </motion.section>
 
-      {/* TẦNG 2: ABOLISH EXPERIMENT */}
-      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
-        <div className="wrap">
-          <div className="kicker">Tầng 2 — Nhà nước là BIỂU HIỆN</div>
-          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Thí nghiệm: hãy thử "tắt" nhà nước</h2>
-          <p className="lead muted">Nếu các giai cấp đã thực sự hòa giải lợi ích, ta có thể gỡ bỏ bộ máy cưỡng chế mà xã hội vẫn yên ổn. Hãy bấm tắt từng cơ quan và xem điều gì xảy ra.</p>
-
-          <div className="exp">
-            <div style={{ fontFamily: 'Oswald', letterSpacing: '.1em', color: 'var(--gold)', fontSize: '13px' }}>BẤM ĐỂ TẮT / BẬT CÁC CÔNG CỤ CƯỠNG CHẾ:</div>
-            <div className="org-row">
-              {['Quân đội', 'Cảnh sát', 'Tòa án', 'Pháp luật'].map(org => (
-                <div 
-                  key={org} 
-                  className={clsx("org", offOrgs.has(org) && "off")} 
-                  onClick={() => toggleOrg(org)}
-                >
-                  {org.toUpperCase()}
-                </div>
-              ))}
-            </div>
-            <div>MỨC XUNG ĐỘT XÃ HỘI BÙNG PHÁT</div>
-            <div className="exp-meter"><span style={{ width: `${Math.min(100, expLevel)}%` }}></span></div>
-            <div className="exp-out">{expMsgs[offOrgs.size]}</div>
-          </div>
-          <p className="src-note">Kết luận: chính <em>sự cần thiết</em> của bộ máy ấy là bằng chứng sống cho thấy xung đột lợi ích cơ bản chưa bị xóa bỏ. Sự tồn tại của nhà nước = mâu thuẫn chưa được giải quyết.</p>
-        </div>
-      </motion.section>
+      {/* TẦNG 2: STATE SIMULATION */}
+      <StateSimulation />
 
       {/* TẦNG 3: CONTRADICTION RESOLVER */}
       <ContradictionResolver />
