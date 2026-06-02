@@ -73,15 +73,24 @@
 .theory-page .exp-meter span{display:block;height:100%;width:5%;background:var(--red);transition:.4s}
 
 /* FACES flip */
-.theory-page .flip-wrap{perspective:1400px;margin-top:30px;cursor:pointer;max-width:640px}
-.theory-page .flip{position:relative;transform-style:preserve-3d;transition:transform .7s;min-height:240px}
+.theory-page .flip-wrap{perspective:1400px;margin-top:30px;max-width:680px}
+.theory-page .flip{position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1)}
 .theory-page .flip.flipped{transform:rotateY(180deg)}
-.theory-page .face{position:absolute;inset:0;backface-visibility:hidden;padding:30px;border:4px solid var(--line);display:flex;flex-direction:column;justify-content:center}
-.theory-page .face.front{background:var(--red);color:var(--cream)}
-.theory-page .face.back{background:var(--ink);color:var(--cream);transform:rotateY(180deg);border-color:var(--gold)}
-.theory-page .face .ft{font-family:'Oswald';font-size:13px;letter-spacing:.25em;margin-bottom:10px;opacity:.85}
-.theory-page .face h3{font-size:30px;margin-bottom:12px}
-.theory-page .flip-hint{font-family:'Oswald';letter-spacing:.15em;font-size:12px;color:var(--muted);margin-top:12px}
+/* front: in normal flow — sets the card height */
+.theory-page .face{backface-visibility:hidden;padding:32px 36px;border:4px solid var(--line);display:flex;flex-direction:column}
+.theory-page .face.front{background:var(--cream);color:var(--ink);border:4px solid var(--ink);cursor:pointer;box-shadow:6px 6px 0 var(--ink);transition:box-shadow .2s}
+.theory-page .face.front:hover{box-shadow:8px 8px 0 var(--red)}
+/* back: absolute so it overlays front exactly */
+.theory-page .face.back{position:absolute;inset:0;background:var(--ink);color:var(--cream);transform:rotateY(180deg);border-color:var(--gold);box-shadow:6px 6px 0 var(--gold);overflow:auto}
+.theory-page .face .ft{font-family:'Oswald';font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:12px}
+.theory-page .face.front .ft{color:var(--red);opacity:.9}
+.theory-page .face.back .ft{opacity:.6}
+.theory-page .face.front h3{font-size:clamp(22px,3.2vw,28px);margin-bottom:14px;color:var(--ink)}
+.theory-page .face.back h3{font-size:clamp(20px,3vw,26px);margin-bottom:14px;color:var(--gold)}
+.theory-page .flip-hint{font-family:'Oswald';letter-spacing:.18em;font-size:11px;margin-top:auto;padding-top:18px;text-transform:uppercase;opacity:.55}
+.theory-page .face.front .flip-hint{color:var(--red)}
+.theory-page .face.back .flip-hint{color:var(--gold);cursor:pointer}
+.theory-page .face.back .flip-hint:hover{opacity:1}
 
 /* FEATURES cards */
 .theory-page .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
