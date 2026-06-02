@@ -195,12 +195,6 @@ export const ClassContradictionIntro: React.FC = () => {
               </p>
             </div>
             <div className="text-center">
-              <button
-                onClick={() => setPhase('compare')}
-                className="px-10 py-4 bg-[#c8281e] text-white border-4 border-[#171210] font-['Oswald'] font-bold uppercase tracking-widest text-base hover:bg-[#8b1a1a] transition-colors"
-              >
-                Xem so sánh trực quan →
-              </button>
             </div>
           </motion.div>
         )}
@@ -355,32 +349,6 @@ export const ClassContradictionIntro: React.FC = () => {
           </motion.div>
         )}
 
-        {/* ── CONCLUSION ───────────────────────────────────── */}
-        {phase === 'conclusion' && (
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="bg-[#171210] text-[#f3ead7] border-4 border-[#c8281e] p-8 sm:p-12 mb-8 relative overflow-hidden">
-              <div className="absolute -right-8 -bottom-8 text-8xl opacity-5 font-black">☭</div>
-              <p className="font-['Oswald'] text-xs font-bold uppercase tracking-widest text-[#c8281e] mb-4">
-                Tại sao gọi là "Mâu thuẫn không thể điều hòa"?
-              </p>
-              <h3 className="font-['Oswald'] text-2xl sm:text-3xl font-black uppercase mb-6 leading-tight text-white">
-                Các giai cấp có thể thỏa hiệp tạm thời.
-              </h3>
-              <div className="space-y-4 text-[#ece0c8]">
-                <p>Nhưng khi <strong className="text-white">lợi ích cơ bản vẫn đối lập</strong>, mâu thuẫn vẫn tồn tại.</p>
-                <p>Đó là điều Marx, Engels và Lenin gọi là <strong className="text-[#ffd98a]">mâu thuẫn giai cấp không thể điều hòa</strong>.</p>
-              </div>
-            </div>
-            <div className="text-center">
-              <button
-                onClick={() => setPhase('transition')}
-                className="px-10 py-4 bg-[#c8281e] text-white border-4 border-[#171210] font-['Oswald'] font-bold uppercase tracking-widest text-base hover:bg-[#8b1a1a] transition-colors"
-              >
-                Tiếp tục →
-              </button>
-            </div>
-          </motion.div>
-        )}
 
         {/* ── TRANSITION ───────────────────────────────────── */}
         {phase === 'transition' && (

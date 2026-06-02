@@ -10,9 +10,9 @@ import clsx from 'clsx';
 const stages = [
   { min: 0, no: 'GIAI ĐOẠN 01', name: 'Xã hội nguyên thủy', desc: 'Thị tộc, bộ lạc tự quản. Chưa tư hữu, chưa giai cấp, chưa cần bộ máy quyền lực tách khỏi nhân dân.' },
   { min: 25, no: 'GIAI ĐOẠN 02', name: 'Sản phẩm dư thừa', desc: 'Năng suất tăng, xuất hiện của cải dư thừa tương đối — tiền đề kinh tế cho chế độ tư hữu.' },
-  { min: 50, no: 'GIAI ĐOẠN 03', name: 'Tư hữu & phân hóa', desc: 'Tư liệu sản xuất rơi vào tay thiểu số. Quan hệ bình đẳng bị thay bằng quan hệ áp bức, bóc lột.' },
-  { min: 75, no: 'GIAI ĐOẠN 04', name: 'Mâu thuẫn không thể điều hòa', desc: 'Giai cấp thống trị và bị trị có lợi ích đối lập. Đấu tranh giai cấp trở nên gay gắt.' },
-  { min: 100, no: 'GIAI ĐOẠN 05', name: 'Nhà nước ra đời', desc: 'Một lực lượng đứng trên xã hội xuất hiện để giữ xung đột trong vòng "trật tự" — trật tự bảo đảm địa vị giai cấp thống trị.' }
+  { min: 50, no: 'GIAI ĐOẠN 03', name: 'Chế độ tư hữu xuất hiện', desc: 'Một bộ phận người chiếm hữu của cải và tư liệu sản xuất nhiều hơn người khác. Từ sự khác biệt về sở hữu bắt đầu hình thành các nhóm người có địa vị kinh tế khác nhau.' },
+  { min: 75, no: 'GIAI ĐOẠN 04', name: 'Mâu thuẫn không thể điều hòa', desc: 'Một bên muốn duy trì đặc quyền sở hữu. Một bên muốn xóa bỏ áp bức và bóc lột. Hai lợi ích đối lập không thể dung hòa bằng cơ chế tự quản cộng đồng.' },
+  { min: 100, no: 'GIAI ĐOẠN 05', name: 'Nhà nước ra đời', desc: 'Để các giai cấp đối kháng không tiêu diệt lẫn nhau và làm tan rã xã hội, một quyền lực công cộng đặc biệt xuất hiện. Quyền lực đó đứng trên xã hội nhưng dần tách khỏi xã hội — đó chính là nhà nước.' }
 ];
 
 const prodLabels = [
@@ -122,6 +122,14 @@ export default function Theory() {
               <div className={clsx("verdict", prod >= 100 && "show")}>
                 ⚑ NHÀ NƯỚC RA ĐỜI — như một tất yếu lịch sử, không phải do thần thánh hay ý chí cá nhân sắp đặt.
               </div>
+              {prod >= 100 && (
+                <div style={{ marginTop: '24px', padding: '20px 24px', background: '#171210', border: '3px solid var(--red)', color: '#f3ead7' }}>
+                  <div style={{ fontFamily: 'Oswald', letterSpacing: '.18em', textTransform: 'uppercase', fontSize: '12px', color: 'var(--gold)', marginBottom: '10px' }}>Kết luận Tầng 1</div>
+                  <p style={{ marginBottom: '10px', lineHeight: 1.6 }}>Nhà nước không xuất hiện vì ý chí của cá nhân, cũng không phải do một "khế ước xã hội".</p>
+                  <p style={{ marginBottom: '10px', lineHeight: 1.6 }}>Theo chủ nghĩa Mác – Lênin, nhà nước là kết quả tất yếu của quá trình: <strong style={{ color: '#d8a13a' }}>phát triển lực lượng sản xuất → tư hữu → phân hóa giai cấp → mâu thuẫn giai cấp không thể điều hòa.</strong></p>
+                  <p style={{ lineHeight: 1.6, fontStyle: 'italic', color: '#ece0c8' }}>Vì vậy, nhà nước là <strong style={{ color: 'white' }}>sản phẩm lịch sử</strong> của xã hội có giai cấp.</p>
+                </div>
+              )}
               <p className="src-note">Mạch nhân quả: dư thừa → tư hữu → phân hóa giai cấp → mâu thuẫn không thể điều hòa → nhà nước. (Giáo trình Triết học Mác–Lênin 2021, Ch.III)</p>
             </div>
           </div>
