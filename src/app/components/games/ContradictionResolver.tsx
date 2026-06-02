@@ -3,261 +3,292 @@ import { motion, AnimatePresence } from 'motion/react';
 import clsx from 'clsx';
 import { CheckCircle2, XCircle } from 'lucide-react';
 
-type Scenario = 'slave' | 'peasant' | 'worker' | null;
+type Scenario = 0 | 1 | 2;
 
-const scenarios = {
-  slave: {
-    title: 'Chủ nô ↔ Nô lệ',
-    masterInterests: ['Giữ quyền sở hữu nô lệ', 'Duy trì lao động miễn phí', 'Bảo vệ tài sản'],
-    slaveInterests: ['Được tự do', 'Chấm dứt bị bóc lột', 'Có quyền sở hữu bản thân'],
-    solutions: [
-      { label: 'Tăng khẩu phần', key: 'ration' },
-      { label: 'Giảm giờ làm', key: 'hours' },
-      { label: 'Thưởng vật chất', key: 'reward' },
-    ],
-    successMsg: 'Điều kiện sống cải thiện',
-    failureMsg: ['Nô lệ vẫn là nô lệ', 'Chủ nô vẫn sở hữu nô lệ'],
-    conclusion: 'Mâu thuẫn cơ bản vẫn tồn tại.',
+const SCENARIOS = [
+  {
+    tab: 'Chủ nô vs Nô lệ',
+    left: { title: 'Lợi ích của Chủ nô', items: ['Giữ quyền sở hữu nô lệ', 'Duy trì lao động miễn phí', 'Bảo vệ tài sản'] },
+    right: { title: 'Lợi ích của Nô lệ', items: ['Được tự do', 'Chấm dứt bị bóc lột', 'Có quyền sở hữu bản thân'] },
+    actions: ['Tăng khẩu phần', 'Giảm giờ làm', 'Thưởng vật chất'],
+    plus: ['Điều kiện sống cải thiện'],
+    minus: ['Nô lệ vẫn là nô lệ', 'Chủ nô vẫn sở hữu nô lệ'],
+    conclusion: 'Mâu thuẫn cơ bản vẫn tồn tại',
   },
-  peasant: {
-    title: 'Địa chủ ↔ Nông dân',
-    masterInterests: ['Giữ quyền sở hữu ruộng đất', 'Tối đa hóa thu nhập', 'Bảo vệ tài sản'],
-    slaveInterests: ['Có quyền sở hữu ruộng đất', 'Giảm tô thuế', 'Cải thiện sinh kế'],
-    solutions: [
-      { label: 'Giảm tô', key: 'reduce' },
-      { label: 'Miễn thuế', key: 'exempt' },
-      { label: 'Hỗ trợ mùa màng', key: 'support' },
-    ],
-    successMsg: 'Giảm căng thẳng tạm thời',
-    failureMsg: ['Quyền sở hữu ruộng đất không đổi'],
-    conclusion: 'Mâu thuẫn vẫn tồn tại.',
+  {
+    tab: 'Địa chủ vs Nông dân',
+    left: { title: 'Lợi ích của Địa chủ', items: ['Muốn giữ ruộng đất', 'Giữ địa tô', 'Duy trì quyền chiếm hữu'] },
+    right: { title: 'Lợi ích của Nông dân', items: ['Muốn có ruộng đất', 'Thoát khỏi địa tô', 'Làm chủ tư liệu canh tác'] },
+    actions: ['Giảm tô', 'Miễn thuế', 'Hỗ trợ mùa màng'],
+    plus: ['Giảm căng thẳng tạm thời'],
+    minus: ['Quyền sở hữu ruộng đất không đổi'],
+    conclusion: 'Mâu thuẫn vẫn tồn tại',
   },
-  worker: {
-    title: 'Tư sản ↔ Công nhân',
-    masterInterests: ['Tối đa lợi nhuận', 'Kiểm soát tư liệu sản xuất', 'Giảm chi phí lao động'],
-    slaveInterests: ['Tăng lương', 'Phúc lợi xã hội', 'Giảm giờ làm'],
-    solutions: [
-      { label: 'Tăng lương', key: 'wage' },
-      { label: 'Giảm giờ làm', key: 'hours' },
-      { label: 'Thưởng cuối năm', key: 'bonus' },
-    ],
-    successMsg: 'Điều kiện lao động cải thiện',
-    failureMsg: ['Doanh nghiệp vẫn sở hữu tư liệu sản xuất', 'Công nhân vẫn bán sức lao động'],
-    conclusion: 'Mâu thuẫn cơ bản chưa mất đi.',
+  {
+    tab: 'Tư sản vs Công nhân',
+    left: { title: 'Lợi ích của Tư sản', items: ['Tối đa lợi nhuận', 'Giữ tư liệu sản xuất', 'Kiểm soát giá trị thặng dư'] },
+    right: { title: 'Lợi ích của Công nhân', items: ['Tăng lương và phúc lợi', 'Cải thiện điều kiện lao động', 'Được hưởng giá trị mình tạo ra'] },
+    actions: ['Tăng lương', 'Giảm giờ làm', 'Thưởng cuối năm'],
+    plus: ['Điều kiện lao động cải thiện'],
+    minus: ['Doanh nghiệp vẫn sở hữu tư liệu sản xuất', 'Công nhân vẫn bán sức lao động'],
+    conclusion: 'Mâu thuẫn cơ bản chưa mất đi',
   },
-};
+];
+
+const LOAD_MSGS = ['Đang áp dụng biện pháp…', 'Đo lường lại lợi ích hai bên…', 'Kiểm tra mâu thuẫn cơ bản…'];
 
 export const ContradictionResolver: React.FC = () => {
-  const [selected, setSelected] = useState<Scenario>(null);
-  const [attempted, setAttempted] = useState(false);
-  const [completedScenarios, setCompletedScenarios] = useState<Set<Scenario>>(new Set());
+  const [current, setCurrent] = useState<Scenario>(0);
+  const [done, setDone] = useState<Set<Scenario>>(new Set());
+  const [attempting, setAttempting] = useState<Scenario | null>(null);
+  const [showResult, setShowResult] = useState<Scenario | null>(null);
+  const [loadMsg, setLoadMsg] = useState('');
 
-  const handleAttempt = () => {
-    if (selected) {
-      setAttempted(true);
-      setCompletedScenarios(prev => new Set([...prev, selected]));
-      setTimeout(() => {
-        if (completedScenarios.size < 2) {
-          setSelected(null);
-          setAttempted(false);
-        }
-      }, 3000);
-    }
+  const handleTryReconcile = (s: Scenario) => {
+    setShowResult(null);
+    setAttempting(s);
+    setLoadMsg(LOAD_MSGS[Math.floor(Math.random() * LOAD_MSGS.length)]);
+
+    setTimeout(() => {
+      setShowResult(s);
+      setAttempting(null);
+      if (!done.has(s)) {
+        setDone(prev => new Set([...prev, s]));
+      }
+    }, 1200);
   };
 
-  const allCompleted = completedScenarios.size === 3;
+  const allDone = done.size === 3;
 
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
+      viewport={{ once: true, margin: '-10%' }}
     >
       <div className="wrap">
-        <div className="kicker text-[#c8281e]">Tầng 1.5 — THỬ ĐIỀU HÒA</div>
-        <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>
-          Nếu các giai cấp có thể dung hòa lợi ích với nhau,
-          <br />
-          <em>liệu nhà nước có cần xuất hiện?</em>
+        {/* Header */}
+        <div className="mb-6">
+          <div className="inline-block bg-[#c8281e] text-[#f3ead7] px-4 py-2 font-['Oswald'] font-bold uppercase tracking-widest text-xs rounded">
+            Tầng 1.5 · Thí nghiệm tương tác
+          </div>
+        </div>
+
+        <h2 className="text-4xl sm:text-5xl font-['Oswald'] font-black uppercase tracking-wide leading-tight mb-4">
+          Thử điều hòa <em className="text-[#c8281e] not-italic">mâu thuẫn</em>
         </h2>
-        <p className="lead muted mb-12">Chọn một mâu thuẫn lịch sử và thử điều hòa. Xem liệu có thể xóa bỏ được nó không.</p>
 
-        {!allCompleted ? (
-          <>
-            {/* Scenario Selection */}
-            <div className="mb-12">
-              <div className="grid gap-4 sm:grid-cols-3">
-                {(Object.keys(scenarios) as Scenario[]).map((key) => (
-                  <motion.button
-                    key={key}
-                    onClick={() => {
-                      setSelected(key);
-                      setAttempted(false);
-                    }}
-                    className={clsx(
-                      'relative p-6 border-4 transition-all text-left font-["Oswald"] uppercase tracking-wider text-lg font-bold',
-                      selected === key && !attempted
-                        ? 'border-[#c8281e] bg-[#c8281e] text-white shadow-[6px_6px_0_#171210]'
-                        : 'border-[#171210] bg-white text-[#171210] hover:shadow-[4px_4px_0_#171210]',
-                      completedScenarios.has(key) && 'opacity-50 pointer-events-none',
-                    )}
-                    disabled={completedScenarios.has(key)}
-                  >
-                    {scenarios[key].title}
-                    {completedScenarios.has(key) && (
-                      <CheckCircle2 className="absolute top-3 right-3 w-6 h-6 text-green-600" />
-                    )}
-                  </motion.button>
-                ))}
+        <p className="text-lg text-[#6b5d4f] italic border-l-4 border-[#d8a13a] pl-4 mb-8 max-w-2xl">
+          Nếu các giai cấp có thể dung hòa lợi ích với nhau, liệu nhà nước có cần xuất hiện?
+        </p>
+
+        {/* Tabs */}
+        <div className="mb-6">
+          <p className="font-['Oswald'] uppercase tracking-widest text-xs font-bold text-[#6b5d4f] mb-3">
+            Chọn một mâu thuẫn lịch sử
+          </p>
+          <div className="flex gap-0 border-b-4 border-[#171210]">
+            {SCENARIOS.map((s, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i as Scenario)}
+                className={clsx(
+                  'px-6 py-3 font-bold uppercase tracking-widest text-sm transition-all',
+                  "font-['Oswald']",
+                  current === i
+                    ? 'bg-[#171210] text-[#f3ead7]'
+                    : 'bg-transparent text-[#8a7a60] hover:text-[#171210]',
+                )}
+              >
+                {s.tab}
+                {done.has(i as Scenario) && <span className="ml-2 text-[#7ec97e]">✓</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Scenario Panel */}
+        <AnimatePresence mode="wait">
+          {!allDone ? (
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* VS Grid */}
+              <div className="grid sm:grid-cols-2 gap-4 mb-8 sm:gap-0">
+                {/* Left */}
+                <div className="bg-[#e4d9c4] border-4 border-[#171210] p-6 sm:border-r-0">
+                  <h3 className="font-['Oswald'] text-sm font-bold uppercase tracking-widest text-[#c8281e] border-b-2 border-[#d8a13a] pb-2 mb-4">
+                    {SCENARIOS[current].left.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {SCENARIOS[current].left.items.map((item, i) => (
+                      <li key={i} className="flex gap-3 text-sm">
+                        <span className="text-[#c8281e] font-bold">+</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Right */}
+                <div className="bg-[#e4d9c4] border-4 border-[#171210] p-6 sm:border-l-0">
+                  <h3 className="font-['Oswald'] text-sm font-bold uppercase tracking-widest text-[#c8281e] border-b-2 border-[#d8a13a] pb-2 mb-4">
+                    {SCENARIOS[current].right.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {SCENARIOS[current].right.items.map((item, i) => (
+                      <li key={i} className="flex gap-3 text-sm">
+                        <span className="text-[#c8281e] font-bold">+</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
 
-            {/* Scenario Content */}
-            <AnimatePresence mode="wait">
-              {selected && (
-                <motion.div
-                  key={selected}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  className="mb-12"
-                >
-                  <div className="bg-white border-4 border-[#171210] shadow-[8px_8px_0_#c8281e] overflow-hidden">
-                    <div className="grid sm:grid-cols-2">
-                      {/* Side 1 */}
-                      <div className="p-8 border-b-4 sm:border-b-0 sm:border-r-4 border-[#171210]">
-                        <h3 className="font-['Oswald'] text-sm font-black uppercase tracking-widest text-[#c8281e] mb-4">
-                          {selected === 'slave' ? 'Chủ nô' : selected === 'peasant' ? 'Địa chủ' : 'Tư sản'}
-                        </h3>
-                        <div className="space-y-3">
-                          {scenarios[selected].masterInterests.map((interest, i) => (
-                            <div key={i} className="flex gap-3 items-start">
-                              <span className="text-[#c8281e] font-black text-lg mt-1">+</span>
-                              <p className="text-[#171210] text-sm leading-tight">{interest}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+              {/* Actions */}
+              <div className="text-center mb-6">
+                <p className="font-['Oswald'] uppercase tracking-widest text-sm font-bold text-[#171210] mb-4">
+                  Thử Điều Hòa
+                </p>
+                <div className="flex gap-3 justify-center flex-wrap">
+                  {SCENARIOS[current].actions.map((action, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleTryReconcile(current)}
+                      disabled={attempting === current}
+                      className="px-5 py-3 bg-white border-2 border-[#171210] font-bold text-sm uppercase tracking-wide hover:bg-[#171210] hover:text-white transition-colors disabled:opacity-50"
+                    >
+                      {action}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-                      {/* Side 2 */}
-                      <div className="p-8">
-                        <h3 className="font-['Oswald'] text-sm font-black uppercase tracking-widest text-[#c8281e] mb-4">
-                          {selected === 'slave' ? 'Nô lệ' : selected === 'peasant' ? 'Nông dân' : 'Công nhân'}
-                        </h3>
-                        <div className="space-y-3">
-                          {scenarios[selected].slaveInterests.map((interest, i) => (
-                            <div key={i} className="flex gap-3 items-start">
-                              <span className="text-[#c8281e] font-black text-lg mt-1">+</span>
-                              <p className="text-[#171210] text-sm leading-tight">{interest}</p>
-                            </div>
-                          ))}
+              {/* Loading */}
+              <AnimatePresence>
+                {attempting === current && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="text-center mb-6"
+                  >
+                    <div className="h-1 bg-[#e4d9c4] rounded-full overflow-hidden max-w-sm mx-auto mb-3">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-[#d8a13a] to-[#c8281e]"
+                        initial={{ width: 0 }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 1 }}
+                      />
+                    </div>
+                    <p className="text-sm italic text-[#7a6a52]">{loadMsg}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Result */}
+              <AnimatePresence>
+                {showResult === current && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white border-4 border-[#171210] overflow-hidden"
+                  >
+                    <div className="h-2 bg-gradient-to-r from-[#c8281e] to-[#8b1a1a]" />
+                    <div className="p-6 space-y-3">
+                      {SCENARIOS[current].plus.map((msg, i) => (
+                        <div key={i} className="flex gap-3 items-start">
+                          <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                          <span className="text-sm">{msg}</span>
                         </div>
+                      ))}
+                      <div className="h-px bg-[#cdc0a8]" />
+                      {SCENARIOS[current].minus.map((msg, i) => (
+                        <div key={i} className="flex gap-3 items-start text-[#5e0f0f]">
+                          <XCircle className="w-5 h-5 text-[#c8281e] flex-shrink-0 mt-0.5" />
+                          <span className="text-sm">{msg}</span>
+                        </div>
+                      ))}
+                      <div className="h-px bg-[#cdc0a8]" />
+                      <div className="flex gap-2 items-start">
+                        <span className="text-[#d8a13a] font-bold">⇒</span>
+                        <span className="font-bold text-[#5e0f0f] text-sm uppercase tracking-wide">
+                          {SCENARIOS[current].conclusion}
+                        </span>
                       </div>
                     </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ) : (
+            /* Grand Conclusion */
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-[#c8281e] to-[#8b1a1a] text-[#f3ead7] p-8 sm:p-12 rounded relative overflow-hidden border-4 border-[#171210]"
+            >
+              <div className="absolute -right-20 -bottom-20 text-9xl opacity-5 font-black">☭</div>
 
-                    {/* Solutions */}
-                    {!attempted && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="p-8 bg-[#f3ead7] border-t-4 border-[#171210]"
-                      >
-                        <p className="font-['Oswald'] text-sm font-black uppercase tracking-widest text-[#171210] mb-6">
-                          Thử Điều Hòa
-                        </p>
-                        <div className="grid grid-cols-3 gap-3">
-                          {scenarios[selected].solutions.map((sol) => (
-                            <button
-                              key={sol.key}
-                              onClick={handleAttempt}
-                              className="border-2 border-[#171210] bg-white px-4 py-3 font-['Oswald'] font-bold uppercase tracking-wide text-xs text-[#171210] hover:bg-[#171210] hover:text-[#f3ead7] transition-colors"
-                            >
-                              {sol.label}
-                            </button>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* Result */}
-                    {attempted && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="p-8 bg-[#f3ead7] border-t-4 border-[#171210]"
-                      >
-                        <div className="space-y-4">
-                          <div className="flex gap-3 items-start">
-                            <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                            <p className="font-['Oswald'] font-bold text-[#171210]">
-                              {scenarios[selected].successMsg}
-                            </p>
-                          </div>
-                          {scenarios[selected].failureMsg.map((msg, i) => (
-                            <div key={i} className="flex gap-3 items-start">
-                              <XCircle className="w-6 h-6 text-[#c8281e] flex-shrink-0 mt-1" />
-                              <p className="font-['Oswald'] font-bold text-[#171210]">{msg}</p>
-                            </div>
-                          ))}
-                          <div className="mt-6 pt-6 border-t-2 border-[#171210]">
-                            <p className="font-['Bitter'] text-[#171210] italic">
-                              <strong>Kết quả:</strong> {scenarios[selected].conclusion}
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Progress */}
-            <div className="flex justify-center gap-2 mb-8">
-              {(Object.keys(scenarios) as Scenario[]).map((key) => (
-                <div
-                  key={key}
-                  className={clsx(
-                    'h-2 w-8 transition-colors',
-                    completedScenarios.has(key) ? 'bg-green-600' : 'bg-[#d8a13a]',
-                  )}
-                />
-              ))}
-            </div>
-          </>
-        ) : (
-          /* Grand Conclusion */
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-[#c8281e] border-4 border-[#171210] p-12 shadow-[8px_8px_0_#171210] max-w-2xl mx-auto"
-          >
-            <h3 className="font-['Oswald'] text-3xl font-black uppercase tracking-widest text-white mb-8 text-center">
-              Tại sao không thể điều hòa?
-            </h3>
-
-            <div className="bg-white p-8 mb-8 text-[#171210] font-['Bitter'] text-lg leading-relaxed">
-              <p className="mb-4">
-                Theo quan điểm Mác – Lênin, <strong>mâu thuẫn giai cấp không phải là mâu thuẫn cá nhân.</strong>
+              <p className="font-['Oswald'] uppercase tracking-widest text-xs font-bold text-[#d8a13a] mb-3">
+                Kết luận thí nghiệm
               </p>
-              <p className="mb-4">
-                Nó bắt nguồn từ <strong>địa vị kinh tế</strong> và <strong>lợi ích cơ bản đối lập</strong> giữa các giai cấp.
-              </p>
-              <p>
-                Vì vậy các biện pháp cải thiện chỉ có thể <strong>làm dịu xung đột</strong>, không thể <strong>xóa bỏ nguyên nhân sâu xa.</strong>
-              </p>
-            </div>
 
-            <div className="space-y-4 text-white text-center font-['Oswald'] text-sm italic tracking-wide">
-              <p>"những giai cấp có quyền lợi kinh tế mâu thuẫn nhau"</p>
-              <p>"những mâu thuẫn giai cấp không thể điều hòa được"</p>
-            </div>
+              <h3 className="text-3xl sm:text-4xl font-['Oswald'] font-black uppercase tracking-wide mb-6 leading-tight">
+                Tại sao không thể điều hòa?
+              </h3>
 
-            <div className="mt-8 text-center text-white font-['Oswald'] text-2xl font-bold">
-              ∴ Nhà nước là tất yếu
-            </div>
-          </motion.div>
-        )}
+              <div className="space-y-4 mb-8 text-[#f3e6d4]">
+                <p>
+                  Theo quan điểm Mác – Lênin, <strong>mâu thuẫn giai cấp không phải là mâu thuẫn cá nhân.</strong>
+                </p>
+                <p>
+                  Nó bắt nguồn từ <strong>địa vị kinh tế</strong> và <strong>lợi ích cơ bản đối lập</strong> giữa các giai cấp.
+                </p>
+                <p>
+                  Vì vậy các biện pháp cải thiện chỉ có thể <strong>làm dịu xung đột</strong>, không thể xóa bỏ nguyên nhân sâu xa.
+                </p>
+              </div>
+
+              <div className="border-t border-[rgba(255,220,180,0.25)] pt-6 mb-6 text-sm italic text-[#e9d6bd]">
+                <p className="mb-2">Nguồn — luận điểm của Lênin:</p>
+                <p className="text-[#ffd98a] mb-3">
+                  "… những giai cấp có quyền lợi kinh tế mâu thuẫn nhau …"
+                </p>
+                <p>
+                  Nhà nước xuất hiện khi
+                </p>
+                <p className="text-[#ffd98a]">
+                  "… những mâu thuẫn giai cấp không thể điều hòa được."
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 border border-[rgba(255,220,180,0.4)] rounded-full text-xs font-['Oswald'] uppercase tracking-widest">
+                  Nhà nước
+                </span>
+                <span className="px-3 py-1 border border-[rgba(255,220,180,0.4)] rounded-full text-xs font-['Oswald'] uppercase tracking-widest">
+                  là sản phẩm
+                </span>
+                <span className="px-3 py-1 border border-[rgba(255,220,180,0.4)] rounded-full text-xs font-['Oswald'] uppercase tracking-widest">
+                  và biểu hiện
+                </span>
+                <span className="px-3 py-1 border border-[rgba(255,220,180,0.4)] rounded-full text-xs font-['Oswald'] uppercase tracking-widest">
+                  của những mâu thuẫn giai cấp
+                </span>
+                <span className="px-3 py-1 bg-[#d8a13a] text-[#8b1a1a] rounded-full text-xs font-['Oswald'] font-bold uppercase tracking-widest border border-[#d8a13a]">
+                  không thể điều hòa được 🥀
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.section>
   );
