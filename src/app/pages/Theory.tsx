@@ -244,22 +244,30 @@ export default function Theory() {
             <div className="case">
               <div className="tag">LAO ĐỘNG ↔ NỀN TẢNG</div>
               <h3>Tài xế công nghệ & "gig economy"</h3>
-              <p>Tranh chấp về địa vị lao động, bảo hiểm, mức chiết khấu giữa tài xế và các nền tảng (Grab, Uber, Be...). Nhà nước buộc phải can thiệp bằng luật lao động, thuế & an sinh — điều tiết mâu thuẫn lợi ích mới.</p>
+              <p><b>Mâu thuẫn lợi ích:</b> Tài xế muốn thu nhập ổn định, bảo hiểm và địa vị lao động — nền tảng (Grab, Uber, Be...) muốn tối ưu chi phí, giữ mô hình "đối tác độc lập".</p>
+              <p><b>Nhà nước can thiệp:</b> Ban hành luật lao động mới, quy định thuế thu nhập, bắt buộc đóng bảo hiểm xã hội cho tài xế công nghệ.</p>
+              <p className="case-link">→ Nhà nước xuất hiện đúng lúc mâu thuẫn lợi ích không thể tự giải quyết — đúng luận điểm Lenin.</p>
             </div>
             <div className="case">
               <div className="tag">VỐN ↔ XÃ HỘI</div>
-              <h3>Thuế & phân phối lại</h3>
-              <p>Tranh luận toàn cầu về thuế tối thiểu doanh nghiệp, thuế tài sản, lương tối thiểu. Bộ máy thuế khóa (đặc trưng #3) chính là công cụ nhà nước cân bằng tích lũy tư bản với áp lực xã hội.</p>
+              <h3>Thuế tối thiểu toàn cầu</h3>
+              <p><b>Mâu thuẫn lợi ích:</b> Tập đoàn đa quốc gia muốn tối đa hóa lợi nhuận bằng cách chuyển dịch vốn sang thiên đường thuế — chính phủ các nước mất nguồn thu, công nhân mất việc làm.</p>
+              <p><b>Nhà nước can thiệp:</b> G20 áp thuế tối thiểu doanh nghiệp 15% (Pillar Two 2024) để ngăn tránh thuế; Việt Nam ban hành thuế tối thiểu toàn cầu từ 1/1/2024.</p>
+              <p className="case-link">→ Xung đột lợi ích tư bản–lao động vẫn cần nhà nước điều tiết ở quy mô toàn cầu.</p>
             </div>
             <div className="case">
-              <div className="tag">CÔNG NGHỆ ↔ QUYỀN LỰC</div>
-              <h3>AI, dữ liệu & việc làm</h3>
-              <p>Tự động hóa và AI làm dịch chuyển quan hệ sở hữu "tư liệu sản xuất" sang dữ liệu & thuật toán, làm dấy lên xung đột mới về việc làm và phân phối. Nhà nước ra quy định (AI Act, luật dữ liệu) để giữ xung đột "trong vòng trật tự".</p>
+              <div className="tag">TƯ BẢN ↔ LAO ĐỘNG SỐ</div>
+              <h3>AI & dịch chuyển việc làm</h3>
+              <p><b>Mâu thuẫn lợi ích:</b> Doanh nghiệp sở hữu AI và dữ liệu — tư liệu sản xuất thế kỷ XXI — để tối ưu lợi nhuận; người lao động đứng trước nguy cơ mất việc hàng loạt.</p>
+              <p><b>Nhà nước can thiệp:</b> EU ban hành AI Act (2024), các quốc gia đàm phán khung pháp lý về dữ liệu và việc làm để giữ xung đột "trong vòng trật tự".</p>
+              <p className="case-link">→ Quan hệ sở hữu tư liệu sản xuất đổi hình thức, mâu thuẫn giai cấp không biến mất.</p>
             </div>
             <div className="case">
               <div className="tag">QUỐC GIA ↔ BIG TECH</div>
               <h3>Big Tech & Chủ quyền số</h3>
-              <p>Các chính phủ liên tục ban hành quy định đối với Google, Meta, TikTok nhằm kiểm soát dữ liệu và ảnh hưởng xã hội. Khi doanh nghiệp công nghệ sở hữu quyền lực kinh tế khổng lồ, nhà nước phải can thiệp bằng luật pháp để bảo vệ chủ quyền quốc gia.</p>
+              <p><b>Mâu thuẫn lợi ích:</b> Google, Meta, TikTok sở hữu hạ tầng thông tin toàn cầu, tích lũy quyền lực kinh tế–chính trị vượt ra ngoài biên giới quốc gia.</p>
+              <p><b>Nhà nước can thiệp:</b> Nhiều chính phủ ban hành luật dữ liệu, chống độc quyền, yêu cầu đặt máy chủ trong nước — khẳng định chủ quyền lãnh thổ trong không gian số.</p>
+              <p className="case-link">→ Nhà nước vẫn là công cụ bảo vệ lợi ích của giai cấp và lãnh thổ trong thời đại số.</p>
             </div>
           </div>
 
@@ -274,10 +282,10 @@ export default function Theory() {
             <p className="vn-intro">Nhà nước pháp quyền XHCN Việt Nam là <em>hình thức nhà nước của thời kỳ quá độ</em> lên CNXH dưới sự lãnh đạo của Đảng. Vận dụng sáng tạo học thuyết Mác–Lênin: <b>"của Nhân dân, do Nhân dân, vì Nhân dân"</b> — nền tảng là liên minh công–nông–trí, ưu tiên chức năng tổ chức, xây dựng hơn chức năng trấn áp.</p>
 
             <div className="vn-grid">
-              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #1 · QUẢN LÝ LÃNH THỔ</div><div className="vnum">34</div><div className="vlab">tỉnh, thành phố</div><p>Từ 1/7/2025 vận hành chính quyền địa phương <b>hai cấp (tỉnh–xã)</b>: 34 tỉnh/thành và 3.321 xã, phường, đặc khu (NQ 202/2025/QH15, hiệu lực 12/6/2025) — quản lý thống nhất toàn lãnh thổ.</p></div>
-              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #2 · CƯỠNG CHẾ CHUYÊN NGHIỆP</div><div className="vnum">3</div><div className="vlab">cấp công an</div><p>Năm 2025 công an chuyển sang mô hình <b>ba cấp (Bộ–tỉnh–xã)</b>, chấm dứt công an cấp huyện — củng cố hệ thống cơ quan quyền lực công cộng đặc biệt ngay tại cơ sở.</p></div>
-              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #3 · THUẾ KHÓA</div><div className="vnum">Tối ưu</div><div className="vlab">ngân sách quốc gia</div><p>Thuế là nguồn tài chính chủ yếu nuôi bộ máy; do đó cải cách hành chính, tinh giản biên chế ("Tinh–Gọn–Mạnh") chính là biện pháp giảm gánh nặng ngân sách, sử dụng hiệu quả tiền thuế của Nhân dân.</p></div>
-              <div className="vn-card"><div className="vt">CHỨC NĂNG XÃ HỘI · ĐỐI NỘI</div><div className="vnum">&gt;99%</div><div className="vlab">hồ sơ đúng hạn (2025)</div><p>Cải cách hành chính gắn chuyển đổi số (Đề án 06, Cổng Dịch vụ công quốc gia): nhiều địa phương giải quyết hồ sơ đúng hạn trên 99%, mở rộng dịch vụ công trực tuyến.</p></div>
+              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #1 · QUẢN LÝ LÃNH THỔ</div><div className="vnum">34</div><div className="vlab">tỉnh, thành phố</div><p>Từ 1/7/2025 vận hành chính quyền địa phương <b>hai cấp (tỉnh–xã)</b>: 34 tỉnh/thành và 3.321 xã, phường, đặc khu (NQ 202/2025/QH15, hiệu lực 12/6/2025) — quản lý thống nhất toàn lãnh thổ.</p><p className="vn-link-small">→ Minh họa đặc trưng quản lý dân cư theo lãnh thổ, không theo huyết thống hay nghề nghiệp.</p></div>
+              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #2 · CƯỠNG CHẾ CHUYÊN NGHIỆP</div><div className="vnum">3</div><div className="vlab">cấp công an</div><p>Năm 2025 công an chuyển sang mô hình <b>ba cấp (Bộ–tỉnh–xã)</b>, chấm dứt công an cấp huyện — củng cố hệ thống cơ quan quyền lực công cộng đặc biệt ngay tại cơ sở.</p><p className="vn-link-small">→ Minh họa bộ máy cưỡng chế chuyên nghiệp — "những đội vũ trang đặc biệt" theo Lênin.</p></div>
+              <div className="vn-card"><div className="vt">ĐẶC TRƯNG #3 · THUẾ KHÓA</div><div className="vnum">Tối ưu</div><div className="vlab">ngân sách quốc gia</div><p>Thuế là nguồn tài chính chủ yếu nuôi bộ máy; cải cách hành chính, tinh giản biên chế ("Tinh–Gọn–Mạnh") nhằm giảm gánh nặng ngân sách, sử dụng hiệu quả tiền thuế của Nhân dân.</p><p className="vn-link-small">→ Minh họa đặc trưng thuế khóa — nguồn lực duy trì quyền lực công cộng đặt trên xã hội.</p></div>
+              <div className="vn-card"><div className="vt">CHỨC NĂNG XÃ HỘI · ĐỐI NỘI</div><div className="vnum">&gt;99%</div><div className="vlab">hồ sơ đúng hạn (2025)</div><p>Cải cách hành chính gắn chuyển đổi số (Đề án 06, Cổng Dịch vụ công quốc gia): nhiều địa phương giải quyết hồ sơ đúng hạn trên 99%, mở rộng dịch vụ công trực tuyến.</p><p className="vn-link-small">→ Thể hiện tính xã hội của nhà nước — cơ sở thực hiện chức năng giai cấp bền vững hơn.</p></div>
             </div>
 
             <p className="vn-link"><b>Liên hệ trực tiếp luận điểm Lênin:</b> sự tồn tại và liên tục hoàn thiện của Nhà nước (kiểm soát quyền lực, chống tham nhũng, phát huy dân chủ XHCN theo NQ 27-NQ/TW & Đại hội XIV) cho thấy nhà nước <em>không đứng ngoài xã hội</em> mà là thiết chế điều tiết các quan hệ, mâu thuẫn xã hội — đúng với mạch lý luận Chương III.</p>
