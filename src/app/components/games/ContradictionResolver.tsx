@@ -43,6 +43,7 @@ export const ContradictionResolver: React.FC = () => {
   const [attempting, setAttempting] = useState<Scenario | null>(null);
   const [showResult, setShowResult] = useState<Scenario | null>(null);
   const [loadMsg, setLoadMsg] = useState('');
+  const [showConclusion, setShowConclusion] = useState(false);
 
   const handleTryReconcile = (s: Scenario) => {
     setShowResult(null);
@@ -109,7 +110,7 @@ export const ContradictionResolver: React.FC = () => {
 
         {/* Scenario Panel */}
         <AnimatePresence mode="wait">
-          {!allDone ? (
+          {!allDone || !showConclusion ? (
             <motion.div
               key={current}
               initial={{ opacity: 0, y: 20 }}
@@ -197,36 +198,49 @@ export const ContradictionResolver: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white border-4 border-[#171210] overflow-hidden"
+                    className="space-y-6"
                   >
-                    <div className="h-2 bg-gradient-to-r from-[#c8281e] to-[#8b1a1a]" />
-                    <div className="p-6 space-y-3">
-                      {SCENARIOS[current].plus.map((msg, i) => (
-                        <div key={i} className="flex gap-3 items-start">
-                          <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <span className="text-sm">{msg}</span>
+                    <div className="bg-white border-4 border-[#171210] overflow-hidden">
+                      <div className="h-2 bg-gradient-to-r from-[#c8281e] to-[#8b1a1a]" />
+                      <div className="p-6 space-y-3">
+                        {SCENARIOS[current].plus.map((msg, i) => (
+                          <div key={i} className="flex gap-3 items-start">
+                            <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                            <span className="text-sm">{msg}</span>
+                          </div>
+                        ))}
+                        <div className="h-px bg-[#cdc0a8]" />
+                        {SCENARIOS[current].minus.map((msg, i) => (
+                          <div key={i} className="flex gap-3 items-start text-[#5e0f0f]">
+                            <XCircle className="w-5 h-5 text-[#c8281e] flex-shrink-0 mt-0.5" />
+                            <span className="text-sm">{msg}</span>
+                          </div>
+                        ))}
+                        <div className="h-px bg-[#cdc0a8]" />
+                        <div className="flex gap-2 items-start">
+                          <span className="text-[#d8a13a] font-bold">⇒</span>
+                          <span className="font-bold text-[#5e0f0f] text-sm uppercase tracking-wide">
+                            {SCENARIOS[current].conclusion}
+                          </span>
                         </div>
-                      ))}
-                      <div className="h-px bg-[#cdc0a8]" />
-                      {SCENARIOS[current].minus.map((msg, i) => (
-                        <div key={i} className="flex gap-3 items-start text-[#5e0f0f]">
-                          <XCircle className="w-5 h-5 text-[#c8281e] flex-shrink-0 mt-0.5" />
-                          <span className="text-sm">{msg}</span>
-                        </div>
-                      ))}
-                      <div className="h-px bg-[#cdc0a8]" />
-                      <div className="flex gap-2 items-start">
-                        <span className="text-[#d8a13a] font-bold">⇒</span>
-                        <span className="font-bold text-[#5e0f0f] text-sm uppercase tracking-wide">
-                          {SCENARIOS[current].conclusion}
-                        </span>
                       </div>
                     </div>
+
+                    {allDone && !showConclusion && (
+                      <motion.button
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        onClick={() => setShowConclusion(true)}
+                        className="w-full px-8 py-4 bg-[#c8281e] text-white font-['Oswald'] font-bold uppercase tracking-widest text-lg border-4 border-[#171210] hover:bg-[#8b1a1a] transition-colors"
+                      >
+                        Xem kết luận →
+                      </motion.button>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.div>
-          ) : (
+          ) : showConclusion ? (
             /* Grand Conclusion */
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
@@ -287,7 +301,7 @@ export const ContradictionResolver: React.FC = () => {
                 </span>
               </div>
             </motion.div>
-          )}
+          ) : null}
         </AnimatePresence>
       </div>
     </motion.section>
