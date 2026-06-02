@@ -133,7 +133,7 @@ export const ContradictionResolver: React.FC = () => {
           Hãy thử từng biện pháp và quan sát kết quả.
         </p>
 
-        {!showConclusion ? (
+        {!showFinalQ && !showConclusion ? (
           <>
             {/* Tabs */}
             <div className="mb-8">
@@ -274,7 +274,7 @@ export const ContradictionResolver: React.FC = () => {
               </motion.div>
             </AnimatePresence>
           </>
-        ) : showFinalQ && !showConclusion ? (
+        ) : !showConclusion ? (
           /* Final question */
           <motion.div
             initial={{ opacity: 0, y: 16 }}
