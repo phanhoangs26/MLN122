@@ -97,6 +97,7 @@ export const ContradictionResolver: React.FC = () => {
   const handleAction = (idx: number) => {
     if (used.has(idx)) return;
     const action = s.actions[idx];
+
     setLastAction(action);
     setScores(prev => ({
       ...prev,
@@ -105,17 +106,15 @@ export const ContradictionResolver: React.FC = () => {
         right: Math.max(0, Math.min(100, prev[current].right + action.rightDelta)),
       },
     }));
-    setUsedActions(prev => {
-      const next = new Set(prev[current]);
-      next.add(idx);
-      const newUsed = { ...prev, [current]: next };
-      // all actions done → mark scenario done, show zero-sum reveal
-      if (next.size === s.actions.length) {
-        setDone(d => new Set([...d, current]));
-        setShowZeroSum(z => ({ ...z, [current]: true }));
-      }
-      return newUsed;
-    });
+
+    const newUsed = new Set(used);
+    newUsed.add(idx);
+    setUsedActions(prev => ({ ...prev, [current]: newUsed }));
+
+    if (newUsed.size === s.actions.length) {
+      setDone(prev => new Set([...prev, current]));
+      setShowZeroSum(prev => ({ ...prev, [current]: true }));
+    }
   };
 
   return (
