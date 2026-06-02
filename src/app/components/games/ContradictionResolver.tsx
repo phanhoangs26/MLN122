@@ -307,7 +307,8 @@ export const ContradictionResolver: React.FC = () => {
                     {finalAnswer === 'no' ? (
                       <div className="border-l-4 border-green-600 bg-green-50 p-4 text-left mb-6">
                         <p className="font-bold text-green-700 mb-2">✓ Chính xác.</p>
-                        <p className="text-[#171210]">Theo Lenin, nhà nước chỉ xuất hiện khi các mâu thuẫn giai cấp <strong>không thể điều hòa được</strong>.</p>
+                        <p className="text-[#171210]">Theo Lenin, nếu các giai cấp có thể dung hòa hoàn toàn lợi ích, thì nhà nước sẽ không cần xuất hiện.</p>
+                        <p className="text-[#171210] mt-2">Nhà nước xuất hiện chính vì các mâu thuẫn giai cấp <strong>không thể điều hòa được</strong>.</p>
                       </div>
                     ) : (
                       <div className="border-l-4 border-[#c8281e] bg-[#f9e8e8] p-4 text-left mb-6">
@@ -358,7 +359,7 @@ export const ContradictionResolver: React.FC = () => {
 
               <div className="border-t border-[#3a3028] pt-6 space-y-3">
                 <p className="text-[#ece0c8]">
-                  Vì vậy, theo Lenin, đây không phải những xung đột có thể thương lượng hoàn toàn.
+                  Vì vậy, theo Lenin, những biện pháp nhượng bộ chỉ làm dịu xung đột tạm thời — không xóa bỏ được <strong className="text-white">nguyên nhân kinh tế sâu xa</strong> của nó.
                 </p>
                 <p className="text-[#ffd98a] font-semibold text-lg italic">
                   "Chúng là những mâu thuẫn giai cấp không thể điều hòa được."
