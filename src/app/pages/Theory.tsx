@@ -146,19 +146,19 @@ export default function Theory() {
       <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}>
         <div className="wrap">
           <div className="kicker">Tầng 4 — Hai mặt bản chất</div>
-          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Một khuôn mặt cho tất cả,<br />một bản chất cho thiểu số</h2>
+          <h2 style={{ fontSize: 'clamp(28px, 5vw, 46px)' }}>Tính xã hội nhìn thấy,<br />tính giai cấp quyết định</h2>
           <div className="flip-wrap" onClick={() => setIsFlipped(!isFlipped)}>
             <div className={clsx("flip", isFlipped && "flipped")}>
               <div className="face front">
                 <div className="ft">MẶT NHÌN THẤY · TÍNH XÃ HỘI</div>
                 <h3>"Đại diện lợi ích chung"</h3>
                 <p>Nhà nước làm giáo dục, y tế, hạ tầng, an ninh, môi trường — những chức năng xã hội cần thiết để duy trì ổn định. Ăngghen: chức năng xã hội là <em>cơ sở</em> của sự thống trị chính trị.</p>
-                <div className="flip-hint">↻ BẤM ĐỂ LẬT — XEM MẶT CÒN LẠI</div>
+                <div className="flip-hint">↻ BẤM ĐỂ LẬT — AI THỰC SỰ ĐƯỢC BẢO VỆ?</div>
               </div>
               <div className="face back">
                 <div className="ft">BẢN CHẤT QUYẾT ĐỊNH · TÍNH GIAI CẤP</div>
-                <h3>Công cụ chuyên chính</h3>
-                <p>Xét đến cùng, nhà nước là công cụ chính trị của giai cấp thống trị. Chức năng xã hội phục vụ một trật tự có lợi cho giai cấp đó; thống trị chính trị mới là chức năng quyết định. "Không có nhà nước đứng trên hoặc ngoài giai cấp."</p>
+                <h3>Ai thực sự được bảo vệ?</h3>
+                <p>Theo Mác – Lênin, nhà nước không đứng trên các giai cấp. Nó là <em>công cụ chính trị của giai cấp thống trị</em>. Chức năng xã hội phục vụ một trật tự có lợi cho giai cấp đó — thống trị chính trị mới là chức năng quyết định. "Không có nhà nước đứng trên hoặc ngoài giai cấp."</p>
                 <div className="flip-hint">↻ LẬT LẠI</div>
               </div>
             </div>
