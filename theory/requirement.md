@@ -1,4 +1,4 @@
-# Chương 3: III. Nhà nước và cách mạng	
+# Chương 3: III. Nhà nước
 
 - "Hãy dựa vào nội dung lý thuyết về nhà nước trong Chương III để thực hiện một sản phẩm sáng tạo xoay quanh nhận định của Lenin: “The state is a product and a manifestation of the irreconcilability of class antagonisms.”- Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được.
 

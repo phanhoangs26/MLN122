@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ListOrdered, Link2, ShieldAlert } from 'lucide-react';
+import { ListOrdered, Link2, ShieldAlert, Trophy } from 'lucide-react';
 import clsx from 'clsx';
 import { TopBar } from '../components/TopBar';
 import { TimelineGame } from '../components/games/TimelineGame';
 import { MatchingGame } from '../components/games/MatchingGame';
 import { DebateGame } from '../components/games/DebateGame';
+import Dashboard from './Dashboard';
 import { useGameStore } from '../store';
 
-type Tab = 'timeline' | 'match' | 'debate';
+type Tab = 'timeline' | 'match' | 'debate' | 'ranking';
 
 const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
   { id: 'timeline', label: 'Dòng thời gian', icon: ListOrdered },
   { id: 'match', label: 'Nối khái niệm', icon: Link2 },
   { id: 'debate', label: 'Đấu trường lập luận', icon: ShieldAlert },
+  { id: 'ranking', label: 'Xếp hạng', icon: Trophy },
 ];
 
 export default function Games() {
@@ -104,6 +106,7 @@ export default function Games() {
               {tab === 'timeline' && <TimelineGame />}
               {tab === 'match' && <MatchingGame />}
               {tab === 'debate' && <DebateGame />}
+              {tab === 'ranking' && <Dashboard isTab={true} />}
             </div>
           </motion.div>
           )}

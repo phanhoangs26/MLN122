@@ -4,11 +4,9 @@ import clsx from 'clsx';
 
 const navItems = [
   { to: '/', label: 'Trang chủ' },
-  { to: '/theory', label: 'Nhà nước & Giai cấp' },
-  { to: '/tu-ban', label: 'Nhà nước tư sản' },
+  { to: '/theory', label: 'Làm rõ nhận định' },
   { to: '/game', label: 'Ôn tập' },
   { to: '/chat', label: 'Hỏi đáp' },
-  { to: '/dashboard', label: 'Xếp hạng' },
 ];
 
 export const TopBar: React.FC = () => {
@@ -39,7 +37,7 @@ export const TopBar: React.FC = () => {
       <nav className="border-t-[3px] border-[#2a201c] bg-[#171210]">
         <div className="mx-auto flex max-w-6xl items-center justify-center gap-0 overflow-x-auto px-2 sm:gap-4 sm:px-4">
           {navItems.map(({ to, label }) => {
-            const active = pathname === to || (to === '/theory' && pathname === '/theory');
+            const active = pathname === to || (to === '/theory' && pathname === '/theory') || (to === '/game' && pathname.startsWith('/game'));
             return (
               <Link
                 key={to}
