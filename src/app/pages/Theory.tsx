@@ -42,6 +42,7 @@ export default function Theory() {
 
   // FLIP CARD STATE
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isBackExpanded, setIsBackExpanded] = useState(false);
 
   // FEATURES CARD STATE
   const [openFeats, setOpenFeats] = useState<Set<number>>(new Set());
@@ -151,15 +152,28 @@ export default function Theory() {
             <div className={clsx("flip", isFlipped && "flipped")}>
               <div className="face front">
                 <div className="ft">MẶT NHÌN THẤY · TÍNH XÃ HỘI</div>
-                <h3>"Đại diện lợi ích chung"</h3>
-                <p>Nhà nước làm giáo dục, y tế, hạ tầng, an ninh, môi trường — những chức năng xã hội cần thiết để duy trì ổn định. Ăngghen: chức năng xã hội là <em>cơ sở</em> của sự thống trị chính trị.</p>
+                <h3>Duy trì đời sống xã hội</h3>
+                <p>Nhà nước thực hiện các chức năng xã hội cần thiết: giáo dục, y tế, hạ tầng, an ninh, môi trường. Ăngghen: chức năng xã hội là <em>cơ sở</em> của sự thống trị chính trị.</p>
                 <div className="flip-hint">↻ BẤM ĐỂ LẬT — AI THỰC SỰ ĐƯỢC BẢO VỆ?</div>
               </div>
-              <div className="face back">
+              <div className="face back" onClick={e => e.stopPropagation()}>
                 <div className="ft">BẢN CHẤT QUYẾT ĐỊNH · TÍNH GIAI CẤP</div>
                 <h3>Ai thực sự được bảo vệ?</h3>
-                <p>Theo Mác – Lênin, nhà nước không đứng trên các giai cấp. Nó là <em>công cụ chính trị của giai cấp thống trị</em>. Chức năng xã hội phục vụ một trật tự có lợi cho giai cấp đó — thống trị chính trị mới là chức năng quyết định. "Không có nhà nước đứng trên hoặc ngoài giai cấp."</p>
-                <div className="flip-hint">↻ LẬT LẠI</div>
+                <p>Không có nhà nước đứng trên hay ngoài giai cấp.</p>
+                <p><strong>Nhà nước là công cụ chính trị của giai cấp thống trị.</strong></p>
+                {!isBackExpanded ? (
+                  <button
+                    onClick={() => setIsBackExpanded(true)}
+                    style={{ marginTop: '14px', fontFamily: 'Oswald', letterSpacing: '.1em', textTransform: 'uppercase', fontSize: '13px', color: 'var(--gold)', background: 'none', border: '1px solid var(--gold)', padding: '6px 16px', cursor: 'pointer' }}
+                  >
+                    Vì sao? →
+                  </button>
+                ) : (
+                  <p style={{ marginTop: '12px', fontSize: '15px', opacity: .9 }}>
+                    Chức năng xã hội phục vụ một trật tự có lợi cho giai cấp thống trị — thống trị chính trị mới là chức năng quyết định. Tính xã hội tồn tại, nhưng tính giai cấp quyết định.
+                  </p>
+                )}
+                <div className="flip-hint" onClick={() => { setIsFlipped(false); setIsBackExpanded(false); }}>↻ LẬT LẠI</div>
               </div>
             </div>
           </div>
