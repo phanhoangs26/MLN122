@@ -300,8 +300,80 @@ export default function Theory() {
         <div className="wrap">
           <div className="kicker" style={{ color: 'var(--gold)' }}>Tầng 7 — Hệ quả logic</div>
           <h2>NẾU MÂU THUẪN MẤT ĐI<br /><em>NHÀ NƯỚC TỰ TIÊU VONG</em></h2>
-          <p className="fade-line">Nhà nước là sản phẩm của mâu thuẫn giai cấp — nên khi giai cấp bị xóa bỏ hoàn toàn, nhà nước mất lý do tồn tại. Theo Mác–Lênin, điều đó không xảy ra ngay sau cách mạng, mà qua thời kỳ quá độ dưới hình thức <b>nhà nước vô sản</b>: trấn áp lực lượng chống đối + tổ chức xây dựng xã hội mới, rồi <em>dần tiêu vong</em>.</p>
-          <p className="fade-line muted">"Nhà nước là một phạm trù lịch sử: có ra đời thì có mất đi."</p>
+
+          {/* Syllogism chain */}
+          <div style={{ margin: '40px 0', maxWidth: '560px' }}>
+            {[
+              { n: '1', text: 'Nhà nước là sản phẩm của mâu thuẫn giai cấp.' },
+              { n: '2', text: 'Nhà nước tồn tại vì mâu thuẫn giai cấp còn tồn tại.' },
+              { n: '3', text: 'Nếu mâu thuẫn giai cấp bị xóa bỏ hoàn toàn…' },
+              { n: '4', text: '…nhà nước mất cơ sở tồn tại.' },
+              { n: '∴', text: 'Nhà nước dần tiêu vong — như một tất yếu logic.', gold: true },
+            ].map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', marginBottom: i < 4 ? '0' : '0' }}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+                  <div style={{ width: '36px', height: '36px', border: `2px solid ${step.gold ? 'var(--gold)' : 'var(--red)'}`, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Oswald', fontWeight: 700, fontSize: '14px', color: step.gold ? 'var(--gold)' : 'var(--red)', background: 'transparent' }}>
+                    {step.n}
+                  </div>
+                  {i < 4 && <div style={{ width: '2px', height: '24px', background: 'rgba(255,255,255,0.15)', margin: '4px 0' }} />}
+                </div>
+                <p style={{ paddingTop: '6px', fontSize: '17px', color: step.gold ? 'var(--gold)' : 'var(--cream)', fontWeight: step.gold ? 700 : 400, lineHeight: 1.5, marginBottom: i < 4 ? '0' : '0' }}>
+                  {step.text}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Timeline */}
+          <div style={{ margin: '48px 0 36px', borderTop: '2px solid rgba(255,255,255,0.1)', paddingTop: '40px' }}>
+            <div style={{ fontFamily: 'Oswald', letterSpacing: '.2em', fontSize: '12px', color: 'var(--gold)', marginBottom: '28px', textTransform: 'uppercase' }}>
+              Con đường lịch sử — theo Mác–Lênin
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+              {[
+                { label: 'Xã hội tư bản', desc: 'Mâu thuẫn giai cấp gay gắt, không thể điều hòa', dim: true },
+                { label: 'Cách mạng', desc: 'Giai cấp vô sản giành chính quyền', accent: true },
+                { label: 'Nhà nước vô sản', desc: 'Trấn áp lực lượng chống cách mạng · Tổ chức xây dựng xã hội mới · Từng bước xóa bỏ phân chia giai cấp' },
+                { label: 'Xóa bỏ giai cấp', desc: 'Mâu thuẫn giai cấp không còn cơ sở kinh tế' },
+                { label: 'Nhà nước tự tiêu vong', desc: 'Mất lý do tồn tại — trả quyền lực về xã hội', gold: true },
+              ].map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.12 }}
+                  style={{ display: 'flex', gap: '0' }}
+                >
+                  {/* Left: connector */}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: '40px' }}>
+                    <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : 'rgba(255,255,255,0.3)', border: `2px solid ${step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : 'rgba(255,255,255,0.2)'}`, flexShrink: 0, marginTop: '4px' }} />
+                    {i < 4 && <div style={{ width: '2px', flex: 1, minHeight: '32px', background: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />}
+                  </div>
+                  {/* Right: content */}
+                  <div style={{ paddingBottom: i < 4 ? '4px' : '0', paddingLeft: '12px' }}>
+                    <div style={{ fontFamily: 'Oswald', fontSize: '16px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: step.gold ? 'var(--gold)' : step.accent ? 'var(--red)' : step.dim ? 'rgba(255,255,255,0.5)' : 'var(--cream)', marginBottom: '4px' }}>
+                      {step.label}
+                    </div>
+                    <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.55)', marginBottom: '16px', lineHeight: 1.5 }}>
+                      {step.desc}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <p className="fade-line muted" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '24px' }}>
+            "Nhà nước là một phạm trù lịch sử: có ra đời thì có mất đi." — Mác–Lênin
+          </p>
         </div>
       </motion.section>
 
