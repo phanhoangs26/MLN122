@@ -435,10 +435,15 @@ export default function Theory() {
           <table className="appx-table">
             <thead><tr><th>Hạng mục</th><th>Nhóm sinh viên thực hiện</th><th>AI hỗ trợ</th></tr></thead>
             <tbody>
-              <tr><td><b>Lý thuyết Nhà nước</b></td><td>Đọc giáo trình, chắt lọc kiến thức cốt lõi, viết nội dung text.</td><td>Format văn bản thành mã HTML/Markdown để hiển thị đẹp trên Web.</td></tr>
+              <tr><td><b>Lý thuyết Nhà nước (Tầng 0–7)</b></td><td>Đọc giáo trình, xác định cấu trúc 8 tầng, viết toàn bộ nội dung text và kiểm chứng từng luận điểm theo giáo trình Chương III.</td><td>Format nội dung thành React component, thiết kế layout từng tầng.</td></tr>
+              <tr><td><b>Tầng 0 — Quiz nhận thức</b></td><td>Thiết kế 5 câu hỏi phân biệt mâu thuẫn giai cấp vs cá nhân; viết đáp án và giải thích học thuật.</td><td>Lập trình quiz flow (chọn đáp án, hiện phản hồi, chuyển câu), animation stagger.</td></tr>
+              <tr><td><b>Tầng 1 — Mô phỏng slider</b></td><td>Xác định 5 giai đoạn lịch sử và nội dung mô tả; viết kết luận Tầng 1 theo giáo trình.</td><td>Lập trình thanh kéo điều khiển 4 biến số đồng thời, hiển thị giai đoạn động.</td></tr>
+              <tr><td><b>Tầng 2 — Mô phỏng bộ máy cưỡng chế</b></td><td>Xác định 4 cơ quan đúng ngôn ngữ giáo trình; thiết kế 4 chỉ số xã hội (an ninh, tranh chấp, xung đột lợi ích, bất ổn); viết hiệu ứng combo và grand failure.</td><td>Lập trình toggle interaction, animated metric bars, combo detection logic.</td></tr>
+              <tr><td><b>Tầng 3 — Thử điều hòa mâu thuẫn</b></td><td>Thiết kế cơ chế zero-sum (cải thiện một bên = thiệt bên kia); viết 3 kịch bản lịch sử; soạn câu hỏi cuối "Nếu dung hòa được, nhà nước có cần không?"</td><td>Lập trình animated interest bars, tab switching, final question flow.</td></tr>
+              <tr><td><b>Tầng 4 — Flip card bản chất</b></td><td>Xác định hai mặt tính xã hội/tính giai cấp theo giáo trình; viết punchline "Ai thực sự được bảo vệ?"; soạn giải thích theo Ăngghen.</td><td>Lập trình 3D flip animation, modal popup, stopPropagation logic.</td></tr>
+              <tr><td><b>Tầng 7 — Hệ quả logic & Timeline</b></td><td>Xây dựng chuỗi suy luận syllogism 5 bước; xác định 6 mốc timeline theo giáo trình (gồm giai đoạn CSCN cao); viết tất cả nội dung học thuật.</td><td>Lập trình staggered animation cho syllogism và timeline, highlight "Nhà nước vô sản".</td></tr>
               <tr><td><b>Trò chơi Ôn tập</b></td><td>Xây dựng luật chơi, viết câu hỏi, cung cấp cặp khái niệm đáp án.</td><td>Lập trình logic kéo thả, tính điểm và tạo hiệu ứng chúc mừng.</td></tr>
-              <tr><td><b>Chatbot & Đấu trường</b></td><td>Thiết kế rubric chấm, soạn câu hỏi tranh biện, cung cấp tài liệu RAG.</td><td>Đóng vai giám khảo, đọc tài liệu nhóm cung cấp để chấm điểm trực tiếp.</td></tr>
-              <tr><td><b>Giao diện & Cấu trúc Web</b></td><td>Đưa ra ý tưởng luồng trải nghiệm (Lý thuyết → Game → Tranh biện).</td><td>Viết code React/TypeScript, tối ưu responsive cho di động.</td></tr>
+              <tr><td><b>Chatbot & Đấu trường lập luận</b></td><td>Thiết kế rubric chấm, soạn câu hỏi tranh biện, cung cấp tài liệu RAG.</td><td>Đóng vai giám khảo, chấm điểm tự động theo 3 tiêu chí.</td></tr>
             </tbody>
           </table>
 
@@ -454,6 +459,9 @@ export default function Theory() {
           {/* Sáng tạo */}
           <h3 style={{ marginTop: '36px', marginBottom: '12px', fontSize: '18px' }}>Ứng dụng sáng tạo rõ ràng</h3>
           <ol style={{ fontSize: '15px', paddingLeft: '20px', lineHeight: 1.9 }}>
+            <li><b>Trang lý thuyết 8 tầng tương tác:</b> Thay vì slide tĩnh, toàn bộ luận điểm Lenin được "giải phẫu" qua 8 tầng tương tác — từ quiz nhận thức (Tầng 0) đến hệ quả logic (Tầng 7) — người xem tự dẫn đến kết luận thay vì đọc.</li>
+            <li><b>Simulation zero-sum mâu thuẫn giai cấp (Tầng 3):</b> Người xem thao tác trực tiếp lên thanh lợi ích hai giai cấp — mỗi biện pháp cải thiện một bên đều trừ đi của bên kia — để tự nhận ra "không tồn tại trạng thái cùng thắng".</li>
+            <li><b>Mô phỏng bộ máy cưỡng chế (Tầng 2):</b> Gỡ từng cơ quan nhà nước và quan sát 4 chỉ số xã hội thay đổi theo thời gian thực — chứng minh nhà nước là "biểu hiện" của mâu thuẫn chưa giải quyết.</li>
             <li><b>Kiến trúc RAG Chatbot nội bộ:</b> Chatbot tích hợp thẳng vào Website, nhúng sẵn dữ liệu Giáo trình Chương III — giải đáp thắc mắc 24/7.</li>
             <li><b>Hệ thống Game "Đấu trường lập luận":</b> AI đóng vai "Giảng viên phản biện ảo", tự động chấm điểm trên 3 tiêu chí (Lý luận, Trích dẫn, Logic) một cách minh bạch.</li>
             <li><b>Cơ chế dự phòng (Failover):</b> Gọi API song song (Gemini + Llama-Groq) đảm bảo hệ thống mượt mà khi nhiều người truy cập đồng thời.</li>
