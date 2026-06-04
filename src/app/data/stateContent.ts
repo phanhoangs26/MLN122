@@ -90,44 +90,6 @@ export type TimelineRound = {
 
 export const timelineRounds: TimelineRound[] = [
   {
-    id: 'types',
-    title: 'Các kiểu nhà nước trong lịch sử',
-    prompt: 'Sắp xếp các kiểu nhà nước theo đúng tiến trình lịch sử.',
-    successInsight: 'Theo trình tự lịch sử: chủ nô → phong kiến → tư sản → vô sản — mỗi kiểu nhà nước gắn với giai cấp thống trị và phương thức sản xuất tương ứng.',
-    steps: [
-      { label: 'Nhà nước chủ nô', note: 'Giai cấp chủ nô thống trị nô lệ — kiểu nhà nước đầu tiên.' },
-      { label: 'Nhà nước phong kiến', note: 'Công cụ thống trị của giai cấp địa chủ, phong kiến.' },
-      { label: 'Nhà nước tư sản', note: 'Bản chất là nền chuyên chính tư sản dù mang nhiều hình thức.' },
-      { label: 'Nhà nước vô sản', note: 'Kiểu "đặc biệt" — nhà nước của số đông nhân dân lao động.' },
-    ],
-    questions: [
-      {
-        front: 'Lịch sử đã tồn tại bao nhiêu kiểu nhà nước chính?',
-        back: 'Bốn kiểu: nhà nước chủ nô, phong kiến, tư sản, và vô sản. Mỗi kiểu tương ứng với một phương thức sản xuất và giai cấp thống trị khác nhau.',
-      },
-      {
-        front: 'Giai cấp nào lập ra nhà nước chủ nô?',
-        back: 'Giai cấp chủ nô. Đây là kiểu nhà nước đầu tiên trong lịch sử, được dùng để thống trị giai cấp nô lệ và các tầng lớp khác.',
-      },
-      {
-        front: 'Nhà nước phong kiến là công cụ của giai cấp nào?',
-        back: 'Nhà nước phong kiến là công cụ của giai cấp địa chủ, phong kiến. Nó tồn tại dưới hai hình thức: tập quyền (vua có quyền tuyệt đối) và phân quyền (quyền lực tán tạo giữa các thế lực phong kiến cát cứ).',
-      },
-      {
-        front: 'Nhà nước tư sản có thực sự "trung lập" không?',
-        back: 'Không. Dù nhà nước tư sản tồn tại dưới nhiều hình thức (cộng hòa, quân chủ lập hiến, v.v.), về bản chất tất cả đều là "nền chuyên chính tư sản" — công cụ của giai cấp tư sản để bóc lột các giai cấp khác.',
-      },
-      {
-        front: 'Điều gì làm cho nhà nước vô sản là "đặc biệt"?',
-        back: 'Nó là nhà nước của số ĐÔNG (số đông nhân dân lao động, do giai cấp công nhân lãnh đạo) thống trị số ÍT (giai cấp cũ bị đánh đổ). Ngược lại ba kiểu trước: là công cụ của thiểu số thống trị đại đa số.',
-      },
-      {
-        front: 'Tiến trình lịch sử của các kiểu nhà nước diễn ra như thế nào?',
-        back: 'Theo trình tự: chủ nô → phong kiến → tư sản → vô sản. Mỗi sự thay thế gắn với sự phát triển của lực lượng sản xuất và sự xuất hiện của giai cấp mới thay thế giai cấp cũ.',
-      },
-    ],
-  },
-  {
     id: 'origin',
     title: 'Nhà nước ra đời và tiêu vong như thế nào?',
     prompt: 'Sắp xếp 10 bước theo đúng tiến trình từ xã hội cộng sản nguyên thủy đến khi nhà nước tiêu vong theo quan điểm Mác – Lênin.',
