@@ -165,24 +165,6 @@ lợi, giao thông, y tế, giáo dục, bảo vệ môi trường,... để duy
 “trật tự” theo quan điểm của giai cấp thống trị. Tuy nhiên, theo Ph. Ăngghen, nhà nước là 
 đại biểu chính thức của toàn xã hội chỉ trong chừng mực nó là nhà nước của bản thân giai 
 cấp đại diện cho toàn xã hội trong thời đại tương ứng.  
-Mối quan hệ giữa chức năng thống trị chính trị và chức năng xã hội của nhà nước: Do 
-bản chất giai cấp, nhà nước bao giờ cũng đặt chức năng thống trị chính trị của mình lên 
-hàng đầu. Giai cấp thống trị sử dụng nhà nước như một công cụ thống trị để duy trì quyền 
-thống trị của mình, bảo vệ địa vị và lợi ích của giai cấp mình. Chính vì vậy, chức năng 
-thống trị chính trị của nhà nước giữ vai trò quyết định, chi phối và định hướng chức năng 
-xã hội của nhà nước.  
-Tuy nhiên, để duy trì trật tự xã hội, nhà nước của giai cấp thống trị còn phải thực hiện 
-chức năng xã hội của mình. Ph. Ăngghen cho rằng: “chức năng xã hội là cơ sở của sự thống 
-trị chính trị; và sự thống trị chính trị cũng chỉ kéo dài chừng nào nó còn thực hiện chức 
-năng xã hội đó của nó”1. Do vậy, chức năng xã hội của nhà nước có vai trò rất quan trọng 
-đối với sự tồn tại của nhà nước. Nếu chính quyền nhà nước nào không chú ý tới chức năng 
-xã hội thì sớm muộn sẽ sụp đổ. Ph. Ăngghen đã chứng minh điều đó rằng, những chính 
-quyền chuyên chế đã xuất hiện và suy vong ở Ba Tư, Ấn Độ thời cổ đại là do không chú ý 
-tới việc “tưới nước cho các thung lũng” để đảm bảo nền sản xuất nông nghiệp.  
-Như vậy, giữa chức năng thống trị chính trị và chức năng xã hội của nhà nước luôn có 
-mối quan hệ hữu cơ với nhau. Một nhà nước tồn tại lâu dài khi giai cấp thống trị giải quyết 
-ổn thỏa lợi ích của giai cấp và lợi ích của toàn xã hội trong những hoàn cảnh và điều kiện 
-cụ thể.  
 * Chức năng đối nội và chức năng đối ngoại 
 Để thực hiện vai trò của mình đối với giai cấp thống trị và với toàn xã hội, nhà nước 
 còn thực hiện chức năng đối nội và chức năng đối ngoại. 
