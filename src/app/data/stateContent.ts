@@ -301,35 +301,4 @@ export const matchRounds: MatchRound[] = [
       },
     ],
   },
-  {
-    id: 'dialectics',
-    title: 'Mối quan hệ biện chứng',
-    prompt: 'Dựa vào giáo trình, nối các khái niệm về chức năng và bản chất nhà nước sao cho đúng logic triết học.',
-    pairs: [
-      { left: 'Nguyên nhân sâu xa', right: 'Lực lượng sản xuất phát triển dẫn đến chế độ tư hữu' },
-      { left: 'Nguyên nhân trực tiếp', right: 'Mâu thuẫn giai cấp gay gắt không thể điều hòa' },
-      { left: 'Chức năng thống trị chính trị', right: 'Quyết định, chi phối và định hướng chức năng xã hội' },
-      { left: 'Chức năng tổ chức và quản lý đời sống xã hội', right: 'Đảm bảo trật tự, là cơ sở để nhà nước duy trì sự tồn tại lâu dài' },
-      { left: 'Chức năng đối nội', right: 'Giữ vai trò chủ yếu, quyết định sự tồn tại vững chắc của chế độ' },
-      { left: 'Bản chất nhà nước', right: 'Tổ chức chính trị của giai cấp thống trị về kinh tế' },
-    ],
-    questions: [
-      {
-        front: 'Tại sao chức năng đối nội lại giữ vai trò chủ yếu hơn đối ngoại?',
-        back: 'Vì chức năng đối nội gắn trực tiếp với việc duy trì chế độ xã hội và quyền lực nhà nước; đối ngoại phụ thuộc và phục vụ nhiệm vụ đối nội.',
-      },
-      {
-        front: 'Nếu nhà nước chỉ thực hiện chức năng thống trị chính trị mà bỏ qua chức năng xã hội thì sao?',
-        back: 'Nhà nước khó duy trì ổn định xã hội, dễ làm gia tăng mâu thuẫn và suy giảm tính chính danh của quyền lực.',
-      },
-      {
-        front: 'Nguyên nhân sâu xa khác nguyên nhân trực tiếp ở điểm nào?',
-        back: 'Nguyên nhân sâu xa tạo điều kiện cho nhà nước xuất hiện; nguyên nhân trực tiếp là yếu tố làm nhà nước thực sự ra đời.',
-      },
-      {
-        front: 'Vì sao bản chất nhà nước quyết định chức năng nhà nước?',
-        back: 'Vì nhà nước trước hết là tổ chức chính trị của giai cấp thống trị nên mọi chức năng đều phục vụ việc bảo vệ địa vị và lợi ích của giai cấp đó.',
-      },
-    ],
-  },
 ];
