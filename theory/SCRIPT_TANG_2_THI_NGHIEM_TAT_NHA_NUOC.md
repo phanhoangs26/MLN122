@@ -128,42 +128,6 @@ Thí nghiệm này chứng tỏ rằng:
 
 ---
 
-### PHẦN 5: CÂU HỎI TƯƠNG TÁC VỚI KHÁN GIẢ (1 phút)
-
-**[Hỏi sinh viên]**
-
-Giờ hãy suy nghĩ về những câu hỏi này:
-
-**❓ Câu 1:** Bạn có thể tưởng tượng một xã hội mà **không có cảnh sát, quân đội, hay luật pháp** được không? Nó sẽ như thế nào?
-
-**❓ Câu 2:** Nếu không có **hệ thống thuế**, ai sẽ:
-   - Xây dựng đường xá?
-   - Trả lương cho giáo viên?
-   - Chữa bệnh cho người nghèo?
-
-**❓ Câu 3:** Theo bạn, **tại sao không thể "tắt" nhà nước** - là vì tính chất xấu xa của nó hay vì **cách nó phản ánh sự tồn tại của mâu thuẫn giai cấp**?
-
----
-
-### PHẦN 6: LIÊN HỆ VỚI THỰC TIỄN (1 phút)
-
-**[Ví dụ cụ thể]**
-
-**📌 Ví dụ 1: Xã hội mất nhà nước**
-- Somalia (1991-2012): Không có chính phủ trung ương
-- → Nạn cắp cô sô, chiến tranh bộ tộc, điều kiện sống tồi tệ
-
-**📌 Ví dụ 2: Nhà nước yếu = Hỗn loạn**
-- Afghanistan, Syria: Nhà nước không kiểm soát được
-- → Người dân chịu khổ, các lực lượng bạo lực nổi lên
-
-**📌 Ví dụ 3: Nhà nước mạnh = Trật tự**
-- Sing-a-po, Nhật Bản: Nhà nước hiệu quả
-- → Cơ sở hạ tầng tốt, an ninh ổn định, kinh tế phát triển
-- (Nhưng người giàu vẫn giàu, người nghèo vẫn nghèo)
-
----
-
 ## THÔNG TIN BỔ SUNG CHO NGƯỜI THUYẾT TRÌNH
 
 ### Các từ khóa quan trọng:
@@ -183,9 +147,7 @@ Giờ hãy suy nghĩ về những câu hỏi này:
 - Phần 2 (Giải thích 4 tình huống): 2 phút
 - Phần 3 (Thách thức): 1.5 phút
 - Phần 4 (Kết luận): 1 phút
-- Phần 5 (Câu hỏi tương tác): 1 phút
-- Phần 6 (Thực tiễn): 1 phút
-- **Tổng cộng: ~7.5 phút** (để trả lời câu hỏi của sinh viên)
+- **Tổng cộng: ~5.5 phút**
 
 ---
 
