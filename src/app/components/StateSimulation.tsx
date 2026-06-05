@@ -7,7 +7,7 @@ const ORGS = [
     id: 'military',
     name: 'Đội vũ trang đặc biệt',
     sub: '(Quân đội, cảnh sát vũ trang...)',
-    effects: { security: -60, disorder: +20, instability: +15 },
+    effects: { security: -60, disorder: +20},
     consequence: 'Biên giới dễ bị xâm phạm. Các cuộc nổi dậy khó kiểm soát.',
     arrows: ['AN NINH ↓↓↓', 'BẤT ỔN ↑'],
   },
@@ -15,7 +15,10 @@ const ORGS = [
     id: 'police',
     name: 'Cơ quan cưỡng chế',
     sub: '(Cảnh sát, nhà tù, trại giam...)',
-    effects: { lawbreak: +35, disorder: +20 },
+    effects: {
+        dispute: +20,
+        instability: +15
+      },
     consequence: 'Xung đột dân sự tăng. Khó duy trì trật tự công cộng.',
     arrows: ['VI PHẠM LUẬT ↑↑', 'RỐI LOẠN ↑'],
   },
@@ -23,7 +26,10 @@ const ORGS = [
     id: 'court',
     name: 'Tòa án',
     sub: '(Hệ thống xét xử, trọng tài...)',
-    effects: { dispute: +50, instability: +20 },
+    effects: {
+      dispute: +40,
+      instability: +20
+    },
     consequence: 'Không còn cơ chế phân xử. Tranh chấp tồn đọng. Các bên tự giải quyết bằng sức mạnh.',
     arrows: ['TRANH CHẤP ↑↑↑', 'BẤT ỔN ↑↑'],
   },
@@ -31,7 +37,11 @@ const ORGS = [
     id: 'law',
     name: 'Pháp luật',
     sub: '(Hiến pháp, luật thành văn, quy phạm...)',
-    effects: { lawbreak: +30, dispute: +20, instability: +25 },
+    effects: {
+      conflict: +40,
+      dispute: +20,
+      instability: +25
+    },
     consequence: 'Không còn chuẩn mực chung. Mỗi nhóm hành động theo lợi ích riêng.',
     arrows: ['VI PHẠM LUẬT ↑', 'TRANH CHẤP ↑', 'BẤT ỔN ↑↑'],
   },
