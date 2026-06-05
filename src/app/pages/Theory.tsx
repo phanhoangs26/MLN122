@@ -412,49 +412,90 @@ export default function Theory() {
         <div className="wrap">
           <div className="kicker">Phụ lục — AI Usage</div>
           <h2 style={{ fontSize: 'clamp(22px,4vw,36px)' }}>Báo cáo ứng dụng AI có trách nhiệm</h2>
-          <p className="lead muted" style={{ marginBottom: '32px' }}>Đáp ứng tiêu chí <em>"Ứng dụng AI có trách nhiệm – minh bạch – sáng tạo – liêm chính học thuật"</em> trong đồ án môn Triết học Mác – Lênin.</p>
+          <p className="lead muted" style={{ marginBottom: '32px' }}>Tài liệu này được lập nhằm đáp ứng tiêu chí <em>"Ứng dụng AI có trách nhiệm – minh bạch – sáng tạo – liêm chính học thuật"</em> trong đồ án môn Triết học Mác – Lênin.</p>
 
-          {/* Cam kết */}
-          <div className="pledge">
-            <b>Cam kết liêm chính học thuật:</b> AI chỉ đóng vai trò hỗ trợ kỹ thuật và thiết kế — không thay thế quá trình tư duy, phân tích logic và biên soạn nội dung học thuật cốt lõi. Toàn bộ nội dung lý luận về Nhà nước do nhóm tự tổng hợp. Nhóm hoàn toàn chịu trách nhiệm về nội dung cuối cùng.
-          </div>
+          {/* 1. Cam kết */}
+          <h3 style={{ marginTop: '40px', marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>1. Cam kết liêm chính học thuật</h3>
+          <p style={{ fontSize: '15px', lineHeight: 1.8, marginBottom: '12px' }}>AI chỉ đóng vai trò hỗ trợ kỹ thuật, thiết kế và gợi ý triển khai.</p>
+          <p style={{ fontSize: '15px', lineHeight: 1.8, marginBottom: '12px' }}>AI không thay thế quá trình nghiên cứu giáo trình, phân tích lý luận, xây dựng lập luận và biên soạn nội dung học thuật của nhóm.</p>
+          <p style={{ fontSize: '15px', lineHeight: 1.8, marginBottom: '12px' }}>Toàn bộ nội dung lý luận liên quan đến nhận định của V.I. Lênin được nhóm nghiên cứu, tổng hợp và đối chiếu trực tiếp từ Giáo trình Triết học Mác – Lênin, Chương III và các văn bản chính thống liên quan.</p>
+          <p style={{ fontSize: '15px', lineHeight: 1.8, marginBottom: '12px', fontStyle: 'italic' }}>Nhóm hoàn toàn chịu trách nhiệm đối với nội dung cuối cùng của sản phẩm.</p>
 
-          {/* Công cụ */}
-          <h3 style={{ marginTop: '36px', marginBottom: '14px', fontSize: '18px' }}>Công cụ AI sử dụng</h3>
+          {/* 2. Công cụ */}
+          <h3 style={{ marginTop: '40px', marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>2. Công cụ AI sử dụng</h3>
           <table className="appx-table">
             <thead><tr><th>Công cụ AI</th><th>Mục đích sử dụng</th></tr></thead>
             <tbody>
-              <tr><td><b>Claude 3.5 (Anthropic)</b></td><td>Viết code giao diện (React, Tailwind CSS), thiết kế layout UI/UX cho trang web và các trò chơi.</td></tr>
-              <tr><td><b>Gemini 3.1 Flash-Lite (Google)</b></td><td>Xử lý logic Backend cho Chatbot (RAG) và API chấm điểm tự động cho Game "Đấu trường lập luận".</td></tr>
-              <tr><td><b>Llama 3.1 8B (Groq)</b></td><td>Hệ thống dự phòng (Failover) cho API chấm điểm và Chatbot khi Gemini quá tải.</td></tr>
+              <tr><td><b>Claude 3.5 Sonnet</b></td><td>Hỗ trợ viết code giao diện React, Tailwind CSS, thiết kế UI/UX website</td></tr>
+              <tr><td><b>Gemini 3.1 Flash-Lite</b></td><td>Hỗ trợ xử lý logic Backend, API chấm điểm và Chatbot</td></tr>
+              <tr><td><b>Llama 3.1 8B (Groq)</b></td><td>Hệ thống dự phòng (Failover) cho Chatbot và API đánh giá</td></tr>
+              <tr><td><b>ChatGPT</b></td><td>Hỗ trợ brainstorming ý tưởng sản phẩm, kiểm tra logic tương tác, xây dựng kịch bản trải nghiệm người dùng</td></tr>
             </tbody>
           </table>
 
-          {/* Phân định */}
-          <h3 style={{ marginTop: '36px', marginBottom: '14px', fontSize: '18px' }}>Phân định Output AI và Phần nhóm biên soạn</h3>
-          <table className="appx-table">
-            <thead><tr><th>Hạng mục</th><th>Nhóm sinh viên thực hiện</th><th>AI hỗ trợ</th></tr></thead>
-            <tbody>
-              <tr><td><b>Lý thuyết Nhà nước (Tầng 0–7)</b></td><td>Đọc giáo trình, xác định cấu trúc 8 tầng, viết toàn bộ nội dung text và kiểm chứng từng luận điểm theo giáo trình Chương III.</td><td>Format nội dung thành React component, thiết kế layout từng tầng.</td></tr>
-              <tr><td><b>Tầng 0 — Quiz nhận thức</b></td><td>Thiết kế 5 câu hỏi phân biệt mâu thuẫn giai cấp vs cá nhân; viết đáp án và giải thích học thuật.</td><td>Lập trình quiz flow (chọn đáp án, hiện phản hồi, chuyển câu), animation stagger.</td></tr>
-              <tr><td><b>Tầng 1 — Mô phỏng slider</b></td><td>Xác định 5 giai đoạn lịch sử và nội dung mô tả; viết kết luận Tầng 1 theo giáo trình.</td><td>Lập trình thanh kéo điều khiển 4 biến số đồng thời, hiển thị giai đoạn động.</td></tr>
-              <tr><td><b>Tầng 2 — Mô phỏng bộ máy cưỡng chế</b></td><td>Xác định 4 cơ quan đúng ngôn ngữ giáo trình; thiết kế 4 chỉ số xã hội (an ninh, tranh chấp, xung đột lợi ích, bất ổn); viết hiệu ứng combo và grand failure.</td><td>Lập trình toggle interaction, animated metric bars, combo detection logic.</td></tr>
-              <tr><td><b>Tầng 3 — Thử điều hòa mâu thuẫn</b></td><td>Thiết kế cơ chế zero-sum (cải thiện một bên = thiệt bên kia); viết 3 kịch bản lịch sử; soạn câu hỏi cuối "Nếu dung hòa được, nhà nước có cần không?"</td><td>Lập trình animated interest bars, tab switching, final question flow.</td></tr>
-              <tr><td><b>Tầng 4 — Flip card bản chất</b></td><td>Xác định hai mặt tính xã hội/tính giai cấp theo giáo trình; viết punchline "Ai thực sự được bảo vệ?"; soạn giải thích theo Ăngghen.</td><td>Lập trình 3D flip animation, modal popup, stopPropagation logic.</td></tr>
-              <tr><td><b>Tầng 7 — Hệ quả logic & Timeline</b></td><td>Xây dựng chuỗi suy luận syllogism 5 bước; xác định 6 mốc timeline theo giáo trình (gồm giai đoạn CSCN cao); viết tất cả nội dung học thuật.</td><td>Lập trình staggered animation cho syllogism và timeline, highlight "Nhà nước vô sản".</td></tr>
-              <tr><td><b>Trò chơi Ôn tập</b></td><td>Xây dựng luật chơi, viết câu hỏi, cung cấp cặp khái niệm đáp án.</td><td>Lập trình logic kéo thả, tính điểm và tạo hiệu ứng chúc mừng.</td></tr>
-              <tr><td><b>Chatbot & Đấu trường lập luận</b></td><td>Thiết kế rubric chấm, soạn câu hỏi tranh biện, cung cấp tài liệu RAG.</td><td>Đóng vai giám khảo, chấm điểm tự động theo 3 tiêu chí.</td></tr>
-            </tbody>
-          </table>
+          {/* 3. Prompt tiêu biểu */}
+          <h3 style={{ marginTop: '40px', marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>3. Prompt tiêu biểu</h3>
 
-          {/* Sáng tạo */}
-          <h3 style={{ marginTop: '36px', marginBottom: '12px', fontSize: '18px' }}>Ứng dụng sáng tạo rõ ràng</h3>
-          <ol style={{ fontSize: '15px', paddingLeft: '20px', lineHeight: 1.9 }}>
-            <li><b>Trang lý thuyết 8 tầng tương tác:</b> Thay vì slide tĩnh, toàn bộ luận điểm Lenin được "giải phẫu" qua 8 tầng tương tác — từ quiz nhận thức (Tầng 0) đến hệ quả logic (Tầng 7) — người xem tự dẫn đến kết luận thay vì đọc.</li>
-            <li><b>Kiến trúc RAG Chatbot nội bộ:</b> Chatbot tích hợp thẳng vào Website, nhúng sẵn dữ liệu Giáo trình Chương III — giải đáp thắc mắc 24/7.</li>
-            <li><b>Hệ thống Game "Đấu trường lập luận":</b> AI đóng vai "Giảng viên phản biện ảo", tự động chấm điểm trên 3 tiêu chí (Lý luận, Trích dẫn, Logic) một cách minh bạch.</li>
-            <li><b>Cơ chế dự phòng (Failover):</b> Gọi API song song (Gemini + Llama-Groq) đảm bảo hệ thống mượt mà khi nhiều người truy cập đồng thời.</li>
-          </ol>
+          <h4 style={{ marginTop: '24px', marginBottom: '12px', fontSize: '17px', fontWeight: 600 }}>Ví dụ 1 — Thiết kế sản phẩm</h4>
+          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Prompt:</p>
+          <div style={{ background: 'rgba(255,255,255,0.05)', borderLeft: '3px solid var(--gold)', padding: '12px 16px', marginBottom: '12px', fontSize: '14px', fontStyle: 'italic', lineHeight: 1.7 }}>
+            Hãy đề xuất một sản phẩm web tương tác giúp sinh viên hiểu nhận định của Lenin: "Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được", có tính trải nghiệm thay vì trình bày bằng slide.
+          </div>
+          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Kết quả AI:</p>
+          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '12px', lineHeight: 1.8 }}>
+            <li>Đề xuất mô hình website tương tác nhiều tầng.</li>
+            <li>Đề xuất cơ chế khám phá từng luận điểm thông qua trải nghiệm.</li>
+          </ul>
+          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Phần nhóm chỉnh sửa:</p>
+          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '20px', lineHeight: 1.8 }}>
+            <li>Tự xây dựng cấu trúc 8 tầng.</li>
+            <li>Tự thiết kế nội dung học thuật cho từng tầng.</li>
+          </ul>
+
+          <h4 style={{ marginTop: '24px', marginBottom: '12px', fontSize: '17px', fontWeight: 600 }}>Ví dụ 2 — Hỗ trợ lập trình</h4>
+          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Prompt:</p>
+          <div style={{ background: 'rgba(255,255,255,0.05)', borderLeft: '3px solid var(--gold)', padding: '12px 16px', marginBottom: '12px', fontSize: '14px', fontStyle: 'italic', lineHeight: 1.7 }}>
+            Viết component React mô phỏng việc gỡ bỏ từng thiết chế nhà nước và cập nhật các chỉ số xã hội tương ứng.
+          </div>
+          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Kết quả AI:</p>
+          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '12px', lineHeight: 1.8 }}>
+            <li>Sinh code React/Tailwind.</li>
+            <li>Gợi ý kiến trúc dữ liệu.</li>
+          </ul>
+          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Phần nhóm chỉnh sửa:</p>
+          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '20px', lineHeight: 1.8 }}>
+            <li>Điều chỉnh toàn bộ logic chỉ số để phù hợp với nội dung triết học.</li>
+          </ul>
+
+          {/* 4. Đối chiếu */}
+          <h3 style={{ marginTop: '40px', marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>4. Đối chiếu và kiểm chứng nguồn</h3>
+          <p style={{ fontSize: '15px', lineHeight: 1.8, marginBottom: '12px' }}>Mọi nội dung học thuật được đối chiếu với:</p>
+          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '12px', lineHeight: 1.8 }}>
+            <li>Giáo trình Triết học Mác – Lênin, Chương III: Nhà nước và Cách mạng xã hội.</li>
+            <li>Các trích dẫn của C. Mác, Ph. Ăngghen và V.I. Lênin được nêu trong giáo trình.</li>
+            <li>Văn kiện Đại hội XIII của Đảng Cộng sản Việt Nam (phần Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam).</li>
+          </ul>
+          <p style={{ fontSize: '15px', lineHeight: 1.8 }}>Trong trường hợp AI đưa ra nội dung không trùng khớp với giáo trình hoặc nguồn chính thống, nhóm ưu tiên sử dụng nội dung từ giáo trình và tự hiệu chỉnh lại.</p>
+
+          {/* 5. Ứng dụng sáng tạo */}
+          <h3 style={{ marginTop: '40px', marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>5. Ứng dụng AI một cách sáng tạo</h3>
+
+          <h4 style={{ marginTop: '20px', marginBottom: '12px', fontSize: '16px', fontWeight: 600 }}>Website tương tác 8 tầng</h4>
+          <p style={{ fontSize: '15px', lineHeight: 1.8 }}>Thay thế hình thức slide truyền thống bằng trải nghiệm tương tác, cho phép người xem tự khám phá và kiểm chứng luận điểm của Lenin.</p>
+
+          <h4 style={{ marginTop: '20px', marginBottom: '12px', fontSize: '16px', fontWeight: 600 }}>Chatbot học tập nội bộ</h4>
+          <p style={{ fontSize: '15px', lineHeight: 1.8 }}>Chatbot được tích hợp trực tiếp vào website, sử dụng dữ liệu của Chương III để hỗ trợ giải đáp các câu hỏi liên quan đến chủ đề Nhà nước.</p>
+
+          <h4 style={{ marginTop: '20px', marginBottom: '12px', fontSize: '16px', fontWeight: 600 }}>Game "Đấu trường lập luận"</h4>
+          <p style={{ fontSize: '15px', lineHeight: 1.8, marginBottom: '12px' }}>AI đóng vai trò giảng viên phản biện ảo, hỗ trợ đánh giá lập luận dựa trên các tiêu chí:</p>
+          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '12px', lineHeight: 1.8 }}>
+            <li>Độ chính xác lý luận</li>
+            <li>Tính logic</li>
+            <li>Khả năng sử dụng dẫn chứng</li>
+          </ul>
+
+          <h4 style={{ marginTop: '20px', marginBottom: '12px', fontSize: '16px', fontWeight: 600 }}>Hệ thống dự phòng AI</h4>
+          <p style={{ fontSize: '15px', lineHeight: 1.8 }}>Triển khai cơ chế Failover giữa Gemini và Llama-Groq nhằm bảo đảm trải nghiệm ổn định khi số lượng người dùng tăng cao.</p>
         </div>
       </motion.section>
 
