@@ -50,15 +50,17 @@ const ORGS = [
 const COMBO_EFFECTS: Record<string, { title: string; desc: string }> = {
   'police+court': {
     title: 'Gỡ Cơ quan cưỡng chế + Tòa án',
-    desc: 'Không còn người duy trì trật tự. Không còn người phân xử.\n\n⇒ Mâu thuẫn lợi ích không biến mất — chỉ mất cơ chế kiểm soát. Xung đột leo thang không có lối thoát thể chế.',
+    desc: 'Các cơ chế kiểm soát và giải quyết tranh chấp biến mất.\n\n⇒ Nhưng mâu thuẫn lợi ích giữa các nhóm xã hội vẫn tồn tại. Điều bị xóa đi chỉ là công cụ quản lý mâu thuẫn, không phải bản thân mâu thuẫn.',
   },
+
   'court+law': {
     title: 'Gỡ Tòa án + Pháp luật',
-    desc: 'Không còn cơ chế xác định ai đúng ai sai. Các nhóm lợi ích buộc phải dựa vào sức mạnh thực tế.\n\n⇒ Mâu thuẫn lợi ích không biến mất, chỉ mất cơ chế kiểm soát.',
+    desc: 'Không còn cơ chế xét xử và hệ thống quy tắc chung.\n\n⇒ Điều này chưa làm biến mất các lợi ích đối lập trong xã hội.',
   },
+
   'military+police': {
-    title: 'Gỡ Đội vũ trang + Cơ quan cưỡng chế',
-    desc: 'Toàn bộ lực lượng cưỡng chế biến mất.\n\n⇒ Không có gì ngăn cản xung đột giai cấp bùng nổ thành bạo lực.',
+    title: 'Gỡ Đội vũ trang đặc biệt + Cơ quan cưỡng chế',
+    desc: 'Bộ máy cưỡng chế của nhà nước gần như bị loại bỏ hoàn toàn.\n\n⇒ Xung đột xã hội không tự biến mất. Sự tồn tại của các xung đột này cho thấy nguyên nhân làm xuất hiện nhà nước vẫn còn tồn tại.',
   },
 };
 
