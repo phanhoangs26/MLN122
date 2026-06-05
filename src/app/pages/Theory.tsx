@@ -447,21 +447,10 @@ export default function Theory() {
             </tbody>
           </table>
 
-          {/* Kiểm chứng */}
-          <h3 style={{ marginTop: '36px', marginBottom: '12px', fontSize: '18px' }}>Kiểm chứng thông tin (Fact-checking)</h3>
-          <p style={{ fontSize: '15px', marginBottom: '12px' }}>Toàn bộ thông tin học thuật được cấu trúc theo dạng <b>RAG (Retrieval-Augmented Generation)</b> — AI bắt buộc trích xuất từ tài liệu chuẩn do nhóm cung cấp, không được tự "bịa" câu trả lời.</p>
-          <ul style={{ fontSize: '15px', paddingLeft: '20px', lineHeight: 1.8 }}>
-            <li><b>Giáo trình Triết học Mác – Lênin</b> (NXB Chính trị Quốc gia Sự thật, 2021)</li>
-            <li>Tác phẩm <b>Nhà nước và Cách mạng</b> (1917) của V.I. Lênin</li>
-            <li><b>Hiến pháp 2013</b> và <b>Văn kiện Đại hội XIII</b></li>
-          </ul>
-
           {/* Sáng tạo */}
           <h3 style={{ marginTop: '36px', marginBottom: '12px', fontSize: '18px' }}>Ứng dụng sáng tạo rõ ràng</h3>
           <ol style={{ fontSize: '15px', paddingLeft: '20px', lineHeight: 1.9 }}>
             <li><b>Trang lý thuyết 8 tầng tương tác:</b> Thay vì slide tĩnh, toàn bộ luận điểm Lenin được "giải phẫu" qua 8 tầng tương tác — từ quiz nhận thức (Tầng 0) đến hệ quả logic (Tầng 7) — người xem tự dẫn đến kết luận thay vì đọc.</li>
-            <li><b>Simulation zero-sum mâu thuẫn giai cấp (Tầng 3):</b> Người xem thao tác trực tiếp lên thanh lợi ích hai giai cấp — mỗi biện pháp cải thiện một bên đều trừ đi của bên kia — để tự nhận ra "không tồn tại trạng thái cùng thắng".</li>
-            <li><b>Mô phỏng bộ máy cưỡng chế (Tầng 2):</b> Gỡ từng cơ quan nhà nước và quan sát 4 chỉ số xã hội thay đổi theo thời gian thực — chứng minh nhà nước là "biểu hiện" của mâu thuẫn chưa giải quyết.</li>
             <li><b>Kiến trúc RAG Chatbot nội bộ:</b> Chatbot tích hợp thẳng vào Website, nhúng sẵn dữ liệu Giáo trình Chương III — giải đáp thắc mắc 24/7.</li>
             <li><b>Hệ thống Game "Đấu trường lập luận":</b> AI đóng vai "Giảng viên phản biện ảo", tự động chấm điểm trên 3 tiêu chí (Lý luận, Trích dẫn, Logic) một cách minh bạch.</li>
             <li><b>Cơ chế dự phòng (Failover):</b> Gọi API song song (Gemini + Llama-Groq) đảm bảo hệ thống mượt mà khi nhiều người truy cập đồng thời.</li>
