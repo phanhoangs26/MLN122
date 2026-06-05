@@ -436,23 +436,7 @@ export default function Theory() {
           {/* 3. Prompt tiêu biểu */}
           <h3 style={{ marginTop: '40px', marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>3. Prompt tiêu biểu</h3>
 
-          <h4 style={{ marginTop: '24px', marginBottom: '12px', fontSize: '17px', fontWeight: 600 }}>Ví dụ 1 — Thiết kế sản phẩm</h4>
-          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Prompt:</p>
-          <div style={{ background: 'rgba(255,255,255,0.05)', borderLeft: '3px solid var(--gold)', padding: '12px 16px', marginBottom: '12px', fontSize: '14px', fontStyle: 'italic', lineHeight: 1.7 }}>
-            Hãy đề xuất một sản phẩm web tương tác giúp sinh viên hiểu nhận định của Lenin: "Nhà nước là sản phẩm và biểu hiện của những mâu thuẫn giai cấp không thể điều hòa được", có tính trải nghiệm thay vì trình bày bằng slide.
-          </div>
-          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Kết quả AI:</p>
-          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '12px', lineHeight: 1.8 }}>
-            <li>Đề xuất mô hình website tương tác nhiều tầng.</li>
-            <li>Đề xuất cơ chế khám phá từng luận điểm thông qua trải nghiệm.</li>
-          </ul>
-          <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Phần nhóm chỉnh sửa:</p>
-          <ul style={{ fontSize: '15px', paddingLeft: '20px', marginBottom: '20px', lineHeight: 1.8 }}>
-            <li>Tự xây dựng cấu trúc 8 tầng.</li>
-            <li>Tự thiết kế nội dung học thuật cho từng tầng.</li>
-          </ul>
-
-          <h4 style={{ marginTop: '24px', marginBottom: '12px', fontSize: '17px', fontWeight: 600 }}>Ví dụ 2 — Hỗ trợ lập trình</h4>
+          <h4 style={{ marginTop: '24px', marginBottom: '12px', fontSize: '17px', fontWeight: 600 }}>Ví dụ — Hỗ trợ lập trình</h4>
           <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>Prompt:</p>
           <div style={{ background: 'rgba(255,255,255,0.05)', borderLeft: '3px solid var(--gold)', padding: '12px 16px', marginBottom: '12px', fontSize: '14px', fontStyle: 'italic', lineHeight: 1.7 }}>
             Viết component React mô phỏng việc gỡ bỏ từng thiết chế nhà nước và cập nhật các chỉ số xã hội tương ứng.
