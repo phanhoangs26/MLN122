@@ -63,7 +63,7 @@ function getComboKey(off: Set<string>): string | null {
 }
 
 function calcMetrics(off: Set<string>) {
-  let security = 100, dispute = 0, classconflict = 0, instability = 0;
+  let security = 100, dispute = 60, classconflict = 40, instability = 15;
   for (const id of off) {
     const org = ORGS.find(o => o.id === id);
     if (!org) continue;
