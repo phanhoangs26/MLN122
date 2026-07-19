@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       // Fetch top 50 users from the sorted set, descending order, with scores
-      const fetchUrl = `${KV_URL}/zrevrange/mln_leaderboard/0/49/WITHSCORES`;
+      const fetchUrl = `${KV_URL}/zrevrange/hnkte_leaderboard/0/49/WITHSCORES`;
       const response = await fetch(fetchUrl, {
         headers: {
           Authorization: `Bearer ${KV_TOKEN}`,
@@ -23,8 +23,6 @@ export default async function handler(req, res) {
 
       const data = await response.json();
       
-      // Upstash returns data in the format: ["Alice", 150, "Bob", 120, "Charlie", 90]
-      // We want to map it to an array of objects: [{ name: "Alice", xp: 150 }, ...]
       const rawList = data.result || [];
       const leaderboard = [];
       
@@ -52,7 +50,7 @@ export default async function handler(req, res) {
       }
 
       const headers = { Authorization: `Bearer ${KV_TOKEN}` };
-      const userKey = `mln_user_scores:${encodeURIComponent(name)}`;
+      const userKey = `hnkte_user_scores:${encodeURIComponent(name)}`;
       
       // 1. Get the current high score for this round
       const getScoreUrl = `${KV_URL}/hget/${userKey}/round_${round}`;
@@ -68,7 +66,7 @@ export default async function handler(req, res) {
         await fetch(`${KV_URL}/hset/${userKey}/round_${round}/${xp}`, { headers });
 
         // Update the leaderboard sorted set by adding the difference
-        const zincrbyUrl = `${KV_URL}/zincrby/mln_leaderboard/${diff}/${encodeURIComponent(name)}`;
+        const zincrbyUrl = `${KV_URL}/zincrby/hnkte_leaderboard/${diff}/${encodeURIComponent(name)}`;
         const zincrbyRes = await fetch(zincrbyUrl, { headers });
         const zincrbyData = await zincrbyRes.json();
 

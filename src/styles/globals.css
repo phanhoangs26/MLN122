@@ -1,0 +1,227 @@
+/* globals.css — Base layer styles */
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--navy);
+    color: var(--paper);
+    line-height: 1.65;
+    overflow-x: hidden;
+    min-height: 100%;
+    background-image:
+      radial-gradient(ellipse at top left, rgba(192,138,46,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(163,50,58,0.06) 0%, transparent 50%);
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--brass); }
+
+  /* ── Typography scale ── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+  }
+
+  h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+  h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+  h3 { font-size: clamp(1.15rem, 2.5vw, 1.5rem); }
+  h4 { font-size: 1.1rem; font-weight: 600; }
+
+  p { 
+    margin: 0;
+    font-size: 1.05rem; /* Tăng kích thước nội dung */
+    font-weight: 500;   /* Tăng độ đậm */
+  }
+  a { color: var(--brass); text-decoration: none; }
+  a:hover { color: var(--brass-light); }
+  a:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  code, kbd, samp, pre {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  button {
+    font-family: var(--font-body);
+    cursor: pointer;
+  }
+  button:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  input, textarea {
+    font-family: var(--font-body);
+  }
+  input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ── Utility layer ── */
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono    { font-family: var(--font-mono); }
+
+  /* Passport paper surface — used inside cards on dark bg */
+  .paper-surface {
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+  .paper-surface h1,
+  .paper-surface h2,
+  .paper-surface h3,
+  .paper-surface h4 {
+    color: var(--ink);
+  }
+
+  /* Navy card surface */
+  .card-navy {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  /* Brass button */
+  .btn-brass {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--brass);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius);
+    border: none;
+    transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .btn-brass:hover {
+    background: var(--brass-light);
+    transform: translateY(-1px);
+  }
+  .btn-brass:active { transform: translateY(0); }
+
+  /* Ghost button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .btn-ghost:hover {
+    background: rgba(242,234,215,0.08);
+    border-color: rgba(242,234,215,0.4);
+  }
+
+  /* Stamp button — red */
+  .btn-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--stamp);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius);
+    border: none;
+    transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .btn-stamp:hover {
+    background: var(--stamp-dark);
+    transform: translateY(-1px);
+  }
+
+  /* Section wrap */
+  .wrap {
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  /* Divider */
+  .brass-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+    opacity: 0.5;
+    margin: 2rem 0;
+  }
+
+  /* Monospace data */
+  .data-mono {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--brass);
+    letter-spacing: 0.05em;
+  }
+
+  /* Tag / badge */
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius);
+    background: rgba(192,138,46,0.15);
+    color: var(--brass);
+    border: 1px solid rgba(192,138,46,0.3);
+  }
+
+  .tag-stamp {
+    background: rgba(163,50,58,0.15);
+    color: var(--stamp);
+    border-color: rgba(163,50,58,0.3);
+  }
+
+  .tag-paper {
+    background: rgba(242,234,215,0.1);
+    color: var(--paper);
+    border-color: rgba(242,234,215,0.2);
+  }
+}
