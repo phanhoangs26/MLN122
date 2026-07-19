@@ -1,75 +1,57 @@
-# 🎓 Dự án: Triết học Mác - Lênin (Interactive Learning Web)
+# Hội nhập kinh tế quốc tế của Việt Nam
+**Dự án học tập tương tác — Kinh tế Chính trị Mác–Lênin**
 
-Dự án Web tương tác ứng dụng Trí tuệ nhân tạo (AI) và Gamification để hỗ trợ sinh viên ôn tập và tìm hiểu sâu về bộ môn Triết học Mác - Lênin (Cụ thể: Nguồn gốc và bản chất của Nhà nước).
+Dự án này là một web app học tập tương tác chủ đề Hội nhập kinh tế quốc tế, bao gồm thư viện lý thuyết, minigame ôn tập (Xếp dòng thời gian, Nối khái niệm) và hệ thống Chatbot/Đấu trường phản biện tích hợp AI (Gemini).
 
-## 🌟 Tính năng nổi bật
+## Tech Stack
+- **Frontend**: React 18, Vite 6, TailwindCSS v4, React Router 7, Framer Motion, Zustand
+- **Backend**: Vercel Serverless Functions (`/api/*`)
+- **Database**: Upstash Redis (bảng xếp hạng) / fallback bằng LocalStorage
+- **AI Integration**: Google Gemini API (`gemini-1.5-flash`) / fallback chấm điểm nội bộ
 
-1. **Thư viện Lý thuyết (Retro Style)** 📚
-   - Trình bày kiến thức triết học dưới dạng thiết kế báo chí cổ điển (Vintage/Retro Newspaper).
-   - Nội dung được biên soạn kỹ lưỡng, dễ đọc, dễ tiếp thu.
+## Hướng dẫn cài đặt
 
-2. **Khởi động Trí tuệ (Minigames)** 🎮
-   - **Dòng thời gian:** Sắp xếp các sự kiện lịch sử/triết học theo đúng trình tự.
-   - **Nối khái niệm:** Nối các thuật ngữ triết học với định nghĩa chính xác.
+### Yêu cầu
+- Node.js >= 18
+- pnpm (khuyên dùng) hoặc npm
 
-3. **Đấu trường Lập luận (Debate AI)** ⚔️
-   - Trò chơi cốt lõi của hệ thống.
-   - AI (Google Gemini) sẽ đóng vai "Người phản biện", đưa ra những luận điểm sai lệch hoặc phiến diện về triết học Mác - Lênin.
-   - Sinh viên có 5 phút để viết phản biện. Hệ thống AI sẽ tự động đọc, phân tích và chấm điểm dựa trên 3 tiêu chí: **Lý luận**, **Trích dẫn** và **Logic**.
-
-4. **Bảng Xếp Hạng Danh Danh (Real-time Leaderboard)** 🏆
-   - Hệ thống lưu trữ điểm số tự động bằng **Upstash Redis**.
-   - Ghi nhận "Kỷ lục cá nhân" cho từng câu hỏi. Chỉ cộng phần điểm chênh lệch nếu sinh viên phá kỷ lục cũ của chính mình.
-   - Ngăn chặn triệt để hành vi cày điểm lặp lại (spam), đảm bảo công bằng.
-   - Xếp hạng sinh viên toàn lớp theo thời gian thực (Real-time).
-
-5. **Trợ lý AI (Chatbot 24/7)** 🤖
-   - Giải đáp mọi thắc mắc về Triết học Mác - Lênin.
-   - Cung cấp nguồn trích dẫn và ví dụ thực tiễn.
-
-## 🛠 Công nghệ sử dụng
-- **Frontend:** React, Vite, TailwindCSS v4, Framer Motion (hiệu ứng mượt mà).
-- **Backend/API:** Vercel Serverless Functions.
-- **Database:** Upstash Redis (Serverless KV store) xử lý Leaderboard.
-- **AI Integration:** Google Gemini API (để chấm điểm Đấu trường và trả lời Chatbot).
-
-## 🚀 Hướng dẫn cài đặt và chạy thử nghiệm
-
-### 1. Yêu cầu hệ thống
-- Node.js >= 18.x
-- npm hoặc pnpm
-
-### 2. Cài đặt các gói phụ thuộc
+### Cài đặt dependencies
 ```bash
 npm install
 ```
 
-### 3. Thiết lập biến môi trường (Environment Variables)
-Tạo file `.env.local` ở thư mục gốc và thêm các API Keys cần thiết:
-```env
-# Google Gemini API Key
-GEMINI_API_KEY="your_gemini_api_key_here"
-
-# Upstash Redis Keys (Leaderboard)
-KV_REST_API_URL="your_upstash_url"
-KV_REST_API_TOKEN="your_upstash_token"
+### Cấu hình biến môi trường
+Tạo file `.env` ở thư mục gốc dựa trên `.env.example`:
 ```
+GEMINI_API_KEY=your_gemini_api_key_here
+KV_REST_API_URL=https://your-upstash-redis-url.upstash.io
+KV_REST_API_TOKEN=your_upstash_redis_token_here
+```
+*(Lưu ý: Nếu không có các API key này, ứng dụng vẫn hoạt động bình thường nhờ hệ thống fallback local, nhưng chức năng AI và Leaderboard toàn cầu sẽ bị giới hạn)*
 
-### 4. Chạy dự án (Frontend & Serverless API)
-Vì dự án có sử dụng API Backend (Vercel serverless), để chạy toàn bộ ở môi trường local, bạn cần dùng Vercel CLI:
+### Chạy môi trường phát triển (Local)
+Để test cả Frontend (Vite) và Backend (Vercel Serverless Functions) cục bộ, bạn nên dùng Vercel CLI:
 ```bash
+# Cài đặt Vercel CLI (nếu chưa có)
 npm i -g vercel
+
+# Chạy dev server mô phỏng môi trường Vercel (sẽ load cả biến môi trường từ .env)
 vercel dev
 ```
-*(Nếu chỉ muốn xem giao diện mà không gọi API, bạn có thể chạy `npm run dev` ở port 5173).*
+Nếu chỉ muốn chạy Frontend (không cần API):
+```bash
+npm run dev
+```
 
-### 5. Build lên môi trường Production
+### Build Production
 ```bash
 npm run build
 ```
 
-## 📝 Tuyên bố sử dụng AI
-Dự án có sự hỗ trợ của Trí tuệ Nhân tạo (Gemini / Claude / ChatGPT) trong việc lập trình, debug và gợi ý thiết kế giao diện, trong khi phần nội dung học thuật, xây dựng logic luật chơi và cấu trúc hệ thống hoàn toàn do nhóm sinh viên tự thiết kế và định hướng. Xem chi tiết tại `theory/ai-usage.md`.
-
----
-*Dự án thực hiện cho mục đích giáo dục và học tập.*
+## Cấu trúc thư mục chính
+- `src/components/`: Các component tái sử dụng (Nav, StampBadge, Layout)
+- `src/data/`: Dữ liệu nội dung học thuyết và minigame (dạng TypeScript)
+- `src/pages/`: Các màn hình của ứng dụng (Home, Theory, Games, Leaderboard, Chatbot)
+- `src/store/`: Quản lý state toàn cục bằng Zustand (tiến trình học, điểm số)
+- `src/styles/`: Thiết lập CSS Tokens theo chủ đề "Hộ chiếu hội nhập"
+- `api/`: Các serverless function (chat.js, debate.js, leaderboard.js, textbook.js)
