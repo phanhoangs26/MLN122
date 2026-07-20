@@ -88,6 +88,44 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <section style={{ padding: 'clamp(2rem, 5vw, 4rem) 0', borderTop: '1px solid var(--border)' }}>
+        <div className="wrap">
+          <h2 style={{ marginBottom: '2rem', textAlign: 'center' }}>Công cụ AI sử dụng</h2>
+          <div style={{ overflowX: 'auto', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }}>
+            <table style={{ 
+              width: '100%', 
+              borderCollapse: 'collapse',
+              background: 'var(--navy-mid)',
+            }}>
+              <thead>
+                <tr style={{ background: 'rgba(255,255,255,0.05)' }}>
+                  <th style={{ padding: '1.25rem 1.5rem', textAlign: 'left', borderBottom: '1px solid var(--border)', width: '25%', fontSize: '1.1rem' }}>Công cụ AI</th>
+                  <th style={{ padding: '1.25rem 1.5rem', textAlign: 'left', borderBottom: '1px solid var(--border)', fontSize: '1.1rem' }}>Mục đích sử dụng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ padding: '1.5rem', borderBottom: '1px solid var(--border)', fontWeight: 'bold', fontSize: '1.1rem', verticalAlign: 'top' }}>
+                    ChatGPT / Claude
+                  </td>
+                  <td style={{ padding: '1.5rem', borderBottom: '1px solid var(--border)', color: 'var(--text-muted)', lineHeight: 1.6, verticalAlign: 'top' }}>
+                    Hỗ trợ tìm kiếm và phát triển ý tưởng cho dự án, gợi ý nội dung trình bày, đề xuất thiết kế giao diện (UI/UX), giải thích các khái niệm kỹ thuật, hỗ trợ xử lý lỗi trong quá trình phát triển và rà soát, chỉnh sửa văn phong để nội dung rõ ràng, mạch lạc hơn.
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: '1.5rem', fontWeight: 'bold', fontSize: '1.1rem', verticalAlign: 'top' }}>
+                    Antigravity
+                  </td>
+                  <td style={{ padding: '1.5rem', color: 'var(--text-muted)', lineHeight: 1.6, verticalAlign: 'top' }}>
+                    Hỗ trợ triển khai mã nguồn dựa trên yêu cầu, xây dựng các chức năng của hệ thống, đề xuất cấu trúc dự án, hỗ trợ tối ưu và chỉnh sửa mã nguồn, đồng thời đưa ra các giải pháp kỹ thuật giúp hoàn thiện sản phẩm.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 }
